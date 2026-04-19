@@ -2,7 +2,11 @@
 include 'layouts/header.php';
 include_once __DIR__ . '/../model/Comment.php';
 $commentModel = new Comment();
+<<<<<<< HEAD
 $comments = $commentModel->getCommentsByPublication($publication->getId());
+=======
+$comments = $commentModel->getCommentsByPublication($publication['id']);
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
 ?>
 
 <div class="container py-5">
@@ -19,12 +23,17 @@ $comments = $commentModel->getCommentsByPublication($publication->getId());
                     
                     <div class="mb-4">
                         <h1 class="display-5 fw-bold text-primary mb-3">
+<<<<<<< HEAD
                             <?= htmlspecialchars($publication->getTitre()) ?>
+=======
+                            <?= htmlspecialchars($publication['titre']) ?>
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
                         </h1>
                         
                         <div class="d-flex gap-3 flex-wrap">
                             <span class="badge bg-info">
                                 <i class="bi bi-calendar-event me-1"></i>
+<<<<<<< HEAD
                                 <?= date('F d, Y', strtotime($publication->getDate())) ?>
                             </span>
                             <span class="badge bg-secondary">
@@ -34,6 +43,17 @@ $comments = $commentModel->getCommentsByPublication($publication->getId());
                             <span class="badge <?= $publication->getCategorie() == 'Law' ? 'bg-danger' : ($publication->getCategorie() == 'Announcement' ? 'bg-warning text-dark' : 'bg-info text-dark') ?>">
                                 <i class="bi bi-tag me-1"></i>
                                 <?= htmlspecialchars($publication->getCategorie()) ?>
+=======
+                                <?= date('F d, Y', strtotime($publication['date'])) ?>
+                            </span>
+                            <span class="badge bg-secondary">
+                                <i class="bi bi-person me-1"></i>
+                                <?= htmlspecialchars($publication['auteur']) ?>
+                            </span>
+                            <span class="badge <?= $publication['categorie'] == 'Law' ? 'bg-danger' : ($publication['categorie'] == 'Announcement' ? 'bg-warning text-dark' : 'bg-info text-dark') ?>">
+                                <i class="bi bi-tag me-1"></i>
+                                <?= htmlspecialchars($publication['categorie']) ?>
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
                             </span>
                             <span class="badge bg-success">
                                 <i class="bi bi-check-circle me-1"></i>
@@ -50,7 +70,11 @@ $comments = $commentModel->getCommentsByPublication($publication->getId());
                         </h5>
                         <div class="p-4 bg-secondary bg-opacity-10 rounded">
                             <p class="lead" style="white-space: pre-line; line-height: 1.8;">
+<<<<<<< HEAD
                                 <?= nl2br(htmlspecialchars($publication->getContenu())) ?>
+=======
+                                <?= nl2br(htmlspecialchars($publication['contenu'])) ?>
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
                             </p>
                         </div>
                     </div>
@@ -61,7 +85,11 @@ $comments = $commentModel->getCommentsByPublication($publication->getId());
                         <a href="index1.php" class="btn btn-outline-light">
                             <i class="fas fa-list me-2"></i> All Publications
                         </a>
+<<<<<<< HEAD
                         <a href="index1.php?action=addComment&publication_id=<?= $publication->getId() ?>" class="btn btn-warning">
+=======
+                        <a href="index1.php?action=addComment&publication_id=<?= $publication['id'] ?>" class="btn btn-warning">
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
                             <i class="fas fa-comment me-2"></i> Comment
                         </a>
                     </div>
@@ -96,7 +124,11 @@ $comments = $commentModel->getCommentsByPublication($publication->getId());
                                        class="btn btn-sm btn-warning me-1">
                                         <i class="fas fa-edit"></i>
                                     </a>
+<<<<<<< HEAD
                                     <a href="index1.php?action=deleteComment&id=<?= $c['id'] ?>&publication_id=<?= $publication->getId() ?>" 
+=======
+                                    <a href="index1.php?action=deleteComment&id=<?= $c['id'] ?>&publication_id=<?= $publication['id'] ?>" 
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
                                        class="btn btn-sm btn-danger"
                                        onclick="return confirm('Delete this comment?')">
                                         <i class="fas fa-trash"></i>

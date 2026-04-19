@@ -73,7 +73,11 @@ class PublicationC {
                 exit();
             }
 
+<<<<<<< HEAD
             // Use setters
+=======
+            // Use setters to set the publication properties
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
             $publication = new Publication();
             $publication->setTitre($titre);
             $publication->setContenu($contenu);
@@ -81,7 +85,11 @@ class PublicationC {
             $publication->setDate($date);
             $publication->setCategorie($categorie);
 
+<<<<<<< HEAD
             // Pass using getters
+=======
+            // Pass the object to the model
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
             $this->model->addPublication(
                 $publication->getTitre(),
                 $publication->getContenu(),
@@ -102,13 +110,21 @@ class PublicationC {
             exit();
         }
 
+<<<<<<< HEAD
         $data = $this->model->getOnePublication($_GET['id']);
 
         if (!$data) {
+=======
+        $id = $_GET['id'];
+        $publication = $this->model->getOnePublication($id);
+
+        if (!$publication) {
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
             header("Location: /projetweb/back-office/index.php");
             exit();
         }
 
+<<<<<<< HEAD
         // Create Publication object and use setters
         $publication = new Publication();
         $publication->setId($data['id']);
@@ -118,6 +134,8 @@ class PublicationC {
         $publication->setDate($data['date']);
         $publication->setCategorie($data['categorie']);
 
+=======
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
         include __DIR__ . '/../view/edit.php';
     }
 
@@ -170,7 +188,11 @@ class PublicationC {
                 exit();
             }
 
+<<<<<<< HEAD
             // Use setters
+=======
+            // Use setters to set the publication properties
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
             $publication = new Publication();
             $publication->setId($id);
             $publication->setTitre($titre);
@@ -179,7 +201,11 @@ class PublicationC {
             $publication->setDate($date);
             $publication->setCategorie($categorie);
 
+<<<<<<< HEAD
             // Pass using getters
+=======
+            // Pass the object to the model
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
             $this->model->updatePublication(
                 $publication->getId(),
                 $publication->getTitre(),
@@ -212,13 +238,22 @@ class PublicationC {
             exit();
         }
 
+<<<<<<< HEAD
         $data = $this->model->getOnePublication($_GET['id']);
 
         if (!$data) {
+=======
+        $publication = new Publication();
+        $publication->setId($_GET['id']);
+        $publication = $this->model->getOnePublication($publication->getId());
+
+        if (!$publication) {
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
             header("Location: /projetweb/index1.php");
             exit();
         }
 
+<<<<<<< HEAD
         // Create Publication object and use setters
         $publication = new Publication();
         $publication->setId($data['id']);
@@ -228,6 +263,8 @@ class PublicationC {
         $publication->setDate($data['date']);
         $publication->setCategorie($data['categorie']);
 
+=======
+>>>>>>> dc4c8718778aa20ce2d552b15f07f0ce99b0a6d3
         include __DIR__ . '/../view/show.php';
     }
 }
