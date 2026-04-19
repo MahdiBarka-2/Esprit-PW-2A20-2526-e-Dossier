@@ -3,13 +3,14 @@
 
 <!-- Mirrored from booking.webestica.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Feb 2024 15:40:22 GMT -->
 <head>
-	<title>Booking - Multipurpose Online Booking Theme</title>
+	<title>Edossier - Digital Document Platform</title>
+<meta name="description" content="Edossier - Official Government Publications and Documents">
 
 	<!-- Meta Tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Webestica.com">
-	<meta name="description" content="Booking - Multipurpose Online Booking Theme">
+	
 
 	<!-- Dark mode -->
 	<script>
@@ -101,10 +102,9 @@
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
-			<a class="navbar-brand" href="index.html">
-				<img class="light-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo">
-				<img class="dark-mode-item navbar-brand-item" src="assets/images/logo-light.svg" alt="logo">
-			</a>
+			<a class="navbar-brand fw-bold text-primary" href="/projetweb/index.php">
+    <i class="fas fa-folder-open me-2"></i>Edossier
+</a>
 			<!-- Logo END -->
 
 			<!-- Responsive navbar toggler -->
@@ -209,7 +209,15 @@
 								</ul>
 							</li>
 
-							<li> <a class="dropdown-item" href="booking-confirm.html">Booking Confirmed</a></li>
+							<li><hr class="dropdown-divider"></li>
+<li class="dropdown-submenu dropend">
+    <a class="dropdown-item dropdown-toggle" href="#">Publications</a>
+    <ul class="dropdown-menu" data-bs-popper="none">
+        <li><a class="dropdown-item" href="/projetweb/index1.php"><i class="bi bi-grid me-2"></i>All Publications</a></li>
+        <li><a class="dropdown-item" href="/projetweb/back-office/index.php?action=create"><i class="bi bi-plus-circle me-2"></i>Add Publication</a></li>
+        <li><a class="dropdown-item" href="/projetweb/back-office/index.php"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+    </ul>
+</li>
 							<li> <a class="dropdown-item" href="compare-listing.html">Compare Listing</a></li>
 							<li> <a class="dropdown-item" href="offer-detail.html">Offer Detail</a></li>
 						</ul>
@@ -490,8 +498,8 @@ Main Banner START -->
 				<!-- Content -->
 				<div class="col-lg-6 position-relative mb-4 mb-md-0">
 					<!-- Title -->
-					<h1 class="mb-4 mt-md-5 display-5">Find the top
-						<span class="position-relative z-index-9">Hotels nearby.
+					<h1 class="mb-4 mt-md-5 display-5">Goverment
+						<span class="position-relative z-index-9">access.
 							<!-- SVG START -->
 							<span class="position-absolute top-50 start-50 translate-middle z-index-n1 d-none d-md-block mt-4">
 								<svg width="390.5px" height="21.5px" viewBox="0 0 445.5 21.5">
@@ -507,7 +515,7 @@ Main Banner START -->
 					<!-- Buttons -->
 					<div class="hstack gap-4 flex-wrap align-items-center">
 						<!-- Button -->
-						<a href="#" class="btn btn-primary-soft mb-0">Discover Now</a>
+						<a href="/projetweb/index1.php" class="btn btn-primary-soft mb-0">Browse Publications</a>
 						<!-- Story button -->
 						<a data-glightbox="" data-gallery="office-tour" href="https://www.youtube.com/embed/tXHviS-4ygo" class="d-block">
 							<!-- Avatar -->
@@ -570,121 +578,7 @@ Main Banner START -->
 			</div>
 			<!-- Content and Image END -->
 			
-		<!-- Search START -->
-		<div class="row">
-			<div class="col-xl-10 position-relative mt-n3 mt-xl-n9">
-				<!-- Title -->
-				<h6 class="d-none d-xl-block mb-3">Check Availability</h6>
-
-				<!-- Booking from START -->
-				<form class="card shadow rounded-3 position-relative p-4 pe-md-5 pb-5 pb-md-4">
-					<div class="row g-4 align-items-center">
-						<!-- Location -->
-						<div class="col-lg-4">
-							<div class="form-control-border form-control-transparent form-fs-md d-flex">
-								<!-- Icon -->
-								<i class="bi bi-geo-alt fs-3 me-2 mt-2"></i>
-								<!-- Select input -->
-								<div class="flex-grow-1">
-									<label class="form-label">Location</label>
-									<select class="form-select js-choice" data-search-enabled="true">
-										<option value="">Select location</option>
-										<option>San Jacinto, USA</option>
-										<option>North Dakota, Canada</option>
-										<option>West Virginia, Paris</option>
-									</select>
-								</div>
-							</div>
-						</div>
-
-						<!-- Check in -->
-						<div class="col-lg-4">
-							<div class="d-flex">
-								<!-- Icon -->
-								<i class="bi bi-calendar fs-3 me-2 mt-2"></i>
-								<!-- Date input -->
-								<div class="form-control-border form-control-transparent form-fs-md">
-									<label class="form-label">Check in - out</label>
-									<input type="text" class="form-control flatpickr" data-mode="range" placeholder="Select date" value="19 Sep to 28 Sep">
-								</div>
-							</div>
-						</div>
-
-						<!-- Guest -->
-						<div class="col-lg-4">
-							<div class="form-control-border form-control-transparent form-fs-md d-flex">
-								<!-- Icon -->
-								<i class="bi bi-person fs-3 me-2 mt-2"></i>
-								<!-- Dropdown input -->
-								<div class="w-100">
-									<label class="form-label">Guests & rooms</label>
-									<div class="dropdown guest-selector me-2">
-										<input type="text" class="form-guest-selector form-control selection-result" value="2 Guests 1 Room" data-bs-auto-close="outside" data-bs-toggle="dropdown">
-									
-										<!-- dropdown items -->
-										<ul class="dropdown-menu guest-selector-dropdown">
-											<!-- Adult -->
-											<li class="d-flex justify-content-between">
-												<div>
-													<h6 class="mb-0">Adults</h6>
-													<small>Ages 13 or above</small>
-												</div>
-
-												<div class="hstack gap-1 align-items-center">
-													<button type="button" class="btn btn-link adult-remove p-0 mb-0"><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
-													<h6 class="guest-selector-count mb-0 adults">2</h6>
-													<button type="button" class="btn btn-link adult-add p-0 mb-0"><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
-												</div>
-											</li>
-
-											<!-- Divider -->
-											<li class="dropdown-divider"></li>
-
-											<!-- Child -->
-											<li class="d-flex justify-content-between">
-												<div>
-													<h6 class="mb-0">Child</h6>
-													<small>Ages 13 below</small>
-												</div>
-
-												<div class="hstack gap-1 align-items-center">
-													<button type="button" class="btn btn-link child-remove p-0 mb-0" ><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
-													<h6 class="guest-selector-count mb-0 child">0</h6>
-													<button type="button" class="btn btn-link child-add p-0 mb-0" ><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
-												</div>
-											</li>
-
-											<!-- Divider -->
-											<li class="dropdown-divider"></li>
-
-											<!-- Rooms -->
-											<li class="d-flex justify-content-between">
-												<div>
-													<h6 class="mb-0">Rooms</h6>
-													<small>Max room 8</small>
-												</div>
-
-												<div class="hstack gap-1 align-items-center">
-													<button type="button" class="btn btn-link room-remove p-0 mb-0" ><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
-													<h6 class="guest-selector-count mb-0 rooms">1</h6>
-													<button type="button" class="btn btn-link room-add p-0 mb-0" ><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Button -->
-					<div class="btn-position-md-middle">
-						<a class="icon-lg btn btn-round btn-primary mb-0" href="#"><i class="bi bi-search fa-fw"></i></a>
-					</div>
-				</form>
-				<!-- Booking from END -->
-			</div>
-		</div>
-		<!-- Search END -->
+		
 	</div>
 </section>
 <!-- =======================
@@ -1125,38 +1019,32 @@ Featured Hotels START -->
 		<!-- Title -->
 		<div class="row mb-4">
 			<div class="col-12 text-center">
-				<h2 class="mb-0">Featured Hotels</h2>
+				<h2 class="mb-0">Latest Publications</h2>
 			</div>
 		</div>
 
 		<div class="row g-4">
 			<!-- Hotel item -->
-			<div class="col-sm-6 col-xl-3">
-				<!-- Card START -->
-				<div class="card card-img-scale overflow-hidden bg-transparent">
-					<!-- Image and overlay -->
-					<div class="card-img-scale-wrapper rounded-3">
-						<!-- Image -->
-						<img src="assets/images/category/hotel/01.jpg" class="card-img" alt="hotel image">
-						<!-- Badge -->
-						<div class="position-absolute bottom-0 start-0 p-3">
-							<div class="badge text-bg-dark fs-6 rounded-pill stretched-link"><i class="bi bi-geo-alt me-2"></i>New York</div>
-						</div>
-					</div>
-
-					<!-- Card body -->
-					<div class="card-body px-2">
-						<!-- Title -->
-						<h5 class="card-title"><a href="hotel-detail.html" class="stretched-link">Baga Comfort</a></h5>
-						<!-- Price and rating -->
-						<div class="d-flex justify-content-between align-items-center">
-							<h6 class="text-success mb-0">$455 <small class="fw-light">/starting at</small> </h6>
-							<h6 class="mb-0">4.5<i class="fa-solid fa-star text-warning ms-1"></i></h6>
-						</div>
-					</div>
-				</div>
-				<!-- Card END -->
-			</div>
+			<?php if(isset($list) && count($list) > 0): ?>
+    <?php foreach(array_slice($list, 0, 4) as $p): // Show only first 4 ?>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title"><?= htmlspecialchars($p['titre']) ?></h5>
+                <p class="card-text small text-muted"><?= htmlspecialchars(substr($p['contenu'], 0, 80)) ?>...</p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <small class="text-info"><?= date('M d, Y', strtotime($p['date'])) ?></small>
+                    <a href="index.php?action=show&id=<?= $p['id'] ?>" class="btn btn-sm btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <div class="col-12 text-center">
+        <p>No publications available yet.</p>
+    </div>
+<?php endif; ?>
 
 			<!-- Hotel item -->
 			<div class="col-sm-6 col-xl-3">
@@ -1761,7 +1649,7 @@ Footer START -->
 			<div class="container">
 				<div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-lg-start">
 					<!-- copyright text -->
-					<div class="text-body-secondary text-primary-hover"> Copyrights ©2023 Booking. Build by <a href="https://www.webestica.com/" class="text-body-secondary">Webestica</a>. </div>
+					<div class="text-body-secondary text-primary-hover"> Copyrights ©2026 Edossier Platform. All Rights Reserved. <a href="https://www.webestica.com/" class="text-body-secondary">All Rights Reserved.</a>. </div>
 					<!-- copyright links-->
 					<div class="nav mt-2 mt-lg-0">
 						<ul class="list-inline text-primary-hover mx-auto mb-0">
