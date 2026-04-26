@@ -46,7 +46,15 @@ return [
         'real_time_tracking' => 'Real-time Tracking',
         'real_time_tracking_desc' => 'Monitor the progress of your demands in real-time.',
         'team_collaboration' => 'Team Collaboration',
-        'team_collaboration_desc' => 'Seamlessly collaborate with agents and employees.'
+        'team_collaboration_desc' => 'Seamlessly collaborate with agents and employees.',
+        'sort' => 'Sort',
+        'sort_asc' => 'Ascending',
+        'sort_desc' => 'Descending',
+        'sort_by' => 'Sort By (ID, Name, Email...)',
+        'export_pdf' => 'Export PDF',
+        'search_placeholder' => 'Search by name or email...',
+        'id' => 'ID',
+        'name' => 'Name'
     ],
     'fr' => [
         'dashboard' => 'Tableau de bord',
@@ -94,7 +102,15 @@ return [
         'real_time_tracking' => 'Suivi en temps réel',
         'real_time_tracking_desc' => 'Surveillez l\'avancement de vos demandes en temps réel.',
         'team_collaboration' => 'Collaboration d\'équipe',
-        'team_collaboration_desc' => 'Collaborez de manière transparente avec les agents et les employés.'
+        'team_collaboration_desc' => 'Collaborez de manière transparente avec les agents et les employés.',
+        'sort' => 'Trier',
+        'sort_asc' => 'Croissant',
+        'sort_desc' => 'Décroissant',
+        'sort_by' => 'Trier par (ID, Nom, Email...)',
+        'export_pdf' => 'Exporter en PDF',
+        'search_placeholder' => 'Rechercher par nom ou email...',
+        'id' => 'ID',
+        'name' => 'Nom'
     ],
     'ar' => [
         'dashboard' => 'لوحة القيادة',
@@ -142,6 +158,14 @@ return [
         'real_time_tracking' => 'تتبع في الوقت الحقيقي',
         'real_time_tracking_desc' => 'راقب تقدم طلباتك في الوقت الحقيقي.',
         'team_collaboration' => 'تعاون الفريق',
-        'team_collaboration_desc' => 'تعاون بسلاسة مع الوكلاء والموظفين.'
+        'team_collaboration_desc' => 'تعاون بسلاسة مع الوكلاء والموظفين.',
+        'sort' => 'فرز',
+        'sort_asc' => 'تصاعدي',
+        'sort_desc' => 'تنازلي',
+        'sort_by' => 'فرز حسب (الرقم، الاسم، البريد...)',
+        'export_pdf' => 'تصدير PDF',
+        'search_placeholder' => 'بحث بالاسم أو البريد...',
+        'id' => 'رقم المعرف',
+        'name' => 'الاسم'
     ]
 ];

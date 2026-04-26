@@ -97,18 +97,35 @@ $stmt = findUsersByRole('agent');
 
                 <div class="card shadow">
                     <div class="card-body">
+                        <div class="row g-3 align-items-center mb-4">
+                            <div class="col-md-2">
+                                <select id="sortOrder" class="form-select form-select-sm">
+                                    <option value="ASC"><?php echo __('sort_asc'); ?></option>
+                                    <option value="DESC"><?php echo __('sort_desc'); ?></option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" id="sortBy" class="form-control form-control-sm" placeholder="<?php echo __('sort_by'); ?>">
+                            </div>
+                            <div class="col-md-7 text-md-end">
+                                <button id="exportPdf" class="btn btn-sm btn-danger-soft mb-0">
+                                    <i class="bi bi-file-earmark-pdf-fill me-1"></i><?php echo __('export_pdf'); ?>
+                                </button>
+                            </div>
+                        </div>
+
                         <div class="table-responsive border-0">
-                            <table class="table align-middle p-4 mb-0 table-hover">
+                            <table id="agentTable" class="table align-middle p-4 mb-0 table-hover">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="border-0 rounded-start"><?php echo __('name'); ?></th>
-                                        <th class="border-0"><?php echo __('email'); ?></th>
-                                        <th class="border-0"><?php echo __('password'); ?></th>
-                                        <th class="border-0"><?php echo __('role'); ?></th>
-                                        <th class="border-0"><?php echo __('status'); ?></th>
-                                        <th class="border-0"><?php echo __('cv'); ?></th>
+                                        <th class="border-0 rounded-start" data-column="name"><?php echo __('name'); ?></th>
+                                        <th class="border-0" data-column="email"><?php echo __('email'); ?></th>
+                                        <th class="border-0" data-column="password"><?php echo __('password'); ?></th>
+                                        <th class="border-0" data-column="role"><?php echo __('role'); ?></th>
+                                        <th class="border-0" data-column="status"><?php echo __('status'); ?></th>
+                                        <th class="border-0" data-column="cv"><?php echo __('cv'); ?></th>
                                         <?php if ($_SESSION['role'] === 'administrator'): ?>
-                                            <th class="border-0 rounded-end">Action</th>
+                                            <th class="border-0 rounded-end" data-export="false">Action</th>
                                         <?php endif; ?>
                                     </tr>
                                 </thead>
@@ -168,7 +185,7 @@ $stmt = findUsersByRole('agent');
                                                 <?php endif; ?>
                                             </td>
                                             <?php if ($_SESSION['role'] === 'administrator'): ?>
-                                                <td>
+                                                <td data-export="false">
                                                     <button class="btn btn-sm btn-light me-1"
                                                         onclick="editUser(<?php echo $row['id']; ?>)"><i
                                                             class="bi bi-pencil-square"></i></button>
@@ -372,5 +389,127 @@ $stmt = findUsersByRole('agent');
 
     <!-- Theme Functions -->
     <script src="../../assets/js/functions.js"></script>
+
+    <!-- html2pdf Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('globalSearch');
+            const table = document.getElementById('agentTable');
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+            
+            const sortByInput = document.getElementById('sortBy');
+            const sortOrderSelect = document.getElementById('sortOrder');
+            const exportPdfBtn = document.getElementById('exportPdf');
+
+            // --- Search Functionality ---
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const filter = searchInput.value.toLowerCase().trim();
+                    for (let i = 0; i < rows.length; i++) {
+                        const name = rows[i].cells[0].innerText.toLowerCase();
+                        const email = rows[i].cells[1].innerText.toLowerCase();
+                        if (filter === "" || name.indexOf(filter) > -1 || email.indexOf(filter) > -1) {
+                            rows[i].style.display = "";
+                        } else {
+                            rows[i].style.display = "none";
+                        }
+                    }
+                });
+            }
+
+            // --- Sort Functionality ---
+            const performSort = function() {
+                const columnText = sortByInput.value.toLowerCase().trim();
+                const order = sortOrderSelect.value;
+                
+                if (columnText === "") return;
+
+                let columnIndex = -1;
+
+                // Map input text to column index
+                const headers = table.querySelectorAll('thead th');
+                headers.forEach((th, index) => {
+                    const headerText = th.innerText.toLowerCase();
+                    const columnAttr = th.getAttribute('data-column') ? th.getAttribute('data-column').toLowerCase() : '';
+                    if (headerText.includes(columnText) || columnAttr.includes(columnText) || (columnText === 'id' && index === 0)) {
+                        columnIndex = index;
+                    }
+                });
+
+                if (columnIndex === -1) {
+                    alert('Column not found. Try: ID, Name, Email, Role, Status');
+                    return;
+                }
+
+                const tbody = table.querySelector('tbody');
+                const rowsArray = Array.from(tbody.querySelectorAll('tr'));
+
+                rowsArray.sort((a, b) => {
+                    let aText = a.cells[columnIndex].innerText.trim();
+                    let bText = b.cells[columnIndex].innerText.trim();
+
+                    // Special handling for ID if it's the first column
+                    if (columnIndex === 0 && (columnText === 'id' || columnText.includes('id'))) {
+                        const aMatch = aText.match(/ID: #(\d+)/);
+                        const bMatch = bText.match(/ID: #(\d+)/);
+                        if (aMatch && bMatch) {
+                            aText = aMatch[1];
+                            bText = bMatch[1];
+                            return order === 'ASC' ? parseInt(aText) - parseInt(bText) : parseInt(bText) - parseInt(aText);
+                        }
+                    }
+
+                    // Numeric sort if applicable
+                    if (!isNaN(aText) && !isNaN(bText) && aText !== '' && bText !== '') {
+                        return order === 'ASC' ? parseFloat(aText) - parseFloat(bText) : parseFloat(bText) - parseFloat(aText);
+                    }
+
+                    return order === 'ASC' ? aText.localeCompare(bText) : bText.localeCompare(aText);
+                });
+
+                rowsArray.forEach(row => tbody.appendChild(row));
+            };
+
+            // Trigger sort on Enter key
+            sortByInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    performSort();
+                }
+            });
+
+            // Also trigger sort when order changes
+            sortOrderSelect.addEventListener('change', performSort);
+
+            // --- Export to PDF ---
+            exportPdfBtn.addEventListener('click', function() {
+                const element = document.createElement('div');
+                const tableClone = table.cloneNode(true);
+                
+                // Remove non-exportable elements
+                tableClone.querySelectorAll('[data-export="false"]').forEach(el => el.remove());
+                
+                element.innerHTML = `
+                    <div style="padding: 20px;">
+                        <h2 style="text-align: center; color: #066ac9;">Agent List - E-Dossier</h2>
+                        <hr>
+                        ${tableClone.outerHTML}
+                    </div>
+                `;
+
+                const opt = {
+                    margin:       [10, 10],
+                    filename:     'agents_list.pdf',
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2 },
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' }
+                };
+
+                html2pdf().set(opt).from(element).save();
+            });
+        });
+    </script>
 
     <?php include 'footer.php'; ?>

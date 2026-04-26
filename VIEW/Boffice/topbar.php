@@ -21,15 +21,15 @@
             </div>
 
             <!-- Search bar -->
-            <div class="navbar-expand-lg ms-auto ms-xl-0">
+            <div class="navbar-expand-lg ms-auto ms-xl-4 d-none d-md-block" style="min-width: 450px;">
                 <div class="nav my-3 my-xl-0 flex-nowrap align-items-center">
                     <div class="nav-item w-100">
                         <form class="position-relative">
-                            <input class="form-control bg-light pe-5" type="search"
-                                placeholder="Search dossier, user..." aria-label="Search">
+                            <input id="globalSearch" class="form-control bg-light pe-5 py-2" type="search"
+                                placeholder="<?php echo __('search_placeholder'); ?>" aria-label="Search">
                             <button
-                                class="bg-transparent px-2 py-0 border-0 position-absolute top-50 end-0 translate-middle-y"
-                                type="submit"><i class="fas fa-search fs-6 text-primary"></i></button>
+                                class="bg-transparent px-3 py-0 border-0 position-absolute top-50 end-0 translate-middle-y"
+                                type="submit"><i class="fas fa-search fs-5 text-primary"></i></button>
                         </form>
                     </div>
                 </div>
