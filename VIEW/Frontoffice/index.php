@@ -62,8 +62,9 @@ require_once '../../CONTROLLER/LanguageController.php';
                 <nav class="navbar-expand-lg">
                     <ul class="nav">
                         <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="index.php"><?php echo __('home'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php"><?php echo __('dashboard'); ?></a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
                     </ul>
                 </nav>
 
@@ -112,6 +113,35 @@ require_once '../../CONTROLLER/LanguageController.php';
                     [data-bs-theme='dark'] .hero-section {
                         background-color: var(--bs-body-bg) !important;
                     }
+                    /* Floating search button */
+                    .btn-position-md-middle {
+                        position: absolute;
+                        bottom: -20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+                    @media (min-width: 768px) {
+                        .btn-position-md-middle {
+                            top: 50%;
+                            bottom: auto;
+                            right: -20px;
+                            left: auto;
+                            transform: translateY(-50%);
+                        }
+                    }
+                    .btn-round {
+                        border-radius: 50% !important;
+                        width: 44px;
+                        height: 44px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 0;
+                    }
+                    .icon-lg {
+                        width: 44px;
+                        height: 44px;
+                    }
                 </style>
 
                 <!-- Language Switcher -->
@@ -128,18 +158,13 @@ require_once '../../CONTROLLER/LanguageController.php';
 
                 <!-- Theme Switcher -->
                 <div class="dropdown ms-3">
-                    <button class="btn btn-light btn-sm lh-0 mb-0" id="bd-theme" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                    <button class="btn btn-light btn-sm lh-0 mb-0" id="bd-theme" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-circle-half theme-icon-active"></i>
                     </button>
                     <ul class="dropdown-menu min-w-auto dropdown-menu-end shadow" aria-labelledby="bd-theme">
-                        <li class="mb-1"><button type="button" class="dropdown-item d-flex align-items-center"
-                                data-bs-theme-value="light"><i
-                                    class="bi bi-brightness-high-fill me-2"></i>Light</button></li>
-                        <li class="mb-1"><button type="button" class="dropdown-item d-flex align-items-center"
-                                data-bs-theme-value="dark"><i bi bi-moon-stars-fill me-2"></i>Dark</button></li>
-                        <li><button type="button" class="dropdown-item d-flex align-items-center active"
-                                data-bs-theme-value="auto"><i class="bi bi-circle-half me-2"></i>Auto</button></li>
+                        <li class="mb-1"><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"><i class="bi bi-brightness-high-fill me-2"></i>Light</button></li>
+                        <li class="mb-1"><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"><i class="bi bi-moon-stars-fill me-2"></i>Dark</button></li>
+                        <li><button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"><i class="bi bi-circle-half me-2"></i>Auto</button></li>
                     </ul>
                 </div>
 
@@ -247,6 +272,62 @@ require_once '../../CONTROLLER/LanguageController.php';
                     </div>
                 </div>
                 <!-- Search Bar END -->
+<
+                <!-- Booking Form START -->
+                <div class="row mt-4 justify-content-center">
+                    <div class="col-xl-10 position-relative">
+                        <h6 class="d-none d-xl-block mb-3">Check Availability</h6>
+                        <form class="card shadow rounded-3 position-relative p-4 pe-md-5 pb-5 pb-md-4"
+                               action="search_events.php" method="GET">
+                            <input type="hidden" name="search" value="1">
+                            <div class="row g-4 align-items-center">
+                                <!-- Location -->
+                                <div class="col-lg-4">
+                                    <div class="form-control-border form-control-transparent form-fs-md d-flex">
+                                        <i class="bi bi-geo-alt fs-3 me-2 mt-2"></i>
+                                        <div class="flex-grow-1">
+                                            <label class="form-label">Location</label>
+                                            <select class="form-select js-choice" name="lieu" data-search-enabled="true">
+                                                <option value="">Tous les lieux</option>
+                                                <?php foreach ($locs as $l): ?>
+                                                    <option value="<?= htmlspecialchars($l) ?>"><?= htmlspecialchars($l) ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Date début -->
+                                <div class="col-lg-4">
+                                    <div class="form-control-border form-control-transparent form-fs-md d-flex">
+                                        <i class="bi bi-calendar fs-3 me-2 mt-2"></i>
+                                        <div class="flex-grow-1">
+                                            <label class="form-label">Date début</label>
+                                            <input type="date" class="form-control" name="date_debut">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Date fin -->
+                                <div class="col-lg-4">
+                                    <div class="form-control-border form-control-transparent form-fs-md d-flex">
+                                        <i class="bi bi-calendar-check fs-3 me-2 mt-2"></i>
+                                        <div class="flex-grow-1">
+                                            <label class="form-label">Date fin</label>
+                                            <input type="date" class="form-control" name="date_fin">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- row END -->
+                            <!-- Search Button -->
+                            <div class="btn-position-md-middle">
+                                <button type="submit" class="icon-lg btn btn-round btn-primary mb-0">
+                                    <i class="bi bi-search fa-fw"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Booking Form END -->
+
             </div>
         </section>
         <!-- Hero Section END -->
@@ -301,8 +382,7 @@ require_once '../../CONTROLLER/LanguageController.php';
                             style="height: 40px; filter: brightness(0) invert(1);">
                         <span class="ms-2 fw-bold text-white fs-4">E-Dossier</span>
                     </div>
-                    <p class="small opacity-75">Providing modern solutions for digital dossier management since 2026.
-                    </p>
+                    <p class="small opacity-75">Providing modern solutions for digital dossier management since 2026.</p>
                 </div>
                 <div class="col-lg-6 text-lg-end">
                     <ul class="nav justify-content-lg-end mb-3">

@@ -54,7 +54,10 @@ return [
         'export_pdf' => 'Export PDF',
         'search_placeholder' => 'Search by name or email...',
         'id' => 'ID',
-        'name' => 'Name'
+        'name' => 'Name',
+        'Evenement' => 'Event',
+        'Evenements' => 'Events',
+        'Liste des Événements' => 'Event List'
     ],
     'fr' => [
         'dashboard' => 'Tableau de bord',
@@ -110,7 +113,9 @@ return [
         'export_pdf' => 'Exporter en PDF',
         'search_placeholder' => 'Rechercher par nom ou email...',
         'id' => 'ID',
-        'name' => 'Nom'
+        'name' => 'Nom',
+        'Evenement' => 'Événement',
+        'Evenements' => 'Événements'
     ],
     'ar' => [
         'dashboard' => 'لوحة القيادة',
@@ -166,6 +171,8 @@ return [
         'export_pdf' => 'تصدير PDF',
         'search_placeholder' => 'بحث بالاسم أو البريد...',
         'id' => 'رقم المعرف',
-        'name' => 'الاسم'
+        'name' => 'الاسم',
+        'Evenement' => 'حدث',
+        'Evenements' => 'الأحداث'
     ]
 ];

@@ -35,13 +35,12 @@
                     letter-spacing: 0.5px;
                     transition: color 0.3s ease;
                 }
-                /* Light Mode Color: Dark Navy */
                 [data-bs-theme='light'] .brand-text {
                     color: #0b0a12 !important;
                 }
-                /* Dark Mode Color: Beige/Cream */
                 [data-bs-theme='dark'] .brand-text {
-                    color: #f5f5dc !important; /* Beige */
+                    color: #f5f5dc !important;
+                }
                 }
             </style>
             <ul class="navbar-nav flex-column" id="navbar-sidebar">
@@ -75,7 +74,16 @@
                         <i class="bi bi-clipboard-check me-2"></i><?php echo __('demand'); ?>
                     </a>
                 </li>
-
+                <li class="nav-item"> 
+                    <a class="nav-link <?php echo $currentPage === 'categories.php' ? 'active' : ''; ?>" href="categories.php">
+                        <i class="bi bi-tags me-2"></i>Catégories
+                    </a>
+                </li>
+                <li class="nav-item"> 
+                    <a class="nav-link <?php echo $currentPage === 'Evenement.php' ? 'active' : ''; ?>" href="Evenement.php">
+                        <i class="bi bi-calendar-event me-2"></i><?php echo __('Evenements'); ?>
+                    </a>
+                </li>
                 <li class="nav-item ms-2 my-2 text-primary"><?php echo __('users'); ?></li>
                 <li class="nav-item"> 
                     <a class="nav-link <?php echo $currentPage === 'agents.php' ? 'active' : ''; ?>" href="agents.php">

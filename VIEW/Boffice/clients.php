@@ -493,5 +493,4 @@ $stmt = findUsersByRole('client');
             });
         });
     </script>
-
     <?php include 'footer.php'; ?>

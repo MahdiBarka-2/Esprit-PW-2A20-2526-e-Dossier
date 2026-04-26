@@ -511,5 +511,4 @@ $stmt = findUsersByRole('agent');
             });
         });
     </script>
-
     <?php include 'footer.php'; ?>
