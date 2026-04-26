@@ -39,72 +39,11 @@ $f = [
     'statut'       => $_GET['statut']       ?? 'active',
 ];
 ?>
-<!DOCTYPE html>
-<html lang="<?php echo $lang; ?>" <?php echo ($lang === 'ar' ? 'dir="rtl"' : ''); ?>>
+<?php
+require_once "header.php";
+?>
 
-<head>
-    <title>e_dossier – Événements</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <script>
-        const storedTheme = localStorage.getItem('theme')
-        const getPreferredTheme = () => {
-            if (storedTheme) return storedTheme
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-        }
-        const setTheme = function (theme) {
-            if (theme === 'auto') {
-                document.documentElement.setAttribute('data-bs-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-            } else {
-                document.documentElement.setAttribute('data-bs-theme', theme)
-            }
-        }
-        setTheme(getPreferredTheme())
-        window.addEventListener('DOMContentLoaded', () => {
-            const showActiveTheme = theme => {
-                const activeThemeBtn = document.querySelector(`[data-bs-theme-value="${theme}"]`)
-                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
-                    element.classList.remove('active')
-                })
-                if (activeThemeBtn) activeThemeBtn.classList.add('active')
-            }
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-                if (storedTheme !== 'light' && storedTheme !== 'dark') setTheme(getPreferredTheme())
-            })
-            showActiveTheme(getPreferredTheme())
-            document.querySelectorAll('[data-bs-theme-value]').forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    const theme = toggle.getAttribute('data-bs-theme-value')
-                    localStorage.setItem('theme', theme)
-                    setTheme(theme)
-                    showActiveTheme(theme)
-                })
-            })
-        })
-    </script>
-
-    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../../assets/vendor/font-awesome/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/vendor/overlay-scrollbar/css/overlayscrollbars.min.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
-</head>
-
-<body>
-<main>
-    <!-- Sidebar START -->
-    <?php include 'sidebar.php'; ?>
-    <!-- Sidebar END -->
-
-    <!-- Page content START -->
-    <div class="page-content">
-        <!-- Top bar START -->
-        <?php include 'topbar.php'; ?>
-        <!-- Top bar END -->
-
-        <!-- Page main content START -->
-        <div class="page-content-wrapper p-xxl-4">
+<div class="page-content-wrapper p-xxl-4">
 
             <!-- Title -->
             <div class="row">
@@ -112,7 +51,7 @@ $f = [
                     <div class="d-sm-flex justify-content-between align-items-center">
                         <h1 class="h3 mb-2 mb-sm-0"><?php echo __('Evenements'); ?></h1>
                         <a href="?modal" class="btn btn-primary mb-0">
-                            <i class="bi bi-plus-lg me-1"></i> Nouvel Événement
+                            <i class="bi bi-plus-lg me-1"></i> <?php echo __('new_event'); ?>
                         </a>
                     </div>
                 </div>
@@ -125,7 +64,7 @@ $f = [
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <h4 class="mb-0"><?php echo $totalEvents; ?></h4>
-                                <span class="h6 fw-light mb-0">Total Événements</span>
+                                <span class="h6 fw-light mb-0"><?php echo __('total_events'); ?></span>
                             </div>
                             <div class="icon-lg rounded-circle bg-primary text-white mb-0">
                                 <i class="bi bi-calendar-event fa-fw"></i>
@@ -138,7 +77,7 @@ $f = [
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <h4 class="mb-0"><?php echo $activeEvents; ?></h4>
-                                <span class="h6 fw-light mb-0">Événements Actifs</span>
+                                <span class="h6 fw-light mb-0"><?php echo __('active_events'); ?></span>
                             </div>
                             <div class="icon-lg rounded-circle bg-success text-white mb-0">
                                 <i class="bi bi-calendar-check fa-fw"></i>
@@ -151,7 +90,7 @@ $f = [
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <h4 class="mb-0"><?php echo $totalEvents - $activeEvents; ?></h4>
-                                <span class="h6 fw-light mb-0">Événements Inactifs</span>
+                                <span class="h6 fw-light mb-0"><?php echo __('inactive_events'); ?></span>
                             </div>
                             <div class="icon-lg rounded-circle bg-warning text-white mb-0">
                                 <i class="bi bi-calendar-x fa-fw"></i>
@@ -164,7 +103,7 @@ $f = [
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <h4 class="mb-0"><?php echo $totalParticipants; ?></h4>
-                                <span class="h6 fw-light mb-0">Total Participants</span>
+                                <span class="h6 fw-light mb-0"><?php echo __('total_participants'); ?></span>
                             </div>
                             <div class="icon-lg rounded-circle bg-info text-white mb-0">
                                 <i class="fa-solid fa-users fa-fw"></i>
@@ -187,14 +126,14 @@ $f = [
                                 <table class="table align-middle p-4 mb-0 table-hover">
                                     <thead class="table-light">
                                         <tr>
-                                            <th class="border-0 rounded-start">Titre</th>
-                                            <th class="border-0">Date début</th>
-                                            <th class="border-0">Date fin</th>
-                                            <th class="border-0">Lieu</th>
-                                            <th class="border-0">Capacité</th>
-                                            <th class="border-0">Inscrits</th>
-                                            <th class="border-0">Statut</th>
-                                            <th class="border-0 rounded-end text-center">Actions</th>
+                                            <th class="border-0 rounded-start"><?php echo __('title'); ?></th>
+                                            <th class="border-0"><?php echo __('start_date'); ?></th>
+                                            <th class="border-0"><?php echo __('end_date'); ?></th>
+                                            <th class="border-0"><?php echo __('location'); ?></th>
+                                            <th class="border-0"><?php echo __('capacity'); ?></th>
+                                            <th class="border-0"><?php echo __('registered'); ?></th>
+                                            <th class="border-0"><?php echo __('status'); ?></th>
+                                            <th class="border-0 rounded-end text-center"><?php echo __('actions'); ?></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -270,7 +209,7 @@ $f = [
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="bi bi-calendar-plus me-2"></i>Créer un événement</h5>
+                <h5 class="modal-title"><i class="bi bi-calendar-plus me-2"></i><?php echo __('new_event'); ?></h5>
                 <a href="?" class="btn-close"></a>
             </div>
             <form action="add_event.php" method="POST" onsubmit="return validateForm()">
@@ -283,12 +222,12 @@ $f = [
                     </div>
                     <?php endif; ?>
                     <div class="mb-3">
-                        <label class="form-label">Titre</label>
+                        <label class="form-label"><?php echo __('title'); ?></label>
                         <input type="text" class="form-control" name="titre" id="f-titre" value="<?= htmlspecialchars($f['titre']) ?>" placeholder="Ex: Conférence annuelle 2026">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <textarea class="form-control" name="description"  rows="3" placeholder="Décrivez l'événement..."><?= htmlspecialchars($f['description']) ?></textarea>
+                        <label class="form-label"><?php echo __('description'); ?></label>
+                        <textarea class="form-control" name="description"  rows="3" placeholder="..."><?= htmlspecialchars($f['description']) ?></textarea>
                     </div>
                     <div class="row g-3 mb-3">
                         <div class="col-md-6">
@@ -319,8 +258,8 @@ $f = [
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="?" class="btn btn-secondary mb-0">Annuler</a>
-                    <button type="submit" class="btn btn-primary mb-0">Créer l'événement</button>
+                    <a href="?" class="btn btn-secondary mb-0"><?php echo __('cancel'); ?></a>
+                    <button type="submit" class="btn btn-primary mb-0"><?php echo __('submit'); ?></button>
                 </div>
             </form>
         </div>
@@ -404,12 +343,4 @@ $f = [
 </div>
 <?php endif; ?>
 
-<script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
-<script src="../../assets/js/functions.js"></script>
-<script src="validation.js"></script>
-
 <?php include 'footer.php'; ?>
-<script src="validation.js"></script>
-</body>
-</html>

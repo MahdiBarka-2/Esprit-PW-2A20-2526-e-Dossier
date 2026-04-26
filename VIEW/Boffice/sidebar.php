@@ -41,7 +41,6 @@
                 [data-bs-theme='dark'] .brand-text {
                     color: #f5f5dc !important;
                 }
-                }
             </style>
             <ul class="navbar-nav flex-column" id="navbar-sidebar">
                 <?php 

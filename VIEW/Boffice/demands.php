@@ -23,18 +23,18 @@ require_once "header.php";
 <!-- Page header -->
 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
     <div>
-        <h1 class="h3 fw-bold mb-1"><i class="bi bi-clipboard-check me-2 text-primary"></i>Gestion des Demandes</h1>
-        <p class="text-muted small mb-0">Administration des demandes soumises par les utilisateurs</p>
+        <h1 class="h3 fw-bold mb-1"><i class="bi bi-clipboard-check me-2 text-primary"></i><?php echo __('demands_management'); ?></h1>
+        <p class="text-muted small mb-0"><?php echo __('activity_log'); ?></p>
     </div>
     <div class="d-flex gap-2 flex-wrap">
         <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalHistorique">
-            <i class="bi bi-clock-history me-1"></i>Historique
+            <i class="bi bi-clock-history me-1"></i><?php echo __('history'); ?>
         </button>
         <a href="categories.php" class="btn btn-outline-secondary btn-sm">
-            <i class="bi bi-tags me-1"></i>Catégories
+            <i class="bi bi-tags me-1"></i><?php echo __('categories'); ?>
         </a>
         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAjouter">
-            <i class="bi bi-plus-lg me-1"></i>Nouvelle demande
+            <i class="bi bi-plus-lg me-1"></i><?php echo __('new_demand'); ?>
         </button>
     </div>
 </div>
@@ -66,7 +66,7 @@ require_once "header.php";
                 <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:48px;height:48px;">
                     <i class="bi bi-card-list fs-5 text-primary"></i>
                 </div>
-                <div><h3 class="fw-bold mb-0"><?= $total ?></h3><p class="text-muted small mb-0">Total</p></div>
+                <div><h3 class="fw-bold mb-0"><?= $total ?></h3><p class="text-muted small mb-0"><?php echo __('total'); ?></p></div>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@ require_once "header.php";
                 <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:48px;height:48px;">
                     <i class="bi bi-clock-history fs-5 text-warning"></i>
                 </div>
-                <div><h3 class="fw-bold mb-0"><?= $attente ?></h3><p class="text-muted small mb-0">En attente</p></div>
+                <div><h3 class="fw-bold mb-0"><?= $attente ?></h3><p class="text-muted small mb-0"><?php echo __('pending'); ?></p></div>
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@ require_once "header.php";
                 <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:48px;height:48px;">
                     <i class="bi bi-check-circle fs-5 text-success"></i>
                 </div>
-                <div><h3 class="fw-bold mb-0"><?= $approuvee ?></h3><p class="text-muted small mb-0">Approuvées</p></div>
+                <div><h3 class="fw-bold mb-0"><?= $approuvee ?></h3><p class="text-muted small mb-0"><?php echo __('approved'); ?></p></div>
             </div>
         </div>
     </div>
@@ -96,7 +96,7 @@ require_once "header.php";
                 <div class="bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:48px;height:48px;">
                     <i class="bi bi-x-circle fs-5 text-danger"></i>
                 </div>
-                <div><h3 class="fw-bold mb-0"><?= $rejetee ?></h3><p class="text-muted small mb-0">Rejetées</p></div>
+                <div><h3 class="fw-bold mb-0"><?= $rejetee ?></h3><p class="text-muted small mb-0"><?php echo __('rejected'); ?></p></div>
             </div>
         </div>
     </div>
@@ -107,36 +107,36 @@ require_once "header.php";
     <div class="card-body py-3">
         <div class="row g-3 align-items-end">
             <div class="col-md-4">
-                <label class="form-label fw-semibold small text-muted mb-1">Rechercher</label>
+                <label class="form-label fw-semibold small text-muted mb-1"><?php echo __('search'); ?></label>
                 <div class="input-group">
                     <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
-                    <input type="text" id="searchInput" class="form-control border-start-0 ps-0" placeholder="Nom ou email…">
+                    <input type="text" id="searchInput" class="form-control border-start-0 ps-0" placeholder="<?php echo __('search_placeholder'); ?>">
                 </div>
             </div>
             <div class="col-md-3">
-                <label class="form-label fw-semibold small text-muted mb-1">Catégorie</label>
+                <label class="form-label fw-semibold small text-muted mb-1"><?php echo __('category'); ?></label>
                 <select id="filterCategorie" class="form-select">
-                    <option value="">Toutes les catégories</option>
+                    <option value=""><?php echo __('categories'); ?></option>
                     <?php foreach ($categories as $cat): ?>
                         <option value="<?= htmlspecialchars($cat['nom']) ?>"><?= htmlspecialchars($cat['nom']) ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="col-md-3">
-                <label class="form-label fw-semibold small text-muted mb-1">Statut</label>
+                <label class="form-label fw-semibold small text-muted mb-1"><?php echo __('status'); ?></label>
                 <select id="filterStatut" class="form-select">
-                    <option value="">Tous les statuts</option>
-                    <option value="En attente">En attente</option>
-                    <option value="Approuvée">Approuvée</option>
-                    <option value="Rejetée">Rejetée</option>
+                    <option value=""><?php echo __('status'); ?></option>
+                    <option value="<?php echo __('pending'); ?>"><?php echo __('pending'); ?></option>
+                    <option value="<?php echo __('approved'); ?>"><?php echo __('approved'); ?></option>
+                    <option value="<?php echo __('rejected'); ?>"><?php echo __('rejected'); ?></option>
                 </select>
             </div>
             <div class="col-md-2">
                 <button class="btn btn-outline-secondary w-100" id="btnReset">
-                    <i class="bi bi-x-circle me-1"></i>Réinitialiser
+                    <i class="bi bi-x-circle me-1"></i><?php echo __('reset'); ?>
                 </button>
                 <div class="mt-1 text-center">
-                    <small class="text-muted"><span id="resultCount"><?= count($demandes) ?></span> résultats</small>
+                    <small class="text-muted"><span id="resultCount"><?= count($demandes) ?></span> <?php echo __('results'); ?></small>
                 </div>
             </div>
         </div>
@@ -155,50 +155,53 @@ require_once "header.php";
                 <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width:70px;height:70px;">
                     <i class="bi bi-inbox fs-2 text-muted"></i>
                 </div>
-                <p class="text-muted mb-0">Aucune demande pour le moment.</p>
+                <p class="text-muted mb-0"><?php echo __('no_demands'); ?></p>
             </div>
         <?php else: ?>
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0" id="demandesTable">
-                <thead class="bg-light">
+        <div class="table-responsive border-0">
+            <table class="table align-middle p-4 mb-0 table-hover" id="demandesTable">
+                <thead class="table-light">
                     <tr>
-                        <th class="border-0 py-3 ps-4 fw-semibold text-muted small">#</th>
-                        <th class="border-0 py-3 fw-semibold text-muted small">Utilisateur</th>
-                        <th class="border-0 py-3 fw-semibold text-muted small d-none d-md-table-cell">Email</th>
-                        <th class="border-0 py-3 fw-semibold text-muted small">Catégorie</th>
-                        <th class="border-0 py-3 fw-semibold text-muted small d-none d-lg-table-cell">Date</th>
-                        <th class="border-0 py-3 fw-semibold text-muted small">Statut</th>
-                        <th class="border-0 py-3 fw-semibold text-muted small text-end pe-4">Actions</th>
+                        <th class="border-0 rounded-start py-3 ps-4 fw-semibold text-muted small"><?php echo __('user'); ?></th>
+                        <th class="border-0 py-3 fw-semibold text-muted small d-none d-md-table-cell"><?php echo __('email'); ?></th>
+                        <th class="border-0 py-3 fw-semibold text-muted small"><?php echo __('category'); ?></th>
+                        <th class="border-0 py-3 fw-semibold text-muted small d-none d-lg-table-cell"><?php echo __('date'); ?></th>
+                        <th class="border-0 py-3 fw-semibold text-muted small"><?php echo __('status'); ?></th>
+                        <th class="border-0 rounded-end py-3 fw-semibold text-muted small text-end pe-4"><?php echo __('actions'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($demandes as $d): ?>
                 <?php
                 $badgeSoft = 'bg-warning bg-opacity-10 text-warning';
+                $label = __('pending');
                 $icon = 'bi-clock-fill';
-                $label = 'En attente';
 
                 if ($d['statut'] === 'approuvee') {
                     $badgeSoft = 'bg-success bg-opacity-10 text-success';
                     $icon = 'bi-check-circle-fill';
-                    $label = 'Approuvée';
+                    $label = __('approved');
                 } elseif ($d['statut'] === 'rejetee') {
                     $badgeSoft = 'bg-danger bg-opacity-10 text-danger';
                     $icon = 'bi-x-circle-fill';
-                    $label = 'Rejetée';
+                    $label = __('rejected');
                 }
                 ?>
                 <tr data-nom="<?= htmlspecialchars(strtolower($d['utilisateur'])) ?>"
                     data-email="<?= htmlspecialchars(strtolower($d['email'])) ?>"
                     data-cat="<?= htmlspecialchars(strtolower($d['categorie_nom'])) ?>"
                     data-statut="<?= $label ?>">
-                    <td class="ps-4"><span class="text-muted small">#<?= $d['id'] ?></span></td>
-                    <td>
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:32px;height:32px;">
-                                <span class="text-primary fw-bold small"><?= strtoupper(substr($d['utilisateur'], 0, 1)) ?></span>
+                    <td class="ps-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="avatar avatar-lg" style="width: 55px; height: 55px;">
+                                <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center h-100 w-100 shadow-sm">
+                                    <span class="text-primary fw-bold fs-5"><?= strtoupper(substr($d['utilisateur'], 0, 1)) ?></span>
+                                </div>
                             </div>
-                            <span class="fw-semibold small"><?= htmlspecialchars($d['utilisateur']) ?></span>
+                            <div>
+                                <h6 class="mb-0 fw-bold"><?= htmlspecialchars($d['utilisateur']) ?></h6>
+                                <span class="badge bg-primary bg-opacity-10 text-primary fw-bold" style="font-size: 0.65rem;">ID: #<?= $d['id'] ?></span>
+                            </div>
                         </div>
                     </td>
                     <td class="d-none d-md-table-cell"><span class="text-muted small"><?= htmlspecialchars($d['email']) ?></span></td>
@@ -207,12 +210,12 @@ require_once "header.php";
                     <td><span class="badge <?= $badgeSoft ?> px-2 py-1"><i class="bi <?= $icon ?> me-1"></i><?= $label ?></span></td>
                     <td class="text-end pe-4">
                         <div class="d-flex justify-content-end gap-1">
-                            <a href="demand-detail.php?id=<?= $d['id'] ?>" class="btn btn-sm btn-outline-primary" title="Voir détail">
+                            <a href="demand-detail.php?id=<?= $d['id'] ?>" class="btn btn-sm btn-outline-primary" title="<?php echo __('view'); ?>">
                                 <i class="bi bi-eye"></i>
                             </a>
                             <a href="../../CONTROLLER/SupprimerDemande.php?id=<?= $d['id'] ?>&redirect=backoffice_new"
                                class="btn btn-sm btn-outline-danger"
-                               onclick="return confirm('Supprimer cette demande ?')" title="Supprimer">
+                               onclick="return confirm('<?php echo __('delete'); ?>?')" title="<?php echo __('delete'); ?>">
                                 <i class="bi bi-trash"></i>
                             </a>
                         </div>
@@ -234,8 +237,8 @@ require_once "header.php";
         <div class="modal-content border-0 shadow-lg">
             <div class="modal-header border-0 pb-0" style="background: linear-gradient(135deg, #0f2044, #1d3461);">
                 <div class="text-white py-2">
-                    <h5 class="modal-title fw-bold mb-1"><i class="bi bi-file-earmark-plus me-2"></i>Nouvelle Demande</h5>
-                    <p class="small opacity-75 mb-0">Ajout depuis l'administration</p>
+                    <h5 class="modal-title fw-bold mb-1"><i class="bi bi-file-earmark-plus me-2"></i><?php echo __('new_demand'); ?></h5>
+                    <p class="small opacity-75 mb-0"><?php echo __('authentication'); ?></p>
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
@@ -245,41 +248,41 @@ require_once "header.php";
                 <div class="modal-body p-4">
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Nom complet <span class="text-danger">*</span></label>
+                            <label class="form-label fw-semibold"><?php echo __('full_name'); ?> <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light border-end-0"><i class="bi bi-person text-muted"></i></span>
                                 <input type="text" name="utilisateur" class="form-control border-start-0 ps-0" placeholder="Ex : Ahmed Ben Ali" required>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
+                            <label class="form-label fw-semibold"><?php echo __('email'); ?> <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-muted"></i></span>
                                 <input type="email" name="email" class="form-control border-start-0 ps-0" placeholder="exemple@email.com" required>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Catégorie <span class="text-danger">*</span></label>
+                            <label class="form-label fw-semibold"><?php echo __('category'); ?> <span class="text-danger">*</span></label>
                             <select name="categorie_id" class="form-select" required>
-                                <option value="">-- Sélectionner --</option>
+                                <option value="">-- <?php echo __('category'); ?> --</option>
                                 <?php foreach ($categories as $cat): ?>
                                     <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['nom']) ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Document <span class="text-danger">*</span></label>
+                            <label class="form-label fw-semibold"><?php echo __('document'); ?> <span class="text-danger">*</span></label>
                             <input type="file" name="document" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
                         </div>
                         <div class="col-12">
-                            <label class="form-label fw-semibold">Description</label>
+                            <label class="form-label fw-semibold"><?php echo __('description'); ?></label>
                             <textarea name="description" class="form-control" rows="2" placeholder="Ex : CIN, certificat…"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer border-0 pt-0">
-                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-send me-2"></i>Soumettre</button>
+                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal"><?php echo __('cancel'); ?></button>
+                    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-send me-2"></i><?php echo __('submit'); ?></button>
                 </div>
             </form>
         </div>
@@ -292,8 +295,8 @@ require_once "header.php";
         <div class="modal-content border-0 shadow-lg">
             <div class="modal-header border-0 pb-0" style="background: linear-gradient(135deg, #0f2044, #1d3461);">
                 <div class="text-white py-2">
-                    <h5 class="modal-title fw-bold mb-1"><i class="bi bi-clock-history me-2"></i>Historique des Actions</h5>
-                    <p class="small opacity-75 mb-0">Journal complet des activités</p>
+                    <h5 class="modal-title fw-bold mb-1"><i class="bi bi-clock-history me-2"></i><?php echo __('action_history'); ?></h5>
+                    <p class="small opacity-75 mb-0"><?php echo __('activity_log'); ?></p>
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
@@ -310,7 +313,7 @@ require_once "header.php";
                     <div class="col-6 col-md-3">
                         <div class="card border-0 bg-primary bg-opacity-10 text-center py-3">
                             <div class="fw-bold fs-4 text-primary"><?= $h_total ?></div>
-                            <small class="text-muted">Total</small>
+                            <small class="text-muted"><?php echo __('total'); ?></small>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
@@ -352,10 +355,10 @@ require_once "header.php";
                     </div>
                     <div class="col-md-3 text-end align-self-end pb-1">
                         <button class="btn btn-outline-secondary btn-sm" id="btnResetHist">
-                            <i class="bi bi-x-circle me-1"></i>Réinitialiser
+                            <i class="bi bi-x-circle me-1"></i><?php echo __('reset'); ?>
                         </button>
                         <div class="mt-1">
-                            <small class="text-muted"><span id="histResultCount"><?= count($historique) ?></span> logs</small>
+                            <small class="text-muted"><span id="histResultCount"><?= count($historique) ?></span> <?php echo __('results'); ?></small>
                         </div>
                     </div>
                 </div>
@@ -363,19 +366,19 @@ require_once "header.php";
                 <?php if (empty($historique)): ?>
                     <div class="text-center py-5">
                         <i class="bi bi-clock-history fs-1 text-muted"></i>
-                        <p class="text-muted mt-3 mb-0">Aucune activité enregistrée.</p>
+                        <p class="text-muted mt-3 mb-0"><?php echo __('activity_log'); ?> (<?php echo __('results'); ?>: 0)</p>
                     </div>
                 <?php else: ?>
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0" id="histTable">
-                        <thead class="bg-light">
+                        <thead class="table-light">
                             <tr>
-                                <th class="border-0 py-3 ps-3 fw-semibold text-muted small">Date</th>
-                                <th class="border-0 py-3 fw-semibold text-muted small">Qui</th>
-                                <th class="border-0 py-3 fw-semibold text-muted small d-none d-md-table-cell">Email</th>
+                                <th class="border-0 py-3 ps-3 fw-semibold text-muted small"><?php echo __('date'); ?></th>
+                                <th class="border-0 py-3 fw-semibold text-muted small"><?php echo __('user'); ?></th>
+                                <th class="border-0 py-3 fw-semibold text-muted small d-none d-md-table-cell"><?php echo __('email'); ?></th>
                                 <th class="border-0 py-3 fw-semibold text-muted small">Action</th>
-                                <th class="border-0 py-3 fw-semibold text-muted small d-none d-lg-table-cell">Détails</th>
-                                <th class="border-0 py-3 fw-semibold text-muted small">Demande</th>
+                                <th class="border-0 py-3 fw-semibold text-muted small d-none d-lg-table-cell"><?php echo __('view'); ?></th>
+                                <th class="border-0 py-3 fw-semibold text-muted small"><?php echo __('demand'); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -415,7 +418,7 @@ require_once "header.php";
                                         <i class="bi bi-shield-fill text-white" style="font-size:0.7rem;"></i>
                                     </div>
                                     <div>
-                                        <span class="fw-bold small text-primary">Administrateur</span><br>
+                                        <span class="fw-bold small text-primary"><?php echo __('role'); ?></span><br>
                                         <span class="badge bg-primary rounded-pill" style="font-size:0.6rem;">ADMIN</span>
                                     </div>
                                 </div>
@@ -464,7 +467,7 @@ require_once "header.php";
                 <?php endif; ?>
             </div>
             <div class="modal-footer border-0">
-                <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal"><?php echo __('close'); ?></button>
             </div>
         </div>
     </div>
@@ -535,11 +538,5 @@ document.getElementById('btnResetHist').addEventListener('click', function() {
 });
 </script>
 
-<!-- Bootstrap JS -->
-<script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Vendor Scripts -->
-<script src="../../assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
-<!-- Theme Functions -->
-<script src="../../assets/js/functions.js"></script>
 
 <?php require_once "footer.php"; ?>

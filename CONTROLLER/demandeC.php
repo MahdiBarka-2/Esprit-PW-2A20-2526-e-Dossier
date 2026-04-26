@@ -17,7 +17,8 @@ class demandeC {
                     ORDER BY demande.created_at DESC";
             return $this->db->query($sql);
         } catch (Exception $e) {
-            die('Erreur Liste: ' . $e->getMessage());
+            error_log('Erreur Liste: ' . $e->getMessage());
+            return [];
         }
     }
 
@@ -64,7 +65,8 @@ class demandeC {
             $req->execute(['id' => $id]);
             return $req->fetch();
         } catch (Exception $e) {
-            die('Erreur Get: ' . $e->getMessage());
+            error_log('Erreur Get: ' . $e->getMessage());
+            return null;
         }
     }
 
@@ -143,7 +145,8 @@ class demandeC {
             $sql = "SELECT * FROM historique ORDER BY created_at DESC";
             return $this->db->query($sql)->fetchAll();
         } catch (Exception $e) {
-            die('Erreur Get Historique: ' . $e->getMessage());
+            error_log('Erreur Get Historique: ' . $e->getMessage());
+            return [];
         }
     }
 }

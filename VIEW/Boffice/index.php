@@ -5,81 +5,13 @@ require_once '../../CONTROLLER/UserController.php';
 $totalClients = countUsersByRole('client');
 $recentUsers = findRecentUsers(5);
 ?>
-<!DOCTYPE html>
-<html lang="<?php echo $lang; ?>" <?php echo ($lang === 'ar' ? 'dir="rtl"' : ''); ?>>
+<?php
+require_once "header.php";
+?>
+<link rel="stylesheet" type="text/css" href="../../assets/vendor/apexcharts/css/apexcharts.css">
 
-<head>
-	<title>e_dossier - Management System</title>
-	<!-- Meta Tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="author" content="e_dossier">
-	<meta name="description" content="e_dossier Management System">
-
-	<script>
-		const storedTheme = localStorage.getItem('theme')
-		const getPreferredTheme = () => {
-			if (storedTheme) return storedTheme
-			return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-		}
-		const setTheme = function (theme) {
-			if (theme === 'auto') {
-				document.documentElement.setAttribute('data-bs-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-			} else {
-				document.documentElement.setAttribute('data-bs-theme', theme)
-			}
-		}
-		setTheme(getPreferredTheme())
-		window.addEventListener('DOMContentLoaded', () => {
-			const showActiveTheme = theme => {
-				const activeThemeBtn = document.querySelector(`[data-bs-theme-value="${theme}"]`)
-				document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
-					element.classList.remove('active')
-				})
-				if (activeThemeBtn) activeThemeBtn.classList.add('active')
-			}
-			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-				if (storedTheme !== 'light' && storedTheme !== 'dark') setTheme(getPreferredTheme())
-			})
-			showActiveTheme(getPreferredTheme())
-			document.querySelectorAll('[data-bs-theme-value]').forEach(toggle => {
-				toggle.addEventListener('click', () => {
-					const theme = toggle.getAttribute('data-bs-theme-value')
-					localStorage.setItem('theme', theme)
-					setTheme(theme)
-					showActiveTheme(theme)
-				})
-			})
-		})
-	</script>
-
-	<!-- Favicon -->
-	<link rel="shortcut icon" href="../../assets/images/favicon.ico">
-
-	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="../../assets/vendor/font-awesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css">
-	<link rel="stylesheet" type="text/css" href="../../assets/vendor/overlay-scrollbar/css/overlayscrollbars.min.css">
-	<link rel="stylesheet" type="text/css" href="../../assets/vendor/apexcharts/css/apexcharts.css">
-
-	<!-- Theme CSS -->
-	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
-</head>
-
-<body>
-	<main>
-        <!-- Sidebar START -->
-        <?php include 'sidebar.php'; ?>
-        <!-- Sidebar END -->
-
-        <!-- Page content START -->
-        <div class="page-content">
-            <!-- Top bar START -->
-            <?php include 'topbar.php'; ?>
-            <!-- Top bar END -->
-
-			<!-- Page main content START -->
-			<div class="page-content-wrapper p-xxl-4">
+<!-- Page main content START -->
+<div class="page-content-wrapper p-xxl-4">
 
 				<!-- Title -->
 				<div class="row">
@@ -224,13 +156,13 @@ $recentUsers = findRecentUsers(5);
 											<tr>
 												<td>
 													<div class="d-flex align-items-center">
-														<div class="avatar avatar-sm me-2">
+														<div class="avatar avatar-lg me-3" style="width: 55px; height: 55px;">
 															<?php 
 															$user_img = (isset($user['profile_image_url']) && !empty($user['profile_image_url'])) 
 																		? $user['profile_image_url'] 
 																		: '../../assets/images/avatar/01.jpg';
 															?>
-															<img src="<?php echo $user_img; ?>" class="rounded-circle" alt="">
+															<img src="<?php echo $user_img; ?>" class="rounded-circle shadow-sm" alt="" style="width: 55px; height: 55px; object-fit: cover;">
 														</div>
 														<h6 class="mb-0"><?php echo htmlspecialchars($user['name']); ?></h6>
 													</div>
@@ -262,18 +194,8 @@ $recentUsers = findRecentUsers(5);
 			</div>
 
 
-		</div> <!-- Page content END -->
-	</main>
-	<!-- Bootstrap JS -->
-	<script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Vendor Scripts -->
-	<script src="../../assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
-	<script src="../../assets/vendor/apexcharts/js/apexcharts.min.js"></script>
-
-	<!-- Theme Functions -->
-	<script src="../../assets/js/functions.js"></script>
-
+    <script src="../../assets/vendor/apexcharts/js/apexcharts.min.js"></script>
     <?php include 'footer.php'; ?>
 <?php
 // Removed redundant script block that was causing duplication with functions.js

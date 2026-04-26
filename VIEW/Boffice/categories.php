@@ -14,13 +14,13 @@ require_once "header.php";
 
 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
     <div>
-        <h1 class="h3 fw-bold mb-1"><i class="bi bi-tags me-2 text-primary"></i>Gestion des Catégories</h1>
-        <p class="text-muted small mb-0">Organisez les types de demandes</p>
+        <h1 class="h3 fw-bold mb-1"><i class="bi bi-tags me-2 text-primary"></i><?php echo __('categories_management'); ?></h1>
+        <p class="text-muted small mb-0"><?php echo __('categories_subtitle'); ?></p>
     </div>
     <div class="d-flex gap-2">
-        <a href="demands.php" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Demandes</a>
+        <a href="demands.php" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i><?php echo __('demands'); ?></a>
         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAjouter">
-            <i class="bi bi-plus-lg me-1"></i>Nouvelle catégorie
+            <i class="bi bi-plus-lg me-1"></i><?php echo __('new_category'); ?>
         </button>
     </div>
 </div>
@@ -43,9 +43,9 @@ require_once "header.php";
     <div class="card border-0 shadow-sm">
         <div class="card-body text-center py-5">
             <i class="bi bi-tags fs-1 text-muted"></i>
-            <h5 class="fw-bold mt-3 mb-2">Aucune catégorie</h5>
+            <h5 class="fw-bold mt-3 mb-2"><?php echo __('categories'); ?></h5>
             <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modalAjouter">
-                <i class="bi bi-plus-circle me-2"></i>Créer une catégorie
+                <i class="bi bi-plus-circle me-2"></i><?php echo __('new_category'); ?>
             </button>
         </div>
     </div>
@@ -66,17 +66,17 @@ require_once "header.php";
                     <span class="badge rounded-pill text-white" style="background:<?= $color ?>;">#<?= $cat['id'] ?></span>
                 </div>
                 <h6 class="fw-bold mb-1"><?= htmlspecialchars($cat['nom']) ?></h6>
-                <p class="text-muted small mb-0"><?= htmlspecialchars($cat['description'] ?? 'Aucune description') ?></p>
+                <p class="text-muted small mb-0"><?= htmlspecialchars($cat['description'] ?? __('description')) ?></p>
             </div>
             <div class="card-footer bg-transparent border-0 px-4 pb-3 d-flex gap-2">
                 <button class="btn btn-outline-primary btn-sm flex-grow-1"
                     onclick="openEditCat(<?= $cat['id'] ?>, '<?= htmlspecialchars(addslashes($cat['nom'])) ?>', '<?= htmlspecialchars(addslashes($cat['description'] ?? '')) ?>')">
-                    <i class="bi bi-pencil me-1"></i>Modifier
+                    <i class="bi bi-pencil me-1"></i><?php echo __('edit'); ?>
                 </button>
                 <a href="../../CONTROLLER/SupprimerCategorie.php?id=<?= $cat['id'] ?>&redirect=backoffice_new"
                    class="btn btn-outline-danger btn-sm flex-grow-1"
-                   onclick="return confirm('Supprimer ?')">
-                    <i class="bi bi-trash me-1"></i>Supprimer
+                   onclick="return confirm('<?php echo __('delete'); ?>?')">
+                    <i class="bi bi-trash me-1"></i><?php echo __('delete'); ?>
                 </a>
             </div>
         </div>
@@ -90,7 +90,7 @@ require_once "header.php";
                 <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width:52px;height:52px;">
                     <i class="bi bi-plus-lg fs-4 text-primary"></i>
                 </div>
-                <p class="fw-semibold text-primary mb-0">Ajouter</p>
+                <p class="fw-semibold text-primary mb-0"><?php echo __('new_category'); ?></p>
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@ require_once "header.php";
         <div class="modal-content border-0 shadow-lg">
             <div class="modal-header border-0 pb-0" style="background:linear-gradient(135deg,#0f2044,#1d3461);">
                 <div class="text-white py-2">
-                    <h5 class="modal-title fw-bold mb-1"><i class="bi bi-tag me-2"></i>Nouvelle Catégorie</h5>
+                    <h5 class="modal-title fw-bold mb-1"><i class="bi bi-tag me-2"></i><?php echo __('new_category'); ?></h5>
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
@@ -113,17 +113,17 @@ require_once "header.php";
                 <input type="hidden" name="redirect" value="backoffice_new">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Nom <span class="text-danger">*</span></label>
+                        <label class="form-label fw-semibold"><?php echo __('name'); ?> <span class="text-danger">*</span></label>
                         <input type="text" name="nom" class="form-control" placeholder="Ex : Logement, Bourse…" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Description</label>
+                        <label class="form-label fw-semibold"><?php echo __('description'); ?></label>
                         <textarea name="description" class="form-control" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer border-0 pt-0">
-                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-save me-2"></i>Enregistrer</button>
+                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal"><?php echo __('cancel'); ?></button>
+                    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-save me-2"></i><?php echo __('submit'); ?></button>
                 </div>
             </form>
         </div>
@@ -136,7 +136,7 @@ require_once "header.php";
         <div class="modal-content border-0 shadow-lg">
             <div class="modal-header border-0 pb-0" style="background:linear-gradient(135deg,#1d5461,#37a0be);">
                 <div class="text-white py-2">
-                    <h5 class="modal-title fw-bold mb-1"><i class="bi bi-pencil-square me-2"></i>Modifier la Catégorie</h5>
+                    <h5 class="modal-title fw-bold mb-1"><i class="bi bi-pencil-square me-2"></i><?php echo __('edit'); ?></h5>
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
@@ -145,17 +145,17 @@ require_once "header.php";
                 <input type="hidden" name="redirect" value="backoffice_new">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Nom <span class="text-danger">*</span></label>
+                        <label class="form-label fw-semibold"><?php echo __('name'); ?> <span class="text-danger">*</span></label>
                         <input type="text" name="nom" id="edit_cat_nom" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Description</label>
+                        <label class="form-label fw-semibold"><?php echo __('description'); ?></label>
                         <textarea name="description" id="edit_cat_desc" class="form-control" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer border-0 pt-0">
-                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-save me-2"></i>Enregistrer</button>
+                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal"><?php echo __('cancel'); ?></button>
+                    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-save me-2"></i><?php echo __('submit'); ?></button>
                 </div>
             </form>
         </div>
@@ -171,11 +171,5 @@ function openEditCat(id, nom, description) {
 }
 </script>
 
-<!-- Bootstrap JS -->
-<script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Vendor Scripts -->
-<script src="../../assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
-<!-- Theme Functions -->
-<script src="../../assets/js/functions.js"></script>
 
 <?php require_once "footer.php"; ?>
