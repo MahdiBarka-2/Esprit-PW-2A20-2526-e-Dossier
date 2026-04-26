@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 require_once 'controller/PublicationC.php';
 $pubCtrl = new PublicationC();
@@ -6,6 +7,12 @@ $list = $pubCtrl->listePublication();
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from edossier template -->
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from booking.webestica.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Feb 2024 15:40:22 GMT -->
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 <head>
 	<title>Edossier - Digital Document Platform</title>
 <meta name="description" content="Edossier - Official Government Publications and Documents">
@@ -38,7 +45,11 @@ $list = $pubCtrl->listePublication();
 		setTheme(getPreferredTheme())
 
 		window.addEventListener('DOMContentLoaded', () => {
+<<<<<<< HEAD
 			var el = document.querySelector('.theme-icon-active');
+=======
+		    var el = document.querySelector('.theme-icon-active');
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 			if(el != 'undefined' && el != null) {
 				const showActiveTheme = theme => {
 				const activeThemeIcon = document.querySelector('.theme-icon-active use')
@@ -96,6 +107,7 @@ $list = $pubCtrl->listePublication();
 	<!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+<<<<<<< HEAD
     <style>
         .glass-card {
             background: rgba(15, 23, 42, 0.9) !important;
@@ -112,6 +124,11 @@ $list = $pubCtrl->listePublication();
 </head>
 
 <body class="has-navbar-mobile dark-mode">
+=======
+</head>
+
+<body class="has-navbar-mobile">
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 
 <!-- Header START -->
 <header class="navbar-light header-sticky">
@@ -119,6 +136,7 @@ $list = $pubCtrl->listePublication();
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
+<<<<<<< HEAD
 			<a class="navbar-brand logo-hover" href="/projetweb/index.php">
 				<h3 class="mb-0 fw-bold transition-all"><i class="bi bi-file-earmark-text-fill me-2 transition-all"></i>Edossier</h3>
 			</a>
@@ -127,6 +145,11 @@ $list = $pubCtrl->listePublication();
 				.logo-hover:hover h3, .logo-hover:hover i { color: var(--bs-primary) !important; }
 				.transition-all { transition: all 0.3s ease-in-out; }
 			</style>
+=======
+			<a class="navbar-brand fw-bold text-primary" href="/projetweb/index.php">
+    <i class="fas fa-folder-open me-2"></i>Edossier
+</a>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 			<!-- Logo END -->
 
 			<!-- Responsive navbar toggler -->
@@ -136,7 +159,11 @@ $list = $pubCtrl->listePublication();
 					<span></span>
 					<span></span>
 				</span>
+<<<<<<< HEAD
 		<span class="d-none d-sm-inline-block small">Menu</span>
+=======
+        <span class="d-none d-sm-inline-block small">Menu</span>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 			</button>
 
 			<!-- Responsive category toggler -->
@@ -148,6 +175,7 @@ $list = $pubCtrl->listePublication();
 			<div class="navbar-collapse collapse" id="navbarCollapse">
 				<ul class="navbar-nav navbar-nav-scroll me-auto">
 
+<<<<<<< HEAD
 					<!-- Nav item Dropdown -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="exploreMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
@@ -164,14 +192,230 @@ $list = $pubCtrl->listePublication();
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" href="about.html">Architecture Overview</a></li>
 							<li><a class="dropdown-item" href="contact.html">System Support</a></li>
+=======
+					<!-- Nav item Listing -->
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings</a>
+						<ul class="dropdown-menu" aria-labelledby="listingMenu">
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">Hotel</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="index.html">Hotel Home</a></li>
+									<li> <a class="dropdown-item" href="index-hotel-chain.html">Hotel Chain</a></li>
+									<li> <a class="dropdown-item" href="index-resort.html">Hotel Resort</a></li>
+									<li> <a class="dropdown-item" href="hotel-grid.html">Hotel Grid</a></li>
+									<li> <a class="dropdown-item" href="hotel-list.html">Hotel List</a></li>
+									<li> <a class="dropdown-item" href="hotel-detail.html">Hotel Detail</a></li>
+									<li> <a class="dropdown-item" href="room-detail.html">Room Detail</a></li>
+									<li> <a class="dropdown-item" href="hotel-booking.html">Hotel Booking</a></li>
+								</ul>
+							</li>
+
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">Flight</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="index-flight.html">Flight Home</a></li>
+									<li> <a class="dropdown-item" href="flight-list.html">Flight List</a></li>
+									<li> <a class="dropdown-item" href="flight-detail.html">Flight Detail</a></li>
+									<li> <a class="dropdown-item" href="flight-booking.html">Flight Booking</a></li>
+								</ul>
+							</li>
+
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">Tour</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="index-tour.html">Tour Home</a></li>
+									<li> <a class="dropdown-item" href="tour-grid.html">Tour Grid</a></li>
+									<li> <a class="dropdown-item" href="tour-detail.html">Tour Detail</a></li>
+									<li> <a class="dropdown-item" href="tour-booking.html">Tour Booking</a></li>
+								</ul>
+							</li>
+
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">Cab</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="index-cab.html">Cab Home</a></li>
+									<li> <a class="dropdown-item" href="cab-list.html">Cab List</a></li>
+									<li> <a class="dropdown-item" href="cab-detail.html">Cab Detail</a></li>
+									<li> <a class="dropdown-item" href="cab-booking.html">Cab Booking</a></li>
+								</ul>
+							</li>
+
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">Directory</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="index-directory.html">Directory Home</a></li>
+									<li> <a class="dropdown-item" href="directory-detail.html">Directory Detail</a></li>
+								</ul>
+							</li>
+
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">Add Listing</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="join-us.html">Join us</a></li>
+									<li> <a class="dropdown-item" href="add-listing.html">Add Listing</a></li>
+									<li> <a class="dropdown-item" href="add-listing-minimal.html">Add Listing Minimal</a></li>
+									<li> <a class="dropdown-item" href="listing-added.html">Listing Added</a></li>
+								</ul>
+							</li>
+
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">Hero</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="hero-inline-form.html">Hero Inline Form</a></li>
+									<li> <a class="dropdown-item" href="hero-multiple-search.html">Hero Multiple Search</a></li>
+									<li> <a class="dropdown-item" href="hero-image-gallery.html">Hero Image Gallery</a></li>
+									<li> <a class="dropdown-item" href="hero-split.html">Hero Split</a></li>
+								</ul>
+							</li>
+
+							<li><hr class="dropdown-divider"></li>
+<li class="dropdown-submenu dropend">
+    <a class="dropdown-item dropdown-toggle" href="#">Publications</a>
+    <ul class="dropdown-menu" data-bs-popper="none">
+        <li><a class="dropdown-item" href="/projetweb/index1.php"><i class="bi bi-grid me-2"></i>All Publications</a></li>
+        <li><a class="dropdown-item" href="/projetweb/back-office/index.php?action=create"><i class="bi bi-plus-circle me-2"></i>Add Publication</a></li>
+        <li><a class="dropdown-item" href="/projetweb/back-office/index.php"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+    </ul>
+</li>
+							<li> <a class="dropdown-item" href="compare-listing.html">Compare Listing</a></li>
+							<li> <a class="dropdown-item" href="offer-detail.html">Offer Detail</a></li>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 						</ul>
 					</li>
 
 					<!-- Nav item Pages -->
+<<<<<<< HEAD
 					<li class="nav-item">
 						<a class="nav-link" href="/projetweb/view/back-office/index.php?action=dashboard">
 							<i class="bi bi-graph-up-arrow me-2"></i>Stats
 						</a>
+=======
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+						<ul class="dropdown-menu" aria-labelledby="pagesMenu">
+
+							<li> <a class="dropdown-item" href="about.html">About</a></li>
+							<li> <a class="dropdown-item" href="contact.html">Contact</a></li>
+							<li> <a class="dropdown-item" href="contact-2.html">Contact 2</a></li>
+							<li> <a class="dropdown-item" href="team.html">Our Team</a></li>
+
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">Authentication</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="sign-in.html">Sign In</a></li>
+									<li> <a class="dropdown-item" href="sign-up.html">Sign Up</a></li>
+									<li> <a class="dropdown-item" href="forgot-password.html">Forgot Password</a></li>
+									<li> <a class="dropdown-item" href="two-factor-auth.html">Two factor authentication</a></li>
+								</ul>
+							</li>
+
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">Blog</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="blog.html">Blog</a></li>
+									<li> <a class="dropdown-item" href="blog-detail.html">Blog Detail</a></li>
+								</ul>
+							</li>
+
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">Help</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="help-center.html">Help Center</a></li>
+									<li> <a class="dropdown-item" href="help-detail.html">Help Detail</a></li>
+									<li> <a class="dropdown-item" href="privacy-policy.html">Privacy Policy</a></li>
+									<li> <a class="dropdown-item" href="terms-of-service.html">Terms of Service</a></li>
+								</ul>
+							</li>
+
+							<li> <a class="dropdown-item" href="pricing.html">Pricing</a></li>
+							<li> <a class="dropdown-item" href="faq.html">FAQs</a></li>
+							<li> <a class="dropdown-item" href="error.html">Error 404</a></li>
+							<li> <a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
+						</ul>
+					</li>
+
+					<!-- Nav item Account -->
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="accounntMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accounts</a>
+						<ul class="dropdown-menu" aria-labelledby="accounntMenu">
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">User Profile</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="account-profile.html">My Profile</a> </li>
+									<li> <a class="dropdown-item" href="account-bookings.html">My Bookings</a> </li>
+									<li> <a class="dropdown-item" href="account-travelers.html">Travelers</a> </li>
+									<li> <a class="dropdown-item" href="account-payment-details.html">Payment Details</a> </li>
+									<li> <a class="dropdown-item" href="account-wishlist.html">Wishlist</a> </li>
+									<li> <a class="dropdown-item" href="account-settings.html">Settings</a> </li>
+									<li> <a class="dropdown-item" href="account-delete.html">Delete Profile</a> </li>
+								</ul>
+							</li>
+
+							<!-- Dropdown submenu -->
+							<li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">Agent Dashboard</a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="agent-dashboard.html">Dashboard</a> </li>
+									<li> <a class="dropdown-item" href="agent-listings.html">Listings</a> </li>
+									<li> <a class="dropdown-item" href="agent-bookings.html">Bookings</a> </li>
+									<li> <a class="dropdown-item" href="agent-activities.html">Activities</a> </li>
+									<li> <a class="dropdown-item" href="agent-earnings.html">Earnings</a> </li>
+									<li> <a class="dropdown-item" href="agent-reviews.html">Reviews</a> </li>
+									<li> <a class="dropdown-item" href="agent-settings.html">Settings</a> </li>
+								</ul>
+							</li>
+							
+							<li> <a class="dropdown-item" href="admin-dashboard.html">Master Admin</a> </li>
+						</ul>
+					</li>
+
+          <!-- Nav item link-->
+					<li class="nav-item dropdown">
+						<a class="nav-link" href="#" id="advanceMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-ellipsis-h"></i>
+						</a>
+						<ul class="dropdown-menu min-w-auto" data-bs-popper="none">
+							<li> 
+								<a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
+									<i class="text-warning fa-fw bi bi-life-preserver me-2"></i>Support
+								</a> 
+							</li>
+							<li> 
+								<a class="dropdown-item" href="docs/index.html" target="_blank">
+									<i class="text-danger fa-fw bi bi-card-text me-2"></i>Documentation
+								</a> 
+							</li>
+							<li> <hr class="dropdown-divider"></li>
+							<li> 
+								<a class="dropdown-item" href="rtl/index.html" target="_blank">
+									<i class="text-info fa-fw bi bi-toggle-off me-2"></i>RTL demo
+								</a> 
+							</li>
+							<li> 
+								<a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/" target="_blank">
+									<i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Buy Booking!
+								</a> 
+							</li>
+							<li> <hr class="dropdown-divider"></li>
+							<li> 
+								<a class="dropdown-item" href="docs/alerts.html" target="_blank">
+									<i class="text-orange fa-fw bi bi-puzzle-fill me-2"></i>Components
+								</a> 
+							</li>
+						</ul>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 					</li>
 				</ul>
 			</div>
@@ -180,6 +424,7 @@ $list = $pubCtrl->listePublication();
 			<!-- Nav category menu START -->
 			<div class="navbar-collapse collapse" id="navbarCategoryCollapse">
 				<ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
+<<<<<<< HEAD
 					<!-- Nav item Legal -->
 					<li class="nav-item"> <a class="nav-link active" href="/projetweb/index1.php"><i class="fa-solid fa-gavel me-2"></i>Legal</a>	</li>
 
@@ -188,6 +433,19 @@ $list = $pubCtrl->listePublication();
 
 					<!-- Nav item Reports -->
 					<li class="nav-item"> <a class="nav-link" href="/projetweb/index1.php"><i class="fa-solid fa-file-contract me-2"></i>Reports</a> </li>
+=======
+					<!-- Nav item Hotel -->
+					<li class="nav-item"> <a class="nav-link active" href="index.html"><i class="fa-solid fa-hotel me-2"></i>Hotel</a>	</li>
+
+					<!-- Nav item Flight -->
+					<li class="nav-item"> <a class="nav-link" href="index-flight.html"><i class="fa-solid fa-plane me-2"></i>Flight</a>	</li>
+
+					<!-- Nav item Tour -->
+					<li class="nav-item"> <a class="nav-link" href="index-tour.html"><i class="fa-solid fa-globe-americas me-2"></i>Tour</a> </li>
+
+					<!-- Nav item Cabs -->
+					<li class="nav-item"> <a class="nav-link" href="index-cab.html"><i class="fa-solid fa-car me-2"></i>Cab</a></li>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 				</ul>
 			</div>
 			<!-- Nav category menu END -->
@@ -209,7 +467,11 @@ $list = $pubCtrl->listePublication();
 						<div class="card bg-transparent">
 							<!-- Card header -->
 							<div class="card-header bg-transparent d-flex justify-content-between align-items-center border-bottom">
+<<<<<<< HEAD
 								<h6 class="m-0">Notifications <span class="badge bg-primary bg-opacity-10 text-primary ms-2">2 new</span></h6>
+=======
+								<h6 class="m-0">Notifications <span class="badge bg-danger bg-opacity-10 text-danger ms-2">4 new</span></h6>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 								<a class="small" href="#">Clear all</a>
 							</div>
 
@@ -218,6 +480,7 @@ $list = $pubCtrl->listePublication();
 								<ul class="list-group list-group-flush list-unstyled p-2">
 									<!-- Notification item -->
 									<li>
+<<<<<<< HEAD
 										<div class="list-group-item list-group-item-action rounded notif-unread border-0 mb-1 p-3">
 											<h6 class="mb-2">New Regulation Published 📜</h6>
 											<p class="mb-0 small">The latest legal framework for digital governance has been uploaded.</p>
@@ -231,6 +494,20 @@ $list = $pubCtrl->listePublication();
 											<p class="mb-0 small">Weekly security and data integrity verification successful.</p>
 											<span>Yesterday</span>
 										</div>
+=======
+										<a href="#" class="list-group-item list-group-item-action rounded notif-unread border-0 mb-1 p-3">
+											<h6 class="mb-2">New! Booking flights from New York ✈️</h6>
+											<p class="mb-0 small">Find the flexible ticket on flights around the world. Start searching today</p>
+											<span>Wednesday</span>
+										</a>
+									</li>
+									<!-- Notification item -->
+									<li>
+										<a href="#" class="list-group-item list-group-item-action rounded border-0 mb-1 p-3">
+											<h6 class="mb-2">Sunshine saving are here 🌞 save 30% or more on a stay</h6>
+											<span>15 Nov 2022</span>
+										</a>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 									</li>
 								</ul>
 							</div>
@@ -270,8 +547,13 @@ $list = $pubCtrl->listePublication();
 
 						<!-- Links -->
 						<li> <hr class="dropdown-divider"></li>
+<<<<<<< HEAD
 						<li><a class="dropdown-item" href="#"><i class="bi bi-bookmark-check fa-fw me-2"></i>Saved Documents</a></li>
 						<li><a class="dropdown-item" href="#"><i class="bi bi-clock-history fa-fw me-2"></i>Reading History</a></li>
+=======
+						<li><a class="dropdown-item" href="#"><i class="bi bi-bookmark-check fa-fw me-2"></i>My Bookings</a></li>
+						<li><a class="dropdown-item" href="#"><i class="bi bi-heart fa-fw me-2"></i>My Wishlist</a></li>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 						<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
 						<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help Center</a></li>
 						<li><a class="dropdown-item bg-danger-soft-hover" href="#"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
@@ -320,6 +602,7 @@ $list = $pubCtrl->listePublication();
 	
 <!-- =======================
 Main Banner START -->
+<<<<<<< HEAD
 <section class="pt-3 pt-lg-5 mesh-gradient overflow-hidden">
 	<div class="container">
 			<!-- Content and Image START -->
@@ -376,12 +659,103 @@ Main Banner START -->
 				</div>
 			</div>
 			<!-- Content and Image END -->
+=======
+<section class="pt-3 pt-lg-5">
+	<div class="container">
+			<!-- Content and Image START -->
+			<div class="row g-4 g-lg-5">
+				<!-- Content -->
+				<div class="col-lg-6 position-relative mb-4 mb-md-0">
+					<!-- Title -->
+					<h1 class="mb-4 mt-md-5 display-5">Goverment
+						<span class="position-relative z-index-9">access.
+							<!-- SVG START -->
+							<span class="position-absolute top-50 start-50 translate-middle z-index-n1 d-none d-md-block mt-4">
+								<svg width="390.5px" height="21.5px" viewBox="0 0 445.5 21.5">
+									<path class="fill-primary opacity-7" d="M409.9,2.6c-9.7-0.6-19.5-1-29.2-1.5c-3.2-0.2-6.4-0.2-9.7-0.3c-7-0.2-14-0.4-20.9-0.5 c-3.9-0.1-7.8-0.2-11.7-0.3c-1.1,0-2.3,0-3.4,0c-2.5,0-5.1,0-7.6,0c-11.5,0-23,0-34.5,0c-2.7,0-5.5,0.1-8.2,0.1 c-6.8,0.1-13.6,0.2-20.3,0.3c-7.7,0.1-15.3,0.1-23,0.3c-12.4,0.3-24.8,0.6-37.1,0.9c-7.2,0.2-14.3,0.3-21.5,0.6 c-12.3,0.5-24.7,1-37,1.5c-6.7,0.3-13.5,0.5-20.2,0.9C112.7,5.3,99.9,6,87.1,6.7C80.3,7.1,73.5,7.4,66.7,8 C54,9.1,41.3,10.1,28.5,11.2c-2.7,0.2-5.5,0.5-8.2,0.7c-5.5,0.5-11,1.2-16.4,1.8c-0.3,0-0.7,0.1-1,0.1c-0.7,0.2-1.2,0.5-1.7,1 C0.4,15.6,0,16.6,0,17.6c0,1,0.4,2,1.1,2.7c0.7,0.7,1.8,1.2,2.7,1.1c6.6-0.7,13.2-1.5,19.8-2.1c6.1-0.5,12.3-1,18.4-1.6 c6.7-0.6,13.4-1.1,20.1-1.7c2.7-0.2,5.4-0.5,8.1-0.7c10.4-0.6,20.9-1.1,31.3-1.7c6.5-0.4,13-0.7,19.5-1.1c2.7-0.1,5.4-0.3,8.1-0.4 c10.3-0.4,20.7-0.8,31-1.2c6.3-0.2,12.5-0.5,18.8-0.7c2.1-0.1,4.2-0.2,6.3-0.2c11.2-0.3,22.3-0.5,33.5-0.8 c6.2-0.1,12.5-0.3,18.7-0.4c2.2-0.1,4.4-0.1,6.7-0.1c11.5-0.1,23-0.2,34.6-0.4c7.2-0.1,14.4-0.1,21.6-0.1c12.2,0,24.5,0.1,36.7,0.1 c2.4,0,4.8,0.1,7.2,0.2c6.8,0.2,13.5,0.4,20.3,0.6c5.1,0.2,10.1,0.3,15.2,0.4c3.6,0.1,7.2,0.4,10.8,0.6c10.6,0.6,21.1,1.2,31.7,1.8 c2.7,0.2,5.4,0.4,8,0.6c2.9,0.2,5.8,0.4,8.6,0.7c0.4,0.1,0.9,0.2,1.3,0.3c1.1,0.2,2.2,0.2,3.2-0.4c0.9-0.5,1.6-1.5,1.9-2.5 c0.6-2.2-0.7-4.5-2.9-5.2c-1.9-0.5-3.9-0.7-5.9-0.9c-1.4-0.1-2.7-0.3-4.1-0.4c-2.6-0.3-5.2-0.4-7.9-0.6 C419.7,3.1,414.8,2.9,409.9,2.6z"/>
+								</svg>
+							</span>
+							<!-- SVG END -->
+						</span>
+					</h1>
+					<!-- Info -->
+					<p class="mb-4">We bring you not only a stay option, but an experience in your budget to enjoy the luxury.</p>
+
+					<!-- Buttons -->
+					<div class="hstack gap-4 flex-wrap align-items-center">
+						<!-- Button -->
+						<a href="/projetweb/index1.php" class="btn btn-primary-soft mb-0">Browse Publications</a>
+						<!-- Story button -->
+						<a data-glightbox="" data-gallery="office-tour" href="https://www.youtube.com/embed/tXHviS-4ygo" class="d-block">
+							<!-- Avatar -->
+							<div class="avatar avatar-md z-index-1 position-relative me-2">
+								<img class="avatar-img rounded-circle" src="assets/images/avatar/12.jpg" alt="avatar">
+								<!-- Video button -->
+								<div class="btn btn-xs btn-round btn-white shadow-sm position-absolute top-50 start-50 translate-middle z-index-9 mb-0"> 
+									<i class="fas fa-play"></i>
+								</div>
+							</div>
+							<div class="align-middle d-inline-block">
+								<h6 class="fw-normal small mb-0">Watch our story</h6>
+							</div>
+						</a>
+					</div>
+				</div>
+				
+				<!-- Image -->
+				<div class="col-lg-6 position-relative">
+
+					<img src="assets/images/bg/06.jpg" class="rounded" alt="">
+
+					<!-- Svg decoration -->
+					<figure class="position-absolute end-0 bottom-0">
+						<svg width="163px" height="163px" viewBox="0 0 163 163">
+							<path class="fill-warning" d="M145.6,66.2c-0.9-0.3-1.6,0.2-2.1-0.4c-0.5-0.7-1-1.5-1-2.4c0-3.1,0.1-6.2,0-9.3c0-0.7,0.3-1.3,0.5-1.9 c0.8-1.6,1.6-3.2,2.7-4.5c0.5-0.6,1.2-1.2,2-1.5c0.4-0.2,0.8,0.4,1.3-0.1c0.4-0.4,1,0.7,1.6,0.7c0.4,1-0.4,1.5-1,2.1 c0.7,0.3,1.4,0.3,2.1,0.7c0.6,0.4,1.2,0.7,1,1.5c-0.2,1,0.6,1.3,1,1.9c-0.2,0.3-0.6,0.4-0.5,0.8c1.2,3.2,0.3,5.4-0.7,8.1 c-0.3,0.7-0.7,1.6-0.7,2.2c-0.1,1.5-1.2,2.7-1.4,4.1c-0.2,1.1-0.9,1.7-2.1,1.6c-0.2,0-0.4,0.5-1,0.4c-0.2-0.2-0.7-0.5-0.7-0.8 c0-1-0.1-1.7-1.1-2.1C145.5,67.2,145.6,66.6,145.6,66.2"/>
+							<path class="fill-warning" d="M94.3,143.5c1.1,0.3,2.4-0.5,3.2,0.7c-0.4,0.7-0.7,1.4-1,2.1c0.5,0.5,0.7,0.2,1.2,0.1c1.6-0.6,2-0.4,2.5,1.2 c0.1,0.2,0,0.6,0.3,0.6c1.8,0.4,1.4,2.2,2.1,3.2c-0.8,0.9,0.5,1.8,0.1,2.6c-0.5,0.8-0.3,2-1.3,2.6c-0.3,0.2-0.1,0.5-0.2,0.7 c-0.3,2.1-1.2,3.7-3.4,4.4c-0.3,0.1-0.4,0.6-1,0.4c-0.3-0.6-0.6-1.3-1-1.9c-0.5-0.2-1.5,0.3-1.4-1h-3c-0.2-1.4,0-2.9-1.1-3.9 c-0.1-0.1-0.1-0.4,0-0.5c0.7-1.2,0.2-2.6,0.7-3.8c0.3-0.6,0.4-1,0.1-1.6c-0.9-1.3,0-2.4,0.7-3.3C92.5,145,93.4,144.3,94.3,143.5"/>
+							<path class="fill-warning" d="M119.6,77.3c-0.4,0.8-1.1,0.6-2,0.8c0.2,1.1-0.4,2.2,0.5,3.3c-0.8,0-0.8,0-1.2-0.3c-0.6,0.3-0.8,1-1.2,1.6 c0.1-1.9-0.6-3.2-2-4.1c-0.6-0.1-0.7,0.3-1,0.5c-1-1.9-1-2.8-0.2-7.7c0.4-2.5,1.7-4.6,3.6-6.8c0.6-0.1,1.5,1.5,2.3,0 c0.8,1.5-0.7,2.3-0.8,3.7c0.8-0.4,1.6-0.7,2.4-0.4c0.4,0.4-0.1,1,0.3,1.4c0.8,0.6,1.4,1.3,0.4,2.3c1.1,0.8-0.3,1.5-0.1,2.4 c0.2,0.8,0,1.7,0,2.5c-0.8-0.2-1-1.1-1.8-1C118.2,76.4,119.5,76.5,119.6,77.3"/>
+							<path class="fill-warning" d="M25,131c-0.3-0.6-1.2-0.3-1.7-0.5v-1.2c-0.1-0.1-0.1-0.2-0.2-0.2c-1.4,0.5-2.2-1-3.4-1.2 c-1.2-0.1-1.9-1-2.1-2.2c-0.1-0.5,0.1-0.8,0.5-1.1c-2-1.7-0.8-3.4-0.1-5.1c0.8-2.2,2.6-2.5,4.6-2.4c0.4,1.1,0.2,2-0.6,2.7 c1.5,1,2-0.5,3-0.8c0.3,0.6,0.6,1.2,0.9,1.6c0,0.6-0.8,0.8-0.4,1.4c0.7,0.8,0.9-0.5,1.7-0.3c1,0.9,0.9,2.2,0.8,3.4 c0.4,0.1,0.6,0.2,1,0.3c-0.1,0.6-1,0.8-1,1.5c0,0.8,0.8,0.2,1,0.7C27.7,128.8,26.9,130.3,25,131"/>
+							<path class="fill-warning" d="M84.9,95H87c0.4,0.4,0.3,1.6-0.3,2.8c1.2,1,1.7-0.5,2.4-0.8c0.8,0,0.8,0.6,1.2,0.7c0.2,0.8-0.7,0.9-0.4,1.7 c0.5,0.3,1.7,0,1.9,0.9c0.2,0.7,0.3,1.5-0.5,2.1c0.3,0.1,0.6,0.2,0.9,0.3c-0.1,0.7-1.1,1.3-0.5,2.2c-1.1,1.5-3,2.1-4.4,3.3 c-0.3,0.2-0.8,1-1.5,0.5c-0.3-0.4,0.4-0.4,0.3-0.8c-0.7-0.5-1.6,0.1-2.4-0.3c-0.2-0.6,0.1-1.4-0.8-1.8c-1.1,0.5-2.2,0.7-3.2-0.8 c1.3-0.8,3-1.1,3.2-3c-1,0-1.7,0.9-2.7,1c-0.2-0.2-0.5-0.4-0.8-0.7c-0.1-0.1,0.1-0.1,0.2-0.3c0.6-1.1,2.4-1,2.5-2.5 c1.2-0.5,1.1-1.7,1.3-2.5C83.8,96.3,84.3,95.7,84.9,95"/>
+							<path class="fill-warning" d="M41.2,153.9c0.3-0.7,0.9-0.8,0.4-1.6c-0.3-0.3-1.1,0.2-1.8-0.2c0-0.2-0.1-0.4-0.1-0.7c-0.1-0.1-0.2-0.2-0.3,0 c-0.3,0.4-0.7,0.4-1.1,0.4c-1.3,0-1.5-0.4-1.6-1.7c0-0.6,0.4-0.8,0.5-1.4c-0.4,0-0.8-0.1-1.4-0.1c-0.4-1.9,0.7-3.6,1.1-5.4 c0.2-0.9,1.6-1.3,2.7-1.3c0.4,0.2,0.3,0.6,0.3,0.7c0.2,0.4,0.3,0.3,0.4,0.1c0.6-0.5,1.3-0.6,1.7,0.1c0.5,0.7,1.1,0.6,1.8,0.7 c0.4,0.4,0.1,0.8,0.2,1.2c0.3,0.4,0.8,0.2,1.3,0.3c1,0.7,0.5,2.1,1.3,2.9C43.8,152.3,43.1,153.1,41.2,153.9"/>
+							<path class="fill-warning" d="M70.9,43.4c-0.3-1.4-1.2-1.8-2.6-1.5c-1.2-2.3-0.8-4.8-0.5-7.2c0.1-0.5,0.4-1.1,0.3-1.7 c-0.2-1.1,0.5-1.9,0.6-2.9c0.1-0.7,1.3-0.9,2-1.3c0.9,0.8,0.9,0.8,1.2,2c0.3,0,0.6,0,0.4,0c1.3,0,0.8,0.9,1.3,1.2 c0.3,0.1,0.8,0.5,0.7,1c-0.2,0.8,1,1.4,0.5,2.1c-0.5,0.7-0.2,1.5-0.5,2.1c-0.8,1.5-1,3.2-1.5,4.8C72.6,43.1,72,43.4,70.9,43.4"/>
+							<path class="fill-warning" d="M125.4,118.4c-0.4-0.3-0.6-0.7-1.3-0.8c-1.6-0.1-1.6-0.2-1.9-1.9c-1.1-0.4-2.2,0-3.2,0.4 c-0.5-0.5-0.2-0.9-0.4-1.4c0.4-0.1,0.7-0.2,1-0.4v-3c-0.5,0.2-1,0.3-1.7,0.5c-0.3,0-0.4-0.6-0.8-0.7c0.6-1.5,1.8-2.4,2.8-3.5 c1.3,0.3,2.6-1.1,3.8,0.4c0,0.1-0.1,1.8,0,2.1c-0.2,0-0.5,0.1-0.7,0.1c-0.2,0-0.3,0-0.5,0c-0.4,0.4-0.1,1.1-0.7,1.5 c1.3-0.5,2.4-1,3.3-2c0.4,0.4,0.7,0.8,1.4,0.6c-1.1,0.9,0.4,2.1-1,2.9c1,0,1.1-0.6,1.5-0.8c0.4-0.1,0.8-0.1,1.2-0.2 c0.5,1,1.1,1.8,0.6,3c-0.7,0.6-2.2,0.4-2.5,2.1c1.2-0.2,1.9-0.9,2.5-1.5c0.7,0.1,0.7,0.5,0.6,0.8c-1.3-0.1-1.2,1.5-2.3,1.9 c-0.9,0.3-1.6,1-2.7,1.8C124.7,119.5,125.1,119,125.4,118.4"/>
+							<path class="fill-warning" d="M101.7,41c-0.3,0.3-0.6,0.6-0.9,0.9c0.9,0.6-0.9,1.6,0.4,2.1c-2,2.3-2,2.4-2.1,4.8h-2.4c-0.2-0.1,0-0.5-0.2-0.8 c-2.4-0.3-2.9-0.8-3-3.3c0-0.6,0.2-1.4-0.5-1.8c0.5-0.7,0.2-1.6,0.7-2.4c1-1.5,2.3-2.7,3.5-3.9c0.5-0.2,1-0.1,1.4,0 c0.2,1-1.1,1.6-0.2,2.6c0.3-0.4,0.6-0.8,0.9-1.3C100.2,39.2,101.7,39.5,101.7,41"/>
+							<path class="fill-warning" d="M140.4,5.4c-0.4,0.6-1.2-0.1-1.5,0.6c0.7,0.4,1.5,0.1,2.3,0.2c0.3,1.1,0.9,2.1,1.3,3.2c0.9,2.4,0.3,4.4-0.6,6.6 c-0.4,0.9-0.9,1.2-1.9,1c-0.2-0.5-0.5-1.2-0.9-1.9c-0.6-0.2-1.5,0-1.9-1c0.1-1.7,0.1-3.6-1.1-5.2c0.4-0.7,0.7-1.3,1.1-1.9 c-0.3-0.1-0.6-0.2-1-0.4c0.2-0.8,0.5-1.6,1.3-2.3h2.2C140,4.6,140.5,4.8,140.4,5.4"/>
+							<path class="fill-warning" d="M65.7,68.8c-0.4,0.6-0.9,0.4-1.4,0.4c-1.2-1.1-0.4-2.9-1.4-4.1c1.5-3,1.5-3,4.1-4.2c0.5,0.1,0.8,0.5,1,1 c0.1,0.6-0.8,0.7-0.5,1.3c0.5,0.6,0.9,0.2,1.2-0.2c1.5,0.6,1.1,2.5,2.4,3.3c-0.1,1.1,0.2,2.2-0.2,3.2L69,72.2c-0.3,0-0.7,0-1,0 c-0.3-0.5-0.9-2.2-0.8-2.4C66.7,69.6,66.2,69.2,65.7,68.8"/>
+							<path class="fill-warning" d="M37.5,69.7c-0.5,0.2,0,0.9-0.4,1c-0.7,0.2-1-0.2-1.2-0.6c-0.4-0.7,0.1-1.6-0.2-2.2c-0.5-0.7-0.6-1.2-0.1-2 c0.5-0.6,0.2-1.5,0.6-2.3c0.9-2,0.9-2.1,3-2.1c0.1,0.1,0.2,0.1,0.2,0.2c0,0.3,0,0.7,0,1.1c0.7,0.4,1.7,0.1,2.1,1.3 c0.3,0.9,1.2,1.5,1,2.7c-0.2,0.9,0.1,1.8-0.8,2.5c-0.4,0.4-0.8,1.1-0.8,2c0,0.6-0.5,1-1.2,1.1c-0.6,0.1-1-0.3-1.2-0.7 C38,71,37.8,70.3,37.5,69.7"/>
+							<path class="fill-warning" d="M53.9,87.8c0.7,0,1.4,0,2.1,0c0.5,0.3,0.1,1,0.4,1.4c0.4,0.3,0.8,0.1,1.2,0.2c0.6,1.2,1.4,2.4,1.7,3.6 c0.4,1.4-0.2,2.7-0.7,4c-1,0.4-1.5-0.4-2.1-0.9c-0.7,0-1.4,0-2.1,0c-0.4-1-0.8-1.8-2.1-1.5c-0.6-0.7,0.2-1.8-0.7-2.3 c0.5-0.6,0.9-1.3,1-2.1C52.8,89.2,53.2,88.5,53.9,87.8"/>
+							<path class="fill-warning" d="M0.1,95.7c0.9-1.3,2.3-1.7,3.8-1.8c1,1.2-0.7,1.5-0.8,2.3c1.1,1,2-0.7,3.1,0c0.6,0.6-0.2,0.8-0.3,1.2 c0.4,0.5,1,0,1.4,0.3c0.4,1.1-0.3,2.3,0.6,3.3c-0.8,0.8-0.7,2.2-1.9,2.8c-1.1-0.2-1.8-1-2.6-1.7c-0.7-0.6-1.9-0.5-2.6-1.9 C1,98.9-0.4,97.4,0.1,95.7"/>
+							<path class="fill-warning" d="M155.5,91.5c-0.9-0.5-1.7-0.7-2.3-1.6c0.4-0.2,0.8-0.5,1.2-0.7c-1.2-0.4-2.1,0.7-3.1,0c0.6-1,1.8-1,2.5-1.7 c0.1-0.6-0.3-0.6-0.7-0.7c-0.7-0.2-0.9,0.9-1.6,0.5c-0.3-0.3-0.4-0.7-0.1-0.9c1.7-1,3-2.3,4.5-3.5c0.9-0.7,1.1-0.9,2.5-1.2 c-0.1,0.5-0.6,0.7-0.9,1.1c0.7,0.7,1.3,0.1,1.9-0.2c0.1,1.1,0.9,1.9,0.5,3.4C158.3,87.4,157.4,89.8,155.5,91.5"/>
+						</svg>
+					</figure>
+
+					<!-- Support guid -->
+					<div class="position-absolute top-0 end-0 z-index-1 mt-n4">
+						<div class="bg-blur border border-light rounded-3 text-center shadow-lg p-3">
+							<!-- Title -->
+							<i class="bi bi-headset text-danger fs-3"></i>
+							<h5 class="text-dark mb-1">24 / 7</h5>
+							<h6 class="text-dark fw-light small mb-0">Guide Supports</h6>
+						</div>
+					</div>
+
+					<!-- Round image group -->
+					<div class="vstack gap-5 align-items-center position-absolute top-0 start-0 d-none d-md-flex mt-4 ms-n3">
+						<img class="icon-lg shadow-lg border border-3 border-white rounded-circle" src="assets/images/category/hotel/4by3/11.jpg" alt="avatar">
+						<img class="icon-xl shadow-lg border border-3 border-white rounded-circle" src="assets/images/category/hotel/4by3/12.jpg" alt="avatar">
+					</div>
+				</div>
+			</div>
+			<!-- Content and Image END -->
+			
+		
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 	</div>
 </section>
 <!-- =======================
 Main Banner END -->
 
 <!-- =======================
+<<<<<<< HEAD
 Institutional Stats START -->
 <section class="pb-2 pb-lg-5">
 	<div class="container">
@@ -393,10 +767,95 @@ Institutional Stats START -->
 						<div>
 							<h5 class="mb-0">Immutable Access</h5>
 							<p class="mb-0 small text-muted">Records verified by eDossier Governance</p>
+=======
+Best deal START -->
+<section class="pb-2 pb-lg-5">
+	<div class="container">
+		<!-- Slider START -->
+		<div class="tiny-slider arrow-round arrow-blur arrow-hover">
+			<div class="tiny-slider-inner" data-autoplay="true" data-arrow="true" data-edge="2" data-dots="false" data-items-xl="3" data-items-lg="2" data-items-md="1">
+				<!-- Slider item -->
+				<div>
+					<div class="card border rounded-3 overflow-hidden">
+						<div class="row g-0 align-items-center">
+							<!-- Image -->
+							<div class="col-sm-6">
+								<img src="assets/images/offer/01.jpg" class="card-img rounded-0" alt="">
+							</div>
+
+							<!-- Title and content -->
+							<div class="col-sm-6">
+								<div class="card-body px-3">
+									<h6 class="card-title"><a href="offer-detail.html" class="stretched-link">Daily 50 Lucky Winners get a Free Stay</a></h6>
+									<p class="mb-0">Valid till: 15 Nov</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Slider item -->
+				<div>
+					<div class="card border rounded-3 overflow-hidden">
+						<div class="row g-0 align-items-center">
+							<!-- Image -->
+							<div class="col-sm-6">
+								<img src="assets/images/offer/04.jpg" class="card-img rounded-0" alt="">
+							</div>
+
+							<!-- Title and content -->
+							<div class="col-sm-6">
+								<div class="card-body px-3">
+									<h6 class="card-title"><a href="offer-detail.html" class="stretched-link">Up to 60% OFF</a></h6>
+									<p class="mb-0">On Hotel Bookings Online</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Slider item -->
+				<div>
+					<div class="card border rounded-3 overflow-hidden">
+						<div class="row g-0 align-items-center">
+							<!-- Image -->
+							<div class="col-sm-6">
+								<img src="assets/images/offer/03.jpg" class="card-img rounded-0" alt="">
+							</div>
+
+							<!-- Title and content -->
+							<div class="col-sm-6">
+								<div class="card-body px-3">
+									<h6 class="card-title"><a href="offer-detail.html" class="stretched-link">Book & Enjoy</a></h6>
+									<p class="mb-0">20% Off on the best available room rate</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Slider item -->
+				<div>
+					<div class="card border rounded-3 overflow-hidden">
+						<div class="row g-0 align-items-center">
+							<!-- Image -->
+							<div class="col-sm-6">
+								<img src="assets/images/offer/02.jpg" class="card-img rounded-0" alt="">
+							</div>
+
+							<!-- Title and content -->
+							<div class="col-sm-6">
+								<div class="card-body px-3">
+									<h6 class="card-title"><a href="offer-detail.html" class="stretched-link">Hot Summer Nights</a></h6>
+									<p class="mb-0">Up to 3 nights free!</p>
+								</div>
+							</div>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 						</div>
 					</div>
 				</div>
 			</div>
+<<<<<<< HEAD
 			<div class="col-md-4">
 				<div class="card bg-success bg-opacity-10 border-0 p-4 h-100 rounded-4">
 					<div class="d-flex align-items-center">
@@ -424,6 +883,14 @@ Institutional Stats START -->
 </section>
 <!-- =======================
 Institutional Stats END -->
+=======
+		</div>	
+		<!-- Slider END -->
+	</div>
+</section>
+<!-- =======================
+Best deal END -->
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 
 <!-- =======================
 About START -->
@@ -671,20 +1138,71 @@ About START -->
 				</figure>
 
 				<!-- Image -->
+<<<<<<< HEAD
 				<div class="rounded-4 overflow-hidden shadow-lg">
 					<img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=1000" class="img-fluid" alt="Digital Governance">
 				</div>
+=======
+				<img src="assets/images/about/01.jpg" class="rounded-3 position-relative" alt="">
+
+				<!-- Client rating START -->
+				<div class="position-absolute bottom-0 start-0 z-index-1 mb-4 ms-5">
+					<div class="bg-body d-flex d-inline-block rounded-3 position-relative p-3">	
+
+						<!-- Element -->
+						<img src="assets/images/element/01.svg" class="position-absolute top-0 start-0 translate-middle w-40px" alt="">
+
+						<!-- Avatar group -->
+						<div class="me-4">
+							<h6 class="fw-light">Client</h6>
+							<!-- Avatar group -->
+							<ul class="avatar-group mb-0">
+								<li class="avatar avatar-sm">
+									<img class="avatar-img rounded-circle" src="assets/images/avatar/01.jpg" alt="avatar">
+								</li>
+								<li class="avatar avatar-sm">
+									<img class="avatar-img rounded-circle" src="assets/images/avatar/02.jpg" alt="avatar">
+								</li>
+								<li class="avatar avatar-sm">
+									<img class="avatar-img rounded-circle" src="assets/images/avatar/03.jpg" alt="avatar">
+								</li>
+								<li class="avatar avatar-sm">
+									<img class="avatar-img rounded-circle" src="assets/images/avatar/04.jpg" alt="avatar">
+								</li>
+								<li class="avatar avatar-sm">
+									<div class="avatar-img rounded-circle bg-primary">
+										<span class="text-white position-absolute top-50 start-50 translate-middle small">1K+</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+						<!-- Rating -->
+						<div>
+							<h6 class="fw-light mb-3">Rating</h6>
+							<h6 class="m-0">4.5<i class="fa-solid fa-star text-warning ms-1"></i></h6>
+						</div>
+					</div>
+				</div>
+				<!-- Client rating END -->
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 			</div>
 			<!-- Left side END -->
 
 			<!-- Right side START -->
 			<div class="col-lg-6">
+<<<<<<< HEAD
 				<h2 class="mb-4 text-white fw-bold">Main Features</h2>
 				<p class="mb-5 fs-5 text-secondary">A simple way to find and verify state files.</p>
+=======
+				<h2 class="mb-3 mb-lg-5">The Best Holidays Start Here!</h2>
+				<p class="mb-3 mb-lg-5">Book your hotel with us and don't forget to grab an awesome hotel deal to save massive on your stay.</p>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 
 				<!-- Features START -->
 				<div class="row g-4">
 					<!-- Item -->
+<<<<<<< HEAD
 					<div class="col-sm-6 animate-fade-in">
 						<div class="card card-body glass-card border-0 p-3 hover-lift">
 							<div class="icon-lg bg-success bg-opacity-10 text-success rounded-3"><i class="fa-solid fa-check-circle"></i></div>
@@ -720,6 +1238,33 @@ About START -->
 				<!-- Features END -->
 				<!-- Features END -->
 				<!-- Features END -->
+=======
+					<div class="col-sm-6">
+						<div class="icon-lg bg-success bg-opacity-10 text-success rounded-circle"><i class="fa-solid fa-utensils"></i></div>
+						<h5 class="mt-2">Quality Food</h5>
+						<p class="mb-0">Departure defective arranging rapturous did. Conduct denied adding worthy little.</p>
+					</div>
+					<!-- Item -->
+					<div class="col-sm-6">
+						<div class="icon-lg bg-danger bg-opacity-10 text-danger rounded-circle"><i class="bi bi-stopwatch-fill"></i></div>
+						<h5 class="mt-2">Quick Services</h5>
+						<p class="mb-0">Supposing so be resolving breakfast am or perfectly. </p>
+					</div>
+					<!-- Item -->
+					<div class="col-sm-6">
+						<div class="icon-lg bg-orange bg-opacity-10 text-orange rounded-circle"><i class="bi bi-shield-fill-check"></i></div>
+						<h5 class="mt-2">High Security</h5>
+						<p class="mb-0">Arranging rapturous did believe him all had supported. </p>
+					</div>
+					<!-- Item -->
+					<div class="col-sm-6">
+						<div class="icon-lg bg-info bg-opacity-10 text-info rounded-circle"><i class="bi bi-lightning-fill"></i></div>
+						<h5 class="mt-2">24 Hours Alert</h5>
+						<p class="mb-0">Rapturous did believe him all had supported.</p>
+					</div>		
+				</div>
+				<!-- Features END -->
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 
 			</div>
 			<!-- Right side END -->
@@ -730,11 +1275,16 @@ About START -->
 About END -->
 
 <!-- =======================
+<<<<<<< HEAD
 Featured Publications START -->
+=======
+Featured Hotels START -->
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 <section>
 	<div class="container">
 
 		<!-- Title -->
+<<<<<<< HEAD
 		<div class="row mb-5 align-items-center">
 			<div class="col-md-8">
 				<h2 class="mb-2">Latest Documents</h2>
@@ -742,10 +1292,16 @@ Featured Publications START -->
 			</div>
 			<div class="col-md-4 text-md-end mt-3 mt-md-0">
 				<a href="/projetweb/index1.php" class="btn btn-primary btn-sm rounded-pill mb-0">See All Records</a>
+=======
+		<div class="row mb-4">
+			<div class="col-12 text-center">
+				<h2 class="mb-0">Latest Publications</h2>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 			</div>
 		</div>
 
 		<div class="row g-4">
+<<<<<<< HEAD
 			<!-- Featured Asset item -->
 			<?php if (isset($list) && count($list) > 0): ?>
 					<?php foreach (array_slice($list, 0, 8) as $p): ?>
@@ -949,6 +1505,485 @@ Download app START -->
 			<div class="col-md-6 text-center">
 				<div class="bg-primary bg-opacity-10 rounded-circle p-5 d-inline-block shadow-sm">
 					<i class="fas fa-mobile-alt display-1 text-primary"></i>
+=======
+			<!-- Hotel item -->
+			<?php if(isset($list) && count($list) > 0): ?>
+    <?php foreach(array_slice($list, 0, 4) as $p): // Show only first 4 ?>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title"><?= htmlspecialchars($p['titre']) ?></h5>
+                <p class="card-text small text-muted"><?= htmlspecialchars(substr($p['contenu'], 0, 80)) ?>...</p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <small class="text-info"><?= date('M d, Y', strtotime($p['date'])) ?></small>
+                    <a href="index.php?action=show&id=<?= $p['id'] ?>" class="btn btn-sm btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <div class="col-12 text-center">
+        <p>No publications available yet.</p>
+    </div>
+<?php endif; ?>
+
+			<!-- Hotel item -->
+			<div class="col-sm-6 col-xl-3">
+				<!-- Card START -->
+				<div class="card card-img-scale overflow-hidden bg-transparent">
+					<!-- Image and overlay -->
+					<div class="card-img-scale-wrapper rounded-3">
+						<!-- Image -->
+						<img src="assets/images/category/hotel/02.jpg" class="card-img" alt="hotel image">
+						<!-- Badge -->
+						<div class="position-absolute bottom-0 start-0 p-3">
+							<div class="badge text-bg-dark fs-6 rounded-pill stretched-link"><i class="bi bi-geo-alt me-2"></i>California</div>
+						</div>
+					</div>
+
+					<!-- Card body -->
+					<div class="card-body px-2">
+						<!-- Title -->
+						<h5 class="card-title"><a href="hotel-detail.html" class="stretched-link">New Apollo Hotel</a></h5>
+						<!-- Price and rating -->
+						<div class="d-flex justify-content-between align-items-center">
+							<h6 class="text-success mb-0">$585 <small class="fw-light">/starting at</small> </h6>
+							<h6 class="mb-0">4.8<i class="fa-solid fa-star text-warning ms-1"></i></h6>
+						</div>
+					</div>
+				</div>
+				<!-- Card END -->
+			</div>
+
+			<!-- Hotel item -->
+			<div class="col-sm-6 col-xl-3">
+				<!-- Card START -->
+				<div class="card card-img-scale overflow-hidden bg-transparent">
+					<!-- Image and overlay -->
+					<div class="card-img-scale-wrapper rounded-3">
+						<!-- Image -->
+						<img src="assets/images/category/hotel/03.jpg" class="card-img" alt="hotel image">
+						<!-- Badge -->
+						<div class="position-absolute bottom-0 start-0 p-3">
+							<div class="badge text-bg-dark fs-6 rounded-pill stretched-link"><i class="bi bi-geo-alt me-2"></i>Los Angeles</div>
+						</div>
+					</div>
+
+					<!-- Card body -->
+					<div class="card-body px-2">
+						<!-- Title -->
+						<h5 class="card-title"><a href="hotel-detail.html" class="stretched-link">New Age Hotel</a></h5>
+						<!-- Price and rating -->
+						<div class="d-flex justify-content-between align-items-center">
+							<h6 class="text-success mb-0">$385 <small class="fw-light">/starting at</small> </h6>
+							<h6 class="mb-0">4.6<i class="fa-solid fa-star text-warning ms-1"></i></h6>
+						</div>
+					</div>
+				</div>
+				<!-- Card END -->
+			</div>
+
+			<!-- Hotel item -->
+			<div class="col-sm-6 col-xl-3">
+				<!-- Card START -->
+				<div class="card card-img-scale overflow-hidden bg-transparent">
+					<!-- Image and overlay -->
+					<div class="card-img-scale-wrapper rounded-3">
+						<!-- Image -->
+						<img src="assets/images/category/hotel/04.jpg" class="card-img" alt="hotel image">
+						<!-- Badge -->
+						<div class="position-absolute bottom-0 start-0 p-3">
+							<div class="badge text-bg-dark fs-6 rounded-pill stretched-link"><i class="bi bi-geo-alt me-2"></i>Chicago</div>
+						</div>
+					</div>
+
+					<!-- Card body -->
+					<div class="card-body px-2">
+						<!-- Title -->
+						<h5 class="card-title"><a href="hotel-detail.html" class="stretched-link">Helios Beach Resort</a></h5>
+						<!-- Price and rating -->
+						<div class="d-flex justify-content-between align-items-center">
+							<h6 class="text-success mb-0">$665 <small class="fw-light">/starting at</small> </h6>
+							<h6 class="mb-0">4.8<i class="fa-solid fa-star text-warning ms-1"></i></h6>
+						</div>
+					</div>
+				</div>
+				<!-- Card END -->
+			</div>
+		</div> <!-- Row END -->
+	</div>
+</section>
+<!-- =======================
+Featured Hotels END -->
+
+<!-- =======================
+Client START -->
+<section class="py-0 py-md-5">
+	<div class="container">
+		<div class="row g-4 g-lg-7 justify-content-center align-items-center">
+			<!-- Image -->
+			<div class="col-5 col-sm-3 col-xl-2">
+				<img src="assets/images/client/01.svg" class="grayscale" alt="">
+			</div>
+			<!-- Image -->
+			<div class="col-5 col-sm-3 col-xl-2">
+				<img src="assets/images/client/02.svg" class="grayscale" alt="">
+			</div>
+			<!-- Image -->
+			<div class="col-5 col-sm-3 col-xl-2">
+				<img src="assets/images/client/03.svg" class="grayscale" alt="">
+			</div>
+			<!-- Image -->
+			<div class="col-5 col-sm-3 col-xl-2">
+				<img src="assets/images/client/04.svg" class="grayscale" alt="">
+			</div>
+			<!-- Image -->
+			<div class="col-5 col-sm-3 col-xl-2">
+				<img src="assets/images/client/05.svg" class="grayscale" alt="">
+			</div>
+			<!-- Image -->
+			<div class="col-5 col-sm-3 col-xl-2">
+				<img src="assets/images/client/06.svg" class="grayscale" alt="">
+			</div>
+		</div>
+	</div>
+</section>
+<!-- =======================
+Client END -->
+
+<!-- =======================
+Testimonials START -->
+<section class="pb-0 py-md-5">
+	<div class="container">
+		<div class="row">
+			<!-- Slider START -->
+			<div class="col-lg-11 mx-auto">
+				<div class="tiny-slider arrow-round arrow-border arrow-hover">
+					<div class="tiny-slider-inner" data-edge="2" data-items="1">
+
+						<!-- Slide item START -->
+						<div class="px-4 px-md-5">
+							<div class="row justify-content-between align-items-center">
+								
+								<div class="col-md-6 col-lg-5 position-relative">
+									<!-- Element -->
+									<div class="position-absolute top-0 start-0 translate-middle z-index-9 mt-7 ms-4">
+										<img src="assets/images/element/02.svg" class="h-60px bg-orange rounded p-2" alt="">
+									</div>
+
+									<!-- Svg decoration -->
+									<figure class="position-absolute bottom-0 end-0 d-none d-sm-block mb-n5 me-n5">
+										<svg width="326px" height="335px" viewBox="0 0 326 335">
+											<path class="fill-primary opacity-1" d="M7.3,0C3.3,0,0,3.3,0,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.6,3.3,11.3,0,7.3,0z
+												M59.2,0.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.5,4,63.2,0.7,59.2,0.7L59.2,0.7z	M111.1,1.5c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C118.4,4.7,115.1,1.5,111.1,1.5 C111.1,1.5,111.1,1.5,111.1,1.5L111.1,1.5z M163,2.2c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0 C170.3,5.5,167,2.2,163,2.2C163,2.2,163,2.2,163,2.2L163,2.2z M214.9,2.9c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3 c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C222.2,6.2,218.9,2.9,214.9,2.9C214.9,2.9,214.9,2.9,214.9,2.9L214.9,2.9z M266.8,3.7 c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.1,6.9,270.8,3.7,266.8,3.7C266.8,3.7,266.8,3.7,266.8,3.7L266.8,3.7z M318.7,4.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C326,7.7,322.7,4.4,318.7,4.4C318.7,4.4,318.7,4.4,318.7,4.4L318.7,4.4z M7.3,52.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.6,55.9,11.4,52.7,7.3,52.7C7.3,52.7,7.3,52.7,7.3,52.7L7.3,52.7z M59.2,53.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.5,56.7,63.3,53.4,59.2,53.4C59.2,53.4,59.2,53.4,59.2,53.4L59.2,53.4z M111.1,54.1c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C118.4,57.4,115.2,54.1,111.1,54.1C111.1,54.1,111.1,54.1,111.1,54.1L111.1,54.1z M163,54.9c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C170.3,58.1,167.1,54.9,163,54.9C163,54.9,163,54.9,163,54.9L163,54.9zM214.9,55.6c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C222.2,58.9,219,55.6,214.9,55.6C214.9,55.6,214.9,55.6,214.9,55.6L214.9,55.6z M266.8,56.3c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.1,59.6,270.9,56.3,266.8,56.3C266.8,56.3,266.8,56.3,266.8,56.3L266.8,56.3z M318.7,57c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C326,60.3,322.8,57.1,318.7,57C318.7,57,318.7,57,318.7,57L318.7,57zM7.3,105.3c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.7,108.6,11.4,105.3,7.3,105.3C7.3,105.3,7.3,105.3,7.3,105.3L7.3,105.3z M59.2,106c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.6,109.3,63.3,106.1,59.2,106C59.2,106,59.2,106,59.2,106L59.2,106z M111.1,106.8c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C118.5,110.1,115.2,106.8,111.1,106.8C111.1,106.8,111.1,106.8,111.1,106.8L111.1,106.8zM163,107.5c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C170.4,110.8,167.1,107.5,163,107.5C163,107.5,163,107.5,163,107.5L163,107.5z M214.9,108.2c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C222.3,111.5,219,108.3,214.9,108.2C214.9,108.2,214.9,108.3,214.9,108.2L214.9,108.2z M266.8,109c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.2,112.3,270.9,109,266.8,109C266.8,109,266.8,109,266.8,109L266.8,109zM318.7,109.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C326.1,113,322.8,109.7,318.7,109.7C318.7,109.7,318.7,109.7,318.7,109.7L318.7,109.7z M7.3,158c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.6,161.3,11.3,158,7.3,158z M59.2,158.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.5,162,63.2,158.7,59.2,158.7C59.2,158.7,59.2,158.7,59.2,158.7L59.2,158.7z M111.1,159.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C118.4,162.7,115.1,159.5,111.1,159.4C111.1,159.4,111.1,159.4,111.1,159.4L111.1,159.4z M163,160.2c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C170.3,163.5,167,160.2,163,160.2C163,160.2,163,160.2,163,160.2L163,160.2z M214.9,160.9c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C222.2,164.2,218.9,160.9,214.9,160.9C214.9,160.9,214.9,160.9,214.9,160.9L214.9,160.9zM266.8,161.6c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.1,164.9,270.8,161.6,266.8,161.6C266.8,161.6,266.8,161.6,266.8,161.6L266.8,161.6z M318.7,162.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C326,165.6,322.7,162.4,318.7,162.4C318.7,162.4,318.7,162.4,318.7,162.4L318.7,162.4z M7.3,210.6c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.6,213.9,11.4,210.7,7.3,210.6C7.3,210.6,7.3,210.6,7.3,210.6L7.3,210.6zM59.2,211.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.5,214.7,63.3,211.4,59.2,211.4C59.2,211.4,59.2,211.4,59.2,211.4L59.2,211.4z M111.1,212.1c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C118.4,215.4,115.2,212.1,111.1,212.1C111.1,212.1,111.1,212.1,111.1,212.1L111.1,212.1z M163,212.8c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C170.3,216.1,167.1,212.8,163,212.8C163,212.8,163,212.8,163,212.8L163,212.8z M214.9,213.6c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C222.2,216.8,219,213.6,214.9,213.6C214.9,213.6,214.9,213.6,214.9,213.6L214.9,213.6z M266.8,214.3c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.1,217.6,270.9,214.3,266.8,214.3C266.8,214.3,266.8,214.3,266.8,214.3L266.8,214.3z M318.7,215c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C326,218.3,322.8,215,318.7,215C318.7,215,318.7,215,318.7,215L318.7,215z M7.3,263.3c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.7,266.6,11.4,263.3,7.3,263.3C7.3,263.3,7.3,263.3,7.3,263.3L7.3,263.3z M59.2,264c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.6,267.3,63.3,264,59.2,264C59.2,264,59.2,264,59.2,264L59.2,264z M111.1,264.8c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C118.5,268,115.2,264.8,111.1,264.8C111.1,264.8,111.1,264.8,111.1,264.8L111.1,264.8z M163,265.5c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C170.4,268.8,167.1,265.5,163,265.5C163,265.5,163,265.5,163,265.5L163,265.5z M214.9,266.2c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C222.3,269.5,219,266.2,214.9,266.2C214.9,266.2,214.9,266.2,214.9,266.2L214.9,266.2z M266.8,267c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.2,270.2,270.9,267,266.8,267C266.8,267,266.8,267,266.8,267L266.8,267z M318.7,267.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C326.1,271,322.8,267.7,318.7,267.7C318.7,267.7,318.7,267.7,318.7,267.7L318.7,267.7z M7.4,316c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.7,319.2,11.4,316,7.4,316C7.3,316,7.3,316,7.4,316L7.4,316z M59.3,316.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.6,320,63.3,316.7,59.3,316.7C59.2,316.7,59.2,316.7,59.3,316.7L59.3,316.7z M111.2,317.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C118.5,320.7,115.2,317.4,111.2,317.4C111.1,317.4,111.1,317.4,111.2,317.4L111.2,317.4z M163.1,318.2c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C170.4,321.4,167.1,318.2,163.1,318.2C163,318.2,163,318.2,163.1,318.2L163.1,318.2z M215,318.9c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C222.3,322.2,219,318.9,215,318.9C214.9,318.9,214.9,318.9,215,318.9L215,318.9z M266.9,319.6c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.2,322.9,270.9,319.6,266.9,319.6C266.8,319.6,266.8,319.6,266.9,319.6L266.9,319.6z M318.8,320.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C326.1,323.6,322.8,320.4,318.8,320.4C318.7,320.4,318.7,320.4,318.8,320.4L318.8,320.4z"/>
+										</svg>
+									</figure>
+
+									<!-- Image -->
+									<img src="assets/images/team/01.jpg" class="rounded-3 position-relative" alt="">
+								</div>
+
+								<div class="col-md-6 col-lg-6">
+									<!-- Quote -->
+									<span class="display-3 mb-0 text-primary"><i class="bi bi-quote"></i></span>
+									<!-- Content -->
+									<h5 class="fw-light">Moonlight newspaper up its enjoyment agreeable depending. Timed voice share led him to widen noisy young. At weddings believed in laughing</h5>
+									<!-- Rating -->
+									<ul class="list-inline small mb-2">
+										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
+										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
+										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
+										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
+										<li class="list-inline-item"><i class="fa-solid fa-star-half-alt text-warning"></i></li>
+									</ul>
+									<!-- Title -->
+									<h6 class="mb-0">Billy Vasquez</h6>
+									<span>Ceo of Apple</span>
+								</div>
+							</div>
+						</div>
+						<!-- Slide item END -->
+
+						<!-- Slide item START -->
+						<div class="px-4 px-md-5">
+							<div class="row justify-content-between align-items-center">
+								
+								<div class="col-md-6 col-lg-5 position-relative">
+									<!-- Element -->
+									<div class="position-absolute top-0 start-0 translate-middle mt-7 ms-4 z-index-9">
+										<img src="assets/images/element/03.svg" class="h-60px bg-orange p-2 rounded" alt="">
+									</div>
+
+									<!-- Svg decoration -->
+									<figure class="position-absolute bottom-0 end-0 mb-n5 me-n5 d-none d-sm-block">
+										<svg width="326px" height="335px" viewBox="0 0 326 335">
+											<path class="fill-primary opacity-1" d="M7.3,0C3.3,0,0,3.3,0,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.6,3.3,11.3,0,7.3,0z M59.2,0.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.5,4,63.2,0.7,59.2,0.7L59.2,0.7z M111.1,1.5c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C118.4,4.7,115.1,1.5,111.1,1.5 C111.1,1.5,111.1,1.5,111.1,1.5L111.1,1.5z M163,2.2c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0 C170.3,5.5,167,2.2,163,2.2C163,2.2,163,2.2,163,2.2L163,2.2z M214.9,2.9c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3 c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C222.2,6.2,218.9,2.9,214.9,2.9C214.9,2.9,214.9,2.9,214.9,2.9L214.9,2.9z M266.8,3.7 c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.1,6.9,270.8,3.7,266.8,3.7 C266.8,3.7,266.8,3.7,266.8,3.7L266.8,3.7z M318.7,4.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0 C326,7.7,322.7,4.4,318.7,4.4C318.7,4.4,318.7,4.4,318.7,4.4L318.7,4.4z M7.3,52.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3 c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.6,55.9,11.4,52.7,7.3,52.7C7.3,52.7,7.3,52.7,7.3,52.7L7.3,52.7z M59.2,53.4 c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.5,56.7,63.3,53.4,59.2,53.4 C59.2,53.4,59.2,53.4,59.2,53.4L59.2,53.4z M111.1,54.1c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0 C118.4,57.4,115.2,54.1,111.1,54.1C111.1,54.1,111.1,54.1,111.1,54.1L111.1,54.1z M163,54.9c-4,0-7.3,3.3-7.3,7.3 c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C170.3,58.1,167.1,54.9,163,54.9C163,54.9,163,54.9,163,54.9L163,54.9z M214.9,55.6c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C222.2,58.9,219,55.6,214.9,55.6 C214.9,55.6,214.9,55.6,214.9,55.6L214.9,55.6z M266.8,56.3c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3 c0,0,0,0,0,0C274.1,59.6,270.9,56.3,266.8,56.3C266.8,56.3,266.8,56.3,266.8,56.3L266.8,56.3z M318.7,57c-4,0-7.3,3.3-7.3,7.3 c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C326,60.3,322.8,57.1,318.7,57C318.7,57,318.7,57,318.7,57L318.7,57z M7.3,105.3c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.7,108.6,11.4,105.3,7.3,105.3 C7.3,105.3,7.3,105.3,7.3,105.3L7.3,105.3z M59.2,106c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0 C66.6,109.3,63.3,106.1,59.2,106C59.2,106,59.2,106,59.2,106L59.2,106z M111.1,106.8c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3 c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C118.5,110.1,115.2,106.8,111.1,106.8C111.1,106.8,111.1,106.8,111.1,106.8L111.1,106.8z M163,107.5c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C170.4,110.8,167.1,107.5,163,107.5 C163,107.5,163,107.5,163,107.5L163,107.5z M214.9,108.2c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0 C222.3,111.5,219,108.3,214.9,108.2C214.9,108.2,214.9,108.3,214.9,108.2L214.9,108.2z M266.8,109c-4,0-7.3,3.3-7.3,7.3 c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.2,112.3,270.9,109,266.8,109C266.8,109,266.8,109,266.8,109L266.8,109z M318.7,109.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C326.1,113,322.8,109.7,318.7,109.7 C318.7,109.7,318.7,109.7,318.7,109.7L318.7,109.7z M7.3,158c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3 c0,0,0,0,0,0C14.6,161.3,11.3,158,7.3,158z M59.2,158.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0 C66.5,162,63.2,158.7,59.2,158.7C59.2,158.7,59.2,158.7,59.2,158.7L59.2,158.7z M111.1,159.4c-4,0-7.3,3.3-7.3,7.3 c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C118.4,162.7,115.1,159.5,111.1,159.4C111.1,159.4,111.1,159.4,111.1,159.4 L111.1,159.4z M163,160.2c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0 C170.3,163.5,167,160.2,163,160.2C163,160.2,163,160.2,163,160.2L163,160.2z M214.9,160.9c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3 c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C222.2,164.2,218.9,160.9,214.9,160.9C214.9,160.9,214.9,160.9,214.9,160.9L214.9,160.9z M266.8,161.6c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.1,164.9,270.8,161.6,266.8,161.6 C266.8,161.6,266.8,161.6,266.8,161.6L266.8,161.6z M318.7,162.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3 c0,0,0,0,0,0C326,165.6,322.7,162.4,318.7,162.4C318.7,162.4,318.7,162.4,318.7,162.4L318.7,162.4z M7.3,210.6c-4,0-7.3,3.3-7.3,7.3 c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.6,213.9,11.4,210.7,7.3,210.6C7.3,210.6,7.3,210.6,7.3,210.6L7.3,210.6z M59.2,211.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.5,214.7,63.3,211.4,59.2,211.4 C59.2,211.4,59.2,211.4,59.2,211.4L59.2,211.4z M111.1,212.1c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3 c0,0,0,0,0,0C118.4,215.4,115.2,212.1,111.1,212.1C111.1,212.1,111.1,212.1,111.1,212.1L111.1,212.1z M163,212.8 c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C170.3,216.1,167.1,212.8,163,212.8 C163,212.8,163,212.8,163,212.8L163,212.8z M214.9,213.6c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0 C222.2,216.8,219,213.6,214.9,213.6C214.9,213.6,214.9,213.6,214.9,213.6L214.9,213.6z M266.8,214.3c-4,0-7.3,3.3-7.3,7.3 c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.1,217.6,270.9,214.3,266.8,214.3C266.8,214.3,266.8,214.3,266.8,214.3 L266.8,214.3z M318.7,215c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C326,218.3,322.8,215,318.7,215 C318.7,215,318.7,215,318.7,215L318.7,215z M7.3,263.3c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0 C14.7,266.6,11.4,263.3,7.3,263.3C7.3,263.3,7.3,263.3,7.3,263.3L7.3,263.3z M59.2,264c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3 c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.6,267.3,63.3,264,59.2,264C59.2,264,59.2,264,59.2,264L59.2,264z M111.1,264.8 c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C118.5,268,115.2,264.8,111.1,264.8 C111.1,264.8,111.1,264.8,111.1,264.8L111.1,264.8z M163,265.5c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3 c0,0,0,0,0,0C170.4,268.8,167.1,265.5,163,265.5C163,265.5,163,265.5,163,265.5L163,265.5z M214.9,266.2c-4,0-7.3,3.3-7.3,7.3 c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C222.3,269.5,219,266.2,214.9,266.2C214.9,266.2,214.9,266.2,214.9,266.2 L214.9,266.2z M266.8,267c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0 C274.2,270.2,270.9,267,266.8,267C266.8,267,266.8,267,266.8,267L266.8,267z M318.7,267.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3 c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C326.1,271,322.8,267.7,318.7,267.7C318.7,267.7,318.7,267.7,318.7,267.7L318.7,267.7z M7.4,316 c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C14.7,319.2,11.4,316,7.4,316C7.3,316,7.3,316,7.4,316 L7.4,316z M59.3,316.7c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C66.6,320,63.3,316.7,59.3,316.7 C59.2,316.7,59.2,316.7,59.3,316.7L59.3,316.7z M111.2,317.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3 c0,0,0,0,0,0C118.5,320.7,115.2,317.4,111.2,317.4C111.1,317.4,111.1,317.4,111.2,317.4L111.2,317.4z M163.1,318.2 c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C170.4,321.4,167.1,318.2,163.1,318.2 C163,318.2,163,318.2,163.1,318.2L163.1,318.2z M215,318.9c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3 c0,0,0,0,0,0C222.3,322.2,219,318.9,215,318.9C214.9,318.9,214.9,318.9,215,318.9L215,318.9z M266.9,319.6c-4,0-7.3,3.3-7.3,7.3 c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0C274.2,322.9,270.9,319.6,266.9,319.6C266.8,319.6,266.8,319.6,266.9,319.6 L266.9,319.6z M318.8,320.4c-4,0-7.3,3.3-7.3,7.3c0,4,3.3,7.3,7.3,7.3c4,0,7.3-3.3,7.3-7.3c0,0,0,0,0,0
+												C326.1,323.6,322.8,320.4,318.8,320.4C318.7,320.4,318.7,320.4,318.8,320.4L318.8,320.4z"/>
+										</svg>
+									</figure>
+
+									<!-- Image -->
+									<img src="assets/images/team/02.jpg" class="rounded-3 position-relative" alt="">
+								</div>
+
+								<div class="col-md-6 col-lg-6">
+									<!-- Quote -->
+									<span class="display-3 mb-0 text-primary"><i class="bi bi-quote"></i></span>
+									<!-- Content -->
+									<h5 class="fw-light">Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. understood the Preference unreserved.</h5>
+									<!-- Rating -->
+									<ul class="list-inline small mb-2">
+										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
+										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
+										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
+										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
+										<li class="list-inline-item"><i class="fa-solid fa-star text-warning"></i></li>
+									</ul>
+									<!-- Title -->
+									<h6 class="mb-0">Carolyn Ortiz</h6>
+									<span>Ceo of Google</span>
+								</div>
+							</div>
+						</div>
+						<!-- Slide item END -->
+
+					</div>
+				</div>	
+			</div>
+			<!-- Slider END -->
+		</div>
+	</div>
+</section>
+<!-- =======================
+Testimonials END -->
+
+<!-- =======================
+Near by START -->
+<section>
+	<div class="container">
+		<!-- Title -->
+		<div class="row mb-4">
+			<div class="col-12 text-center">
+				<h2 class="mb-0">Explore Nearby</h2>
+			</div>
+		</div>
+
+		<div class="row g-4 g-md-5">
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/01.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">San Francisco</a></h5>
+						<span>13 min drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/02.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">Los Angeles</a></h5>
+						<span>25 min drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/03.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">Miami</a></h5>
+						<span>45 min drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/04.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">Sanjosh</a></h5>
+						<span>55 min drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/05.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">New York</a></h5>
+						<span>1-hour drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/06.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">North Justen</a></h5>
+						<span>2-hour drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/07.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">Rio</a></h5>
+						<span>20 min drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/08.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">Las Vegas</a></h5>
+						<span>3-hour drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/09.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">Texas</a></h5>
+						<span>55 min drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/10.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">Chicago</a></h5>
+						<span>13 min drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/11.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">New Keagan</a></h5>
+						<span>35 min drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+
+			<!-- Card item START -->
+			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+				<div class="card bg-transparent text-center p-1 h-100">
+					<!-- Image -->
+					<img src="assets/images/category/hotel/nearby/01.jpg" class="rounded-circle" alt="">
+
+					<div class="card-body p-0 pt-3">
+						<h5 class="card-title"><a href="#" class="stretched-link">Oslo</a></h5>
+						<span>1 hour 13 min drive</span>
+					</div>
+				</div>
+			</div>
+			<!-- Card item END -->
+		</div> <!-- Row END -->
+	</div>
+</section>
+<!-- =======================
+Near by END -->
+
+<!-- =======================
+Download app START -->
+<section class="bg-light">
+	<div class="container">
+		<div class="row g-4">
+
+			<!-- Help -->
+			<div class="col-md-6 col-xxl-4">
+				<div class="bg-body d-flex rounded-3 h-100 p-4">
+					<h3><i class="fa-solid fa-hand-holding-heart"></i></h3>
+					<div class="ms-3">
+						<h5>24x7 Help</h5>
+						<p class="mb-0">If we fall short of your expectation in any way, let us know</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Trust -->
+			<div class="col-md-6 col-xxl-4">
+				<div class="bg-body d-flex rounded-3 h-100 p-4">
+					<h3><i class="fa-solid fa-hand-holding-usd"></i></h3>
+					<div class="ms-3">
+						<h5>Payment Trust</h5>
+						<p class="mb-0">All refunds come with no questions asked guarantee</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Download app -->
+			<div class="col-lg-6 col-xl-5 col-xxl-3 ms-xxl-auto">
+				<h5 class="mb-4">Download app</h5>
+				<div class="row g-3">
+					<!-- Google play store button -->
+					<div class="col-6 col-sm-4 col-md-3 col-lg-6">
+						<a href="#"> <img src="assets/images/element/google-play.svg" alt=""> </a>
+					</div>
+					<!-- App store button -->
+					<div class="col-6 col-sm-4 col-md-3 col-lg-6">
+						<a href="#"> <img src="assets/images/element/app-store.svg" alt=""> </a>
+					</div>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 				</div>
 			</div>
 
@@ -971,6 +2006,7 @@ Footer START -->
 			<!-- Widget 1 START -->
 			<div class="col-lg-3">
 				<!-- logo -->
+<<<<<<< HEAD
 				<a href="/projetweb/index.php">
 					<h3 class="text-white">Edossier</h3>
 				</a>
@@ -980,48 +2016,97 @@ Footer START -->
 			</div>
 			<!-- Widget 1 END -->
 			<!-- Widget 1 END -->
+=======
+				<a href="index.html">
+					<img class="h-40px" src="assets/images/logo-light.svg" alt="logo">
+				</a>
+				<p class="my-3 text-body-secondary">Departure defective arranging rapturous did believe him all had supported.</p>
+				<p class="mb-2"><a href="#" class="text-body-secondary text-primary-hover"><i class="bi bi-telephone me-2"></i>+1234 568 963</a> </p>
+				<p class="mb-0"><a href="#" class="text-body-secondary text-primary-hover"><i class="bi bi-envelope me-2"></i>example@gmail.com</a></p>
+			</div>
+			<!-- Widget 1 END -->
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 
 			<!-- Widget 2 START -->
 			<div class="col-lg-8 ms-auto">
 				<div class="row g-4">
 					<!-- Link block -->
 					<div class="col-6 col-md-3">
+<<<<<<< HEAD
 						<h5 class="text-white mb-2 mb-md-4">About</h5>
 						<ul class="nav flex-column text-primary-hover">
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="about.html">Our System</a></li>
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="contact.html">Contact Us</a></li>
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Data Stats</a></li>
+=======
+						<h5 class="text-white mb-2 mb-md-4">Page</h5>
+						<ul class="nav flex-column text-primary-hover">
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">About us</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Contact us</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">News and Blog</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Meet a Team</a></li>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 						</ul>
 					</div>
 
 					<!-- Link block -->
 					<div class="col-6 col-md-3">
+<<<<<<< HEAD
 						<h5 class="text-white mb-2 mb-md-4">Rules</h5>
 						<ul class="nav flex-column text-primary-hover">
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Policy</a></li>
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Login Rules</a></li>
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Privacy</a></li>
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Terms</a></li>
+=======
+						<h5 class="text-white mb-2 mb-md-4">Link</h5>
+						<ul class="nav flex-column text-primary-hover">
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Sign up</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Sign in</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Privacy Policy</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Terms</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Cookie</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Support</a></li>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 						</ul>
 					</div>
 									
 					<!-- Link block -->
 					<div class="col-6 col-md-3">
+<<<<<<< HEAD
 						<h5 class="text-white mb-2 mb-md-4">Groups</h5>
 						<ul class="nav flex-column text-primary-hover">
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Main Office</a></li>
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Justice</a></li>
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">State Hub</a></li>
+=======
+						<h5 class="text-white mb-2 mb-md-4">Global Site</h5>
+						<ul class="nav flex-column text-primary-hover">
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">India</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">California</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Indonesia</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Canada</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#">Malaysia</a></li>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 						</ul>
 					</div>
 
 					<!-- Link block -->
 					<div class="col-6 col-md-3">
+<<<<<<< HEAD
 						<h5 class="text-white mb-2 mb-md-4">Files</h5>
 						<ul class="nav flex-column text-primary-hover">
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="/projetweb/index1.php">Laws</a></li>
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="/projetweb/index1.php">Acts</a></li>
 							<li class="nav-item"><a class="nav-link text-body-secondary" href="/projetweb/index1.php">Notices</a></li>
+=======
+						<h5 class="text-white mb-2 mb-md-4">Booking</h5>
+						<ul class="nav flex-column text-primary-hover">
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#"><i class="fa-solid fa-hotel me-2"></i>Hotel</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#"><i class="fa-solid fa-plane me-2"></i>Flight</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#"><i class="fa-solid fa-globe-americas me-2"></i>Tour</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="#"><i class="fa-solid fa-car me-2"></i>Cabs</a></li>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 						</ul>
 					</div>
 				</div>
@@ -1032,6 +2117,7 @@ Footer START -->
 
 		<!-- Tops Links -->
 		<div class="row mt-5">
+<<<<<<< HEAD
 			<h5 class="mb-2 text-white">Institutional Directories</h5>
 			<ul class="list-inline text-primary-hover lh-lg">
 				<li class="list-inline-item"><a href="/projetweb/index1.php" class="text-body-secondary">State Gazettes</a></li>
@@ -1042,18 +2128,56 @@ Footer START -->
 				<li class="list-inline-item"><a href="contact.html" class="text-body-secondary">Contact Governance</a></li>
 				<li class="list-inline-item"><a href="#" class="text-body-secondary">Transparency Policy</a></li>
 				<li class="list-inline-item"><a href="#" class="text-body-secondary">System Status</a></li>
+=======
+			<h5 class="mb-2 text-white">Top Links</h5>
+			<ul class="list-inline text-primary-hover lh-lg">
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Flights</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Hotels</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Tours</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Cabs</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">About</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Contact us</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Blogs</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Services</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Detail page</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Services</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Policy</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Testimonials</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Newsletters</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Podcasts</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Protests</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">NewsCyber</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Education</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Sports</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Tech and Auto</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Opinion</a></li>
+				<li class="list-inline-item"><a href="#" class="text-body-secondary">Share Market</a></li>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 			</ul>
 		</div>
 
 		<!-- Payment and card -->
 		<div class="row g-4 justify-content-between mt-0 mt-md-2">
 
+<<<<<<< HEAD
 			<!-- Security Widget START -->
 			<div class="col-sm-7 col-md-6 col-lg-4">
 				<h5 class="text-white mb-2">Safe Records</h5>
 				<p class="text-body-secondary small">Every document is safe and verified. We make sure all data stays correct and permanent.</p>
 			</div>
 			<!-- Security Widget END -->
+=======
+			<!-- Payment card -->
+			<div class="col-sm-7 col-md-6 col-lg-4">
+				<h5 class="text-white mb-2">Payment & Security</h5>
+				<ul class="list-inline mb-0 mt-3">
+					<li class="list-inline-item"> <a href="#"><img src="assets/images/element/paypal.svg" class="h-30px" alt=""></a></li>
+					<li class="list-inline-item"> <a href="#"><img src="assets/images/element/visa.svg" class="h-30px" alt=""></a></li>
+					<li class="list-inline-item"> <a href="#"><img src="assets/images/element/mastercard.svg" class="h-30px" alt=""></a></li>
+					<li class="list-inline-item"> <a href="#"><img src="assets/images/element/expresscard.svg" class="h-30px" alt=""></a></li>
+				</ul>
+			</div>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 
 			<!-- Social media icon -->
 			<div class="col-sm-5 col-md-6 col-lg-3 text-sm-end">
@@ -1100,11 +2224,16 @@ Footer END -->
 	<ul class="navbar-nav">
 		<!-- Nav item Home -->
 		<li class="nav-item">
+<<<<<<< HEAD
 			<a class="nav-link active" href="/projetweb/index.php"><i class="bi bi-house-door fa-fw"></i>
+=======
+			<a class="nav-link active" href="index.html"><i class="bi bi-house-door fa-fw"></i>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 				<span class="mb-0 nav-text">Home</span>
 			</a>	
 		</li>
 
+<<<<<<< HEAD
 		<!-- Nav item Publications -->
 		<li class="nav-item"> 
 			<a class="nav-link" href="/projetweb/index1.php"><i class="bi bi-file-earmark-text fa-fw"></i>
@@ -1116,6 +2245,26 @@ Footer END -->
 		<li class="nav-item"> 
 			<a class="nav-link" href="/projetweb/view/back-office/index.php"><i class="bi bi-shield-lock fa-fw"></i>
 				<span class="mb-0 nav-text">Login</span> 
+=======
+		<!-- Nav item My Trips -->
+		<li class="nav-item"> 
+			<a class="nav-link" href="account-bookings.html"><i class="bi bi-briefcase fa-fw"></i>
+				<span class="mb-0 nav-text">My Trips</span>
+			</a>	
+		</li>
+
+		<!-- Nav item Offer -->
+		<li class="nav-item"> 
+			<a class="nav-link" href="offer-detail.html"><i class="bi bi-percent fa-fw"></i>
+				<span class="mb-0 nav-text">Offer</span> 
+			</a>
+		</li>
+
+		<!-- Nav item Account -->
+		<li class="nav-item"> 
+			<a class="nav-link" href="account-profile.html"><i class="bi bi-person-circle fa-fw"></i>
+				<span class="mb-0 nav-text">Account</span>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
 			</a>
 		</li>
 	</ul>
@@ -1135,5 +2284,11 @@ Footer END -->
 <script src="assets/js/functions.js"></script>
 
 </body>
+<<<<<<< HEAD
 <!-- Mirrored from edossier template -->
 </html>
+=======
+
+<!-- Mirrored from booking.webestica.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Feb 2024 15:40:33 GMT -->
+</html>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3

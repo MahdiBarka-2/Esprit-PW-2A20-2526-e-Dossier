@@ -20,8 +20,13 @@
                         <h5 class="text-white mb-2 mb-md-4">Platform</h5>
                         <ul class="nav flex-column text-primary-hover">
                             <li class="nav-item"><a class="nav-link text-body-secondary" href="/projetweb/index.php">Publications</a></li>
+<<<<<<< HEAD
                             <li class="nav-item"><a class="nav-link text-body-secondary" href="/projetweb/view/back-office/index.php">Dashboard</a></li>
                             <li class="nav-item"><a class="nav-link text-body-secondary" href="/projetweb/view/back-office/index.php?action=create">New Publication</a></li>
+=======
+                            <li class="nav-item"><a class="nav-link text-body-secondary" href="/projetweb/back-office/index.php">Dashboard</a></li>
+                            <li class="nav-item"><a class="nav-link text-body-secondary" href="/projetweb/back-office/index.php?action=create">New Publication</a></li>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
                         </ul>
                     </div>
                     <div class="col-6 col-md-3">
@@ -65,4 +70,8 @@
 <div class="back-top"></div>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 106395cd0f8aebb18ed38c977bea8c6f08d6b7e3
