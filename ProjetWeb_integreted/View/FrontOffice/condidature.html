@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portail citoyen – Jobs</title>
+
+  <script>
+    const storedTheme = localStorage.getItem('theme');
+    const getPreferredTheme = () => storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const setTheme = (theme) => {
+      document.documentElement.setAttribute('data-bs-theme',
+        theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : theme);
+    };
+    setTheme(getPreferredTheme());
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <style>
+    :root {
+      --bs-primary: #5143d9;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .header-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 1030;
+      background: var(--bs-body-bg);
+      border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    .dash-tabs .nav-link {
+      color: var(--bs-secondary-color);
+      font-weight: 500;
+      border-radius: .5rem;
+      padding: .45rem .85rem;
+    }
+
+    .dash-tabs .nav-link.active {
+      background: var(--bs-primary);
+      color: #fff;
+    }
+
+    .dash-tabs .nav-link i {
+      margin-right: .35rem;
+    }
+
+    .stat-card {
+      border-radius: .75rem;
+      border: 1px solid var(--bs-border-color);
+    }
+
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: .6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #fff;
+    }
+
+    .section-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--bs-secondary-color);
+      margin-bottom: .6rem;
+    }
+
+    .req {
+      color: #dc3545;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: .2rem .65rem;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+
+    .pill-ok {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .pill-warn {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .pill-ko {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    [data-bs-theme="dark"] .pill-ok {
+      background: #064e3b;
+      color: #6ee7b7;
+    }
+
+    [data-bs-theme="dark"] .pill-warn {
+      background: #451a03;
+      color: #fcd34d;
+    }
+
+    [data-bs-theme="dark"] .pill-ko {
+      background: #450a0a;
+      color: #fca5a5;
+    }
+
+    .admin-table thead th {
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--bs-secondary-color);
+    }
+
+    .btn-icon {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: .2rem .4rem;
+      border-radius: .35rem;
+      transition: background .15s;
+    }
+
+    .btn-icon:hover {
+      background: var(--bs-secondary-bg);
+    }
+
+    .btn-icon.danger {
+      color: #dc3545;
+    }
+
+    .btn-icon.warning {
+      color: #f59e0b;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--bs-border-color);
+      font-size: .88rem;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .btn-block {
+      display: block;
+      width: 100%;
+      margin-bottom: .5rem;
+      padding: .55rem;
+      border-radius: .5rem;
+      border: 1px solid var(--bs-border-color);
+      background: var(--bs-body-bg);
+      color: var(--bs-body-color);
+      cursor: pointer;
+      font-size: .88rem;
+      text-align: left;
+      transition: background .15s;
+    }
+
+    .btn-block:hover {
+      background: var(--bs-secondary-bg);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .tab-section {
+      display: none;
+    }
+
+    .tab-section.active {
+      display: block;
+    }
+
+    .agent-menu-card {
+      border-radius: .75rem;
+    }
+
+    .drop-zone {
+      border: 2px dashed var(--bs-border-color);
+      border-radius: .75rem;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .drop-zone:hover {
+      background: var(--bs-secondary-bg);
+    }
+
+    .drop-zone input[type="file"] {
+      display: none;
+    }
+
+    .drop-link {
+      color: var(--bs-primary);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--bs-primary);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 600;
+      padding: .3rem .75rem;
+      border-radius: 999px;
+      margin-bottom: .75rem;
+      letter-spacing: .04em;
+    }
+
+    .hero-stat-box {
+      background: var(--bs-secondary-bg);
+      border-radius: .75rem;
+      padding: 1rem 1.25rem;
+      text-align: center;
+    }
+
+    .hero-stat-num {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--bs-primary);
+      display: block;
+    }
+
+    .hero-stat-label {
+      font-size: .8rem;
+      color: var(--bs-secondary-color);
+    }
+
+    .process-step {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .75rem 1rem;
+      border-radius: .6rem;
+      background: var(--bs-secondary-bg);
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bs-primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .job-row-clickable {
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .job-row-clickable:hover {
+      background: var(--bs-secondary-bg);
+    }
+
+    .job-row-clickable.selected {
+      background: rgba(13, 110, 253, .08);
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .4rem .75rem;
+      background: var(--bs-secondary-bg);
+      border-radius: .5rem;
+      margin-top: .4rem;
+      font-size: .85rem;
+    }
+
+    .file-item .remove-file {
+      margin-left: auto;
+      cursor: pointer;
+      color: #dc3545;
+      font-size: .8rem;
+    }
+
+    .cand-row {
+      padding: .6rem 0;
+      border-bottom: 1px solid var(--bs-border-color);
+      font-size: .88rem;
+    }
+
+    .cand-row:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="navbar-light py-3 border-bottom shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://placehold.co/60x60?text=E-Dossier" alt="logo" style="height: 60px;">
+        <span class="ms-2 fw-bold text-primary brand-text" style="font-size: 1.5rem;">E-Dossier</span>
+      </a>
+      <div class="d-flex align-items-center">
+        <nav class="navbar-expand-lg">
+          <ul class="nav">
+            <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="../BackOffice/index.php">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="#">Events</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom active"
+                href="../FrontOffice/condidature.html">Condidature</a></li>
+          </ul>
+        </nav>
+        <div class="dropdown ms-3">
+          <button class="btn btn-light btn-sm mb-0 px-2" type="button" data-bs-toggle="dropdown"><i
+              class="bi bi-globe me-1"></i> FR</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">EN</a></li>
+            <li><a class="dropdown-item" href="#">FR</a></li>
+          </ul>
+        </div>
+        <div class="dropdown ms-3">
+          <button class="btn btn-light btn-sm lh-0 mb-0" data-bs-toggle="dropdown"><i
+              class="bi bi-circle-half"></i></button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" data-bs-theme-value="light">Light</button></li>
+            <li><button class="dropdown-item" data-bs-theme-value="dark">Dark</button></li>
+            <li><button class="dropdown-item" data-bs-theme-value="auto">Auto</button></li>
+          </ul>
+        </div>
+        <div class="ms-3">
+          <a href="#" class="btn btn-primary btn-sm rounded-circle d-flex align-items-center justify-content-center"
+            style="width:40px;height:40px;"><i class="bi bi-person fs-5"></i></a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- PROFILE / INTRO CARD -->
+  <section class="pt-4 pb-0">
+    <div class="container">
+
+      <!-- Hero stat strip -->
+      <div class="row g-3 mb-3">
+        <div class="col-4">
+          <div class="hero-stat-box">
+            <span class="hero-stat-num">150+</span>
+            <span class="hero-stat-label">Jobs ouverts</span>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="hero-stat-box">
+            <span class="hero-stat-num">100%</span>
+            <span class="hero-stat-label">En ligne</span>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="hero-stat-box">
+            <span class="hero-stat-num">24/7</span>
+            <span class="hero-stat-label">Accès citoyen</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav card -->
+      <div class="card agent-menu-card border p-3 pb-2">
+        <div class="d-sm-flex align-items-center mb-2">
+          <div class="d-flex align-items-center gap-2 mb-2 mb-sm-0">
+            <div
+              style="width:44px;height:44px;border-radius:50%;background:var(--bs-primary);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;">
+              C</div>
+            <div>
+              <span class="hero-badge">Portail citoyen</span>
+              <h6 class="mb-0">Offres d'emploi</h6>
+            </div>
+          </div>
+          <a href="#" class="btn btn-sm btn-primary mb-0 ms-auto" onclick="showTab('formulaire'); return false;">
+            <i class="bi bi-plus-lg me-1"></i>Nouvelle candidature
+          </a>
+        </div>
+
+        <nav class="dash-tabs">
+          <ul class="nav flex-wrap gap-1">
+            <li class="nav-item"><a class="nav-link active" href="#" onclick="showTab('jobs'); return false;"><i
+                  class="bi bi-briefcase"></i>Liste des jobs</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" onclick="showTab('detail'); return false;"><i
+                  class="bi bi-file-earmark-text"></i>Détail d'un job</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" onclick="showTab('formulaire'); return false;"><i
+                  class="bi bi-send"></i>Déposer candidature</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" onclick="showTab('mes-candidatures'); return false;"><i
+                  class="bi bi-person-lines-fill"></i>Mes candidatures</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <main class="py-4">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- LEFT / MAIN CONTENT -->
+        <div class="col-lg-8 col-xl-9">
+
+          <!-- PROCESS STEPS (shown on jobs tab as intro) -->
+          <div id="tab-jobs" class="tab-section active">
+            <div class="row g-2 mb-4">
+              <div class="col-sm-6 col-lg-3">
+                <div class="process-step h-100"><span class="step-num">1</span>
+                  <div><strong style="font-size:.88rem;">Parcourir les jobs</strong><br><small
+                      class="text-muted">Filtrer et explorer</small></div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="process-step h-100"><span class="step-num">2</span>
+                  <div><strong style="font-size:.88rem;">Voir le détail</strong><br><small class="text-muted">Fiche
+                      complète</small></div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="process-step h-100"><span class="step-num">3</span>
+                  <div><strong style="font-size:.88rem;">Postuler</strong><br><small class="text-muted">Formulaire en
+                      ligne</small></div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="process-step h-100"><span class="step-num">4</span>
+                  <div><strong style="font-size:.88rem;">Modifier</strong><br><small class="text-muted">Mettre à
+                      jour</small></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0"><i class="bi bi-briefcase me-2"></i>Jobs disponibles</h4>
+            </div>
+            <div class="card border">
+              <div class="card-body">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="job-search-input"
+                    placeholder="Rechercher un job (titre, lieu, type)…" oninput="filterJobsTable()">
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle admin-table" id="jobs-table">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Réf</th>
+                        <th>Titre</th>
+                        <th>Contrat</th>
+                        <th>Lieu</th>
+                        <th>Statut</th>
+                        <th>Deadline</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="job-row-clickable" data-job-id="1" onclick="openJobDetail(1)">
+                        <td>JOB-001</td>
+                        <td><strong>Développeur Full Stack</strong></td>
+                        <td>CDI</td>
+                        <td>Tunis</td>
+                        <td><span class="pill pill-ok">Ouvert</span></td>
+                        <td>30/05/2025</td>
+                        <td><button class="btn btn-sm btn-outline-primary"
+                            onclick="event.stopPropagation(); openJobDetail(1)"><i
+                              class="bi bi-eye me-1"></i>Voir</button></td>
+                      </tr>
+                      <tr class="job-row-clickable" data-job-id="2" onclick="openJobDetail(2)">
+                        <td>JOB-002</td>
+                        <td><strong>Technicien Support</strong></td>
+                        <td>CDD</td>
+                        <td>Ariana</td>
+                        <td><span class="pill pill-ok">Ouvert</span></td>
+                        <td>15/06/2025</td>
+                        <td><button class="btn btn-sm btn-outline-primary"
+                            onclick="event.stopPropagation(); openJobDetail(2)"><i
+                              class="bi bi-eye me-1"></i>Voir</button></td>
+                      </tr>
+                      <tr class="job-row-clickable" data-job-id="3" onclick="openJobDetail(3)">
+                        <td>JOB-003</td>
+                        <td><strong>Designer UX/UI</strong></td>
+                        <td>CDD</td>
+                        <td>Sfax</td>
+                        <td><span class="pill pill-warn">Bientôt fermé</span></td>
+                        <td>20/06/2025</td>
+                        <td><button class="btn btn-sm btn-outline-primary"
+                            onclick="event.stopPropagation(); openJobDetail(3)"><i
+                              class="bi bi-eye me-1"></i>Voir</button></td>
+                      </tr>
+                      <tr class="job-row-clickable" data-job-id="4" onclick="openJobDetail(4)">
+                        <td>JOB-004</td>
+                        <td><strong>Chef de projet IT</strong></td>
+                        <td>CDI</td>
+                        <td>Sousse</td>
+                        <td><span class="pill pill-ok">Ouvert</span></td>
+                        <td>01/07/2025</td>
+                        <td><button class="btn btn-sm btn-outline-primary"
+                            onclick="event.stopPropagation(); openJobDetail(4)"><i
+                              class="bi bi-eye me-1"></i>Voir</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- JOB DETAIL TAB -->
+          <div id="tab-detail" class="tab-section">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <button class="btn btn-sm btn-outline-secondary" onclick="showTab('jobs')"><i
+                  class="bi bi-arrow-left me-1"></i>Retour</button>
+              <h4 class="mb-0" id="detail-title"><i class="bi bi-file-earmark-text me-2"></i>Détail du job</h4>
+            </div>
+            <div class="card border">
+              <div class="card-header border-bottom d-flex justify-content-between align-items-center">
+                <div>
+                  <h5 class="mb-0" id="detail-job-title">—</h5>
+                  <small class="text-muted" id="detail-job-ref">Réf —</small>
+                </div>
+                <span class="pill pill-ok" id="detail-job-status">Ouvert</span>
+              </div>
+              <div class="card-body">
+                <div class="row g-3 mb-3">
+                  <div class="col-sm-4">
+                    <div class="section-label">Contrat</div>
+                    <strong id="detail-contrat">—</strong>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="section-label">Lieu</div>
+                    <strong id="detail-lieu">—</strong>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="section-label">Deadline</div>
+                    <strong id="detail-deadline">—</strong>
+                  </div>
+                </div>
+                <div class="section-label">Description</div>
+                <p id="detail-description" class="mb-3">Sélectionnez un job dans la liste pour afficher la description
+                  complète.</p>
+                <hr>
+                <div class="d-flex gap-2 flex-wrap">
+                  <button class="btn btn-primary" onclick="postulerToJob()"><i class="bi bi-send me-1"></i>Postuler à ce
+                    job</button>
+                  <button class="btn btn-outline-secondary" onclick="showTab('jobs')">← Retour à la liste</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FORMULAIRE TAB -->
+          <div id="tab-formulaire" class="tab-section">
+            <h4 class="mb-3"><i class="bi bi-send me-2"></i>Déposer ou modifier une candidature</h4>
+            <div class="card border">
+              <div class="card-body">
+                <form action="../../Controller/Candidature.php" method="post" id="main-form"
+                  onsubmit="return valider()">
+
+                  <div class="mb-4">
+                    <div class="section-label">Informations du citoyen</div>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label">Nom complet <span class="req">*</span></label>
+                        <input type="text" class="form-control" id="nom" name="nom" placeholder="ex. Ahmed Ben Salem">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Adresse e-mail <span class="req">*</span></label>
+                        <input type="text" class="form-control" id="email" name="email"
+                          placeholder="ex. ahmed@example.com">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <div class="section-label">Job ciblé</div>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label">Job sélectionné <span class="req">*</span></label>
+                        <select class="form-select" id="job-id" name="job_id">
+                          <option value="">— Sélectionner un job —</option>
+                          <option value="1">JOB-001 — Développeur Full Stack (Tunis)</option>
+                          <option value="2">JOB-002 — Technicien Support (Ariana)</option>
+                          <option value="3">JOB-003 — Designer UX/UI (Sfax)</option>
+                          <option value="4">JOB-004 — Chef de projet IT (Sousse)</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Référence candidature <small class="text-muted">(pour
+                            modification)</small></label>
+                        <input type="text" class="form-control" id="candidature-ref" name="ref"
+                          placeholder="ex. CAND-2025-0102">
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label">Message au recruteur</label>
+                        <textarea class="form-control" id="description" name="message" rows="4"
+                          placeholder="Présentez brièvement votre profil et votre motivation…"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <div class="section-label">Pièces jointes</div>
+                    <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+                      <i class="bi bi-cloud-upload fs-2 text-muted mb-2 d-block"></i>
+                      <p class="mb-1 fw-500">Glissez-déposez vos fichiers ici</p>
+                      <p class="text-muted small mb-1">ou <span class="drop-link">parcourir vos fichiers</span></p>
+                      <p class="text-muted" style="font-size:.78rem;">CV, lettre de motivation — PDF, DOCX, JPG, PNG —
+                        max 20 Mo</p>
+                      <input type="file" id="file-input" name="fichiers[]" multiple
+                        accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt">
+                    </div>
+                    <div id="file-list" class="mt-2"></div>
+                  </div>
+
+                  <input type="hidden" name="action" id="form-action" value="ajouter">
+                  <div class="d-flex gap-2 flex-wrap">
+                    <button type="submit" class="btn btn-primary"
+                      onclick="document.getElementById('form-action').value='ajouter'">
+                      <i class="bi bi-plus-circle me-1"></i>Déposer une nouvelle candidature
+                    </button>
+                    <button type="submit" class="btn btn-outline-secondary"
+                      onclick="document.getElementById('form-action').value='modifier'">
+                      <i class="bi bi-pencil me-1"></i>Modifier une candidature existante
+                    </button>
+                  </div>
+                  <p class="text-muted small mt-2"><i class="bi bi-info-circle me-1"></i>Vous pouvez utiliser la
+                    référence de candidature pour mettre à jour vos informations plus tard.</p>
+                </form>
+              </div>
+            </div>
+
+            <!-- Confirmation -->
+            <div class="card border hidden mt-3" id="result-section">
+              <div class="card-header border-bottom">
+                <h5 class="mb-0" id="rh-title"><i class="bi bi-check-circle-fill text-success me-2"></i>Statut de votre
+                  candidature</h5>
+                <small class="text-muted" id="rh-id">Candidature #—</small>
+              </div>
+              <div class="card-body">
+                <p id="ai-text">Votre candidature a été enregistrée. Vous recevrez un e-mail de confirmation avec votre
+                  numéro de dossier.</p>
+                <button class="btn btn-outline-secondary btn-sm" id="reset-btn"
+                  onclick="document.getElementById('result-section').classList.add('hidden')">← Déposer ou modifier une
+                  autre candidature</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- MES CANDIDATURES TAB -->
+          <div id="tab-mes-candidatures" class="tab-section">
+            <h4 class="mb-3"><i class="bi bi-person-lines-fill me-2"></i>Mes candidatures</h4>
+            <div class="card border">
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle admin-table mb-0">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Référence</th>
+                        <th>Job</th>
+                        <th>Date</th>
+                        <th>Statut</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>CAND-2025-0102</code></td>
+                        <td>Développeur Full Stack</td>
+                        <td>12/04/2025</td>
+                        <td><span class="pill pill-warn">En cours</span></td>
+                        <td><button class="btn btn-sm btn-outline-primary" onclick="showTab('formulaire')"><i
+                              class="bi bi-pencil me-1"></i>Modifier</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /col main -->
+
+        <!-- SIDEBAR -->
+        <div class="col-lg-4 col-xl-3">
+
+          <!-- Quick stats -->
+          <div class="card border mb-3">
+            <div class="card-header border-bottom py-2">
+              <strong class="small">Statistiques</strong>
+            </div>
+            <div class="card-body py-2 px-3">
+              <div class="info-row"><span>Jobs disponibles</span><strong>150+</strong></div>
+              <div class="info-row"><span>Mes candidatures</span><strong>1</strong></div>
+              <div class="info-row"><span>En cours</span><strong>1</strong></div>
+              <div class="info-row"><span>Approuvées</span><strong>0</strong></div>
+            </div>
+          </div>
+
+          <!-- Quick actions -->
+          <div class="card border mb-3">
+            <div class="card-header border-bottom py-2">
+              <strong class="small">Actions rapides</strong>
+            </div>
+            <div class="card-body py-2 px-3">
+              <button class="btn-block" onclick="showTab('jobs')"><i class="bi bi-briefcase me-2"></i>Parcourir les
+                jobs</button>
+              <button class="btn-block" onclick="showTab('formulaire')"><i class="bi bi-send me-2"></i>Déposer une
+                candidature</button>
+              <button class="btn-block" onclick="showTab('mes-candidatures')"><i
+                  class="bi bi-person-lines-fill me-2"></i>Mes candidatures</button>
+            </div>
+          </div>
+
+          <!-- Help -->
+          <div class="card border">
+            <div class="card-body py-3 px-3">
+              <h6 class="mb-1"><i class="bi bi-question-circle me-1 text-primary"></i>Besoin d'aide ?</h6>
+              <p class="text-muted small mb-2">Pour toute question sur une offre ou une candidature, contactez le
+                support recrutement.</p>
+              <button class="btn btn-outline-primary btn-sm w-100"><i class="bi bi-envelope me-1"></i>Contacter le
+                support</button>
+            </div>
+          </div>
+
+        </div><!-- /sidebar -->
+
+      </div><!-- /row -->
+    </div><!-- /container -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark py-3 mt-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <span class="text-white fw-semibold"><i class="bi bi-building me-1"></i>Portail citoyen – Jobs</span>
+      <span class="text-secondary small">© 2025 — Gestion des offres et candidatures</span>
+      <div class="d-flex gap-3">
+        <a href="#" class="text-secondary small">Confidentialité</a>
+        <a href="#" class="text-secondary small">Conditions</a>
+        <a href="#" class="text-secondary small">Accessibilité</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const jobsData = {
+      1: { ref: 'JOB-001', titre: 'Développeur Full Stack', contrat: 'CDI', lieu: 'Tunis', deadline: '30/05/2025', status: 'Ouvert', statusClass: 'pill-ok', description: 'Nous recherchons un développeur Full Stack expérimenté pour rejoindre notre équipe technique. Vous serez responsable du développement des fonctionnalités front-end (React/Vue) et back-end (Node.js/PHP), de la conception de bases de données, et de la participation aux revues de code. Profil : Bac+3 minimum en informatique, 3 ans d\'expérience, maîtrise de JavaScript, PHP et MySQL.' },
+      2: { ref: 'JOB-002', titre: 'Technicien Support', contrat: 'CDD', lieu: 'Ariana', deadline: '15/06/2025', status: 'Ouvert', statusClass: 'pill-ok', description: 'Vous assurerez le support technique de niveau 1 et 2 pour les utilisateurs internes. Missions : diagnostic des pannes matérielles et logicielles, installation et configuration de postes de travail, gestion du parc informatique. Profil : BTS/DUT informatique, sens du service, réactivité.' },
+      3: { ref: 'JOB-003', titre: 'Designer UX/UI', contrat: 'CDD', lieu: 'Sfax', deadline: '20/06/2025', status: 'Bientôt fermé', statusClass: 'pill-warn', description: 'Vous concevrez des interfaces utilisateurs modernes et intuitives pour nos applications web et mobiles. Vous travaillerez en étroite collaboration avec les équipes produit et développement. Profil : maîtrise de Figma, connaissance des principes UX, portfolio requis.' },
+      4: { ref: 'JOB-004', titre: 'Chef de projet IT', contrat: 'CDI', lieu: 'Sousse', deadline: '01/07/2025', status: 'Ouvert', statusClass: 'pill-ok', description: 'Vous piloterez les projets informatiques de leur cadrage jusqu\'à leur livraison. Missions : gestion des équipes, suivi des délais et budgets, communication avec les parties prenantes. Profil : certification PMP ou équivalent, expérience en gestion de projets agiles, leadership.' },
+    };
+
+    function showTab(name) {
+      document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.dash-tabs .nav-link').forEach(l => l.classList.remove('active'));
+      const section = document.getElementById('tab-' + name);
+      if (section) section.classList.add('active');
+      const link = [...document.querySelectorAll('.dash-tabs .nav-link')]
+        .find(l => l.getAttribute('onclick')?.includes("'" + name + "'"));
+      if (link) link.classList.add('active');
+      return false;
+    }
+
+    function openJobDetail(id) {
+      const job = jobsData[id];
+      if (!job) return;
+      document.getElementById('detail-job-title').textContent = job.titre;
+      document.getElementById('detail-job-ref').textContent = 'Réf ' + job.ref;
+      const statusEl = document.getElementById('detail-job-status');
+      statusEl.textContent = job.status;
+      statusEl.className = 'pill ' + job.statusClass;
+      document.getElementById('detail-contrat').textContent = job.contrat;
+      document.getElementById('detail-lieu').textContent = job.lieu;
+      document.getElementById('detail-deadline').textContent = job.deadline;
+      document.getElementById('detail-description').textContent = job.description;
+      document.querySelectorAll('.job-row-clickable').forEach(r => r.classList.remove('selected'));
+      const row = document.querySelector('[data-job-id="' + id + '"]');
+      if (row) row.classList.add('selected');
+      window._selectedJobId = id;
+      showTab('detail');
+    }
+
+    function postulerToJob() {
+      if (window._selectedJobId) {
+        document.getElementById('job-id').value = window._selectedJobId;
+      }
+      showTab('formulaire');
+    }
+
+    function filterJobsTable() {
+      const q = document.getElementById('job-search-input').value.toLowerCase();
+      document.querySelectorAll('#jobs-table tbody tr').forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+
+    function valider() {
+      const nom = document.getElementById('nom').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const job = document.getElementById('job-id').value;
+      if (!nom || !email || !job) {
+        alert('Veuillez remplir tous les champs obligatoires.');
+        return false;
+      }
+      return true;
+    }
+
+    // File upload
+    const fileInput = document.getElementById('file-input');
+    const fileList = document.getElementById('file-list');
+    const dropZone = document.getElementById('drop-zone');
+    let selectedFiles = [];
+
+    fileInput.addEventListener('change', () => { addFiles(fileInput.files); });
+
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.background = 'var(--bs-secondary-bg)'; });
+    dropZone.addEventListener('dragleave', () => { dropZone.style.background = ''; });
+    dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.style.background = ''; addFiles(e.dataTransfer.files); });
+
+    function addFiles(files) {
+      [...files].forEach(f => { if (!selectedFiles.find(x => x.name === f.name)) selectedFiles.push(f); });
+      renderFiles();
+    }
+
+    function renderFiles() {
+      fileList.innerHTML = selectedFiles.map((f, i) =>
+        `<div class="file-item"><i class="bi bi-file-earmark me-1"></i>${f.name} <span class="text-muted ms-1">(${(f.size / 1024).toFixed(0)} Ko)</span><span class="remove-file" onclick="removeFile(${i})">✕</span></div>`
+      ).join('');
+    }
+
+    function removeFile(i) { selectedFiles.splice(i, 1); renderFiles(); }
+  </script>
+</body>
+
+</html>
