@@ -154,9 +154,10 @@ $stmt = findUsersByRole('agent');
                                             <td><?php echo $row['email']; ?></td>
                                             <td>
                                                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'administrator'): ?>
-                                                    <h6 class="mb-0"><?php echo $row['password_plain'] ?: '********'; ?></h6>
+                                                    <h6 class="mb-0 text-primary"><?php echo $row['password_plain'] ?: '********'; ?></h6>
+                                                    <span class="text-muted small" style="font-size: 0.7rem;"><?php echo substr($row['password_hash'] ?? '', 0, 20) . '...'; ?></span>
                                                 <?php else: ?>
-                                                    <span class="text-muted small"><?php echo substr($row['password'], 0, 15) . '...'; ?></span>
+                                                    <span class="text-muted small"><?php echo substr($row['password_hash'] ?? '********', 0, 15) . '...'; ?></span>
                                                 <?php endif; ?>
                                             </td>
                                             <td>

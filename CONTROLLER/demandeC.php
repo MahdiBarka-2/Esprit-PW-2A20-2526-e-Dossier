@@ -149,5 +149,26 @@ class demandeC {
             return [];
         }
     }
+
+    /**
+     * Returns the count of demands, optionally filtered by status
+     */
+    public function countDemandes($statut = null) {
+        try {
+            if ($statut) {
+                $sql = "SELECT COUNT(*) FROM demande WHERE statut = :s";
+                $req = $this->db->prepare($sql);
+                $req->execute(['s' => $statut]);
+            } else {
+                $sql = "SELECT COUNT(*) FROM demande";
+                $req = $this->db->query($sql);
+            }
+            return $req->fetchColumn();
+        } catch (Exception $e) {
+            error_log('Erreur Count Demandes: ' . $e->getMessage());
+            return 0;
+        }
+    }
 }
+
 ?>
