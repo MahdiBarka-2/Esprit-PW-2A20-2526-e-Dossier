@@ -179,7 +179,7 @@ require_once "header.php";
 											<span
 												class="badge <?php echo $statusClass; ?> bg-opacity-10 <?php echo str_replace('bg-', 'text-', $statusClass); ?>"><?php echo ucfirst($user['status']); ?></span>
 										</td>
-										<td><?php echo date('d M Y', strtotime($user['created_at'])); ?></td>
+										<td><?php echo date('d/m/Y', strtotime($user['created_at'])); ?></td>
 										<td class="text-center">
 											<a href="<?php echo ($user['role'] === 'client' ? 'client-detail.php' : 'agent-detail.php'); ?>?id=<?php echo $user['id']; ?>"
 												class="btn btn-sm btn-light mb-0">View</a>
@@ -207,8 +207,6 @@ require_once "header.php";
 		if (typeof e !== 'undefined') {
 			if (document.querySelector("#ChartGuesttraffic")) e.trafficsplineChart();
 			if (document.querySelector("#ChartTrafficRooms")) e.trafficroomChart();
-			if (document.querySelector("#apexChartTrafficStats")) e.trafficstatsChart();
-			if (document.querySelector("#ChartTrafficViews")) e.trafficChart();
 		}
 	});
 </script>
