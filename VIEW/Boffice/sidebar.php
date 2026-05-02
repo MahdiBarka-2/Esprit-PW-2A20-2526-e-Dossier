@@ -54,8 +54,13 @@
                 
                 <li class="nav-item ms-2 my-2 text-primary font-weight-bold"><?php echo __('dossier_management'); ?></li>
                 <li class="nav-item"> 
-                    <a class="nav-link <?php echo $currentPage === 'posts.php' ? 'active' : ''; ?>" href="posts.php">
+                    <a class="nav-link <?php echo ($currentPage === 'posts.php' && (($_GET['action'] ?? '') === 'index' || empty($_GET['action']))) ? 'active' : ''; ?>" href="posts.php">
                         <i class="bi bi-file-post me-2"></i><?php echo __('posts'); ?>
+                    </a>
+                </li>
+                <li class="nav-item"> 
+                    <a class="nav-link <?php echo ($currentPage === 'posts.php' && ($_GET['action'] ?? '') === 'comments') ? 'active' : ''; ?>" href="posts.php?action=comments">
+                        <i class="bi bi-chat-left-text me-2"></i><?php echo __('comments'); ?>
                     </a>
                 </li>
                 <li class="nav-item"> 
@@ -78,6 +83,7 @@
                         <i class="bi bi-tags me-2"></i>Catégories
                     </a>
                 </li>
+
                 <li class="nav-item"> 
                     <a class="nav-link <?php echo $currentPage === 'Evenement.php' ? 'active' : ''; ?>" href="Evenement.php">
                         <i class="bi bi-calendar-event me-2"></i><?php echo __('Evenements'); ?>

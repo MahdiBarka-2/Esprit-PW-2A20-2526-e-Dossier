@@ -116,7 +116,7 @@ $stmt = findUsersByRole('agent');
 
                         <div class="table-responsive border-0">
                             <table id="agentTable" class="table align-middle p-4 mb-0 table-hover">
-                                <thead class="table-light">
+                                <thead>
                                     <tr>
                                         <th class="border-0 rounded-start" data-column="name"><?php echo __('name'); ?></th>
                                         <th class="border-0" data-column="email"><?php echo __('email'); ?></th>

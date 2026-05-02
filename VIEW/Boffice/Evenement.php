@@ -124,7 +124,7 @@ require_once "header.php";
                         <div class="card-body">
                             <div class="table-responsive border-0">
                                 <table class="table align-middle p-4 mb-0 table-hover">
-                                    <thead class="table-light">
+                                    <thead>
                                         <tr>
                                             <th class="border-0 rounded-start"><?php echo __('title'); ?></th>
                                             <th class="border-0"><?php echo __('start_date'); ?></th>

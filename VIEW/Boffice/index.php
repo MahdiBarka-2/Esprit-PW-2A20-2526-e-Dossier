@@ -9,6 +9,14 @@ require_once '../../CONTROLLER/demandeC.php';
 $demandeC = new demandeC();
 $totalDossiers = $demandeC->countDemandes();
 $newDemandesCount = $demandeC->countDemandes('en_attente');
+
+require_once '../../CONTROLLER/EvenementController.php';
+$eventC = new EvenementC();
+$totalEvents = $eventC->listeEvenement()->rowCount();
+
+require_once '../../CONTROLLER/PublicationC.php';
+$pubC = new PublicationC();
+$totalPosts = $pubC->countPublications(); 
 ?>
 <?php
 require_once "header.php";
@@ -72,18 +80,29 @@ require_once "header.php";
 			</div>
 		</div>
 
-		<!-- Counter item -->
+		<!-- Counter item (Posts) -->
 		<div class="col-md-6 col-xxl-3">
-			<div class="card card-body bg-info bg-opacity-10 border border-info border-opacity-25 p-4 h-100">
+			<a href="posts.php" class="card card-body bg-danger bg-opacity-10 border border-danger border-opacity-25 p-4 h-100 text-decoration-none transition-all hover-shadow">
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
-						<h4 class="mb-0"><?php echo number_format($newDemandesCount); ?></h4>
-						<span class="h6 fw-light mb-0"><?php echo __('new_demands'); ?></span>
+						<h4 class="mb-0"><?php echo number_format($totalPosts); ?></h4>
+						<span class="h6 fw-light mb-0 text-body"><?php echo __('posts'); ?></span>
 					</div>
-					<div class="icon-lg rounded-circle bg-info text-white mb-0"><i
-							class="fa-solid fa-clipboard-list fa-fw"></i></div>
+					<div class="icon-lg rounded-circle bg-danger text-white mb-0"><i class="fa-solid fa-file-pen fa-fw"></i></div>
 				</div>
-			</div>
+			</a>
+		</div>
+
+		<div class="col-md-6 col-xxl-3">
+			<a href="Evenement.php" class="card card-body bg-info bg-opacity-10 border border-info border-opacity-25 p-4 h-100 text-decoration-none transition-all hover-shadow">
+				<div class="d-flex justify-content-between align-items-center">
+					<div>
+						<h4 class="mb-0"><?php echo number_format($totalEvents); ?></h4>
+						<span class="h6 fw-light mb-0 text-body"><?php echo __('Evenements'); ?></span>
+					</div>
+					<div class="icon-lg rounded-circle bg-info text-white mb-0"><i class="fa-solid fa-calendar-days fa-fw"></i></div>
+				</div>
+			</a>
 		</div>
 	</div>
 	<!-- Counter boxes END -->
@@ -145,7 +164,7 @@ require_once "header.php";
 				<div class="card-body">
 					<div class="table-responsive border-0">
 						<table class="table align-middle p-4 mb-0 table-hover">
-							<thead class="table-light">
+							<thead>
 								<tr>
 									<th scope="col" class="border-0 rounded-start">User</th>
 									<th scope="col" class="border-0">Role</th>

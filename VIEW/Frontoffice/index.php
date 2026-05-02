@@ -52,19 +52,20 @@ require_once '../../CONTROLLER/LanguageController.php';
 </head>
 
 <body>
-    <header class="navbar-light py-3 border-bottom shadow-sm">
+    <header class="py-3 border-bottom shadow-sm">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand d-flex align-items-center" href="index.php">
-                <img src="../../assets/images/e_dossier.png" alt="logo" style="height: 60px;">
+            <a class="navbar-brand d-flex align-items-center" href="/integration/VIEW/Frontoffice/index.php">
+                <img src="/integration/assets/images/e_dossier.png" alt="logo" style="height: 60px;">
                 <span class="ms-2 fw-bold text-primary brand-text" style="font-size: 1.5rem;">E-Dossier</span>
             </a>
             <div class="d-flex align-items-center">
                 <nav class="navbar-expand-lg">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="index.php"><?php echo __('home'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="/integration/VIEW/Frontoffice/index.php"><?php echo __('home'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/index1.php"><?php echo __('posts'); ?></a></li>
                     </ul>
                 </nav>
 
@@ -137,6 +138,16 @@ require_once '../../CONTROLLER/LanguageController.php';
                         align-items: center;
                         justify-content: center;
                         padding: 0;
+                    }
+                    .hero-section {
+                        background-color: var(--bs-cream);
+                    }
+                    [data-bs-theme='dark'] .card {
+                        background-color: #111827 !important;
+                        border-color: rgba(255,255,255,0.05) !important;
+                    }
+                    [data-bs-theme='dark'] .hero-section {
+                        background-color: var(--bs-body-bg) !important;
                     }
                     .icon-lg {
                         width: 44px;

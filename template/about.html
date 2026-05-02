@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Edossier | How it Works</title>
+
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Dark mode -->
+	<script>
+		document.documentElement.setAttribute('data-bs-theme', 'dark');
+	</script>
+
+ 	<!-- Favicon -->
+	<link rel="shortcut icon" href="../assets/images/favicon.ico">
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com/">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Inter:wght@400;600&display=swap">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="../assets/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="../assets/vendor/bootstrap-icons/bootstrap-icons.css">
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+
+    <style>
+        :root {
+            --ed-primary: #066ac9;
+            --ed-dark: #0f172a;
+            --ed-card: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--ed-dark);
+            color: #e2e8f0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        .premium-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            height: 100%;
+            transition: 0.3s;
+        }
+
+        .premium-card:hover {
+            border-color: var(--ed-primary);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 800;
+            opacity: 0.2;
+            line-height: 1;
+            margin-bottom: 10px;
+            color: var(--ed-primary);
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: var(--ed-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(6, 106, 201, 0.3);
+        }
+
+        .line {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 40px 0;
+        }
+
+        .nav-link { color: #94a3b8 !important; }
+        .nav-link.active { color: white !important; font-weight: 700; }
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="navbar-light py-3">
+	<nav class="navbar navbar-expand-xl">
+		<div class="container">
+			<a class="navbar-brand" href="/integration/index.php">
+				<h3 class="mb-0 text-white"><i class="bi bi-file-earmark-text-fill me-2 text-primary"></i>Edossier</h3>
+			</a>
+			<div class="ms-auto d-flex gap-3">
+				<a class="nav-link" href="/integration/index.php">Home</a>
+				<a class="nav-link active" href="about.html">Architecture</a>
+				<a class="nav-link" href="/integration/index1.php">Files</a>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<main>
+
+<!-- Hero -->
+<section class="py-5 text-center">
+	<div class="container">
+		<h1 class="display-3 text-white mb-3">How it Works</h1>
+		<p class="lead text-secondary mx-auto" style="max-width: 600px;">Our system is built to be simple, safe, and fast. Here is how we manage state documents.</p>
+	</div>
+</section>
+
+<!-- Step Grid -->
+<section class="py-5">
+	<div class="container">
+		<div class="row g-4">
+			<!-- Step 1 -->
+			<div class="col-md-4">
+				<div class="premium-card">
+					<div class="step-number">01</div>
+					<div class="icon-circle"><i class="fas fa-file-import"></i></div>
+					<h3 class="text-white">Adding Files</h3>
+					<p class="text-secondary">Official users log in and upload documents. Only trusted people can add files to the system.</p>
+				</div>
+			</div>
+
+			<!-- Step 2 -->
+			<div class="col-md-4">
+				<div class="premium-card">
+					<div class="step-number">02</div>
+					<div class="icon-circle" style="background: #10b981;"><i class="fas fa-shield-alt"></i></div>
+					<h3 class="text-white">Safety Check</h3>
+					<p class="text-secondary">The system checks every file. We give each file a secret code to make sure it is never changed or faked.</p>
+				</div>
+			</div>
+
+			<!-- Step 3 -->
+			<div class="col-md-4">
+				<div class="premium-card">
+					<div class="step-number">03</div>
+					<div class="icon-circle" style="background: #38bdf8;"><i class="fas fa-globe"></i></div>
+					<h3 class="text-white">Public View</h3>
+					<p class="text-secondary">Once the file is safe, it is shown on the website. Everyone can see and download the files instantly.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="container line"></div>
+
+<!-- Layers Section -->
+<section class="py-5">
+	<div class="container">
+		<div class="row mb-5">
+			<div class="col-12">
+				<h2 class="text-white">The System Layers</h2>
+				<p class="text-secondary">Our architecture is split into three main parts for better organization.</p>
+			</div>
+		</div>
+
+		<div class="row g-4">
+			<div class="col-lg-6">
+				<div class="premium-card d-flex gap-4 align-items-start">
+					<div class="icon-circle mt-1 flex-shrink-0" style="width: 50px; height: 50px;"><i class="fas fa-database"></i></div>
+					<div>
+						<h4 class="text-white">Permanent Storage</h4>
+						<p class="text-secondary mb-0">This is where the files live. They are saved in many places at once so they are never lost.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="premium-card d-flex gap-4 align-items-start">
+					<div class="icon-circle mt-1 flex-shrink-0" style="width: 50px; height: 50px; background: #a855f7;"><i class="fas fa-search"></i></div>
+					<div>
+						<h4 class="text-white">Fast Search</h4>
+						<p class="text-secondary mb-0">This part helps you find files quickly. It looks through thousands of documents in less than a second.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Why Section -->
+<section class="py-5 mb-5">
+	<div class="container">
+		<div class="premium-card bg-primary bg-opacity-10 border-primary border-opacity-20 p-5">
+			<div class="row align-items-center">
+				<div class="col-md-8">
+					<h2 class="text-white mb-3">Safe and Trusted</h2>
+					<p class="text-secondary mb-0">We use the best technology to keep state files safe. Everything is open and checked every day to ensure trust.</p>
+				</div>
+				<div class="col-md-4 text-md-end mt-4 mt-md-0">
+					<img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=200" class="rounded-circle shadow-lg" alt="Security" style="width: 150px; height: 150px; object-fit: cover;">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+</main>
+
+<footer class="py-5 border-top border-secondary border-opacity-10">
+	<div class="container text-center">
+		<p class="text-secondary small">© 2026 Edossier Platform. Built for trust.</p>
+	</div>
+</footer>
+
+</body>
+</html>
