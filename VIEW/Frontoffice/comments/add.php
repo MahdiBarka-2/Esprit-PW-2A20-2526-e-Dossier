@@ -24,17 +24,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-include __DIR__ . '/../../layouts/header.php'; 
+require_once __DIR__ . '/../../../CONTROLLER/LanguageController.php';
 ?>
+<!DOCTYPE html>
+<html lang="<?php echo $lang ?? 'en'; ?>" <?php echo (($lang ?? '') === 'ar' ? 'dir="rtl"' : ''); ?>>
+<head>
+    <title>e_dossier - Add Comment</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="/integration/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/integration/assets/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/integration/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+</head>
+<body>
+    <header class="py-3 border-bottom shadow-sm">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand d-flex align-items-center" href="/integration/VIEW/Frontoffice/index.php">
+                <img src="/integration/assets/images/e_dossier.png" alt="logo" style="height: 60px;">
+                <span class="ms-2 fw-bold text-primary brand-text" style="font-size: 1.5rem;">E-Dossier</span>
+            </a>
+        </div>
+    </header>
 
 <main>
 <section class="pt-0">
     <div class="container">
         <div class="row">
-            <div class="col-12 mt-4 mt-sm-8 mb-4">
-                <div class="d-flex align-items-center">
+            <div class="col-12 mt-4 mt-sm-8 mb-4 text-center">
+                <div class="d-inline-flex align-items-center">
                     <div class="icon-lg bg-primary bg-opacity-10 text-primary rounded-circle me-3"><i class="bi bi-chat-left-dots-fill"></i></div>
-                    <div>
+                    <div class="text-start">
                         <h1 class="h3 mb-1">Add a Comment</h1>
                         <p class="mb-0 text-muted">Share your thoughts on this publication.</p>
                     </div>
@@ -101,4 +120,12 @@ include __DIR__ . '/../../layouts/header.php';
 </section>
 </main>
 
-<?php include __DIR__ . '/../../layouts/footer.php'; ?>
+<footer class="py-5 mt-5" style="background-color: #1d3b53; color: white;">
+    <div class="container text-center">
+        <p class="mb-0 small opacity-50">&copy; 2026 e_dossier. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="/integration/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

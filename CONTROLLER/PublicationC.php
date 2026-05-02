@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../model/Publication.php';
+include_once __DIR__ . '/../MODEL/Publication.php';
 include_once __DIR__ . '/../MODEL/Database.php';
 include_once __DIR__ . '/CommentC.php';
 
@@ -35,6 +35,12 @@ class PublicationC
         $db = $this->db;
         try {
             $db->prepare($sql)->execute(['titre' => $titre, 'contenu' => $contenu, 'auteur' => $auteur, 'date' => $date, 'categorie' => $categorie, 'document' => $document]);
+            
+            // Trigger Automated Notification (Metier Avancé)
+            include_once __DIR__ . '/NotificationC.php';
+            $notif = new NotificationC();
+            $notif->sendPublicationAlert($titre, $auteur, $categorie);
+            
         } catch (Exception $e) {
             die('Error: ' . $e->getMessage());
         }
@@ -235,6 +241,54 @@ class PublicationC
         if (isset($_GET['id']))
             echo json_encode($this->toggleSave($_GET['id']));
         exit();
+    }
+
+    // AI ASSISTANT ENDPOINT
+    public function aiAssistAction()
+    {
+        include_once __DIR__ . '/AIService.php';
+        $ai = new AIService();
+        $title = $_POST['title'] ?? '';
+        if (empty($title)) {
+            echo json_encode(['error' => 'Title is required for AI assistance.']);
+            exit();
+        }
+        $result = $ai->assistPublication($title);
+        
+        // Clean markdown blocks
+        $cleanResult = preg_replace('/```json\n|\n```|```/', '', $result);
+        $cleanResult = trim($cleanResult);
+
+        // Force JSON format for the browser
+        header('Content-Type: application/json');
+        
+        // Check if it's already a valid JSON object
+        $jsonTest = json_decode($cleanResult, true);
+        if (json_last_error() === JSON_ERROR_NONE && isset($jsonTest['content'])) {
+            echo $cleanResult;
+        } else {
+            // If it's just plain text, wrap it as a 'content' key
+            echo json_encode([
+                'content' => $cleanResult,
+                'summary' => substr(strip_tags($cleanResult), 0, 150) . '...'
+            ]);
+        }
+        exit();
+    }
+
+    // PDF EXPORT ENDPOINT
+    public function downloadAction()
+    {
+        $id = $_GET['id'] ?? '';
+        $publication = $this->getOnePublication($id);
+        if ($publication) {
+            $comments = $this->commentCtrl->getCommentsByPublication($id);
+            include_once __DIR__ . '/ExportC.php';
+            $exporter = new ExportC();
+            $exporter->exportToPDF($publication, $comments);
+        } else {
+            die("Publication not found.");
+        }
     }
 }
 ?>

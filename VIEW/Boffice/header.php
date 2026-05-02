@@ -1,5 +1,5 @@
 <?php
-require_once '../../CONTROLLER/LanguageController.php';
+require_once __DIR__ . '/../../CONTROLLER/LanguageController.php';
 
 // If no session exists, start it
 if (session_status() === PHP_SESSION_NONE) {
@@ -94,17 +94,17 @@ header("Expires: 0");
 	</script>
 
 	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="../../assets/vendor/font-awesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css">
-	<link rel="stylesheet" type="text/css" href="../../assets/vendor/overlay-scrollbar/css/overlayscrollbars.min.css">
+	<link rel="stylesheet" type="text/css" href="/integration/assets/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="/integration/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="/integration/assets/vendor/overlay-scrollbar/css/overlayscrollbars.min.css">
 	
 	<!-- Theme CSS -->
-	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/integration/assets/css/style.css">
     
     <!-- Essential JS -->
-    <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
-    <script src="../../assets/js/functions.js"></script>
+    <script src="/integration/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/integration/assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
+    <script src="/integration/assets/js/functions.js"></script>
 </head>
 
 <body>

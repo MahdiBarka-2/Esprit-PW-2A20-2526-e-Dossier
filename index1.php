@@ -29,6 +29,9 @@ switch($action) {
     case 'toggleSave':
         $ctrl->toggleSaveAction();
         break;
+    case 'download':
+        $ctrl->downloadAction();
+        break;
     default:
         $ctrl->frontIndex();
         break;

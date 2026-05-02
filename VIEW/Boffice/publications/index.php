@@ -1,7 +1,7 @@
 <?php
 // view/publications/index.php - Unified Command Center (Controlle de Saisie)
 if (session_status() === PHP_SESSION_NONE) session_start();
-include_once __DIR__ . '/../../controller/PublicationC.php';
+include_once __DIR__ . '/../../CONTROLLER/PublicationC.php';
 $pubCtrl = new PublicationC();
 
 // Handle "Add Publication" POST logic (Merged from add.php)

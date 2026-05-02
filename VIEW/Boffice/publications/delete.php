@@ -1,6 +1,6 @@
 <?php
 // view/publications/delete.php - Secure Asset Removal Protocol
-include_once __DIR__ . '/../../controller/PublicationC.php';
+include_once __DIR__ . '/../../CONTROLLER/PublicationC.php';
 
 $id = $_GET['id'] ?? '';
 if (!empty($id)) {

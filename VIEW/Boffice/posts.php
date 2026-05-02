@@ -34,6 +34,9 @@ switch ($action) {
     case 'deleteComment':
         $commentCtrl->delete();
         break;
+    case 'approveComment':
+        $commentCtrl->approve();
+        break;
     case 'dashboard':
         $ctrl->index(); // Assuming dashboard is the main index for now
         break;

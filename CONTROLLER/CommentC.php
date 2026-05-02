@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../model/Comment.php';
+include_once __DIR__ . '/../MODEL/Comment.php';
 include_once __DIR__ . '/../MODEL/Database.php';
 
 class CommentC {
@@ -12,9 +12,22 @@ class CommentC {
 
     // DB: ADD
     public function addComment($contenu, $utilisateur, $publication_id) {
+        // AI Moderation Step
+        include_once __DIR__ . '/AIService.php';
+        $ai = new AIService();
+        $status = $ai->moderateComment($contenu);
+
         $db = $this->db;
-        $sql = "INSERT INTO comment (contenu, utilisateur, publication_id, date) VALUES (:contenu, :utilisateur, :publication_id, NOW())";
-        try { $db->prepare($sql)->execute(['contenu' => $contenu, 'utilisateur' => $utilisateur, 'publication_id' => $publication_id]); } 
+        $sql = "INSERT INTO comment (contenu, utilisateur, publication_id, status, date) VALUES (:contenu, :utilisateur, :publication_id, :status, NOW())";
+        try { 
+            $db->prepare($sql)->execute([
+                'contenu' => $contenu, 
+                'utilisateur' => $utilisateur, 
+                'publication_id' => $publication_id,
+                'status' => $status
+            ]); 
+            return $status;
+        } 
         catch (Exception $e) { die('Error: ' . $e->getMessage()); }
     }
 
@@ -41,9 +54,14 @@ class CommentC {
     }
 
     // DB: GET BY PUB
-    public function getCommentsByPublication($pub_id) {
+    public function getCommentsByPublication($pub_id, $includeAll = false) {
         $db = $this->db;
-        $q = $db->prepare("SELECT * FROM comment WHERE publication_id = :pub_id ORDER BY date DESC");
+        $sql = "SELECT * FROM comment WHERE publication_id = :pub_id";
+        if (!$includeAll) {
+            $sql .= " AND status = 'Approved'";
+        }
+        $sql .= " ORDER BY date DESC";
+        $q = $db->prepare($sql);
         $q->execute(['pub_id' => $pub_id]);
         return $q->fetchAll();
     }
@@ -108,6 +126,16 @@ class CommentC {
             include __DIR__ . '/../VIEW/Boffice/comments/edit.php';
         }
     }
+    public function approve() {
+        $id = $_GET['id'] ?? '';
+        if ($id) {
+            $db = $this->db;
+            $db->prepare("UPDATE comment SET status = 'Approved' WHERE id = :id")->execute(['id' => $id]);
+        }
+        header("Location: /integration/VIEW/Boffice/posts.php?action=show&id=" . ($_GET['publication_id'] ?? ''));
+        exit();
+    }
+
     public function delete() {
         if (!empty($_GET['id'])) $this->deleteComment($_GET['id']);
         if (($_GET['from'] ?? '') === 'admin') header("Location: /integration/VIEW/Boffice/posts.php?action=comments");

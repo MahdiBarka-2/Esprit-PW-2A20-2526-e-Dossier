@@ -264,20 +264,32 @@ function renderChatAssistant()
             const val = inputField.value.trim();
             if (!val) return;
 
-            // Trigger Effects on First Interaction
             if (!hasInteracted) {
                 bgContainer.classList.add('blurred');
-                msgArea.style.display = 'flex'; // Show message area
+                msgArea.style.display = 'flex';
                 hasInteracted = true;
             }
 
-            // Add Messages
             renderBubble(val, 'user');
             inputField.value = '';
 
-            setTimeout(() => {
-                renderBubble("I'm processing your request. How else can I help?", 'bot');
-            }, 800);
+            // Call AI Service
+            const formData = new FormData();
+            formData.append('action', 'ai_assist');
+            formData.append('title', val); // Using 'title' as the prompt parameter
+
+            fetch('/integration/CONTROLLER/ai_handler.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const reply = data.content || data.summary || "I'm here to help with your publications!";
+                renderBubble(reply, 'bot');
+            })
+            .catch(error => {
+                renderBubble("Sorry, I'm having trouble connecting to my AI brain.", 'bot');
+            });
         }
 
         function renderBubble(text, type) {

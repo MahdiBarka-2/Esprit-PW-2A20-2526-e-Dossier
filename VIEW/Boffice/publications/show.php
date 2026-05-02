@@ -12,7 +12,7 @@ if (!$publication) {
     exit();
 }
 
-$comments = $pubCtrl->commentCtrl->getCommentsByPublication($id);
+$comments = $pubCtrl->commentCtrl->getCommentsByPublication($id, true);
 
 require_once __DIR__ . "/../header.php"; 
 ?>
@@ -36,9 +36,9 @@ require_once __DIR__ . "/../header.php";
             <a href="/integration/VIEW/Boffice/posts.php?action=edit&id=<?= $publication['id'] ?>" class="btn btn-primary shadow-sm">
                 <i class="bi bi-pencil-square me-2"></i>Modify
             </a>
-            <button onclick="window.print()" class="btn btn-dark shadow-sm">
-                <i class="bi bi-printer me-2"></i>Print
-            </button>
+            <a href="/integration/index1.php?action=download&id=<?= $publication['id'] ?>" class="btn btn-primary text-white shadow-sm rounded-pill px-4">
+                <i class="bi bi-file-earmark-pdf-fill me-2"></i>Export Strategic PDF
+            </a>
             <a href="/integration/VIEW/Boffice/posts.php" class="btn btn-outline-secondary shadow-sm">
                 <i class="bi bi-arrow-left me-2"></i>Return
             </a>
@@ -53,10 +53,18 @@ require_once __DIR__ . "/../header.php";
                 <div class="card-header bg-primary bg-opacity-10 border-0 p-4">
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
-                            <span class="badge bg-primary px-3 py-2 rounded-pill mb-3">
-                                <i class="bi bi-bookmark-star-fill me-1"></i> <?= htmlspecialchars($publication['categorie']) ?>
-                            </span>
-                            <h2 class="fw-bold text-dark"><?= htmlspecialchars($publication['titre']) ?></h2>
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <span class="badge bg-dark bg-opacity-75 text-white px-3 py-2 rounded-2 small fw-bold shadow-sm" style="letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.1);">
+                                    <i class="bi bi-hash me-1"></i>PUB-<?= str_pad($publication['id'], 5, '0', STR_PAD_LEFT) ?>
+                                </span>
+                                <span class="badge bg-primary bg-opacity-25 text-primary px-3 py-2 rounded-pill small fw-bold border border-primary border-opacity-25">
+                                    <i class="bi bi-bookmark-star-fill me-1"></i> <?= htmlspecialchars($publication['categorie']) ?>
+                                </span>
+                                <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill small fw-bold border border-success border-opacity-25">
+                                    <i class="bi bi-patch-check-fill me-1"></i> Verified Official
+                                </span>
+                            </div>
+                            <h2 class="display-6 fw-bold text-dark mb-2"><?= htmlspecialchars($publication['titre']) ?></h2>
                         </div>
                     </div>
                 </div>
@@ -141,7 +149,17 @@ require_once __DIR__ . "/../header.php";
                                         <small class="text-muted"><i class="bi bi-clock me-1"></i><?= date('d M, H:i', strtotime($c['date'])) ?></small>
                                     </div>
                                     <p class="mb-0 small text-secondary ps-4 border-start border-2 border-primary-soft ms-2"><?= nl2br(htmlspecialchars($c['contenu'])) ?></p>
-                                    <div class="mt-3 text-end">
+                                    <div class="mt-3 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <?php if(($c['status'] ?? 'Approved') === 'Flagged'): ?>
+                                                <span class="badge bg-danger bg-opacity-10 text-danger small"><i class="bi bi-exclamation-triangle-fill me-1"></i>AI Flagged</span>
+                                                <a href="/integration/VIEW/Boffice/posts.php?action=approveComment&id=<?= $c['id'] ?>&publication_id=<?= $publication['id'] ?>" class="btn btn-sm btn-success rounded-pill ms-2">
+                                                    <i class="bi bi-check-circle me-1"></i>Approve
+                                                </a>
+                                            <?php else: ?>
+                                                <span class="badge bg-success bg-opacity-10 text-success small"><i class="bi bi-shield-check me-1"></i>Approved</span>
+                                            <?php endif; ?>
+                                        </div>
                                         <button onclick="confirmDeleteComment(<?= $c['id'] ?>)" class="btn btn-sm btn-link p-0 text-danger small fw-bold text-decoration-none">
                                             <i class="bi bi-trash3 me-1"></i>Delete Feedback
                                         </button>
@@ -223,6 +241,9 @@ require_once __DIR__ . "/../header.php";
                         <button onclick="window.print()" class="btn btn-light-soft w-100 text-start py-2">
                             <i class="bi bi-printer me-3 text-primary"></i>Generate Archive (Print)
                         </button>
+                        <a href="/integration/index1.php?action=download&id=<?= $publication['id'] ?>" class="btn btn-light-soft w-100 text-start py-2">
+                            <i class="bi bi-file-earmark-pdf me-3 text-primary"></i>Download PDF Fact Sheet
+                        </a>
                         <a href="/integration/uploads/<?= $publication['document'] ?>" download class="btn btn-light-soft w-100 text-start py-2">
                             <i class="bi bi-cloud-arrow-down me-3 text-primary"></i>Save to Drive
                         </a>

@@ -125,8 +125,13 @@ require_once __DIR__ . "/../header.php";
                         <?php endif; ?>
                     </div>
                     <div class="col-12">
-                        <label class="form-label h6 fw-bold text-uppercase" style="font-size: 0.75rem;">Content</label>
-                        <textarea name="contenu" class="form-control bg-light border-0 p-4" rows="12"><?= htmlspecialchars($publication['contenu']) ?></textarea>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label h6 fw-bold text-uppercase mb-0" style="font-size: 0.75rem;">Content</label>
+                            <button type="button" id="ai-assist-btn" class="btn btn-sm btn-outline-primary rounded-pill">
+                                <i class="bi bi-robot me-1"></i> AI Assist
+                            </button>
+                        </div>
+                        <textarea name="contenu" id="publication-content" class="form-control bg-light border-0 p-4" rows="12"><?= htmlspecialchars($publication['contenu']) ?></textarea>
                     </div>
                     <div class="col-12 d-flex justify-content-end gap-3 mt-4">
                         <a href="/integration/VIEW/Boffice/posts.php" class="btn btn-link text-muted fw-bold text-decoration-none">Cancel</a>
@@ -137,5 +142,45 @@ require_once __DIR__ . "/../header.php";
         </div>
     </div>
 </div>
+
+<script>
+document.getElementById('ai-assist-btn').addEventListener('click', function() {
+    const title = document.querySelector('input[name="titre"]').value;
+    if (!title) {
+        alert('Please enter a title first so the AI knows what to write about!');
+        return;
+    }
+
+    const btn = this;
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Thinking...';
+
+    const formData = new FormData();
+    formData.append('action', 'ai_assist');
+    formData.append('title', title);
+
+    fetch('/integration/CONTROLLER/ai_handler.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.content) {
+            document.getElementById('publication-content').value = data.content;
+        } else if (data.error) {
+            alert(data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('AI Assist failed. Please check your API key or connection.');
+    })
+    .finally(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+    });
+});
+</script>
 
 <?php require_once __DIR__ . "/../footer.php"; ?>

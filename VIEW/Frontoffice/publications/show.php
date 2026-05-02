@@ -77,7 +77,8 @@ if (file_exists($controllerPath)) {
                 <button class="btn btn-sm btn-light rounded-pill px-3 py-2 fw-semibold shadow-sm" onclick="toggleBookmark(this, <?= $publication['id'] ?>)">
                     <i class="bi <?= $isBookmarked ? 'bi-bookmark-fill text-primary' : 'bi-bookmark text-secondary' ?> me-2"></i><?= $isBookmarked ? 'Saved' : 'Save Document' ?>
                 </button>
-                <button class="btn btn-sm btn-light rounded-pill px-4 py-2 fw-semibold shadow-sm" onclick="window.print()"><i class="bi bi-printer me-2 text-primary"></i>Print Document</button>
+
+                <a href="/integration/index1.php?action=download&id=<?= $publication['id'] ?>" class="btn btn-sm btn-primary rounded-pill px-3 py-2 fw-semibold shadow-sm"><i class="bi bi-file-earmark-pdf me-2"></i>Download PDF</a>
             </div>
         </div>
 
