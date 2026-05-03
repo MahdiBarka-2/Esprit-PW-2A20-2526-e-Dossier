@@ -1,0 +1,32 @@
+# Environment variables
+.env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+
+# Uploaded files (if sensitive)
+uploads/*
+!uploads/.gitkeep
+
+# Composer
+/vendor/
+
+# Node modules (if using npm)
+node_modules/
+
+# Backup files
+*.bak
+*.backup
+.git copy/

@@ -1,235 +1,747 @@
-<?php
-require_once '../../CONTROLLER/LanguageController.php';
-require_once '../../CONTROLLER/UserController.php';
+<!DOCTYPE html>
+<html lang="fr">
 
-$totalClients = countUsersByRole('client');
-$recentUsers = findRecentUsers(5);
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Agent Dashboard – Jobs & Réservations</title>
 
-require_once '../../CONTROLLER/demandeC.php';
-$demandeC = new demandeC();
-$totalDossiers = $demandeC->countDemandes();
-$newDemandesCount = $demandeC->countDemandes('en_attente');
+	<!-- Dark mode -->
+	<script>
+		const storedTheme = localStorage.getItem('theme');
+		const getPreferredTheme = () => storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+		const setTheme = (theme) => {
+			document.documentElement.setAttribute('data-bs-theme',
+				theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : theme);
+		};
+		setTheme(getPreferredTheme());
+	</script>
 
-require_once '../../CONTROLLER/EvenementController.php';
-$eventC = new EvenementC();
-$totalEvents = $eventC->listeEvenement()->rowCount();
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com/">
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-require_once '../../CONTROLLER/PublicationC.php';
-$pubC = new PublicationC();
-$totalPosts = $pubC->countPublications(); 
-?>
-<?php
-require_once "header.php";
-?>
-<link rel="stylesheet" type="text/css" href="../../assets/vendor/apexcharts/css/apexcharts.css">
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 
-<!-- Page main content START -->
-<div class="page-content-wrapper p-xxl-4">
-
-	<!-- Title -->
-	<div class="row">
-		<div class="col-12 mb-4 mb-sm-5">
-			<div class="d-sm-flex justify-content-between align-items-center">
-				<h1 class="h3 mb-2 mb-sm-0"><?php echo __('dashboard'); ?></h1>
-			</div>
-		</div>
-	</div>
-
-	<!-- Counter boxes START -->
-	<div class="row g-4 mb-4">
-		<!-- Counter item -->
-		<div class="col-md-6 col-xxl-3">
-			<a href="clients.php"
-				class="card card-body bg-warning bg-opacity-10 border border-warning border-opacity-25 p-4 h-100 text-decoration-none transition-all hover-shadow">
-				<div class="d-flex justify-content-between align-items-center">
-					<div>
-						<h4 class="mb-0"><?php echo number_format($totalClients); ?></h4>
-						<span class="h6 fw-light mb-0 text-body"><?php echo __('total_clients'); ?></span>
-					</div>
-					<div class="icon-lg rounded-circle bg-warning text-white mb-0"><i
-							class="fa-solid fa-users fa-fw"></i></div>
-				</div>
-			</a>
-		</div>
-
-		<!-- Counter item -->
-		<div class="col-md-6 col-xxl-3">
-			<div class="card card-body bg-success bg-opacity-10 border border-success border-opacity-25 p-4 h-100">
-				<div class="d-flex justify-content-between align-items-center">
-					<div>
-						<h4 class="mb-0"><?php echo number_format($totalDossiers); ?></h4>
-						<span class="h6 fw-light mb-0"><?php echo __('total_dossiers'); ?></span>
-					</div>
-					<div class="icon-lg rounded-circle bg-success text-white mb-0"><i
-							class="fa-solid fa-file-invoice fa-fw"></i></div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Counter item -->
-		<div class="col-md-6 col-xxl-3">
-			<div class="card card-body bg-primary bg-opacity-10 border border-primary border-opacity-25 p-4 h-100">
-				<div class="d-flex justify-content-between align-items-center">
-					<div>
-						<h4 class="mb-0">42</h4>
-						<span class="h6 fw-light mb-0">Active Materiels</span>
-					</div>
-					<div class="icon-lg rounded-circle bg-primary text-white mb-0"><i
-							class="fa-solid fa-toolbox fa-fw"></i></div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Counter item (Posts) -->
-		<div class="col-md-6 col-xxl-3">
-			<a href="posts.php" class="card card-body bg-danger bg-opacity-10 border border-danger border-opacity-25 p-4 h-100 text-decoration-none transition-all hover-shadow">
-				<div class="d-flex justify-content-between align-items-center">
-					<div>
-						<h4 class="mb-0"><?php echo number_format($totalPosts); ?></h4>
-						<span class="h6 fw-light mb-0 text-body"><?php echo __('posts'); ?></span>
-					</div>
-					<div class="icon-lg rounded-circle bg-danger text-white mb-0"><i class="fa-solid fa-file-pen fa-fw"></i></div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-md-6 col-xxl-3">
-			<a href="Evenement.php" class="card card-body bg-info bg-opacity-10 border border-info border-opacity-25 p-4 h-100 text-decoration-none transition-all hover-shadow">
-				<div class="d-flex justify-content-between align-items-center">
-					<div>
-						<h4 class="mb-0"><?php echo number_format($totalEvents); ?></h4>
-						<span class="h6 fw-light mb-0 text-body"><?php echo __('Evenements'); ?></span>
-					</div>
-					<div class="icon-lg rounded-circle bg-info text-white mb-0"><i class="fa-solid fa-calendar-days fa-fw"></i></div>
-				</div>
-			</a>
-		</div>
-	</div>
-	<!-- Counter boxes END -->
-
-	<!-- Charts START -->
-	<div class="row g-4 mb-5">
-		<!-- Client Sign-up Chart -->
-		<div class="col-xxl-8">
-			<div class="card shadow h-100">
-				<div class="card-header border-bottom">
-					<h5 class="card-header-title">Client Sign-up Activity</h5>
-				</div>
-				<div class="card-body">
-					<!-- Apex chart -->
-					<div id="ChartGuesttraffic" class="mt-2"></div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Age Distribution Chart -->
-		<div class="col-lg-6 col-xxl-4">
-			<div class="card shadow h-100">
-				<div class="card-header border-bottom">
-					<h5 class="card-header-title">Client Age Distribution</h5>
-				</div>
-				<div class="card-body p-3">
-					<div class="d-flex justify-content-center" id="ChartTrafficRooms"></div>
-					<ul class="list-group list-group-borderless mb-0 mt-3">
-						<li class="list-group-item d-flex justify-content-between">
-							<span class="h6 fw-light mb-0"><i class="text-primary fas fa-circle me-2"></i>
-								18-25 Years</span>
-							<span class="h6 fw-light mb-0">35%</span>
-						</li>
-						<li class="list-group-item d-flex justify-content-between">
-							<span class="h6 fw-light mb-0"><i class="text-info fas fa-circle me-2"></i>
-								26-45 Years</span>
-							<span class="h6 fw-light mb-0">50%</span>
-						</li>
-						<li class="list-group-item d-flex justify-content-between">
-							<span class="h6 fw-light mb-0"><i class="text-warning fas fa-circle me-2"></i>
-								45+ Years</span>
-							<span class="h6 fw-light mb-0">15%</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Charts END -->
-
-	<!-- Recent Activity START -->
-	<div class="row g-4">
-		<div class="col-12">
-			<div class="card shadow h-100">
-				<div class="card-header border-bottom d-flex justify-content-between align-items-center">
-					<h5 class="card-header-title">Recent User Registrations</h5>
-					<a href="clients.php" class="btn btn-link p-0 mb-0">View all</a>
-				</div>
-				<div class="card-body">
-					<div class="table-responsive border-0">
-						<table class="table align-middle p-4 mb-0 table-hover">
-							<thead>
-								<tr>
-									<th scope="col" class="border-0 rounded-start">User</th>
-									<th scope="col" class="border-0">Role</th>
-									<th scope="col" class="border-0">Status</th>
-									<th scope="col" class="border-0">Joined Date</th>
-									<th scope="col" class="border-0 rounded-end text-center">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php while ($user = $recentUsers->fetch(PDO::FETCH_ASSOC)): ?>
-									<tr>
-										<td>
-											<div class="d-flex align-items-center">
-												<div class="avatar avatar-lg me-3" style="width: 55px; height: 55px;">
-													<?php
-													$user_img = (isset($user['profile_image_url']) && !empty($user['profile_image_url']))
-														? $user['profile_image_url']
-														: '../../assets/images/avatar/01.jpg';
-													?>
-													<img src="<?php echo $user_img; ?>" class="rounded-circle shadow-sm"
-														alt="" style="width: 55px; height: 55px; object-fit: cover;">
-												</div>
-												<h6 class="mb-0"><?php echo htmlspecialchars($user['name']); ?></h6>
-											</div>
-										</td>
-										<td><?php echo ucfirst($user['role']); ?></td>
-										<td>
-											<?php
-											$statusClass = $user['status'] === 'active' ? 'bg-success' : 'bg-danger';
-											?>
-											<span
-												class="badge <?php echo $statusClass; ?> bg-opacity-10 <?php echo str_replace('bg-', 'text-', $statusClass); ?>"><?php echo ucfirst($user['status']); ?></span>
-										</td>
-										<td><?php echo date('d/m/Y', strtotime($user['created_at'])); ?></td>
-										<td class="text-center">
-											<a href="<?php echo ($user['role'] === 'client' ? 'client-detail.php' : 'agent-detail.php'); ?>?id=<?php echo $user['id']; ?>"
-												class="btn btn-sm btn-light mb-0">View</a>
-										</td>
-									</tr>
-								<?php endwhile; ?>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Recent Activity END -->
-
-</div>
-
-
-
-<script src="../../assets/vendor/apexcharts/js/apexcharts.min.js"></script>
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-		// Re-initialize charts specifically for this page 
-		// because functions.js in the head runs too early
-		if (typeof e !== 'undefined') {
-			if (document.querySelector("#ChartGuesttraffic")) e.trafficsplineChart();
-			if (document.querySelector("#ChartTrafficRooms")) e.trafficroomChart();
+	<style>
+		:root {
+			--bs-primary: #5143d9;
+			--agent-sidebar-bg: #f8f9fa;
 		}
-	});
-</script>
-<?php include 'footer.php'; ?>
-<?php
-// Re-added chart initialization that was previously removed
-?>
+		[data-bs-theme="dark"] { --agent-sidebar-bg: #1e1e2d; }
+		body { font-family: 'DM Sans', sans-serif; }
+		.header-sticky { position: sticky; top: 0; z-index: 1030; background: var(--bs-body-bg); border-bottom: 1px solid var(--bs-border-color); }
+		.agent-menu-card { border-radius: .75rem; }
+		.dash-tabs .nav-link { color: var(--bs-secondary-color); font-weight: 500; border-radius: .5rem; padding: .45rem .85rem; }
+		.dash-tabs .nav-link.active { background: var(--bs-primary); color: #fff; }
+		.dash-tabs .nav-link i { margin-right: .35rem; }
+		.stat-card { border-radius: .75rem; border: 1px solid var(--bs-border-color); }
+		.stat-icon { width: 52px; height: 52px; border-radius: .6rem; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fff; }
+		.section-label { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--bs-secondary-color); margin-bottom: .6rem; }
+		.req { color: #dc3545; }
+		.pill { display: inline-block; padding: .2rem .65rem; border-radius: 999px; font-size: .75rem; font-weight: 600; }
+		.pill-ok   { background: #d1fae5; color: #065f46; }
+		.pill-warn { background: #fef3c7; color: #92400e; }
+		.pill-ko   { background: #fee2e2; color: #991b1b; }
+		[data-bs-theme="dark"] .pill-ok   { background: #064e3b; color: #6ee7b7; }
+		[data-bs-theme="dark"] .pill-warn { background: #451a03; color: #fcd34d; }
+		[data-bs-theme="dark"] .pill-ko   { background: #450a0a; color: #fca5a5; }
+		.admin-table thead th { font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--bs-secondary-color); }
+		.btn-icon { background: none; border: none; cursor: pointer; font-size: 1rem; padding: .2rem .4rem; border-radius: .35rem; transition: background .15s; }
+		.btn-icon:hover { background: var(--bs-secondary-bg); }
+		.btn-icon.danger  { color: #dc3545; }
+		.btn-icon.warning { color: #f59e0b; }
+		.info-row { display: flex; justify-content: space-between; padding: .5rem 0; border-bottom: 1px solid var(--bs-border-color); font-size: .88rem; }
+		.info-row:last-child { border-bottom: none; }
+		.btn-block { display: block; width: 100%; margin-bottom: .5rem; padding: .55rem; border-radius: .5rem; border: 1px solid var(--bs-border-color); background: var(--bs-body-bg); color: var(--bs-body-color); cursor: pointer; font-size: .88rem; text-align: left; transition: background .15s; }
+		.btn-block:hover { background: var(--bs-secondary-bg); }
+		.hidden { display: none !important; }
+		.tab-section { display: none; }
+		.tab-section.active { display: block; }
+	</style>
+</head>
+
+<body>
+
+  <header class="navbar-light py-3 border-bottom shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://placehold.co/60x60?text=E-Dossier" alt="logo" style="height: 60px;">
+        <span class="ms-2 fw-bold text-primary brand-text" style="font-size: 1.5rem;">E-Dossier</span>
+      </a>
+      <div class="d-flex align-items-center">
+        <nav class="navbar-expand-lg">
+          <ul class="nav">
+            <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="#">Events</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom active" href="../Frontoffice/condidature.html">Condidature</a></li>
+          </ul>
+        </nav>
+        <div class="dropdown ms-3">
+          <button class="btn btn-light btn-sm mb-0 px-2" type="button" data-bs-toggle="dropdown"><i
+              class="bi bi-globe me-1"></i> FR</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">EN</a></li>
+            <li><a class="dropdown-item" href="#">FR</a></li>
+          </ul>
+        </div>
+        <div class="dropdown ms-3">
+          <button class="btn btn-light btn-sm lh-0 mb-0" data-bs-toggle="dropdown"><i
+              class="bi bi-circle-half"></i></button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" data-bs-theme-value="light">Light</button></li>
+            <li><button class="dropdown-item" data-bs-theme-value="dark">Dark</button></li>
+            <li><button class="dropdown-item" data-bs-theme-value="auto">Auto</button></li>
+          </ul>
+        </div>
+        <div class="ms-3">
+          <a href="#" class="btn btn-primary btn-sm rounded-circle d-flex align-items-center justify-content-center"
+            style="width:40px;height:40px;"><i class="bi bi-person fs-5"></i></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+	<!-- ══════════════ AGENT PROFILE CARD ══════════════ -->
+	<section class="pt-4 pb-0">
+		<div class="container">
+			<div class="card agent-menu-card border p-3 pb-2">
+				<div class="d-sm-flex align-items-center mb-2">
+					<div class="avatar mb-2 mb-sm-0 me-sm-3">
+						<img src="images/avatar/01.jpg" class="rounded-circle avatar-img" width="56" height="56" alt="">
+					</div>
+					<h5 class="mb-2 mb-sm-0"><span class="fw-light">Bonjour,</span> Jacqueline Miller</h5>
+					<a href="#" class="btn btn-sm btn-primary-soft mb-0 ms-auto" onclick="showTab('ajouter-job'); return false;">
+						<i class="bi bi-plus-lg me-1"></i>Nouveau job
+					</a>
+				</div>
+
+				<!-- Dashboard nav tabs -->
+				<nav class="dash-tabs">
+					<ul class="nav flex-wrap gap-1">
+						<li class="nav-item"><a class="nav-link active" href="#" onclick="showTab('dashboard'); return false;"><i class="bi bi-house-door"></i>Dashboard</a></li>
+						<li class="nav-item"><a class="nav-link" href="#" onclick="showTab('jobs'); return false;"><i class="bi bi-briefcase"></i>Jobs</a></li>
+						<li class="nav-item"><a class="nav-link" href="#" onclick="showTab('candidatures'); return false;"><i class="bi bi-people"></i>Candidatures</a></li>
+						<li class="nav-item"><a class="nav-link" href="#" onclick="showTab('ajouter-job'); return false;"><i class="bi bi-plus-circle"></i>Ajouter un job</a></li>
+						<li class="nav-item"><a class="nav-link" href="#" onclick="showTab('settings'); return false;"><i class="bi bi-gear"></i>Paramètres</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════════ MAIN ══════════════ -->
+	<main class="py-4">
+		<div class="container">
+			<div class="row g-4">
+
+				<!-- ── LEFT / MAIN CONTENT ── -->
+				<div class="col-lg-8 col-xl-9">
+
+					<!-- ════ TAB: DASHBOARD ════ -->
+					<div id="tab-dashboard" class="tab-section active">
+						<h4 class="mb-3"><i class="bi bi-house-door me-2"></i>Dashboard</h4>
+						<div class="row g-3 mb-4">
+							<div class="col-6 col-xl-3">
+								<div class="card stat-card p-3 h-100">
+									<div class="d-flex align-items-center gap-3">
+										<div class="stat-icon bg-success"><i class="bi bi-journals"></i></div>
+										<div><h5 class="mb-0" id="stat-jobs-dash">3</h5><small class="text-muted">Jobs publiés</small></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-xl-3">
+								<div class="card stat-card p-3 h-100">
+									<div class="d-flex align-items-center gap-3">
+										<div class="stat-icon bg-info"><i class="bi bi-graph-up-arrow"></i></div>
+										<div><h5 class="mb-0">$2,553</h5><small class="text-muted">Revenus</small></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-xl-3">
+								<div class="card stat-card p-3 h-100">
+									<div class="d-flex align-items-center gap-3">
+										<div class="stat-icon bg-warning"><i class="bi bi-people"></i></div>
+										<div><h5 class="mb-0" id="stat-cands-dash">5</h5><small class="text-muted">Candidatures</small></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-xl-3">
+								<div class="card stat-card p-3 h-100">
+									<div class="d-flex align-items-center gap-3">
+										<div class="stat-icon bg-primary"><i class="bi bi-star"></i></div>
+										<div><h5 class="mb-0">12K</h5><small class="text-muted">Avis</small></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card border rounded-3">
+							<div class="card-header border-bottom d-flex justify-content-between align-items-center">
+								<h6 class="mb-0">Dernières candidatures reçues</h6>
+								<a href="#" class="btn btn-sm btn-primary" onclick="showTab('candidatures'); return false;">Voir tout</a>
+							</div>
+							<div class="card-body p-0">
+								<div class="table-responsive">
+								<table class="table table-hover align-middle mb-0 admin-table">
+									<thead class="table-light">
+									<tr><th>Réf</th><th>Nom</th><th>Poste</th><th>Date</th><th>Statut</th></tr>
+									</thead>
+									<tbody id="recent-cands-tbody">
+									<tr><td colspan="5" class="text-center text-muted py-3">Chargement…</td></tr>
+									</tbody>
+								</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- ════ TAB: RESERVATIONS ════ -->
+					<div id="tab-reservations" class="tab-section">
+						<h4 class="mb-3"><i class="bi bi-bookmark-heart me-2"></i>Mes Réservations</h4>
+						<div class="card border">
+							<div class="card-body p-0">
+								<div class="table-responsive">
+									<table class="table table-hover align-middle mb-0 admin-table">
+										<thead class="table-light">
+											<tr><th>#</th><th>Chambre</th><th>Type</th><th>Dates</th><th>Statut</th><th>Paiement</th><th>Action</th></tr>
+										</thead>
+										<tbody>
+											<tr><td>01</td><td>Deluxe Pool View</td><td>Avec petit-déj</td><td>22–25 Nov</td><td><span class="badge text-bg-success">Réservé</span></td><td><span class="badge bg-success bg-opacity-10 text-success">Complet</span></td><td><a href="#" class="btn btn-sm btn-light">Voir</a></td></tr>
+											<tr><td>02</td><td>Luxury Balcony Room</td><td>Annulation gratuite</td><td>24–28 Nov</td><td><span class="badge text-bg-info">Réservé</span></td><td><span class="badge bg-warning bg-opacity-10 text-warning">Sur place</span></td><td><a href="#" class="btn btn-sm btn-light">Voir</a></td></tr>
+											<tr><td>03</td><td>Twin Bed Deluxe</td><td>Petit-déj + déjeuner</td><td>28–30 Nov</td><td><span class="badge text-bg-warning">En attente</span></td><td><span class="badge bg-info bg-opacity-10 text-info">Acompte</span></td><td><a href="#" class="btn btn-sm btn-light">Voir</a></td></tr>
+											<tr><td>04</td><td>Suite Présidentielle</td><td>Tout inclus</td><td>01–05 Dec</td><td><span class="badge text-bg-success">Réservé</span></td><td><span class="badge bg-success bg-opacity-10 text-success">Complet</span></td><td><a href="#" class="btn btn-sm btn-light">Voir</a></td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- ════ TAB: JOBS LIST ════ -->
+					<div id="tab-jobs" class="tab-section">
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<h4 class="mb-0"><i class="bi bi-briefcase me-2"></i>Liste des jobs</h4>
+							<button class="btn btn-sm btn-primary" onclick="showTab('ajouter-job')"><i class="bi bi-plus-lg me-1"></i>Ajouter</button>
+						</div>
+						<div class="card border">
+							<div class="card-body">
+								<div class="mb-3 d-flex gap-2">
+									<input type="text" class="form-control" placeholder="Rechercher un job…" id="job-search-input" oninput="filterTable('jobs-table','job-search-input')">
+									<button class="btn btn-outline-secondary btn-sm" onclick="exportToCSV('jobs-table','jobs.csv')"><i class="bi bi-download me-1"></i>Export</button>
+								</div>
+								<div class="table-responsive">
+									<table class="table table-hover align-middle admin-table" id="jobs-table">
+										<thead class="table-light">
+											<tr><th>Réf</th><th>Titre</th><th>Contrat</th><th>Lieu</th><th>Statut</th><th>Deadline</th><th>Actions</th></tr>
+										</thead>
+										<tbody id="jobs-tbody"></tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- ════ TAB: CANDIDATURES ════ -->
+					<div id="tab-candidatures" class="tab-section">
+						<h4 class="mb-3"><i class="bi bi-people me-2"></i>Candidatures reçues</h4>
+						<div class="card border">
+							<div class="card-body">
+								<div class="mb-3 d-flex gap-2">
+									<input type="text" class="form-control" placeholder="Filtrer par job, nom, statut…" id="cand-search-input" oninput="filterTable('cands-table','cand-search-input')">
+									<button class="btn btn-outline-secondary btn-sm" onclick="exportToCSV('cands-table','candidatures.csv')"><i class="bi bi-download me-1"></i>Export</button>
+								</div>
+								<div class="table-responsive">
+									<table class="table table-hover align-middle admin-table" id="cands-table">
+										<thead class="table-light">
+											<tr><th>Réf</th><th>Nom</th><th>Message</th><th>Job</th><th>Date</th><th>Statut</th><th>Actions</th></tr>
+										</thead>
+										<!-- ✅ PHP ICI — dans le bon tbody -->
+										<tbody>
+											<?php
+												require_once(__DIR__ . "/../../Controller/Candidature.php");
+												$candidature = new CandidatureC();
+												$candidatures = $candidature->getAll();
+												if (empty($candidatures)) {
+													echo '<tr><td colspan="6" class="text-center text-muted py-3">Aucune candidature trouvée.</td></tr>';
+												} else {
+													foreach ($candidatures as $c) {
+														echo '<tr data-cand-id="' . htmlspecialchars($c['id']) . '">
+														
+															<td>' . htmlspecialchars($c['reference']) . '</td>
+															<td>' . htmlspecialchars($c['nom']) . '</td>
+<td>
+  <div style="max-width:200px;font-size:.82rem">' . htmlspecialchars($c['message'] ?? '—') . '</div>
+  <button class="btn btn-xs btn-outline-primary mt-1" style="font-size:.72rem;padding:2px 7px"
+    onclick="translateMsg(this, \'' . addslashes(htmlspecialchars($c['message'] ?? '')) . '\')">
+    <i class="bi bi-translate me-1"></i>Traduire
+  </button>
+  <div class="translate-result text-muted mt-1" style="font-size:.78rem;display:none"></div>
+</td>
+															<td>' . htmlspecialchars($c['titre'] ? $c['titre'] : 'N/A') . '</td>
+															<td>' . htmlspecialchars($c['date_candidature']) . '</td>
+															<td><span class="pill pill-warn">En attente</span></td>
+															<td>
+																<button class="btn-icon text-success" title="Approuver" onclick="setStatus(this,\'pill-ok\',\'Approuvé\')">✓</button>
+																<button class="btn-icon warning" title="Refuser" onclick="setStatus(this,\'pill-ko\',\'Refusé\')">✗</button>
+																<form action="../../VIEW/Frontoffice/SupprimerCondidature.php" method="post" style="display:inline">
+																	<input type="hidden" name="id" value="' . htmlspecialchars($c['id']) . '" />
+																	<button type="submit" class="btn-icon danger" title="Supprimer">🗑</button>
+																</form>
+															</td>
+														</tr>';
+													}
+												}
+											?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- ════ TAB: AJOUTER / MODIFIER JOB ════ -->
+					<div id="tab-ajouter-job" class="tab-section">
+						<h4 class="mb-3"><i class="bi bi-plus-circle me-2"></i><span id="job-form-title">Ajouter un job</span></h4>
+						<div class="card border">
+							<div class="card-body">
+								<div class="mb-4">
+									<div class="section-label">Informations du job</div>
+									<div class="row g-3">
+										<div class="col-md-6">
+											<label class="form-label">Titre du job <span class="req">*</span></label>
+											<input type="text" class="form-control" id="job-titre" placeholder="ex. Développeur Full Stack">
+										</div>
+										<div class="col-md-6">
+											<label class="form-label">Référence</label>
+											<input type="text" class="form-control" id="job-ref" placeholder="ex. JOB-2025-001">
+										</div>
+										<div class="col-md-6">
+											<label class="form-label">Type de contrat</label>
+											<select class="form-select" id="job-contrat">
+												<option value="">— Sélectionner —</option>
+												<option>CDI</option><option>CDD</option><option>Stage</option><option>Freelance</option>
+											</select>
+										</div>
+										<div class="col-md-6">
+											<label class="form-label">Lieu</label>
+											<input type="text" class="form-control" id="job-lieu" placeholder="ex. Tunis">
+										</div>
+										<div class="col-12">
+											<label class="form-label">Description <span class="req">*</span></label>
+											<textarea class="form-control" id="job-description" rows="4" placeholder="Missions, responsabilités, profil recherché…"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="mb-4">
+									<div class="section-label">Paramètres de publication</div>
+									<div class="row g-3">
+										<div class="col-md-6">
+											<label class="form-label">Statut</label>
+											<select class="form-select" id="job-statut">
+												<option value="brouillon">Brouillon</option>
+												<option value="publie">Publié</option>
+												<option value="ferme">Fermé</option>
+											</select>
+										</div>
+										<div class="col-md-6">
+											<label class="form-label">Date limite de candidature</label>
+											<input type="date" class="form-control" id="job-deadline">
+										</div>
+									</div>
+								</div>
+								<div class="d-flex gap-2 flex-wrap">
+									<button class="btn btn-primary" id="job-save-btn" onclick="saveJob()"><i class="bi bi-save me-1"></i>Enregistrer</button>
+									<button class="btn btn-outline-secondary hidden" id="job-update-btn" onclick="saveJob()">Mettre à jour</button>
+<button class="btn btn-light hidden" id="job-cancel-edit-btn" onclick="resetJobForm()">Annuler</button>								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- ════ TAB: EARNINGS ════ -->
+					<div id="tab-earnings" class="tab-section">
+						<h4 class="mb-3"><i class="bi bi-graph-up-arrow me-2"></i>Revenus</h4>
+						<div class="card border p-4 text-center text-muted">
+							<i class="bi bi-graph-up-arrow fs-1 mb-2"></i>
+							<p>Les graphiques de revenus s'afficheraient ici (ApexCharts).</p>
+						</div>
+					</div>
+
+					<!-- ════ TAB: SETTINGS ════ -->
+					<div id="tab-settings" class="tab-section">
+						<h4 class="mb-3"><i class="bi bi-gear me-2"></i>Paramètres</h4>
+						<div class="card border p-4 text-center text-muted">
+							<i class="bi bi-gear fs-1 mb-2"></i>
+							<p>Les options de configuration apparaîtront ici.</p>
+						</div>
+					</div>
+
+				</div><!-- /col main -->
+
+				<!-- ── SIDEBAR ── -->
+				<div class="col-lg-4 col-xl-3">
+
+					<!-- Quick stats -->
+					<div class="card border mb-3">
+						<div class="card-header border-bottom py-2">
+							<strong class="small">Statistiques rapides</strong>
+						</div>
+						<div class="card-body py-2 px-3">
+							<div class="info-row"><span>Jobs publiés</span><strong id="side-jobs">3</strong></div>
+							<div class="info-row"><span>Candidatures en attente</span><strong id="side-cands-wait">2</strong></div>
+							<div class="info-row"><span>Candidatures approuvées</span><strong id="side-cands-ok">1</strong></div>
+							<div class="info-row"><span>Candidatures refusées</span><strong id="side-cands-ko">0</strong></div>
+						</div>
+					</div>
+
+					<!-- Quick actions -->
+					<div class="card border">
+						<div class="card-header border-bottom py-2">
+							<strong class="small">Actions rapides</strong>
+						</div>
+						<!-- ✅ SIDEBAR : boutons uniquement, pas de PHP ici -->
+						<div class="card-body py-2 px-3">
+							<button class="btn-block" onclick="showTab('ajouter-job')"><i class="bi bi-plus-lg me-2"></i>Nouveau job</button>
+							<button class="btn-block" onclick="showTab('jobs')"><i class="bi bi-briefcase me-2"></i>Gérer les jobs</button>
+							<button class="btn-block" onclick="showTab('candidatures')"><i class="bi bi-people me-2"></i>Gérer les candidatures</button>
+							<button class="btn-block" onclick="showTab('reservations')"><i class="bi bi-bookmark-heart me-2"></i>Voir les réservations</button>
+						</div>
+					</div>
+
+				</div><!-- /sidebar -->
+
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</main>
+
+	<!-- ══════════════ FOOTER ══════════════ -->
+	<footer class="bg-dark py-3 mt-4">
+		<div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+			<span class="text-white fw-semibold"><i class="bi bi-briefcase-fill me-1"></i>BackOffice – Jobs & Réservations</span>
+			<span class="text-secondary small">© 2025 — Module d'administration</span>
+			<div class="d-flex gap-3">
+				<a href="#" class="text-secondary small">Confidentialité</a>
+				<a href="#" class="text-secondary small">Conditions</a>
+				<a href="#" class="text-secondary small">Support</a>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script>
+		/* ── TAB SWITCHING ── */
+		function showTab(name) {
+			document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+			document.querySelectorAll('.dash-tabs .nav-link').forEach(l => l.classList.remove('active'));
+			const section = document.getElementById('tab-' + name);
+			if (section) section.classList.add('active');
+			const link = [...document.querySelectorAll('.dash-tabs .nav-link')]
+				.find(l => l.getAttribute('onclick')?.includes("'" + name + "'"));
+			if (link) link.classList.add('active');
+			return false;
+		}
+
+		/* ── TABLE FILTER ── */
+		function filterTable(tableId, inputId) {
+			const q = document.getElementById(inputId).value.toLowerCase();
+			document.querySelectorAll('#' + tableId + ' tbody tr').forEach(row => {
+				row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+			});
+		}
+
+		/* ── CANDIDATURE STATUS ── */
+		function setStatus(btn, pillClass, label) {
+			const pill = btn.closest('tr').querySelector('.pill');
+			pill.className = 'pill ' + pillClass;
+			pill.textContent = label;
+			updateSideStats();
+		}
+
+		/* ── DELETE ROW ── */
+		function deleteRow(btn) {
+			if (confirm('Supprimer cet élément ?')) {
+				btn.closest('tr').remove();
+				updateSideStats();
+			}
+		}
+
+		/* ── UPDATE SIDEBAR STATS ── */
+		function updateSideStats() {
+			const rows = document.querySelectorAll('#cands-table tbody tr');
+			let wait = 0, ok = 0, ko = 0;
+			rows.forEach(r => {
+				const pill = r.querySelector('.pill');
+				if (!pill) return;
+				if (pill.classList.contains('pill-warn')) wait++;
+				if (pill.classList.contains('pill-ok'))   ok++;
+				if (pill.classList.contains('pill-ko'))   ko++;
+			});
+			document.getElementById('side-cands-wait').textContent = wait;
+			document.getElementById('side-cands-ok').textContent   = ok;
+			document.getElementById('side-cands-ko').textContent   = ko;
+			document.getElementById('stat-cands-dash').textContent = rows.length;
+		}
+
+		/* ── SAVE JOB ── */
+		let editingJobId = null;
+
+		function saveJob() {
+			const titre = document.getElementById('job-titre').value.trim();
+			const description = document.getElementById('job-description').value.trim();
+			if (!titre || !description) {
+				alert('Veuillez remplir les champs obligatoires.');
+				return;
+			}
+
+			const fd = new FormData();
+			fd.append('titre', titre);
+			fd.append('reference', document.getElementById('job-ref').value.trim());
+			fd.append('lieu', document.getElementById('job-lieu').value.trim());
+			fd.append('type', document.getElementById('job-contrat').value);
+			fd.append('description', description);
+			fd.append('date_limite', document.getElementById('job-deadline').value);
+			fd.append('statut', document.getElementById('job-statut').value);
+
+			if (editingJobId) {
+				fd.append('action', 'modifier');
+				fd.append('id', editingJobId);
+			} else {
+				fd.append('action', 'ajouter');
+			}
+
+			fetch('../../Controller/Job.php', { method: 'POST', body: fd })
+			.then(r => r.text())
+			.then(text => {
+				editingJobId = null;
+				resetJobForm();
+				loadJobs();
+				loadStats();
+
+				// Popup
+				const modal = document.createElement('div');
+				modal.innerHTML = `
+				<div class="modal fade" id="job-modal" tabindex="-1">
+					<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header border-0 pb-0">
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+						</div>
+						<div class="modal-body text-center py-4">
+						<div style="width:60px;height:60px;background:#d1fae5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+							<i class="bi bi-check-lg text-success fs-3"></i>
+						</div>
+						<h5 class="mb-2">Job enregistré !</h5>
+						<p class="text-muted mb-0">${text}</p>
+						</div>
+						<div class="modal-footer border-0 pt-0 justify-content-center">
+						<button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="showTab('jobs')">Voir les jobs</button>
+						</div>
+					</div>
+					</div>
+				</div>`;
+				document.body.appendChild(modal);
+				const bsModal = new bootstrap.Modal(document.getElementById('job-modal'));
+				bsModal.show();
+				document.getElementById('job-modal').addEventListener('hidden.bs.modal', () => modal.remove());
+			})
+			.catch(() => alert('Erreur de connexion au serveur.'));
+			loadStats();
+		
+		}
+
+		function resetJobForm() {
+			document.getElementById('job-titre').value = '';
+			document.getElementById('job-ref').value = '';
+			document.getElementById('job-contrat').value = '';
+			document.getElementById('job-lieu').value = '';
+			document.getElementById('job-description').value = '';
+			document.getElementById('job-statut').value = 'brouillon';
+			document.getElementById('job-deadline').value = '';
+			document.getElementById('job-form-title').textContent = 'Ajouter un job';
+			document.getElementById('job-save-btn').classList.remove('hidden');
+			document.getElementById('job-update-btn').classList.add('hidden');
+			document.getElementById('job-cancel-edit-btn').classList.add('hidden');
+			editingJobId = null;
+		}
+
+		function editJob(id, job) {
+			editingJobId = id;
+			document.getElementById('job-titre').value = job.titre ?? '';
+			document.getElementById('job-ref').value = job.reference ?? '';
+			document.getElementById('job-contrat').value = job.type ?? '';
+			document.getElementById('job-lieu').value = job.lieu ?? '';
+			document.getElementById('job-description').value = job.description ?? '';
+			document.getElementById('job-deadline').value = job.date_limite ?? '';
+			document.getElementById('job-statut').value = job.statut ?? 'brouillon';
+			document.getElementById('job-form-title').textContent = 'Modifier le job';
+			document.getElementById('job-save-btn').classList.add('hidden');
+			document.getElementById('job-update-btn').classList.remove('hidden');
+			document.getElementById('job-cancel-edit-btn').classList.remove('hidden');
+			showTab('ajouter-job');
+		}
+		
+		function loadStats() {
+			const fd = new FormData();
+			fd.append('action', 'getAll');
+			fetch('../../Controller/Job.php', { method: 'POST', body: fd })
+				.then(r => r.json())
+				.then(jobs => {
+					const publie = jobs.filter(j => j.statut === 'publie').length;
+					document.getElementById('stat-jobs-dash').textContent = publie;
+					document.getElementById('side-jobs').textContent = publie;
+				});
+		}
+		function loadJobs() {
+			const fd = new FormData();
+			fd.append('action', 'getAll');
+
+			fetch('../../Controller/Job.php', { method: 'POST', body: fd })
+				.then(r => r.json())
+				.then(jobs => {
+				const tbody = document.getElementById('jobs-tbody');
+				if (!jobs.length) {
+					tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">Aucun job trouvé.</td></tr>';
+					return;
+				}
+				tbody.innerHTML = jobs.map(job => `
+					<tr>
+					<td>${job.reference ?? '—'}</td>
+					<td>${job.titre}</td>
+					<td>${job.type ?? '—'}</td>
+					<td>${job.lieu ?? '—'}</td>
+					<td><span class="pill ${job.statut === 'publie' ? 'pill-ok' : job.statut === 'ferme' ? 'pill-ko' : 'pill-warn'}">${job.statut ?? '—'}</span></td>
+					<td>${job.date_limite ?? '—'}</td>
+					<td>
+						<button class="btn-icon" title="Modifier" onclick="editJob(${job.id}, ${JSON.stringify(job).replace(/"/g, '&quot;')})">✎</button>
+						<button class="btn-icon danger" title="Supprimer" onclick="deleteJob(${job.id}, this)">🗑</button>
+					</td>
+					</tr>
+				`).join('');
+				})
+				.catch(() => alert('Erreur de chargement des jobs.'));
+		}
+
+		function deleteJob(id, btn) {
+			if (!confirm('Supprimer ce job ?')) return;
+			const fd = new FormData();
+			fd.append('action', 'supprimer');
+			fd.append('id', id);
+			fetch('../../Controller/Job.php', { method: 'POST', body: fd })
+				.then(r => r.text())
+			.then(() => btn.closest('tr').remove())
+			.catch(() => alert('Erreur de suppression.'));
+			loadStats();
+		}
+
+		// call on page load
+		loadJobs();
+		loadStats();
+		loadRecentCandidatures();
+
+
+		/* ── EXPORT CSV ── */
+		function exportToCSV(tableId, filename) {
+			const rows = [...document.querySelectorAll('#' + tableId + ' tr')];
+			const csv  = rows.map(r => [...r.querySelectorAll('th,td')]
+				.slice(0, -1).map(c => '"' + c.textContent.trim().replace(/"/g,'""') + '"').join(',')).join('\n');
+			const a = document.createElement('a');
+			a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+			a.download = filename;
+			a.click();
+		}
+
+		/* init */
+		updateSideStats();
+		loadRecentCandidatures();
+
+		async function translateMsg(btn, text) {
+			if (!text || text === '—') { alert('Aucun message à traduire.'); return; }
+
+			const resultDiv = btn.nextElementSibling;
+			btn.disabled = true;
+			btn.innerHTML = '<div class="spinner-border spinner-border-sm"></div>';
+
+			const prompt = `Détecte la langue de ce texte et traduis-le en français. 
+			Réponds UNIQUEMENT avec ce format JSON :
+			{"langue": "nom de la langue détectée", "traduction": "texte traduit en français"}
+
+			Texte : "${text}"`;
+
+			try {
+				// IMPORTANT: Replace with your own API key or use environment variable
+				const apiKey = 'YOUR_GROQ_API_KEY_HERE'; // TODO: Move to server-side configuration
+				
+				const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${apiKey}`
+				},
+				body: JSON.stringify({
+					model: 'llama-3.3-70b-versatile',
+					messages: [{ role: 'user', content: prompt }],
+					temperature: 0.1,
+					max_tokens: 300
+				})
+				});
+
+				const data    = await res.json();
+				let content   = data.choices?.[0]?.message?.content?.trim() || '';
+
+				// Nettoyer markdown
+				content = content.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '');
+				const result  = JSON.parse(content);
+
+				resultDiv.innerHTML = `
+				<span class="badge bg-secondary bg-opacity-10 text-secondary me-1">${result.langue}</span>
+				${result.traduction}
+				`;
+				resultDiv.style.display = 'block';
+				btn.innerHTML = '<i class="bi bi-translate me-1"></i>Retraduit';
+
+			} catch (err) {
+				resultDiv.textContent = 'Erreur traduction.';
+				resultDiv.style.display = 'block';
+				btn.innerHTML = '<i class="bi bi-translate me-1"></i>Traduire';
+			} finally {
+				btn.disabled = false;
+			}
+		}
+		function loadRecentCandidatures() {
+			const fd = new FormData();
+			fd.append('action', 'getAll');
+			fetch('../../Controller/Candidature.php', { method: 'POST', body: fd })
+				.then(r => r.json())
+				.then(cands => {
+				const tbody = document.getElementById('recent-cands-tbody');
+				if (!cands.length) {
+					tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted">Aucune candidature.</td></tr>';
+					return;
+				}
+				// Prendre les 5 dernières
+				const recent = cands.slice(0, 5);
+				tbody.innerHTML = recent.map(c => `
+					<tr>
+					<td><code>${c.reference ?? '—'}</code></td>
+					<td>${c.nom ?? '—'}</td>
+					<td>${c.titre ?? '—'}</td>
+					<td>${c.date_candidature ?? '—'}</td>
+					<td><span class="pill pill-warn">En attente</span></td>
+					</tr>
+				`).join('');
+				})
+				.catch(() => {
+				document.getElementById('recent-cands-tbody').innerHTML =
+					'<tr><td colspan="5" class="text-center text-danger">Erreur de chargement.</td></tr>';
+				});
+		}
+	</script>
+</body>
+</html>
