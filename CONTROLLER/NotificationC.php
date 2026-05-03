@@ -38,8 +38,7 @@ class NotificationC {
 
         // mail($to, $subject, $message, $headers); 
         
-        // Log the notification for verification
-        file_put_contents(__DIR__ . '/../notification_log.txt', "[" . date('Y-m-d H:i:s') . "] Email sent to $to for '$title'\n", FILE_APPEND);
+        // mail($to, $subject, $message, $headers); 
         
         return true;
     }

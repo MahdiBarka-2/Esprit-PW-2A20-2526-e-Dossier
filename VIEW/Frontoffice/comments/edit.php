@@ -7,7 +7,7 @@ $commentCtrl = new CommentC();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id             = $_POST['id'] ?? '';
     $contenu        = trim($_POST['contenu'] ?? '');
-    $auteur         = trim($_POST['auteur'] ?? '');
+    $auteur         = trim($_POST['utilisateur'] ?? '');
     $publication_id = $_POST['publication_id'] ?? '';
 
     $errors = [];

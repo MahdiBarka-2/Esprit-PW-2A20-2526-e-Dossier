@@ -3,17 +3,20 @@
  * AIService - Handles communication with the Google Gemini API.
  */
 class AIService {
-    private $apiKey = "AIzaSyBJc_-O_wlb36Eh4H9IcBzz9wGGG-rhDAc"; 
+    private $apiKey = "AIzaSyCXkNevoV6auThGDIaj04kcZwCBbHgHc2E"; 
     private $apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
     public function generateContent($prompt) {
         $models = [
             "gemini-2.5-flash",
-            "gemini-2.0-flash"
+            "gemini-2.0-flash",
+            "gemini-2.5-flash-lite"
         ];
 
+        $lastError = "No response from AI models.";
+
         foreach ($models as $model) {
-            $url = "https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent?key=" . $this->apiKey;
+            $url = "https://generativelanguage.googleapis.com/v1/models/$model:generateContent?key=" . $this->apiKey;
             
             $data = [
                 "contents" => [["parts" => [["text" => $prompt]]]]
@@ -28,19 +31,34 @@ class AIService {
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
             $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             $err = curl_errno($ch);
             curl_close($ch);
 
-            if ($err) continue;
+            if ($err) {
+                $lastError = "Connection Error: " . curl_error($ch);
+                continue;
+            }
 
             $result = json_decode($response, true);
             
-            if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
+            if ($httpCode === 200 && isset($result['candidates'][0]['content']['parts'][0]['text'])) {
                 return $result['candidates'][0]['content']['parts'][0]['text'];
+            }
+
+            if (isset($result['error']['message'])) {
+                $lastError = $result['error']['message'];
+                if (stripos($lastError, 'leaked') !== false) {
+                    $lastError = "CRITICAL: YOUR API KEY IS LEAKED AND BANNED. You must create a new one at https://aistudio.google.com/app/apikey and paste it here.";
+                }
+                // If it's a security/auth error, don't keep trying other models
+                if ($httpCode === 403 || $httpCode === 401) break;
+            } else {
+                $lastError = "HTTP $httpCode - " . (string)$response;
             }
         }
 
-        return json_encode(['error' => "AI Error: All available models reached their limit. Please try again in a few minutes."]);
+        return json_encode(['error' => "AI Error: $lastError"]);
     }
 
     /**
@@ -50,8 +68,11 @@ class AIService {
      * Specifically for generating a summary and content based on a title.
      */
     public function assistPublication($title) {
-        $prompt = "Write a professional and engaging blog post content based on this title: '$title'. 
-                   Also, provide a short 2-sentence summary. 
+        $prompt = "Write a professional blog post content based on this title: '$title'. 
+                   Use SIMPLE WORDS that anyone can understand. 
+                   Do NOT use any HTML tags (like <h2>, <p>, <ul>, etc.). 
+                   Use plain text only.
+                   Provide a short 2-sentence summary at the end. 
                    Format the output as JSON with keys 'content' and 'summary'.";
         return $this->generateContent($prompt);
     }
@@ -92,13 +113,14 @@ class AIService {
                    COMMENTS:
                    $commentsText
                    
-                   Write a clear, medium-length report. Use SIMPLE WORDS but make it very useful.
+                   Write a clear, medium-length report. Use VERY SIMPLE WORDS.
+                   Do NOT use any HTML tags. Use plain text and icons only.
                    Use real details from the comments to provide specific information.
                    
                    Use these icons and headers:
-                   🎯 HOW PEOPLE FEEL: (2-3 simple but clear sentences explaining the public mood)
-                   ⚠️ MAIN CONCERNS: (Exactly 3 simple bullet points identifying the biggest issues)
-                   💡 WHAT TO DO NOW: (Exactly 3 simple, useful steps the administration should take)
+                   🎯 PUBLIC FEELING: (2-3 simple sentences)
+                   ⚠️ MAIN CONCERNS: (Exactly 3 simple bullet points)
+                   💡 STEPS TO TAKE: (Exactly 3 simple, useful steps)
                    
                    Keep it easy to read, direct, and useful.";
                    

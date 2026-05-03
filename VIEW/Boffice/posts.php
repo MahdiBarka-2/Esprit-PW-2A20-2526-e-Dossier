@@ -46,6 +46,9 @@ switch ($action) {
     case 'strategicInsight':
         $ctrl->strategicInsightAction();
         break;
+    case 'exportPDF':
+        $ctrl->downloadAction();
+        break;
     default:
         $ctrl->index();
         break;

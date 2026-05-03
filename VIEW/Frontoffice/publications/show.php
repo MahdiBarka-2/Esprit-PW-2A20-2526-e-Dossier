@@ -311,6 +311,24 @@ if (file_exists($controllerPath)) {
                                         <h6 class="mb-1 fw-bold fs-5"><?= htmlspecialchars($c['utilisateur'] ?? 'Citizen') ?></h6>
                                         <span class="text-muted small"><i class="bi bi-clock me-1"></i><?= date('M j, Y \a\t g:i A', strtotime($c['date'])) ?></span>
                                     </div>
+                                    <!-- 3 dots menu -->
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-link text-muted dropdown-toggle no-caret px-0" type="button" data-bs-toggle="dropdown">
+                                            <i class="bi bi-three-dots-vertical fs-5"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-2" style="min-width: 150px;">
+                                            <li>
+                                                <a class="dropdown-item rounded-3 py-2" href="/integration/VIEW/index1.php?action=editComment&id=<?= $c['id'] ?>">
+                                                    <i class="bi bi-pencil-square me-2 text-primary"></i>Edit Comment
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item rounded-3 py-2 text-danger" href="javascript:void(0)" onclick="confirmDeleteFront(<?= $c['id'] ?>, <?= $publication['id'] ?>)">
+                                                    <i class="bi bi-trash3 me-2"></i>Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="p-3 rounded-3 mt-2" style="background: rgba(var(--bs-body-color-rgb), 0.05);">
                                     <p class="mb-0" style="line-height: 1.6; color: var(--bs-body-color);"><?= nl2br(htmlspecialchars($c['contenu'])) ?></p>

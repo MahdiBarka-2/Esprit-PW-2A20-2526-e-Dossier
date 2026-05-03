@@ -1,6 +1,9 @@
 <?php 
 if (session_status() === PHP_SESSION_NONE) session_start();
 require_once '../../CONTROLLER/LanguageController.php'; 
+require_once '../../CONTROLLER/EvenementController.php';
+$eventCtrl = new EvenementC();
+$locs = array_unique(array_column($eventCtrl->findAll(), 'lieu'));
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>" <?php echo ($lang === 'ar' ? 'dir="rtl"' : ''); ?>>
@@ -283,7 +286,6 @@ require_once '../../CONTROLLER/LanguageController.php';
                     </div>
                 </div>
                 <!-- Search Bar END -->
-<
                 <!-- Booking Form START -->
                 <div class="row mt-4 justify-content-center">
                     <div class="col-xl-10 position-relative">

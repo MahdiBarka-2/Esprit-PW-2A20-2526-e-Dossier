@@ -31,6 +31,7 @@ class PublicationC
 
     // DB: ADD
     public function addPublication($titre, $contenu, $auteur, $date, $categorie, $document = null) {
+        if (empty(trim($categorie))) $categorie = 'General';
         $sql = "INSERT INTO publication (titre, contenu, auteur, date, categorie, document) VALUES (:titre, :contenu, :auteur, :date, :categorie, :document)";
         $db = $this->db;
         try {
@@ -49,6 +50,7 @@ class PublicationC
     // DB: UPDATE
     public function updatePublication($id, $titre, $contenu, $auteur, $date, $categorie, $document = null)
     {
+        if (empty(trim($categorie))) $categorie = 'General';
         $sql = "UPDATE publication SET titre=:titre, contenu=:contenu, auteur=:auteur, date=:date, categorie=:categorie, document=:document WHERE id=:id";
         $db = $this->db;
         try {
@@ -255,9 +257,9 @@ class PublicationC
         }
         $result = $ai->assistPublication($title);
         
-        // Clean markdown blocks
+        // Clean markdown blocks and strip any remaining HTML tags
         $cleanResult = preg_replace('/```json\n|\n```|```/', '', $result);
-        $cleanResult = trim($cleanResult);
+        $cleanResult = strip_tags(trim($cleanResult));
 
         // Force JSON format for the browser
         header('Content-Type: application/json');
