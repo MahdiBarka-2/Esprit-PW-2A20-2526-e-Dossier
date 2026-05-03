@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once 'CONTROLLER/PublicationC.php';
-include_once 'CONTROLLER/CommentC.php';
+include_once '../CONTROLLER/PublicationC.php';
+include_once '../CONTROLLER/CommentC.php';
 
 $ctrl = new PublicationC();
 $commentCtrl = new CommentC();

@@ -24,6 +24,9 @@ switch ($action) {
     case 'delete':
         $ctrl->delete();
         break;
+    case 'show':
+        $ctrl->show();
+        break;
     case 'comments':
         $commentCtrl->adminIndex();
         break;
@@ -39,6 +42,9 @@ switch ($action) {
         break;
     case 'dashboard':
         $ctrl->index(); // Assuming dashboard is the main index for now
+        break;
+    case 'strategicInsight':
+        $ctrl->strategicInsightAction();
         break;
     default:
         $ctrl->index();

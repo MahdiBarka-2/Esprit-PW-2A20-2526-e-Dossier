@@ -290,5 +290,24 @@ class PublicationC
             die("Publication not found.");
         }
     }
+    // STRATEGIC INSIGHT ENDPOINT
+    public function strategicInsightAction()
+    {
+        include_once __DIR__ . '/AIService.php';
+        $ai = new AIService();
+        $id = $_REQUEST['id'] ?? '';
+        $publication = $this->getOnePublication($id);
+        if (!$publication) {
+            echo json_encode(['error' => 'Publication not found.']);
+            exit();
+        }
+        
+        $comments = $this->commentCtrl->getCommentsByPublication($id, true);
+        $result = $ai->generateStrategicInsight($publication['titre'], $publication['contenu'], $comments);
+        
+        header('Content-Type: application/json');
+        echo json_encode(['insight' => $result]);
+        exit();
+    }
 }
 ?>

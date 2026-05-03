@@ -88,7 +88,7 @@ require_once '../../CONTROLLER/LanguageController.php';
                     [data-bs-theme='dark'] p,
                     [data-bs-theme='dark'] .lead,
                     [data-bs-theme='dark'] label {
-                        color: #f5f5dc !important; /* Beige in dark mode to match Backoffice */
+                        color: #ffffff !important; /* White in dark mode */
                     }
                     .nav-link-custom:hover {
                         color: var(--bs-primary) !important;
@@ -98,7 +98,7 @@ require_once '../../CONTROLLER/LanguageController.php';
                         color: #0b0a12 !important; /* Dark Navy to match Boffice */
                     }
                     [data-bs-theme='dark'] .brand-text {
-                        color: #f5f5dc !important; /* Beige to match Boffice links */
+                        color: #ffffff !important; /* White to match Boffice links */
                     }
                     /* Highlight fix for Light Mode */
                     [data-bs-theme='light'] .highlight-brand {

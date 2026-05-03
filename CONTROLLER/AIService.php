@@ -3,19 +3,17 @@
  * AIService - Handles communication with the Google Gemini API.
  */
 class AIService {
-    private $apiKey = "AIzaSyARCki5DDq66ZtxUK3yyW5eIoOvdtfR3po"; 
-    private $apiUrl = "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent";
+    private $apiKey = "AIzaSyBJc_-O_wlb36Eh4H9IcBzz9wGGG-rhDAc"; 
+    private $apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
     public function generateContent($prompt) {
         $models = [
             "gemini-2.5-flash",
-            "gemini-2.5-flash-lite",
-            "gemini-2.0-flash",
-            "gemini-2.0-flash-lite"
+            "gemini-2.0-flash"
         ];
 
         foreach ($models as $model) {
-            $url = "https://generativelanguage.googleapis.com/v1/models/$model:generateContent?key=" . $this->apiKey;
+            $url = "https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent?key=" . $this->apiKey;
             
             $data = [
                 "contents" => [["parts" => [["text" => $prompt]]]]
@@ -33,18 +31,12 @@ class AIService {
             $err = curl_errno($ch);
             curl_close($ch);
 
-            if ($err) continue; // Try next model if connection fails
+            if ($err) continue;
 
             $result = json_decode($response, true);
             
-            // If we got content, return it immediately
             if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
                 return $result['candidates'][0]['content']['parts'][0]['text'];
-            }
-            
-            // If it's a quota/not found error, continue to next model
-            if (isset($result['error'])) {
-                continue;
             }
         }
 
@@ -80,5 +72,36 @@ class AIService {
         $decision = trim(strip_tags($response));
         if (stripos($decision, 'Flagged') !== false) return 'Flagged';
         return 'Approved';
+    }
+
+    /**
+     * Generates a strategic insight report based on a publication and its citizen feedback.
+     */
+    public function generateStrategicInsight($title, $content, $comments) {
+        $commentsText = "";
+        foreach ($comments as $index => $c) {
+            $commentsText .= ($index + 1) . ". User " . $c['utilisateur'] . ": " . $c['contenu'] . "\n";
+        }
+
+        $prompt = "Act as a helpful analyst. 
+                   Analyze this publication and the citizen feedback.
+                   
+                   TITLE: '$title'
+                   CONTENT: '$content'
+                   
+                   COMMENTS:
+                   $commentsText
+                   
+                   Write a clear, medium-length report. Use SIMPLE WORDS but make it very useful.
+                   Use real details from the comments to provide specific information.
+                   
+                   Use these icons and headers:
+                   🎯 HOW PEOPLE FEEL: (2-3 simple but clear sentences explaining the public mood)
+                   ⚠️ MAIN CONCERNS: (Exactly 3 simple bullet points identifying the biggest issues)
+                   💡 WHAT TO DO NOW: (Exactly 3 simple, useful steps the administration should take)
+                   
+                   Keep it easy to read, direct, and useful.";
+                   
+        return $this->generateContent($prompt);
     }
 }

@@ -118,7 +118,7 @@ if (file_exists($controllerPath)) {
             <!-- Left Side: Title and Badges -->
             <div class="col-lg-7">
                 <div class="d-flex flex-wrap gap-2 mb-3">
-                    <span class="badge bg-primary px-3 py-2 rounded-pill shadow-sm"><i class="bi bi-hash me-1"></i>ED-<?= str_pad($publication['id'], 5, '0', STR_PAD_LEFT) ?></span>
+                    <span class="badge bg-primary px-3 py-2 rounded-pill shadow-sm"><i class="bi bi-hash me-1"></i>UID-<?= str_pad($publication['id'], 5, '0', STR_PAD_LEFT) ?></span>
                     <?php 
                         $catName = htmlspecialchars($publication['categorie']);
                         $catLower = strtolower(trim($catName));
@@ -134,7 +134,7 @@ if (file_exists($controllerPath)) {
                     ?>
                     <span class="badge <?= $bClass ?> px-3 py-2 rounded-pill border border-opacity-25"><i class="bi bi-tag-fill me-1"></i><?= $catName ?></span>
                     
-                    <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill border border-success border-opacity-25"><i class="bi bi-patch-check-fill me-1"></i>Verified Official</span>
+                    <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill border border-success border-opacity-25"><i class="bi bi-patch-check-fill me-1"></i>Verified</span>
                 </div>
                 
                 <h1 class="display-4 fw-bold text-white mb-0 pe-lg-4" style="line-height: 1.2; text-shadow: 0 2px 4px rgba(0,0,0,0.2);"><?= htmlspecialchars($publication['titre']) ?></h1>
@@ -165,7 +165,7 @@ if (file_exists($controllerPath)) {
 
                             <div class="col-6 mt-3 pt-3 border-top border-white border-opacity-10">
                                 <span class="text-white-50 small d-block mb-1">Status</span>
-                                <span class="text-success fw-semibold d-block"><i class="bi bi-record-circle-fill me-2" style="font-size: 0.8rem;"></i>Active File</span>
+                                <span class="text-success fw-semibold d-block"><i class="bi bi-record-circle-fill me-2" style="font-size: 0.8rem;"></i>another live</span>
                             </div>
                             <div class="col-6 mt-3 pt-3 border-top border-white border-opacity-10">
                                 <span class="text-white-50 small d-block mb-1">Citizen Input</span>

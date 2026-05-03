@@ -39,7 +39,7 @@
                     color: #0b0a12 !important;
                 }
                 [data-bs-theme='dark'] .brand-text {
-                    color: #f5f5dc !important;
+                    color: #ffffff !important;
                 }
             </style>
             <ul class="navbar-nav flex-column" id="navbar-sidebar">

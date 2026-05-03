@@ -51,10 +51,10 @@ if (file_exists($controllerPath)) {
                 <style>
                     .nav-link-custom { color: var(--bs-body-color); transition: color 0.3s ease; }
                     [data-bs-theme='light'] .nav-link-custom { color: #0b0a12 !important; }
-                    [data-bs-theme='dark'] .nav-link-custom, [data-bs-theme='dark'] h1, [data-bs-theme='dark'] h2, [data-bs-theme='dark'] h3, [data-bs-theme='dark'] h4, [data-bs-theme='dark'] h5, [data-bs-theme='dark'] h6, [data-bs-theme='dark'] p, [data-bs-theme='dark'] .lead, [data-bs-theme='dark'] label { color: #f5f5dc !important; }
+                    [data-bs-theme='dark'] .nav-link-custom, [data-bs-theme='dark'] h1, [data-bs-theme='dark'] h2, [data-bs-theme='dark'] h3, [data-bs-theme='dark'] h4, [data-bs-theme='dark'] h5, [data-bs-theme='dark'] h6, [data-bs-theme='dark'] p, [data-bs-theme='dark'] .lead, [data-bs-theme='dark'] label { color: #ffffff !important; }
                     .nav-link-custom:hover { color: var(--bs-primary) !important; }
                     [data-bs-theme='light'] .brand-text { color: #0b0a12 !important; }
-                    [data-bs-theme='dark'] .brand-text { color: #f5f5dc !important; }
+                    [data-bs-theme='dark'] .brand-text { color: #ffffff !important; }
                 </style>
             </div>
         </div>
@@ -191,7 +191,7 @@ if (file_exists($controllerPath)) {
 									<!-- Rating and bookmark -->
 									<div class="d-flex justify-content-between mb-3">
 										<a href="#" class="badge bg-primary text-white"><i
-												class="bi bi-patch-check-fill me-2 text-warning"></i>Official</a>
+												class="bi bi-patch-check-fill me-2 text-warning"></i>Verified</a>
 										<?php
 										$isBookmarked = isset($_SESSION['saved_publications']) && in_array($p['id'], $_SESSION['saved_publications']);
 										?>
