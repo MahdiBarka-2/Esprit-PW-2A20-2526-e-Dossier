@@ -5,7 +5,7 @@
 
             <!-- Widget 1 -->
             <div class="col-lg-3">
-                <a class="navbar-brand fw-bold text-primary" href="/integration/index.php">
+                <a class="navbar-brand fw-bold text-primary" href="/integration/VIEW/index.php">
                     <i class="fas fa-folder-open me-2"></i>Edossier
                 </a>
                 <p class="my-3 text-body-secondary">Secure digital document management platform for modern organizations.</p>
@@ -19,7 +19,7 @@
                     <div class="col-6 col-md-3">
                         <h5 class="text-white mb-2 mb-md-4">Platform</h5>
                         <ul class="nav flex-column text-primary-hover">
-                            <li class="nav-item"><a class="nav-link text-body-secondary" href="/integration/index.php">Publications</a></li>
+                            <li class="nav-item"><a class="nav-link text-body-secondary" href="/integration/VIEW/index.php">Publications</a></li>
                             <li class="nav-item"><a class="nav-link text-body-secondary" href="/integration/VIEW/Boffice/posts.php">Dashboard</a></li>
                             <li class="nav-item"><a class="nav-link text-body-secondary" href="/integration/VIEW/Boffice/posts.php?action=create">New Publication</a></li>
                         </ul>

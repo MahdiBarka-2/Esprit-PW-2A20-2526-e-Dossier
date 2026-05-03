@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
         $commentCtrl->addComment($contenu, $utilisateur, $publication_id);
-        header("Location: /integration/index1.php?action=show&id=$publication_id");
+        header("Location: /integration/VIEW/index1.php?action=show&id=$publication_id");
         exit();
     } else {
         $_SESSION['errors'] = $errors;
@@ -106,7 +106,7 @@ require_once __DIR__ . '/../../../CONTROLLER/LanguageController.php';
                             <?php unset($_SESSION['old']); ?>
 
                             <div class="col-12 d-sm-flex justify-content-between align-items-center mt-4">
-                                <a href="/integration/index1.php?action=show&id=<?= $_GET['publication_id'] ?? '' ?>" class="btn btn-link text-muted px-0 fw-bold">
+                                <a href="/integration/VIEW/index1.php?action=show&id=<?= $_GET['publication_id'] ?? '' ?>" class="btn btn-link text-muted px-0 fw-bold">
                                     <i class="bi bi-x-circle me-2"></i>Cancel
                                 </a>
                                 <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow">Post Comment</button>

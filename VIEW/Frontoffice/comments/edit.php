@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
         $commentCtrl->updateComment($id, $contenu, $auteur);
-        header("Location: /integration/index1.php?action=show&id=$publication_id");
+        header("Location: /integration/VIEW/index1.php?action=show&id=$publication_id");
         exit();
     } else {
         $_SESSION['errors'] = $errors;
@@ -27,7 +27,7 @@ $id = $_GET['id'] ?? $_POST['id'] ?? '';
 $comment = $commentCtrl->getOneComment($id);
 
 if (!$comment) {
-    header("Location: /integration/index1.php");
+    header("Location: /integration/VIEW/index1.php");
     exit();
 }
 
@@ -36,7 +36,7 @@ $id = $_GET['id'] ?? $_POST['id'] ?? '';
 $comment = $commentCtrl->getOneComment($id);
 
 if (!$comment) {
-    header("Location: /integration/index1.php");
+    header("Location: /integration/VIEW/index1.php");
     exit();
 }
 ?>
@@ -111,7 +111,7 @@ if (!$comment) {
                             </div>
 
                             <div class="col-12 d-sm-flex justify-content-between align-items-center mt-4">
-                                <a href="/integration/index1.php?action=show&id=<?= $comment['publication_id'] ?>" class="btn btn-link text-muted px-0 fw-bold">
+                                <a href="/integration/VIEW/index1.php?action=show&id=<?= $comment['publication_id'] ?>" class="btn btn-link text-muted px-0 fw-bold">
                                     <i class="bi bi-arrow-left me-2"></i>Cancel
                                 </a>
                                 <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow">Update Comment</button>

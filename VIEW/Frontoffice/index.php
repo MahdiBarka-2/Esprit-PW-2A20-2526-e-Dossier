@@ -65,7 +65,7 @@ require_once '../../CONTROLLER/LanguageController.php';
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/index1.php"><?php echo __('posts'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/index1.php"><?php echo __('posts'); ?></a></li>
                     </ul>
                 </nav>
 

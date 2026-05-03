@@ -14,7 +14,7 @@ if (!empty($id)) {
 if (isset($_GET['from']) && $_GET['from'] === 'admin') {
     header("Location: /integration/VIEW/Boffice/posts.php?action=comments");
 } else {
-    header("Location: /integration/index1.php?action=show&id=$pub_id");
+    header("Location: /integration/VIEW/index1.php?action=show&id=$pub_id");
 }
 exit();
 ?>

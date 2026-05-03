@@ -85,16 +85,16 @@ $list = $pubCtrl->getAllPublications();
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Poppins:wght@400;500;700&amp;display=swap">
 
 	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
-	<link rel="stylesheet" type="text/css" href="assets/vendor/tiny-slider/tiny-slider.css">
-	<link rel="stylesheet" type="text/css" href="assets/vendor/glightbox/css/glightbox.css">
-	<link rel="stylesheet" type="text/css" href="assets/vendor/flatpickr/css/flatpickr.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/vendor/choices/css/choices.min.css">
+	<link rel="stylesheet" type="text/css" href="../assets/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="../assets/vendor/bootstrap-icons/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="../assets/vendor/tiny-slider/tiny-slider.css">
+	<link rel="stylesheet" type="text/css" href="../assets/vendor/glightbox/css/glightbox.css">
+	<link rel="stylesheet" type="text/css" href="../assets/vendor/flatpickr/css/flatpickr.min.css">
+	<link rel="stylesheet" type="text/css" href="../assets/vendor/choices/css/choices.min.css">
 	
 
 	<!-- Theme CSS -->
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 
 	<style>
 		.glass-card {
@@ -119,7 +119,7 @@ $list = $pubCtrl->getAllPublications();
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
-			<a class="navbar-brand logo-hover" href="/integration/index.php">
+			<a class="navbar-brand logo-hover" href="/integration/VIEW/index.php">
 				<h3 class="mb-0 fw-bold transition-all"><i class="bi bi-file-earmark-text-fill me-2 transition-all"></i>Edossier</h3>
 			</a>
 			<style>
@@ -156,8 +156,8 @@ $list = $pubCtrl->getAllPublications();
 							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">Publications</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
-									<li><a class="dropdown-item" href="/integration/index1.php"><i class="bi bi-grid me-2"></i>All Publications</a></li>
-									<li><a class="dropdown-item" href="/integration/index1.php?action=create"><i class="bi bi-plus-circle me-2"></i>Add Publication</a></li>
+									<li><a class="dropdown-item" href="/integration/VIEW/index1.php"><i class="bi bi-grid me-2"></i>All Publications</a></li>
+									<li><a class="dropdown-item" href="/integration/VIEW/index1.php?action=create"><i class="bi bi-plus-circle me-2"></i>Add Publication</a></li>
 									<li><a class="dropdown-item" href="/integration/VIEW/Boffice/index.php"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
 								</ul>
 							</li>
@@ -181,13 +181,13 @@ $list = $pubCtrl->getAllPublications();
 			<div class="navbar-collapse collapse" id="navbarCategoryCollapse">
 				<ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
 					<!-- Nav item Legal -->
-					<li class="nav-item"> <a class="nav-link active" href="/integration/index1.php"><i class="fa-solid fa-gavel me-2"></i>Legal</a>	</li>
+					<li class="nav-item"> <a class="nav-link active" href="/integration/VIEW/index1.php"><i class="fa-solid fa-gavel me-2"></i>Legal</a>	</li>
 
 					<!-- Nav item Notices -->
-					<li class="nav-item"> <a class="nav-link" href="/integration/index1.php"><i class="fa-solid fa-bullhorn me-2"></i>Notices</a>	</li>
+					<li class="nav-item"> <a class="nav-link" href="/integration/VIEW/index1.php"><i class="fa-solid fa-bullhorn me-2"></i>Notices</a>	</li>
 
 					<!-- Nav item Reports -->
-					<li class="nav-item"> <a class="nav-link" href="/integration/index1.php"><i class="fa-solid fa-file-contract me-2"></i>Reports</a> </li>
+					<li class="nav-item"> <a class="nav-link" href="/integration/VIEW/index1.php"><i class="fa-solid fa-file-contract me-2"></i>Reports</a> </li>
 				</ul>
 			</div>
 			<!-- Nav category menu END -->
@@ -250,7 +250,7 @@ $list = $pubCtrl->getAllPublications();
 				<li class="nav-item ms-3 dropdown">
 					<!-- Avatar -->
 					<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-						<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
+						<img class="avatar-img rounded-2" src="../assets/images/avatar/01.jpg" alt="avatar">
 					</a>
 
 					<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
@@ -259,7 +259,7 @@ $list = $pubCtrl->getAllPublications();
 							<div class="d-flex align-items-center">
 								<!-- Avatar -->
 								<div class="avatar me-3">
-									<img class="avatar-img rounded-circle shadow" src="assets/images/avatar/01.jpg" alt="avatar">
+									<img class="avatar-img rounded-circle shadow" src="../assets/images/avatar/01.jpg" alt="avatar">
 								</div>
 								<div>
 									<a class="h6 mt-2 mt-sm-0" href="#">Lori Ferguson</a>
@@ -338,7 +338,7 @@ Main Banner START -->
 
 					<!-- Buttons -->
 					<div class="hstack gap-3 flex-wrap align-items-center">
-						<a href="/integration/index1.php" class="btn btn-primary btn-lg rounded-pill mb-0 shadow-lg px-5 py-3 fw-bold">Open Records</a>
+						<a href="/integration/VIEW/index1.php" class="btn btn-primary btn-lg rounded-pill mb-0 shadow-lg px-5 py-3 fw-bold">Open Records</a>
 						<a href="/integration/VIEW/Boffice/sign-in.php" class="btn btn-link text-white btn-lg mb-0 px-4"><i class="fas fa-user-lock me-2"></i>Admin Login</a>
 					</div>
 
@@ -741,7 +741,7 @@ Featured Publications START -->
 				<p class="mb-0 text-secondary">A list of all recent state files and updates.</p>
 			</div>
 			<div class="col-md-4 text-md-end mt-3 mt-md-0">
-				<a href="/integration/index1.php" class="btn btn-primary btn-sm rounded-pill mb-0">See All Records</a>
+				<a href="/integration/VIEW/index1.php" class="btn btn-primary btn-sm rounded-pill mb-0">See All Records</a>
 			</div>
 		</div>
 
@@ -762,7 +762,7 @@ Featured Publications START -->
 										<!-- Card body -->
 										<div class="card-body p-4 pt-3 d-flex flex-column">
 											<!-- Title -->
-											<h5 class="card-title mb-3 lh-base"><a href="/integration/index1.php?action=show&id=<?= $p['id'] ?>" class="stretched-link text-reset"><?= htmlspecialchars($p['titre']) ?></a></h5>
+											<h5 class="card-title mb-3 lh-base"><a href="/integration/VIEW/index1.php?action=show&id=<?= $p['id'] ?>" class="stretched-link text-reset"><?= htmlspecialchars($p['titre']) ?></a></h5>
 											<p class="card-text small text-muted mb-4"><?= htmlspecialchars(substr($p['contenu'], 0, 85)) ?>...</p>
 							
 											<!-- Metadata -->
@@ -974,7 +974,7 @@ Footer START -->
 			<!-- Widget 1 START -->
 			<div class="col-lg-3">
 				<!-- logo -->
-				<a href="/integration/index.php">
+				<a href="/integration/VIEW/index.php">
 					<h3 class="text-white">Edossier</h3>
 				</a>
 				<p class="my-3 text-body-secondary">The state matrix for official publications and digital institutional archives.</p>
@@ -1021,9 +1021,9 @@ Footer START -->
 					<div class="col-6 col-md-3">
 						<h5 class="text-white mb-2 mb-md-4">Files</h5>
 						<ul class="nav flex-column text-primary-hover">
-							<li class="nav-item"><a class="nav-link text-body-secondary" href="/integration/index1.php">Laws</a></li>
-							<li class="nav-item"><a class="nav-link text-body-secondary" href="/integration/index1.php">Acts</a></li>
-							<li class="nav-item"><a class="nav-link text-body-secondary" href="/integration/index1.php">Notices</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="/integration/VIEW/index1.php">Laws</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="/integration/VIEW/index1.php">Acts</a></li>
+							<li class="nav-item"><a class="nav-link text-body-secondary" href="/integration/VIEW/index1.php">Notices</a></li>
 						</ul>
 					</div>
 				</div>
@@ -1036,10 +1036,10 @@ Footer START -->
 		<div class="row mt-5">
 			<h5 class="mb-2 text-white">Institutional Directories</h5>
 			<ul class="list-inline text-primary-hover lh-lg">
-				<li class="list-inline-item"><a href="/integration/index1.php" class="text-body-secondary">State Gazettes</a></li>
-				<li class="list-inline-item"><a href="/integration/index1.php" class="text-body-secondary">Legal Amendments</a></li>
-				<li class="list-inline-item"><a href="/integration/index1.php" class="text-body-secondary">Public Notices</a></li>
-				<li class="list-inline-item"><a href="/integration/index1.php" class="text-body-secondary">Institutional Records</a></li>
+				<li class="list-inline-item"><a href="/integration/VIEW/index1.php" class="text-body-secondary">State Gazettes</a></li>
+				<li class="list-inline-item"><a href="/integration/VIEW/index1.php" class="text-body-secondary">Legal Amendments</a></li>
+				<li class="list-inline-item"><a href="/integration/VIEW/index1.php" class="text-body-secondary">Public Notices</a></li>
+				<li class="list-inline-item"><a href="/integration/VIEW/index1.php" class="text-body-secondary">Institutional Records</a></li>
 				<li class="list-inline-item"><a href="about.html" class="text-body-secondary">About Platform</a></li>
 				<li class="list-inline-item"><a href="contact.html" class="text-body-secondary">Contact Governance</a></li>
 				<li class="list-inline-item"><a href="#" class="text-body-secondary">Transparency Policy</a></li>
@@ -1102,14 +1102,14 @@ Footer END -->
 	<ul class="navbar-nav">
 		<!-- Nav item Home -->
 		<li class="nav-item">
-			<a class="nav-link active" href="/integration/index.php"><i class="bi bi-house-door fa-fw"></i>
+			<a class="nav-link active" href="/integration/VIEW/index.php"><i class="bi bi-house-door fa-fw"></i>
 				<span class="mb-0 nav-text">Home</span>
 			</a>	
 		</li>
 
 		<!-- Nav item Publications -->
 		<li class="nav-item"> 
-			<a class="nav-link" href="/integration/index1.php"><i class="bi bi-file-earmark-text fa-fw"></i>
+			<a class="nav-link" href="/integration/VIEW/index1.php"><i class="bi bi-file-earmark-text fa-fw"></i>
 				<span class="mb-0 nav-text">Files</span>
 			</a>	
 		</li>
@@ -1125,16 +1125,16 @@ Footer END -->
 <!-- Navbar mobile END -->
 
 <!-- Bootstrap JS -->
-<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Vendors -->
-<script src="assets/vendor/tiny-slider/tiny-slider.js"></script>
-<script src="assets/vendor/glightbox/js/glightbox.js"></script>
-<script src="assets/vendor/flatpickr/js/flatpickr.min.js"></script>
-<script src="assets/vendor/choices/js/choices.min.js"></script>
+<script src="../assets/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="../assets/vendor/glightbox/js/glightbox.js"></script>
+<script src="../assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+<script src="../assets/vendor/choices/js/choices.min.js"></script>
 
 <!-- ThemeFunctions -->
-<script src="assets/js/functions.js"></script>
+<script src="../assets/js/functions.js"></script>
 
 </body>
 <!-- Mirrored from edossier template -->

@@ -17,7 +17,7 @@ $counts = array_values($stats['category_distribution'] ?? []);
 <?php $viewAction = $_GET['action'] ?? 'index'; ?>
                 <h1 class="h3 mb-2 mb-sm-0"><?= ($viewAction === 'dashboard') ? 'Dashboard Analytics' : 'Publications List' ?></h1>
                 <div class="d-flex gap-2">
-                    <a href="/integration/index1.php" class="btn btn-info-soft mb-0"><i class="bi bi-eye fa-fw"></i> Publications</a>
+                    <a href="/integration/VIEW/index1.php" class="btn btn-info-soft mb-0"><i class="bi bi-eye fa-fw"></i> Publications</a>
                     <a href="/integration/VIEW/Boffice/posts.php?action=create" class="btn btn-primary-soft mb-0"><i class="bi bi-plus-lg fa-fw"></i> Add Publication</a>
                 </div>				
             </div>

@@ -47,7 +47,7 @@ if (file_exists($controllerPath)) {
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/index1.php"><?php echo __('posts'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/index1.php"><?php echo __('posts'); ?></a></li>
                     </ul>
                 </nav>
             </div>
@@ -69,7 +69,7 @@ if (file_exists($controllerPath)) {
         ?>
         <!-- Header Actions -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <a href="/integration/index1.php" class="btn btn-sm btn-outline-light rounded-pill px-4 py-2 fw-semibold transition-all hover-white"><i class="bi bi-arrow-left me-2"></i>Return to Repository</a>
+            <a href="/integration/VIEW/index1.php" class="btn btn-sm btn-outline-light rounded-pill px-4 py-2 fw-semibold transition-all hover-white"><i class="bi bi-arrow-left me-2"></i>Return to Repository</a>
             <div class="d-flex gap-2">
                 <?php 
                     $isBookmarked = isset($_SESSION['saved_publications']) && in_array($publication['id'], $_SESSION['saved_publications']);
@@ -78,7 +78,7 @@ if (file_exists($controllerPath)) {
                     <i class="bi <?= $isBookmarked ? 'bi-bookmark-fill text-primary' : 'bi-bookmark text-secondary' ?> me-2"></i><?= $isBookmarked ? 'Saved' : 'Save Document' ?>
                 </button>
 
-                <a href="/integration/index1.php?action=download&id=<?= $publication['id'] ?>" class="btn btn-sm btn-primary rounded-pill px-3 py-2 fw-semibold shadow-sm"><i class="bi bi-file-earmark-pdf me-2"></i>Download PDF</a>
+                <a href="/integration/VIEW/index1.php?action=download&id=<?= $publication['id'] ?>" class="btn btn-sm btn-primary rounded-pill px-3 py-2 fw-semibold shadow-sm"><i class="bi bi-file-earmark-pdf me-2"></i>Download PDF</a>
             </div>
         </div>
 
@@ -97,7 +97,7 @@ if (file_exists($controllerPath)) {
                 if(textSpan) textSpan.textContent = ' Save Document';
             }
 
-            fetch(`/integration/index1.php?action=toggleSave&id=${id}`)
+            fetch(`/integration/VIEW/index1.php?action=toggleSave&id=${id}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'added') {
@@ -244,7 +244,7 @@ if (file_exists($controllerPath)) {
                     </div>
                     <div class="card-body p-4 p-md-5">
                         <?php if (isset($_SESSION['user_id'])): ?>
-                            <form action="/integration/index1.php?action=addComment" method="POST">
+                            <form action="/integration/VIEW/index1.php?action=addComment" method="POST">
                                 <input type="hidden" name="publication_id" value="<?= $publication['id'] ?>">
                                 <input type="hidden" name="utilisateur" value="<?= htmlspecialchars($_SESSION['name'] ?? 'User') ?>">
                                 
@@ -370,7 +370,7 @@ function confirmDeleteFront(id, pubId) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = `/integration/index1.php?action=deleteComment&id=${id}&publication_id=${pubId}`;
+            window.location.href = `/integration/VIEW/index1.php?action=deleteComment&id=${id}&publication_id=${pubId}`;
         }
     });
 }

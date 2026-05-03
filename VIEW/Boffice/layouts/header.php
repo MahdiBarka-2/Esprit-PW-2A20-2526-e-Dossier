@@ -33,7 +33,7 @@
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
-			<a class="navbar-brand logo-hover" href="/integration/index.php">
+			<a class="navbar-brand logo-hover" href="/integration/VIEW/index.php">
 				<h3 class="mb-0 fw-bold transition-all"><i class="bi bi-file-earmark-text-fill me-2 transition-all"></i>Edossier</h3>
 			</a>
             <style>
@@ -58,20 +58,20 @@
 				<ul class="navbar-nav navbar-nav-scroll me-auto">
 					<!-- Nav item Home -->
 					<li class="nav-item">
-						<a class="nav-link" href="/integration/index1.php"><i class="bi bi-compass me-2"></i>Explore</a>
+						<a class="nav-link" href="/integration/VIEW/index1.php"><i class="bi bi-compass me-2"></i>Explore</a>
 					</li>
 
 					<!-- Nav item Resources -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-folder2-open me-2"></i>Collections</a>
 						<ul class="dropdown-menu shadow-sm border-0" aria-labelledby="listingMenu">
-							<li> <a class="dropdown-item" href="/integration/index1.php"><i class="bi bi-archive text-primary me-2"></i>All Documents</a></li>
+							<li> <a class="dropdown-item" href="/integration/VIEW/index1.php"><i class="bi bi-archive text-primary me-2"></i>All Documents</a></li>
 							<li> <a class="dropdown-item" href="/integration/template/about.html"><i class="bi bi-diagram-3 text-warning me-2"></i>Architecture Overview</a></li>
                             <li><hr class="dropdown-divider"></li>
-							<li> <a class="dropdown-item" href="/integration/index1.php?category=Law"><i class="bi bi-journal-bookmark-fill text-danger me-2"></i>Legal & Laws</a></li>
-							<li> <a class="dropdown-item" href="/integration/index1.php?category=Announcement"><i class="bi bi-megaphone-fill text-warning me-2"></i>Announcements</a></li>
-							<li> <a class="dropdown-item" href="/integration/index1.php?category=Report"><i class="bi bi-file-earmark-bar-graph-fill text-info me-2"></i>Reports</a></li>
-							<li> <a class="dropdown-item" href="/integration/index1.php?category=General"><i class="bi bi-collection-fill text-success me-2"></i>General</a></li>
+							<li> <a class="dropdown-item" href="/integration/VIEW/index1.php?category=Law"><i class="bi bi-journal-bookmark-fill text-danger me-2"></i>Legal & Laws</a></li>
+							<li> <a class="dropdown-item" href="/integration/VIEW/index1.php?category=Announcement"><i class="bi bi-megaphone-fill text-warning me-2"></i>Announcements</a></li>
+							<li> <a class="dropdown-item" href="/integration/VIEW/index1.php?category=Report"><i class="bi bi-file-earmark-bar-graph-fill text-info me-2"></i>Reports</a></li>
+							<li> <a class="dropdown-item" href="/integration/VIEW/index1.php?category=General"><i class="bi bi-collection-fill text-success me-2"></i>General</a></li>
 						</ul>
 					</li>
                     
@@ -87,7 +87,7 @@
             <div class="ms-xl-auto d-flex align-items-center">
                 <!-- Search bar -->
                 <div class="nav-item d-none d-xl-block me-3">
-                    <form class="input-group" action="/integration/index1.php" method="GET">
+                    <form class="input-group" action="/integration/VIEW/index1.php" method="GET">
                         <input class="form-control form-control-sm border-primary border-opacity-10 bg-light rounded-start-pill ps-3" type="search" placeholder="Search dossier..." name="search" style="width: 200px;">
                         <button class="btn btn-sm btn-primary rounded-end-pill px-3" type="submit"><i class="bi bi-search"></i></button>
                     </form>
@@ -101,7 +101,7 @@
                     </button>
 
                     <!-- Saved Favorites -->
-                    <a href="/integration/index1.php?action=saved" class="btn btn-link text-secondary p-0 mb-0" title="Saved Documents">
+                    <a href="/integration/VIEW/index1.php?action=saved" class="btn btn-link text-secondary p-0 mb-0" title="Saved Documents">
                         <i class="bi bi-bookmark-heart fs-5"></i>
                     </a>
                 </div>
@@ -130,7 +130,7 @@
                         </li>
                         <li> <hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/integration/VIEW/Boffice/posts.php?action=dashboard"><i class="bi bi-speedometer2 fa-fw me-2"></i>Admin Dashboard</a></li>
-                        <li><a class="dropdown-item" href="/integration/index1.php?action=saved"><i class="bi bi-bookmark-heart fa-fw me-2"></i>Saved Documents</a></li>
+                        <li><a class="dropdown-item" href="/integration/VIEW/index1.php?action=saved"><i class="bi bi-bookmark-heart fa-fw me-2"></i>Saved Documents</a></li>
                         <li> <hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item text-danger bg-danger-soft-hover" href="#"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
                     </ul>

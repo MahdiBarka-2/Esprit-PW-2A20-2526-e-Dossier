@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
         $commentCtrl->addComment($contenu, $auteur, $publication_id);
-        header("Location: /integration/index1.php?action=show&id=$publication_id");
+        header("Location: /integration/VIEW/index1.php?action=show&id=$publication_id");
         exit();
     } else {
         $_SESSION['errors'] = $errors;

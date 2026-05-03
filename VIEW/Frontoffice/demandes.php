@@ -83,7 +83,7 @@ $categories = $cc->listeCategories()->fetchAll();
                         <li class="nav-item"><a class="nav-link nav-link-custom"
                                 href="/integration/VIEW/Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
                         <li class="nav-item"><a class="nav-link nav-link-custom"
-                                href="/integration/index1.php"><?php echo __('posts'); ?></a></li>
+                                href="/integration/VIEW/index1.php"><?php echo __('posts'); ?></a></li>
                     </ul>
                 </nav>
 

@@ -109,7 +109,7 @@
 	<nav class="navbar sidebar navbar-expand-xl navbar-light">
 		<!-- Navbar brand for xl START -->
 		<div class="d-flex align-items-center">
-			<a class="navbar-brand" href="/integration/index1.php">
+			<a class="navbar-brand" href="/integration/VIEW/index1.php">
 				<h3 class="mb-0 text-primary fw-bold"><i class="bi bi-file-earmark-text-fill me-2"></i>Edossier</h3>
 			</a>
 		</div>
@@ -157,7 +157,7 @@
 
 				<!-- Sidebar footer START -->
 				<div class="mt-auto p-3">
-					<a class="btn btn-danger-soft w-100 d-flex justify-content-center align-items-center fw-bold py-2 rounded-3 shadow-sm" href="/integration/index1.php" style="transition: all 0.3s;">
+					<a class="btn btn-danger-soft w-100 d-flex justify-content-center align-items-center fw-bold py-2 rounded-3 shadow-sm" href="/integration/VIEW/index1.php" style="transition: all 0.3s;">
 						<i class="fa-solid fa-power-off me-2"></i> Terminate Session
 					</a>
 				</div>
@@ -177,7 +177,7 @@
 	
 					<!-- Logo START -->
 					<div class="d-flex align-items-center d-xl-none">
-						<a class="navbar-brand" href="/integration/index1.php">
+						<a class="navbar-brand" href="/integration/VIEW/index1.php">
 							<h3 class="mb-0 text-primary fw-bold"><i class="bi bi-file-earmark-text-fill me-2"></i>Edossier</h3>
 						</a>
 					</div>
@@ -218,7 +218,7 @@
 								<li><a class="dropdown-item py-2" href="#"><i class="bi bi-gear fa-fw me-2 text-primary"></i>Platform Settings</a></li>
 								<li><a class="dropdown-item py-2" href="#"><i class="bi bi-shield-check fa-fw me-2 text-success"></i>Security Log</a></li>
 								<li> <hr class="dropdown-divider border-light mx-3"></li>
-								<li><a class="dropdown-item py-2 bg-danger-soft-hover text-danger fw-bold rounded-bottom-4" href="/integration/index1.php"><i class="bi bi-power fa-fw me-2"></i>Secure Sign Out</a></li>
+								<li><a class="dropdown-item py-2 bg-danger-soft-hover text-danger fw-bold rounded-bottom-4" href="/integration/VIEW/index1.php"><i class="bi bi-power fa-fw me-2"></i>Secure Sign Out</a></li>
 							</ul>
 						</li>
 					</ul>

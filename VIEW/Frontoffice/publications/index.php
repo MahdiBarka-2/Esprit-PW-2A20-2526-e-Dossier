@@ -45,7 +45,7 @@ if (file_exists($controllerPath)) {
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/index1.php"><?php echo __('posts'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/index1.php"><?php echo __('posts'); ?></a></li>
                     </ul>
                 </nav>
                 <style>
@@ -104,7 +104,7 @@ if (file_exists($controllerPath)) {
 						<p class="text-secondary">Search by name or type to find what you need.</p>
 					</div>
 					<div class="bg-mode rounded-4 shadow-lg p-3 border">
-						<form class="row g-3 align-items-center" method="GET" action="/integration/index1.php">
+						<form class="row g-3 align-items-center" method="GET" action="/integration/VIEW/index1.php">
 							<input type="hidden" name="action" value="frontIndex">
 							<!-- Search -->
 							<div class="col-lg-4">
@@ -205,7 +205,7 @@ if (file_exists($controllerPath)) {
 
 									<!-- Title -->
 									<h4 class="card-title line-clamp-2"><a
-											href="/integration/index1.php?action=show&id=<?= $p['id'] ?>"><?= htmlspecialchars($p['titre']) ?></a>
+											href="/integration/VIEW/index1.php?action=show&id=<?= $p['id'] ?>"><?= htmlspecialchars($p['titre']) ?></a>
 									</h4>
 
 									<!-- Metadata -->
@@ -250,7 +250,7 @@ if (file_exists($controllerPath)) {
 										</div>
 										<!-- Button -->
 										<div class="mt-2 mt-sm-0 z-index-2">
-											<a href="/integration/index1.php?action=show&id=<?= $p['id'] ?>"
+											<a href="/integration/VIEW/index1.php?action=show&id=<?= $p['id'] ?>"
 												class="btn btn-primary mb-0">Read Official Document<i
 													class="bi bi-arrow-right ms-2"></i></a>
 										</div>
@@ -265,7 +265,7 @@ if (file_exists($controllerPath)) {
 						</div>
 						<h3>No Documents Found</h3>
 						<p>We couldn't find any documents matching your criteria. Try adjusting your search or filters.</p>
-						<a href="/integration/index1.php" class="btn btn-primary-soft">Reset All Filters</a>
+						<a href="/integration/VIEW/index1.php" class="btn btn-primary-soft">Reset All Filters</a>
 					</div>
 				<?php endif; ?>
 			</div>
@@ -313,7 +313,7 @@ if (file_exists($controllerPath)) {
 		}
 
 		// Server-side persistence
-		fetch(`/integration/index1.php?action=toggleSave&id=${id}`)
+		fetch(`/integration/VIEW/index1.php?action=toggleSave&id=${id}`)
 			.then(response => response.json())
 			.then(data => {
 				console.log('Save status:', data.status);
