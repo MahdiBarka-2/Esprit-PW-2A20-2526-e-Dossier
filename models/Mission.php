@@ -5,13 +5,15 @@ class Mission {
     private $description;
     private $date_debut;
     private $date_fin;
+    private $etat;
 
-    public function __construct($id = null, $titre = "", $description = "", $date_debut = "", $date_fin = "") {
+    public function __construct($id = null, $titre = "", $description = "", $date_debut = "", $date_fin = "", $etat = "Planifiée") {
         $this->id = $id;
         $this->titre = $titre;
         $this->description = $description;
         $this->date_debut = $date_debut;
         $this->date_fin = $date_fin;
+        $this->etat = $etat;
     }
 
     public function getId() { return $this->id; }
@@ -28,5 +30,8 @@ class Mission {
 
     public function getDateFin() { return $this->date_fin; }
     public function setDateFin($date_fin) { $this->date_fin = $date_fin; }
+
+    public function getEtat() { return $this->etat; }
+    public function setEtat($etat) { $this->etat = $etat; }
 }
 ?>

@@ -1,40 +1,67 @@
-<?php ob_start(); ?>
-<h1>Ajouter une Mission</h1>
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+    <div>
+        <h1 class="h3 fw-bold mb-1"><i class="bi bi-plus-circle me-2 text-primary"></i>Ajouter une Mission</h1>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="missions.php?action=list" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-1"></i>Retour à la liste
+        </a>
+    </div>
+</div>
 
-<div class="card">
-    <?php if (!empty($errors)): ?>
-        <div class="error">
-            <ul>
-                <?php foreach ($errors as $error): ?>
-                    <li><?php echo $error; ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    <?php endif; ?>
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+        <?php if (!empty($errors)): ?>
+            <div class="alert alert-danger border-0 shadow-sm">
+                <ul class="mb-0">
+                    <?php foreach ($errors as $error): ?>
+                        <li><?php echo htmlspecialchars($error); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
 
-    <form action="index.php?action=mission_create" method="POST" id="missionForm">
-        <div class="form-group">
-            <label>Titre :</label>
-            <input type="text" name="titre" id="titre">
-            <span class="error-msg" id="titreError">Le titre est obligatoire.</span>
-        </div>
-        <div class="form-group">
-            <label>Description :</label>
-            <textarea name="description" id="description"></textarea>
-        </div>
-        <div class="form-group">
-            <label>Date de début (YYYY-MM-DD) :</label>
-            <input type="text" name="date_debut" id="date_debut" placeholder="YYYY-MM-DD">
-            <span class="error-msg" id="dateDebutError">Format de date invalide. Utilisez YYYY-MM-DD.</span>
-        </div>
-        <div class="form-group">
-            <label>Date de fin (YYYY-MM-DD) :</label>
-            <input type="text" name="date_fin" id="date_fin" placeholder="YYYY-MM-DD">
-            <span class="error-msg" id="dateFinError">Format de date invalide. Utilisez YYYY-MM-DD.</span>
-            <span class="error-msg" id="dateCompareError">La date de fin doit être postérieure à la date de début.</span>
-        </div>
-        <button type="submit" class="btn">Enregistrer</button>
-    </form>
+        <form action="missions.php?action=create" method="POST" id="missionForm">
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Titre <span class="text-danger">*</span></label>
+                <input type="text" name="titre" id="titre" class="form-control" placeholder="Entrez le titre de la mission">
+                <div class="text-danger small mt-1" id="titreError" style="display:none;">Le titre est obligatoire.</div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Description</label>
+                <textarea name="description" id="description" class="form-control" rows="4" placeholder="Description de la mission..."></textarea>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-semibold">Date de début <span class="text-danger">*</span></label>
+                    <input type="date" name="date_debut" id="date_debut" class="form-control">
+                    <div class="text-danger small mt-1" id="dateDebutError" style="display:none;">La date de début est obligatoire.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-semibold">Date de fin <span class="text-danger">*</span></label>
+                    <input type="date" name="date_fin" id="date_fin" class="form-control">
+                    <div class="text-danger small mt-1" id="dateFinError" style="display:none;">La date de fin est obligatoire.</div>
+                    <div class="text-danger small mt-1" id="dateCompareError" style="display:none;">La date de fin doit être postérieure à la date de début.</div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-semibold">État / Statut <span class="text-danger">*</span></label>
+                <select name="etat" id="etat" class="form-select">
+                    <option value="Planifiée">Planifiée</option>
+                    <option value="En cours">En cours</option>
+                    <option value="Terminée">Terminée</option>
+                    <option value="Annulée">Annulée</option>
+                </select>
+            </div>
+            
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary px-4"><i class="bi bi-save me-2"></i>Enregistrer</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <script>
@@ -44,9 +71,6 @@ document.getElementById('missionForm').addEventListener('submit', function(e) {
     const dateDebut = document.getElementById('date_debut').value.trim();
     const dateFin = document.getElementById('date_fin').value.trim();
 
-    // Regex for YYYY-MM-DD
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-
     if (titre === '') {
         document.getElementById('titreError').style.display = 'block';
         isValid = false;
@@ -54,21 +78,21 @@ document.getElementById('missionForm').addEventListener('submit', function(e) {
         document.getElementById('titreError').style.display = 'none';
     }
 
-    if (!dateRegex.test(dateDebut)) {
+    if (dateDebut === '') {
         document.getElementById('dateDebutError').style.display = 'block';
         isValid = false;
     } else {
         document.getElementById('dateDebutError').style.display = 'none';
     }
 
-    if (!dateRegex.test(dateFin)) {
+    if (dateFin === '') {
         document.getElementById('dateFinError').style.display = 'block';
         isValid = false;
     } else {
         document.getElementById('dateFinError').style.display = 'none';
     }
 
-    if (dateRegex.test(dateDebut) && dateRegex.test(dateFin)) {
+    if (dateDebut !== '' && dateFin !== '') {
         const d1 = new Date(dateDebut);
         const d2 = new Date(dateFin);
         if (d1 > d2) {
@@ -86,5 +110,3 @@ document.getElementById('missionForm').addEventListener('submit', function(e) {
     }
 });
 </script>
-
-<?php $content = ob_get_clean(); require __DIR__ . '/../layout.php'; ?>

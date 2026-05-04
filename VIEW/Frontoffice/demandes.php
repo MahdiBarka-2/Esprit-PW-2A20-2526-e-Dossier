@@ -75,6 +75,7 @@ $categories = $cc->listeCategories()->fetchAll();
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/operations.php">Opérations</a></li>
                     </ul>
                 </nav>
 

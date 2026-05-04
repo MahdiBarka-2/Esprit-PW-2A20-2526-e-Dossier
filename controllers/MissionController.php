@@ -17,6 +17,7 @@ class MissionController {
             $description = trim($_POST['description']);
             $date_debut = trim($_POST['date_debut']);
             $date_fin = trim($_POST['date_fin']);
+            $etat = trim($_POST['etat']);
 
             // Validation PHP
             if (empty($titre)) { $errors[] = "Le titre est obligatoire."; }
@@ -27,15 +28,16 @@ class MissionController {
             }
 
             if (empty($errors)) {
-                $query = "INSERT INTO missions (titre, description, date_debut, date_fin) VALUES (:titre, :description, :date_debut, :date_fin)";
+                $query = "INSERT INTO missions (titre, description, date_debut, date_fin, etat) VALUES (:titre, :description, :date_debut, :date_fin, :etat)";
                 $stmt = $this->conn->prepare($query);
                 $stmt->bindParam(":titre", $titre);
                 $stmt->bindParam(":description", $description);
                 $stmt->bindParam(":date_debut", $date_debut);
                 $stmt->bindParam(":date_fin", $date_fin);
+                $stmt->bindParam(":etat", $etat);
                 
                 if ($stmt->execute()) {
-                    header("Location: index.php?action=mission_list");
+                    header("Location: missions.php?action=list");
                     exit();
                 } else {
                     $errors[] = "Erreur lors de l'ajout.";
@@ -66,7 +68,7 @@ class MissionController {
         $stmt->execute();
         $missions = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $missions[] = new Mission($row['id'], $row['titre'], $row['description'], $row['date_debut'], $row['date_fin']);
+            $missions[] = new Mission($row['id'], $row['titre'], $row['description'], $row['date_debut'], $row['date_fin'], $row['etat']);
         }
         require_once __DIR__ . '/../views/backoffice/mission/list.php';
     }
@@ -83,13 +85,14 @@ class MissionController {
             die("Mission non trouvée.");
         }
 
-        $mission = new Mission($row['id'], $row['titre'], $row['description'], $row['date_debut'], $row['date_fin']);
+        $mission = new Mission($row['id'], $row['titre'], $row['description'], $row['date_debut'], $row['date_fin'], $row['etat']);
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $titre = trim($_POST['titre']);
             $description = trim($_POST['description']);
             $date_debut = trim($_POST['date_debut']);
             $date_fin = trim($_POST['date_fin']);
+            $etat = trim($_POST['etat']);
 
             if (empty($titre)) { $errors[] = "Le titre est obligatoire."; }
             if (empty($date_debut)) { $errors[] = "La date de début est obligatoire."; }
@@ -103,24 +106,27 @@ class MissionController {
                 $mission->setDescription($description);
                 $mission->setDateDebut($date_debut);
                 $mission->setDateFin($date_fin);
+                $mission->setEtat($etat);
 
-                $query = "UPDATE missions SET titre = :titre, description = :description, date_debut = :date_debut, date_fin = :date_fin WHERE id = :id";
+                $query = "UPDATE missions SET titre = :titre, description = :description, date_debut = :date_debut, date_fin = :date_fin, etat = :etat WHERE id = :id";
                 $stmt = $this->conn->prepare($query);
                 
                 $t = $mission->getTitre();
                 $d = $mission->getDescription();
                 $db = $mission->getDateDebut();
                 $df = $mission->getDateFin();
+                $e = $mission->getEtat();
                 $i = $mission->getId();
 
                 $stmt->bindParam(":titre", $t);
                 $stmt->bindParam(":description", $d);
                 $stmt->bindParam(":date_debut", $db);
                 $stmt->bindParam(":date_fin", $df);
+                $stmt->bindParam(":etat", $e);
                 $stmt->bindParam(":id", $i);
                 
                 if ($stmt->execute()) {
-                    header("Location: index.php?action=mission_list");
+                    header("Location: missions.php?action=list");
                     exit();
                 } else {
                     $errors[] = "Erreur lors de la modification.";
@@ -135,7 +141,7 @@ class MissionController {
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":id", $id);
         $stmt->execute();
-        header("Location: index.php?action=mission_list");
+        header("Location: missions.php?action=list");
         exit();
     }
 }

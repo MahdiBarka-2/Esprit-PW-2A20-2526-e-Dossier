@@ -1,44 +1,57 @@
-<?php ob_start(); ?>
-<h1>Ajouter un Matériel</h1>
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+    <div>
+        <h1 class="h3 fw-bold mb-1"><i class="bi bi-plus-circle me-2 text-primary"></i>Ajouter un Matériel</h1>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="materiels.php?action=list" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-1"></i>Retour à la liste
+        </a>
+    </div>
+</div>
 
-<div class="card">
-    <?php if (!empty($errors)): ?>
-        <div class="error">
-            <ul>
-                <?php foreach ($errors as $error): ?>
-                    <li><?php echo $error; ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    <?php endif; ?>
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+        <?php if (!empty($errors)): ?>
+            <div class="alert alert-danger border-0 shadow-sm">
+                <ul class="mb-0">
+                    <?php foreach ($errors as $error): ?>
+                        <li><?php echo htmlspecialchars($error); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
 
-    <!-- Note: NO HTML5 validation (no required, etc.) -->
-    <form action="index.php?action=materiel_create" method="POST" id="materielForm">
-        <div class="form-group">
-            <label>Nom :</label>
-            <input type="text" name="nom" id="nom">
-            <span class="error-msg" id="nomError">Le nom est obligatoire.</span>
-        </div>
-        <div class="form-group">
-            <label>Description :</label>
-            <textarea name="description" id="description"></textarea>
-        </div>
-        <div class="form-group">
-            <label>État :</label>
-            <select name="etat" id="etat">
-                <option value="">Sélectionnez un état</option>
-                <option value="Disponible">Disponible</option>
-                <option value="En maintenance">En maintenance</option>
-                <option value="En mission">En mission</option>
-            </select>
-            <span class="error-msg" id="etatError">L'état est obligatoire.</span>
-        </div>
-        <button type="submit" class="btn">Enregistrer</button>
-    </form>
+        <form action="materiels.php?action=create" method="POST" id="materielForm">
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Nom <span class="text-danger">*</span></label>
+                <input type="text" name="nom" id="nom" class="form-control" placeholder="Entrez le nom du matériel">
+                <div class="text-danger small mt-1" id="nomError" style="display:none;">Le nom est obligatoire.</div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Description</label>
+                <textarea name="description" id="description" class="form-control" rows="4" placeholder="Description du matériel..."></textarea>
+            </div>
+            
+            <div class="mb-4">
+                <label class="form-label fw-semibold">État <span class="text-danger">*</span></label>
+                <select name="etat" id="etat" class="form-select">
+                    <option value="">Sélectionnez un état</option>
+                    <option value="Disponible">Disponible</option>
+                    <option value="En panne">En panne</option>
+                    <option value="En réparation">En réparation</option>
+                </select>
+                <div class="text-danger small mt-1" id="etatError" style="display:none;">L'état est obligatoire.</div>
+            </div>
+            
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary px-4"><i class="bi bi-save me-2"></i>Enregistrer</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <script>
-// Client-side validation in JS (No HTML5 validation)
 document.getElementById('materielForm').addEventListener('submit', function(e) {
     let isValid = true;
     const nom = document.getElementById('nom').value.trim();
@@ -63,5 +76,3 @@ document.getElementById('materielForm').addEventListener('submit', function(e) {
     }
 });
 </script>
-
-<?php $content = ob_get_clean(); require __DIR__ . '/../layout.php'; ?>

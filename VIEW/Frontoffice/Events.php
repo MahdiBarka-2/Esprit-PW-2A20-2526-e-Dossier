@@ -101,8 +101,8 @@ $joined = [];
                     <ul class="nav">
                         <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="index.php"><?php echo ('home'); ?></a></li>
                         <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php"><?php echo ('dashboard'); ?></a>
-                         <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/Events.php"><?php echo ('Events'); ?></a>
-                        </li>
+                         <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/Events.php"><?php echo ('Events'); ?></a></li>
+                         <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/operations.php">Opérations</a></li>
                     </ul>
                 </nav>
 

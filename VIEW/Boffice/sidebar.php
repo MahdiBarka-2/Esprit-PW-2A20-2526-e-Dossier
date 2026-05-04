@@ -64,6 +64,11 @@
                     </a>
                 </li>
                 <li class="nav-item"> 
+                    <a class="nav-link <?php echo $currentPage === 'missions.php' ? 'active' : ''; ?>" href="missions.php">
+                        <i class="bi bi-rocket-takeoff me-2"></i>Missions
+                    </a>
+                </li>
+                <li class="nav-item"> 
                     <a class="nav-link <?php echo $currentPage === 'job-saisonnier.php' ? 'active' : ''; ?>" href="job-saisonnier.php">
                         <i class="bi bi-briefcase me-2"></i><?php echo __('job_saisonnier'); ?>
                     </a>

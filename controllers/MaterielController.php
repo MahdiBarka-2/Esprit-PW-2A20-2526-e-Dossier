@@ -29,7 +29,7 @@ class MaterielController {
                 $stmt->bindParam(":etat", $etat);
                 
                 if ($stmt->execute()) {
-                    header("Location: index.php?action=materiel_list");
+                    header("Location: materiels.php?action=list");
                     exit();
                 } else {
                     $errors[] = "Erreur lors de l'ajout.";
@@ -113,7 +113,7 @@ class MaterielController {
                 $stmt->bindParam(":id", $i);
                 
                 if ($stmt->execute()) {
-                    header("Location: index.php?action=materiel_list");
+                    header("Location: materiels.php?action=list");
                     exit();
                 } else {
                     $errors[] = "Erreur lors de la modification.";
@@ -128,7 +128,7 @@ class MaterielController {
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":id", $id);
         $stmt->execute();
-        header("Location: index.php?action=materiel_list");
+        header("Location: materiels.php?action=list");
         exit();
     }
 }

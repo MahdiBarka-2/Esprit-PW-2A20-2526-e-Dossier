@@ -4,40 +4,40 @@ session_start();
 $_SESSION["role"] = "administrator";
 
 require_once '../../CONTROLLER/LanguageController.php';
-require_once '../../controllers/MaterielController.php';
+require_once '../../controllers/MissionController.php';
 
 require_once "header.php";
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'list';
 
-$materielController = new MaterielController();
+$missionController = new MissionController();
 
 // We inject the controller action inside the template
 echo '<div class="page-content-wrapper p-xxl-4">';
 
 switch ($action) {
     case 'list':
-        $materielController->read();
+        $missionController->read();
         break;
     case 'create':
-        $materielController->create();
+        $missionController->create();
         break;
     case 'update':
         if (isset($_GET['id'])) {
-            $materielController->update($_GET['id']);
+            $missionController->update($_GET['id']);
         } else {
-            header("Location: materiels.php?action=list");
+            header("Location: missions.php?action=list");
         }
         break;
     case 'delete':
         if (isset($_GET['id'])) {
-            $materielController->delete($_GET['id']);
+            $missionController->delete($_GET['id']);
         } else {
-            header("Location: materiels.php?action=list");
+            header("Location: missions.php?action=list");
         }
         break;
     default:
-        $materielController->read();
+        $missionController->read();
         break;
 }
 
