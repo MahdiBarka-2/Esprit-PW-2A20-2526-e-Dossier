@@ -1,0 +1,1 @@
+﻿<?php session_start(); $_SESSION["role"] = "administrator"; require_once "header.php"; ?><div class="page-content-wrapper p-xxl-4"><h1>Upcoming Page</h1><p>Content for this section will be integrated soon.</p></div><?php require_once "footer.php"; ?>

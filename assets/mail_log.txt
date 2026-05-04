@@ -1,0 +1,77 @@
+[2026-04-28 22:45:40] EMAIL TO haddoula12@gmail.com | SUBJECT: Réception de votre demande - Extrait de naissance | BODY: Bonjour dfdghkuihgjk,
+
+Nous avons reçu votre demande de Extrait de naissance.
+Temps de traitement estimé : Attente de complétion.
+
+Cordialement,
+La Municipalité.
+[2026-04-28 22:55:21] EMAIL TO hello@gmail.com | SUBJECT: Réception de votre demande - Document Administratif | BODY: Bonjour dfdghkuihgjk,
+
+Nous avons reçu votre demande de Document Administratif.
+Temps de traitement estimé : Attente de complétion.
+
+Cordialement,
+La Municipalité.
+[2026-04-28 23:03:44] EMAIL TO haddoula12@gmail.com | SUBJECT: Réception de votre demande - Document Administratif | BODY: Bonjour dfdghkuihgjk,
+
+Nous avons reçu votre demande de Document Administratif.
+Temps de traitement estimé : Attente de complétion.
+
+Cordialement,
+La Municipalité.
+[2026-04-28 23:05:35] EMAIL TO mixedlemon9@gmail.com | SUBJECT: Réception de votre demande - Extrait de naissance | BODY: Bonjour hiu,
+
+Nous avons reçu votre demande de Extrait de naissance.
+Temps de traitement estimé : 24 à 48 heures.
+
+Cordialement,
+La Municipalité.
+[2026-04-28 23:21:33] MAIL TO: haddoula12@gmail.com | SUBJECT: Réception de votre demande - Extrait de Naissance | CONTENT: Bonjour dfdghkuihgjk8754556,
+
+Nous avons reçu votre demande de Extrait de Naissance.
+Temps de traitement estimé : 24h.
+
+Cordialement,
+La Municipalité.
+[2026-04-28 23:31:36] [ERROR: SMTP Error: Could not authenticate.] MAIL TO: haddoula12@gmail.com | SUBJECT: Décision concernant votre demande #33 | CONTENT: Bonjour dfdghkuihgjk8754556,
+
+Votre demande a été Approuvée.
+Message officiel : Dossier complet ! Nous avons validé votre demande de Extrait de Naissance.
+
+Cordialement,
+La Municipalité.
+[2026-04-28 23:34:21] [ERROR: SMTP Error: Could not authenticate.] MAIL TO: haddoula12@gmail.com | SUBJECT: Réception de votre demande - Extrait de Naissance | CONTENT: Bonjour hadd,
+
+Nous avons reçu votre demande de Extrait de Naissance.
+Temps de traitement estimé : 24h.
+
+Cordialement,
+La Municipalité.
+[2026-04-28 23:36:38] [ERROR: SMTP Error: Could not authenticate.] MAIL TO: haddoula12@gmail.com | SUBJECT: Décision concernant votre demande #34 | CONTENT: Bonjour hadd,
+
+Votre demande a été Approuvée.
+Message officiel : Félicitations, votre demande de Extrait de Naissance a été acceptée. Traitement en cours.
+
+Cordialement,
+La Municipalité.
+[2026-04-28 23:37:45] [ERROR: SMTP Error: Could not authenticate.] MAIL TO: mixedlemon9@gmail.com | SUBJECT: Décision concernant votre demande #32 | CONTENT: Bonjour hiu,
+
+Votre demande a été Approuvée.
+Message officiel : Félicitations, votre demande est conforme aux exigences municipales. Traitement en cours.
+
+Cordialement,
+La Municipalité.
+[2026-04-28 23:38:15] [ERROR: SMTP Error: Could not authenticate.] MAIL TO: haddoula12@gmail.com | SUBJECT: Réception de votre demande - Extrait de Naissance | CONTENT: Bonjour hadd,
+
+Nous avons reçu votre demande de Extrait de Naissance.
+Temps de traitement estimé : 24h.
+
+Cordialement,
+La Municipalité.
+[2026-04-28 23:39:32] [ERROR: SMTP Error: Could not authenticate.] MAIL TO: haddoula12@gmail.com | SUBJECT: Réception de votre demande - Acte de Décès | CONTENT: Bonjour hadd,
+
+Nous avons reçu votre demande de Acte de Décès.
+Temps de traitement estimé : 24h.
+
+Cordialement,
+La Municipalité.
