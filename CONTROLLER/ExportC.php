@@ -1,19 +1,16 @@
 <?php
-/**
- * ExportC - Handles generating PDF documents for publications.
- */
+
 class ExportC {
-    /**
-     * Generates an Advanced AI Intelligence Report for a specific publication.
-     */
     public function exportToPDF($publication, $comments = []) {
-        // Use AI for real sentiment and strategic insights for the PDF
+
+        
+
         include_once __DIR__ . '/AIService.php';
         $ai = new AIService();
         
         $aiResult = $ai->generateStrategicInsight($publication['titre'], $publication['contenu'], $comments);
         
-        // Simple sentiment calculation for the chart
+        
         $positiveCount = 0;
         foreach ($comments as $c) {
             $text = strtolower($c['contenu']);
@@ -24,7 +21,7 @@ class ExportC {
         $sentiment = (count($comments) > 0) ? round(($positiveCount / count($comments)) * 100) : 100;
         if ($sentiment < 30) $sentiment = 30 + rand(5, 15); 
 
-        // Generate Comments Table HTML
+        
         $commentsHtml = "";
         if (!empty($comments)) {
             $commentsHtml = "

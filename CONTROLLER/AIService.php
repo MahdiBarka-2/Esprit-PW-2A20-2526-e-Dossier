@@ -1,12 +1,12 @@
 <?php
-/**
- * AIService - Handles communication with the Google Gemini API.
- */
-class AIService {
-    private $apiKey = "AIzaSyCXkNevoV6auThGDIaj04kcZwCBbHgHc2E"; 
+
+class AIService
+{
+    private $apiKey = "AIzaSyCa_Rdrcuaavo0VjUwNO8_KVhQ8JP0YP_M";
     private $apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
-    public function generateContent($prompt) {
+    public function generateContent($prompt)
+    {
         $models = [
             "gemini-2.5-flash",
             "gemini-2.0-flash",
@@ -17,7 +17,7 @@ class AIService {
 
         foreach ($models as $model) {
             $url = "https://generativelanguage.googleapis.com/v1/models/$model:generateContent?key=" . $this->apiKey;
-            
+
             $data = [
                 "contents" => [["parts" => [["text" => $prompt]]]]
             ];
@@ -41,7 +41,7 @@ class AIService {
             }
 
             $result = json_decode($response, true);
-            
+
             if ($httpCode === 200 && isset($result['candidates'][0]['content']['parts'][0]['text'])) {
                 return $result['candidates'][0]['content']['parts'][0]['text'];
             }
@@ -51,23 +51,19 @@ class AIService {
                 if (stripos($lastError, 'leaked') !== false) {
                     $lastError = "CRITICAL: YOUR API KEY IS LEAKED AND BANNED. You must create a new one at https://aistudio.google.com/app/apikey and paste it here.";
                 }
-                // If it's a security/auth error, don't keep trying other models
-                if ($httpCode === 403 || $httpCode === 401) break;
+                if ($httpCode === 403 || $httpCode === 401)
+                    break;
             } else {
-                $lastError = "HTTP $httpCode - " . (string)$response;
+                $lastError = "HTTP $httpCode - " . (string) $response;
             }
         }
 
         return json_encode(['error' => "AI Error: $lastError"]);
     }
 
-    /**
-     * Specifically for generating a summary and content based on a title.
-     */
-    /**
-     * Specifically for generating a summary and content based on a title.
-     */
-    public function assistPublication($title) {
+    public function assistPublication($title)
+
+    {
         $prompt = "Write a professional blog post content based on this title: '$title'. 
                    Use SIMPLE WORDS that anyone can understand. 
                    Do NOT use any HTML tags (like <h2>, <p>, <ul>, etc.). 
@@ -77,28 +73,25 @@ class AIService {
         return $this->generateContent($prompt);
     }
 
-    /**
-     * Moderates a comment by checking for toxicity, hate speech, or spam.
-     * Returns 'Approved' or 'Flagged'.
-     */
-    public function moderateComment($text) {
+    public function moderateComment($text)
+
+    {
         $prompt = "Act as a professional content moderator for a government digital platform. 
                    Analyze this comment: '$text'.
                    If it contains hate speech, extreme toxicity, offensive insults, or blatant spam, return only the word 'Flagged'.
                    Otherwise, return only the word 'Approved'.";
-        
+
         $response = $this->generateContent($prompt);
-        
-        // Clean and validate response
+
         $decision = trim(strip_tags($response));
-        if (stripos($decision, 'Flagged') !== false) return 'Flagged';
+        if (stripos($decision, 'Flagged') !== false)
+            return 'Flagged';
         return 'Approved';
     }
 
-    /**
-     * Generates a strategic insight report based on a publication and its citizen feedback.
-     */
-    public function generateStrategicInsight($title, $content, $comments) {
+    public function generateStrategicInsight($title, $content, $comments)
+
+    {
         $commentsText = "";
         foreach ($comments as $index => $c) {
             $commentsText .= ($index + 1) . ". User " . $c['utilisateur'] . ": " . $c['contenu'] . "\n";
@@ -123,7 +116,7 @@ class AIService {
                    💡 STEPS TO TAKE: (Exactly 3 simple, useful steps)
                    
                    Keep it easy to read, direct, and useful.";
-                   
+
         return $this->generateContent($prompt);
     }
 }
