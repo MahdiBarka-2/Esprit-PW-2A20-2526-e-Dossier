@@ -15,11 +15,6 @@ $categories = $cc->listeCategories()->fetchAll();
     <title>Portail des Demandes – E-Dossier</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap">
-
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../../assets/vendor/font-awesome/css/all.min.css">
     <link rel="stylesheet" href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css">
@@ -67,7 +62,7 @@ $categories = $cc->listeCategories()->fetchAll();
 <body>
 
 <!-- ===================== HEADER ===================== -->
-<header class="navbar-light py-3 border-bottom shadow-sm" style="background-color: #fff;">
+<header class="navbar-light py-3 border-bottom shadow-sm">
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand d-flex align-items-center" href="index.php">
                 <img src="../../assets/images/e_dossier.png" alt="logo" style="height: 60px;">
@@ -76,12 +71,12 @@ $categories = $cc->listeCategories()->fetchAll();
             <div class="d-flex align-items-center">
                 <nav class="navbar-expand-lg">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="index.php"><?php echo __('home'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="index.php"><?php echo __('home'); ?></a></li>
                         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'administrator'): ?>
                             <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
                         <?php endif; ?>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="Events.php"><?php echo __('Events'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="demandes.php"><?php echo __('demand'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
                     </ul>
                 </nav>
 
@@ -89,12 +84,6 @@ $categories = $cc->listeCategories()->fetchAll();
                     .nav-link-custom {
                         color: var(--bs-body-color);
                         transition: color 0.3s ease;
-                        font-family: 'Montserrat', sans-serif !important;
-                    }
-                    .navbar .btn-light:hover, 
-                    .navbar .btn-light:focus {
-                        background-color: rgba(0,0,0,0.03) !important;
-                        border-color: transparent !important;
                     }
                     [data-bs-theme='light'] .nav-link-custom {
                         color: #0b0a12 !important;
@@ -114,16 +103,11 @@ $categories = $cc->listeCategories()->fetchAll();
                     .nav-link-custom:hover {
                         color: var(--bs-primary) !important;
                     }
+                    [data-bs-theme='light'] .brand-text {
+                        color: #0b0a12 !important;
+                    }
                     [data-bs-theme='dark'] .brand-text {
                         color: #f5f5dc !important;
-                    }
-                    /* Theme-aware Hero background */
-                    .hero-section {
-                        background-color: var(--bs-cream);
-                    }
-                    [data-bs-theme='dark'] header,
-                    [data-bs-theme='dark'] .hero-section {
-                        background-color: var(--bs-body-bg) !important;
                     }
                 </style>
 
@@ -175,13 +159,8 @@ $categories = $cc->listeCategories()->fetchAll();
                                 </div>
                             </li>
                             <li><hr class="dropdown-divider"></li>
-                            <?php 
-                            $profile_link = (isset($_SESSION['role']) && $_SESSION['role'] === 'client') ? 'profile.php' : '../Boffice/account-settings.php';
-                            ?>
-                            <li><a class="dropdown-item" href="<?php echo $profile_link; ?>"><i class="bi bi-person fa-fw me-2"></i>My Profile</a></li>
-                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'client'): ?>
-                                <li><a class="dropdown-item" href="../Boffice/settings.php"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
-                            <?php endif; ?>
+                            <li><a class="dropdown-item" href="../Boffice/account-settings.php"><i class="bi bi-person fa-fw me-2"></i>My Profile</a></li>
+                            <li><a class="dropdown-item" href="../Boffice/settings.php"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
                             <li><a class="dropdown-item bg-danger-soft-hover" href="../Boffice/logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
                         </ul>
                     </div>
@@ -195,18 +174,31 @@ $categories = $cc->listeCategories()->fetchAll();
             </div>
         </div>
     </header>
-<main>
-    <!-- Hero Section START -->
-    <section class="pt-3 pt-lg-5 position-relative overflow-hidden hero-section">
-        <div class="container pb-4">
-             <h2 class="mb-0 fw-bold text-primary display-5">Portail des Demandes</h2>
-             <div class="mt-4">
-                <button class="btn btn-primary btn-lg px-5 py-3 text-white fw-bold shadow-sm" style="font-size: 1.25rem; border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#modalAjouter">
-                    <i class="bi bi-plus-circle me-2"></i> Faire une demande
-                </button>
-             </div>
-        </div>
-    </section>
+<!-- ===================== HEADER END ===================== -->
+
+<div id="view-front">
+  <div class="content">
+
+    <div class="d-flex flex-column align-items-center text-center mb-5 mt-4">
+      <div class="d-flex align-items-center justify-content-center mb-4">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--bs-primary)" stroke-width="2" class="me-3">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <h2 class="mb-0 fw-bold text-primary display-5">Portail des Demandes</h2>
+      </div>
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
+        <button class="btn btn-primary btn-lg px-5 py-3 text-white fw-bold shadow-sm" style="font-size: 1.25rem; border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#modalAjouter">
+            <i class="bi bi-plus-circle me-2"></i> Faire une demande
+        </button>
+        <!-- Feature 4 : Lien vers le suivi de demande -->
+        <a href="suivi.php" class="btn btn-outline-primary btn-lg px-5 py-3 fw-bold shadow-sm" style="font-size: 1.25rem; border-radius: 12px;">
+            <i class="bi bi-search me-2"></i> Suivre ma demande
+        </a>
+      </div>
+    </div>
 
 <div class="container py-5">
 
@@ -217,12 +209,6 @@ $categories = $cc->listeCategories()->fetchAll();
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
         <?php unset($_SESSION['success']); ?>
-    <?php endif; ?>
-    <?php if (!empty($_SESSION['errors'])): ?>
-        <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm">
-            <ul class="mb-0"><?php foreach ($_SESSION['errors'] as $e): ?><li><?= htmlspecialchars($e) ?></li><?php endforeach; unset($_SESSION['errors']); ?></ul>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
     <?php endif; ?>
 
     <!-- Steps -->
@@ -277,17 +263,36 @@ $categories = $cc->listeCategories()->fetchAll();
         $pct = match($d['statut']) { 'approuvee'=>100,'rejetee'=>100,default=>50};
         $pcolor = match($d['statut']) { 'approuvee'=>'bg-success','rejetee'=>'bg-danger',default=>'bg-warning'};
         $canEdit = $d['statut'] === 'en_attente';
+        // Feature 7 : priorité sur la carte
+        $prio = $d['priorite'] ?? 'normale';
+        $prioClass = match($prio) { 'critique'=>'text-danger','urgente'=>'text-warning',default=>'text-success'};
+        $prioEmoji = match($prio) { 'critique'=>'🔴','urgente'=>'🟠',default=>'🟢'};
         ?>
         <div class="col-md-6 col-lg-4">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-start mb-3">
                         <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill"><i class="bi bi-tag me-1"></i><?= htmlspecialchars($d['categorie_nom']) ?></span>
-                        <span class="badge <?= $badgeSoft ?> px-3 py-2 rounded-pill"><i class="bi <?= $icon ?> me-1"></i><?= $label ?></span>
+                        <div class="d-flex flex-column align-items-end gap-1">
+                            <span class="badge <?= $badgeSoft ?> px-3 py-2 rounded-pill"><i class="bi <?= $icon ?> me-1"></i><?= $label ?></span>
+                            <!-- Feature 7 : priorité -->
+                            <small class="<?= $prioClass ?> fw-semibold"><?= $prioEmoji ?> <?= ucfirst($prio) ?></small>
+                        </div>
                     </div>
-                    <h6 class="fw-bold mb-1"><i class="bi bi-person-circle me-2 text-muted"></i><?= htmlspecialchars($d['utilisateur']) ?></h6>
+                    <h6 class="fw-bold mb-1">
+                        <!-- Numéro de demande (utile pour le suivi) -->
+                        <span class="badge bg-light text-muted border me-2" style="font-size:0.7rem; font-weight:600;">
+                            <i class="bi bi-hash"></i><?= $d['id'] ?>
+                        </span>
+                        <i class="bi bi-person-circle me-1 text-muted"></i><?= htmlspecialchars($d['utilisateur']) ?>
+                    </h6>
                     <p class="text-muted small mb-1"><i class="bi bi-envelope me-2"></i><?= htmlspecialchars($d['email']) ?></p>
                     <p class="text-muted small mb-0"><i class="bi bi-calendar3 me-2"></i><?= date('d/m/Y', strtotime($d['created_at'])) ?></p>
+                    <div class="p-2 bg-light rounded-2 mb-0 mt-2">
+                        <p class="text-muted small mb-0" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.2; height: 2.4em;">
+                            <i class="bi bi-chat-left-text me-1"></i><?= htmlspecialchars($d['description'] ?? 'Aucune description.') ?>
+                        </p>
+                    </div>
                 </div>
                 <div class="card-footer bg-transparent px-4 pb-3 pt-2">
                     <div class="progress mb-3" style="height:4px;">
@@ -295,7 +300,7 @@ $categories = $cc->listeCategories()->fetchAll();
                     </div>
                     <?php if ($canEdit): ?>
                     <button class="btn btn-outline-primary btn-sm w-100"
-                        onclick="openEditModal(<?= $d['id'] ?>, '<?= htmlspecialchars(addslashes($d['utilisateur'])) ?>', '<?= htmlspecialchars(addslashes($d['email'])) ?>', <?= $d['categorie_id'] ?>)">
+                        onclick="openEditModal(<?= $d['id'] ?>, '<?= htmlspecialchars(addslashes($d['utilisateur'])) ?>', '<?= htmlspecialchars(addslashes($d['email'])) ?>', <?= $d['categorie_id'] ?>, '<?= htmlspecialchars(addslashes($d['description'] ?? '')) ?>')">
                         <i class="bi bi-pencil me-1"></i>Modifier
                     </button>
                     <?php else: ?>
@@ -321,36 +326,58 @@ $categories = $cc->listeCategories()->fetchAll();
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
-            <form action="../../CONTROLLER/AjouterDemande.php" method="POST" enctype="multipart/form-data" novalidate>
+            <form id="formAjouter" action="../../CONTROLLER/AjouterDemande.php" method="POST" enctype="multipart/form-data" novalidate>
                 <input type="hidden" name="source" value="utilisateur">
                 <input type="hidden" name="redirect" value="frontoffice_new">
                 <div class="modal-body p-4">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Nom complet <span class="text-danger">*</span></label>
-                            <input type="text" name="utilisateur" class="form-control" placeholder="Ahmed Ben Ali" required>
+                            <input type="text" name="utilisateur" id="val-nom" class="form-control" placeholder="Ahmed Ben Ali" required>
+                            <small class="text-danger d-none" id="error-nom">Veuillez entrer votre nom complet (min 3 carac.).</small>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
-                            <input type="email" name="email" class="form-control" placeholder="exemple@email.com" required>
+                            <input type="email" name="email" id="val-email" class="form-control" placeholder="exemple@email.com" required>
+                            <small class="text-danger d-none" id="error-email">Veuillez entrer une adresse email valide.</small>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Catégorie <span class="text-danger">*</span></label>
-                            <select name="categorie_id" class="form-select" required>
+                            <select name="categorie_id" id="selectCategorie" class="form-select" required onchange="updateTemplates()">
                                 <option value="">-- Sélectionner --</option>
                                 <?php foreach ($categories as $cat): ?>
-                                    <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['nom']) ?></option>
+                                    <option value="<?= $cat['id'] ?>" data-name="<?= htmlspecialchars($cat['nom']) ?>"><?= htmlspecialchars($cat['nom']) ?></option>
                                 <?php endforeach; ?>
                             </select>
+                            <small class="text-danger d-none" id="error-cat">Veuillez choisir une catégorie.</small>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Document <span class="text-danger">*</span></label>
-                            <input type="file" name="document" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+                            <label class="form-label fw-semibold">Documents <span class="text-danger">*</span> <small class="fw-normal text-muted">(plusieurs autorisés)</small></label>
+                            <!-- Feature 5 : multiple -->
+                            <input type="file" name="documents[]" id="val-doc" class="form-control" accept=".pdf,.jpg,.jpeg,.png" multiple required>
+                            <small class="text-danger d-none" id="error-doc">Veuillez joindre au moins un document.</small>
                         </div>
+                        <!-- Feature 7 : Priorité -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Priorité</label>
+                            <select name="priorite" class="form-select">
+                                <option value="normale">🟢 Normale</option>
+                                <option value="urgente">🟠 Urgente</option>
+                                <option value="critique">🔴 Critique — très urgent</option>
+                            </select>
+                        </div>
+
                         <div class="col-12">
                             <label class="form-label fw-semibold">Description</label>
-                            <textarea name="description" class="form-control" rows="2"></textarea>
+                            <div id="templateContainer" class="mb-2 d-none">
+                                <small class="text-muted d-block mb-1">Modèle suggéré par l'IA :</small>
+                                <div id="templateButtons"></div>
+                            </div>
+                            <textarea id="descAjouter" name="description" class="form-control" rows="3" placeholder="Détaillez votre demande..."></textarea>
+                            <small class="text-danger d-none" id="error-desc">Veuillez donner un peu plus de détails (min 10 carac.).</small>
                         </div>
+
+
                     </div>
                 </div>
                 <div class="modal-footer border-0 pt-0">
@@ -395,7 +422,11 @@ $categories = $cc->listeCategories()->fetchAll();
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Description</label>
+                            <textarea name="description" id="edit_description" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="col-12">
                             <div class="alert alert-info border-0 py-2 px-3 small mb-0">
                                 <i class="bi bi-info-circle me-1"></i>Le document ne peut pas être modifié.
                             </div>
@@ -412,49 +443,105 @@ $categories = $cc->listeCategories()->fetchAll();
 </div>
 
 <script>
-function openEditModal(id, utilisateur, email, categorieId) {
+function openEditModal(id, utilisateur, email, categorieId, description) {
     document.getElementById('edit_id').value = id;
     document.getElementById('edit_utilisateur').value = utilisateur;
     document.getElementById('edit_email').value = email;
     document.getElementById('edit_categorie_id').value = categorieId;
+    document.getElementById('edit_description').value = description;
     new bootstrap.Modal(document.getElementById('modalModifier')).show();
 }
+
+// Validation du formulaire avec Popup
+document.getElementById('formAjouter').addEventListener('submit', function(e) {
+    let isValid = true;
+    const errors = this.querySelectorAll('.text-danger');
+    const inputs = this.querySelectorAll('.form-control, .form-select');
+    
+    // Reset
+    errors.forEach(el => el.classList.add('d-none'));
+    inputs.forEach(el => el.classList.remove('is-invalid'));
+
+    const nom = document.getElementById('val-nom').value.trim();
+    const email = document.getElementById('val-email').value.trim();
+    const cat = document.getElementById('selectCategorie').value;
+    const doc = document.getElementById('val-doc').files.length;
+    const desc = document.getElementById('descAjouter').value.trim();
+
+    if (nom === "" || nom.length < 3) {
+        document.getElementById('error-nom').classList.remove('d-none');
+        document.getElementById('val-nom').classList.add('is-invalid');
+        isValid = false;
+    }
+
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        document.getElementById('error-email').classList.remove('d-none');
+        document.getElementById('val-email').classList.add('is-invalid');
+        isValid = false;
+    }
+
+    if (cat === "") {
+        document.getElementById('error-cat').classList.remove('d-none');
+        document.getElementById('selectCategorie').classList.add('is-invalid');
+        isValid = false;
+    }
+
+    if (doc === 0) {
+        document.getElementById('error-doc').classList.remove('d-none');
+        document.getElementById('val-doc').classList.add('is-invalid');
+        isValid = false;
+    }
+
+    if (desc.length < 10) {
+        document.getElementById('error-desc').classList.remove('d-none');
+        document.getElementById('descAjouter').classList.add('is-invalid');
+        isValid = false;
+    }
+
+    if (!isValid) {
+        e.preventDefault();
+    }
+});
+
+
+
+function insertTemplate(text) {
+    document.getElementById('descAjouter').value = text;
+}
+
+function updateTemplates() {
+    const select = document.getElementById('selectCategorie');
+    const selectedOption = select.options[select.selectedIndex];
+    const catName = selectedOption.getAttribute('data-name') || '';
+    const container = document.getElementById('templateContainer');
+    const buttonsDiv = document.getElementById('templateButtons');
+    
+    buttonsDiv.innerHTML = '';
+    
+    const templates = {
+        'Logement': 'Je sollicite l\'attribution d\'un logement social. Ma situation actuelle est : [DÉTAILS]. Revenu mensuel : [MONTANT].',
+        'Bourse d\'Études': 'Demande de bourse d\'études pour l\'année universitaire. Inscrit en [FILIÈRE] à [ÉTABLISSEMENT].',
+        'Carte Municipale': 'Je souhaite obtenir une carte municipale pour accéder aux services de la ville. Photo jointe.',
+        'Certificat Administratif': 'Demande de certificat administratif concernant [OBJET]. J\'en ai besoin pour [RAISON].',
+        'Extrait de Naissance': 'Je souhaite obtenir un extrait de naissance. Né le [DATE] à [LIEU]. Père: [NOM], Mère: [NOM].',
+        'Certificat de Résidence': 'Demande de certificat de résidence. J\'habite au [ADRESSE] à [VILLE] depuis le [DATE].',
+        'Extrait d\'acte de Marriage': 'Je demande un extrait d\'acte de mariage. Mariage célébré le [DATE] à [LIEU] entre [NOM1] et [NOM2].',
+        'Acte de Décès': 'Demande d\'acte de décès pour [NOM_DEFUNT], décédé le [DATE] à [LIEU].',
+        'Passeport / CIN': 'Demande de renouvellement de [DOCUMENT]. Mon ancien numéro est [NUMERO].'
+    };
+
+    if (templates[catName]) {
+        container.classList.remove('d-none');
+        // Use backticks and replace single quotes to avoid JS errors
+        const safeText = templates[catName].replace(/'/g, "\\'");
+        buttonsDiv.innerHTML = `<button type="button" class="btn btn-sm btn-primary py-1 px-3" onclick="insertTemplate('${safeText}')"><i class="bi bi-magic me-1"></i> Utiliser le modèle ${catName}</button>`;
+    } else {
+        container.classList.add('d-none');
+    }
+}
+
+
 </script>
-
-<!-- AI Assistants & Messenger Widget -->
-<?php
-require_once '../../CONTROLLER/VoiceController.php';
-require_once '../../CONTROLLER/ChatController.php';
-require_once '../../CONTROLLER/MessengerWidget.php';
-echo renderVocalAssistant($lang ?? 'en');
-echo renderChatAssistant();
-echo renderMessengerWidget();
-?>
-
-</main>
-
-    <footer class="py-5" style="background-color: #1d3b53; color: white;">
-        <div class="container">
-            <div class="row g-4 justify-content-between">
-                <div class="col-lg-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <img src="../../assets/images/e_dossier.png" alt="logo"
-                            style="height: 40px; filter: brightness(0) invert(1);">
-                        <span class="ms-2 fw-bold text-white fs-4">E-Dossier</span>
-                    </div>
-                    <p class="small opacity-75">Providing modern solutions for digital dossier management since 2026.</p>
-                </div>
-                <div class="col-lg-6 text-lg-end">
-                    <ul class="nav justify-content-lg-end mb-3">
-                        <li class="nav-item"><a href="#" class="nav-link text-white small px-2">Privacy Policy</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white small px-2">Terms of Use</a></li>
-                    </ul>
-                    <p class="mb-0 small opacity-50">&copy; 2026 e_dossier. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
 <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
 <script src="../../assets/js/functions.js"></script>

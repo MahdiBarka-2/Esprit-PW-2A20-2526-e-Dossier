@@ -404,3 +404,93 @@ Mail Error: SMTP Error: Could not authenticate.
         
     
 Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 21:25:57] 2FA Code for elmadhkour1@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            298084
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 21:33:42] 2FA Code for aziz@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            859731
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 21:34:45] 2FA Code for aziz@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            163980
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 21:35:57] 2FA Code for hadilgarsi2@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            278518
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 21:39:52] 2FA Code for aziz@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            410326
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 21:47:24] 2FA Code for hadilgarsi2@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            432108
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.

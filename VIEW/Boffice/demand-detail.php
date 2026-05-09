@@ -8,6 +8,16 @@ $dc             = new demandeC();
 $demande        = $dc->getDemande($_GET['id']);
 $justifications = $dc->getJustifications($_GET['id']);
 
+// Feature 6 : demande en retard ?
+$joursAttente = (int)((time() - strtotime($demande['created_at'])) / 86400);
+$isOverdue    = ($demande['statut'] === 'en_attente' && $joursAttente >= 3);
+
+// Feature 7 : badge priorité
+$priorite  = $demande['priorite'] ?? 'normale';
+$prioBadge = match($priorite) { 'critique'=>'bg-danger bg-opacity-10 text-danger','urgente'=>'bg-warning bg-opacity-10 text-warning',default=>'bg-success bg-opacity-10 text-success' };
+$prioIcon  = match($priorite) { 'critique'=>'bi-exclamation-circle-fill','urgente'=>'bi-exclamation-triangle-fill',default=>'bi-check-circle-fill' };
+
+
 $badgeSoft = 'bg-warning bg-opacity-10 text-warning';
 $statusIcon = 'bi-clock-fill text-warning';
 $label = 'En attente';
@@ -49,9 +59,17 @@ require_once "header.php";
             <i class="bi bi-x-circle me-1"></i>Rejeter
         </a>
         <?php endif; ?>
+        
+
+        <!-- Bouton IA (Temps réel) -->
+        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalAI">
+            <i class="bi bi-robot me-1"></i> Conseil IA
+        </button>
+
         <a href="demands.php" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-left me-1"></i>Retour
         </a>
+
     </div>
 </div>
 
@@ -61,6 +79,25 @@ require_once "header.php";
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
     <?php unset($_SESSION['success']); ?>
+<?php endif; ?>
+
+<?php if (!empty($_SESSION['error'])): ?>
+    <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm">
+        <i class="bi bi-x-circle-fill me-2"></i><?= $_SESSION['error'] ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <?php unset($_SESSION['error']); ?>
+<?php endif; ?>
+
+<?php if ($isOverdue): ?>
+<!-- Feature 6 : Alerte retard -->
+<div class="alert alert-danger border-0 shadow-sm d-flex align-items-center gap-3 mb-4">
+    <i class="bi bi-clock-history fs-3"></i>
+    <div>
+        <strong>Demande en retard</strong> — en attente depuis <?= $joursAttente ?> jour(s).
+        <br><small>Cette demande nécessite une action urgente.</small>
+    </div>
+</div>
 <?php endif; ?>
 
 <div class="row g-4">
@@ -86,6 +123,18 @@ require_once "header.php";
                         <p class="text-muted small mb-1">Statut</p>
                         <span class="badge <?= $badgeSoft ?> px-3 py-2"><i class="bi <?= $statusIcon ?> me-1"></i><?= $label ?></span>
                     </div>
+                    <!-- Feature 7 : Priorité -->
+                    <div class="col-6">
+                        <p class="text-muted small mb-1">Priorité</p>
+                        <span class="badge <?= $prioBadge ?> px-3 py-2"><i class="bi <?= $prioIcon ?> me-1"></i><?= ucfirst($priorite) ?></span>
+                    </div>
+                    <div class="col-6">
+                        <p class="text-muted small mb-1">Délai</p>
+                        <span class="<?= $isOverdue ? 'text-danger fw-bold' : 'text-muted' ?> small">
+                            <i class="bi bi-clock me-1"></i><?= $joursAttente ?> jour(s)
+                            <?= $isOverdue ? ' ⚠️' : '' ?>
+                        </span>
+                    </div>
                     <div class="col-12">
                         <p class="text-muted small mb-1">Date</p>
                         <p class="fw-semibold mb-0"><i class="bi bi-calendar3 me-2 text-muted"></i><?= date('d/m/Y à H:i', strtotime($demande['created_at'])) ?></p>
@@ -101,9 +150,19 @@ require_once "header.php";
             </div>
         </div>
     </div>
+
     <div class="col-lg-7">
         <div class="card border-0 shadow-sm h-100">
-            <div class="card-header border-0 bg-transparent pt-4 px-4 pb-3">
+            <div class="card-header border-0 bg-transparent pt-4 px-4 pb-0">
+                <h5 class="fw-bold mb-0"><i class="bi bi-chat-left-text me-2 text-primary"></i>Description de la demande</h5>
+            </div>
+            <div class="card-body px-4 pb-2">
+                <div class="p-3 bg-light rounded-3">
+                    <p class="mb-0"><?= nl2br(htmlspecialchars($demande['description'] ?? 'Aucune description fournie.')) ?></p>
+                </div>
+            </div>
+
+            <div class="card-header border-0 bg-transparent pt-3 px-4 pb-3">
                 <h5 class="fw-bold mb-0"><i class="bi bi-paperclip me-2 text-primary"></i>Documents justificatifs</h5>
             </div>
             <div class="card-body px-4">
@@ -131,9 +190,6 @@ require_once "header.php";
                                     </div>
                                     <div>
                                         <p class="fw-semibold small mb-0"><?= htmlspecialchars($j['document']) ?></p>
-                                        <?php if (!empty($j['description'])): ?>
-                                            <small class="text-muted"><?= htmlspecialchars($j['description']) ?></small>
-                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <?php if ($isImage): ?>
@@ -156,5 +212,51 @@ require_once "header.php";
     </div>
 </div>
 
+
+<!-- Modal Assistant IA (Généré à la volée) -->
+<?php $aiSupport = $dc->getAiSupportOnTheFly($demande['id']); ?>
+<div class="modal fade" id="modalAI" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-0 text-white" style="background: linear-gradient(135deg, #0d6efd, #0a58ca);">
+                <h5 class="modal-title fw-bold"><i class="bi bi-robot me-2"></i>Assistant IA (Analyse en direct)</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4 text-center">
+                <?php if (!$aiSupport): ?>
+                    <p class="text-muted">Analyse impossible pour le moment.</p>
+                <?php else: ?>
+                    <div class="mb-4">
+                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width:70px;height:70px;">
+                            <i class="bi <?= $aiSupport['suggestion'] == 'approve' ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-danger' ?> fs-1"></i>
+                        </div>
+                    </div>
+                    
+                    <h4 class="fw-bold mb-1">Recommandation :</h4>
+                    <div class="badge <?= $aiSupport['suggestion'] == 'approve' ? 'bg-success' : 'bg-danger' ?> fs-5 mb-4 px-4 py-2 rounded-pill">
+                        <?= $aiSupport['suggestion'] == 'approve' ? 'APPROUVER' : 'REJETER' ?>
+                    </div>
+
+                    <div class="p-3 bg-light rounded-3 mb-4 text-start">
+                        <p class="small fw-bold text-muted text-uppercase mb-2">Analyse en temps réel :</p>
+                        <p class="mb-0 italic text-dark">"<?= htmlspecialchars($aiSupport['reason'] ?? 'Aucun motif trouvé.') ?>"</p>
+                    </div>
+
+                    <div class="alert alert-info border-0 text-start small">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        <strong>Conseil de réponse :</strong> <br>
+                        <span class="text-muted">"<?= htmlspecialchars($aiSupport['official_message'] ?? '') ?>"</span>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-light w-100" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+</div>
+
 <?php require_once "footer.php"; ?>
+

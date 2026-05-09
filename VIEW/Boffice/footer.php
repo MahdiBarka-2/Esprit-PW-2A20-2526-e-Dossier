@@ -50,5 +50,9 @@ require_once '../../CONTROLLER/MessengerWidget.php';
 echo renderMessengerWidget();
 ?>
 
+<!-- Essential JS -->
+<script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
+<script src="../../assets/js/functions.js"></script>
 </body>
 </html>

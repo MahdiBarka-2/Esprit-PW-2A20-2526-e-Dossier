@@ -122,10 +122,6 @@ header("Expires: 0"); // Proxies.
 	<!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
     
-    <!-- Essential JS -->
-    <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
-    <script src="../../assets/js/functions.js"></script>
 </head>
 
 <body>
