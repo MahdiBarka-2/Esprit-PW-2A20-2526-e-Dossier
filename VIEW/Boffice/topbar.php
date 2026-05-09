@@ -66,6 +66,13 @@
                     </ul>
                 </li>
 
+                <!-- Gesture Mouse Toggle -->
+                <li class="nav-item ms-3">
+                    <button class="btn btn-light btn-sm mb-0 p-2" id="topbar-gesture-toggle" onclick="toggleGestureMode()" title="Toggle Finger Mouse">
+                        <i class="fas fa-hand-pointer text-primary"></i>
+                    </button>
+                </li>
+
                 <!-- Profile dropdown START -->
                 <li class="nav-item ms-3 dropdown">
                     <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button"
@@ -92,6 +99,7 @@
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="account-settings.php"><i class="bi bi-person fa-fw me-2"></i>My Profile</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="openFaceEnrollment()"><i class="fas fa-user-shield fa-fw me-2"></i>Face ID Setup</a></li>
                         <li><a class="dropdown-item" href="settings.php"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
                         <li><a class="dropdown-item bg-danger-soft-hover" href="logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
                     </ul>
@@ -100,4 +108,71 @@
         </div>
     </div>
 </nav>
+
+<!-- Face ID Enrollment UI -->
+<div id="enroll-face-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; flex-direction:column; align-items:center; justify-content:center;">
+    <div style="position:relative; width:320px; height:240px; border-radius:15px; overflow:hidden; border:4px solid #28a745;">
+        <video id="enroll-video" width="320" height="240" autoplay muted style="transform: scaleX(-1);"></video>
+    </div>
+    <p id="enroll-status" class="text-white mt-3">Ready to enroll your face?</p>
+    <div class="d-flex gap-2">
+        <button type="button" id="start-enroll-btn" class="btn btn-success">Scan Face</button>
+        <button type="button" onclick="closeFaceEnrollment()" class="btn btn-outline-light">Cancel</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<script>
+    let enrollModelsLoaded = false;
+    async function openFaceEnrollment() {
+        document.getElementById('enroll-face-container').style.display = 'flex';
+        const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
+        document.getElementById('enroll-video').srcObject = stream;
+        
+        if (!enrollModelsLoaded) {
+            document.getElementById('enroll-status').innerText = 'Loading AI...';
+            const MODEL_URL = 'https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights';
+            await faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL);
+            await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL);
+            await faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL);
+            enrollModelsLoaded = true;
+        }
+        document.getElementById('enroll-status').innerText = 'Look at the camera and click Scan.';
+    }
+
+    document.getElementById('start-enroll-btn').addEventListener('click', async () => {
+        const video = document.getElementById('enroll-video');
+        const status = document.getElementById('enroll-status');
+        status.innerText = 'Analyzing...';
+        
+        const detection = await faceapi.detectSingleFace(video)
+            .withFaceLandmarks()
+            .withFaceDescriptor();
+            
+        if (detection) {
+            const descriptor = Array.from(detection.descriptor);
+            const response = await fetch('../../CONTROLLER/FacialRecognitionController.php?action=register', {
+                method: 'POST',
+                body: JSON.stringify({ descriptor })
+            });
+            const result = await response.json();
+            if (result.status === 'success') {
+                status.innerHTML = '<span class="text-success">Face Registered Successfully!</span>';
+                setTimeout(closeFaceEnrollment, 2000);
+            } else {
+                status.innerText = 'Registration failed: ' + result.message;
+            }
+        } else {
+            status.innerText = 'No face detected. Try again.';
+        }
+    });
+
+    function closeFaceEnrollment() {
+        const video = document.getElementById('enroll-video');
+        if (video.srcObject) {
+            video.srcObject.getTracks().forEach(track => track.stop());
+        }
+        document.getElementById('enroll-face-container').style.display = 'none';
+    }
+</script>
 <!-- Top bar END -->

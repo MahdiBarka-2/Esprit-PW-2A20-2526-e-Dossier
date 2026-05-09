@@ -9,6 +9,26 @@ require_once '../../CONTROLLER/demandeC.php';
 $demandeC = new demandeC();
 $totalDossiers = $demandeC->countDemandes();
 $newDemandesCount = $demandeC->countDemandes('en_attente');
+
+// Fetch Stats for Charts
+$ageDist = getAgeDistribution();
+$activityStats = getGuestActivityStats();
+
+// Prepare Age Distribution Data
+$ageLabels = [];
+$ageSeries = [];
+foreach ($ageDist as $item) {
+    $ageLabels[] = $item['age_group'] . ' Years';
+    $ageSeries[] = (int)$item['count'];
+}
+
+// Prepare Activity Data (Last 7 Days)
+$activityDates = [];
+$activityCounts = [];
+foreach ($activityStats as $item) {
+    $activityDates[] = date('D', strtotime($item['date']));
+    $activityCounts[] = (int)$item['count'];
+}
 ?>
 <?php
 require_once "header.php";
@@ -112,21 +132,18 @@ require_once "header.php";
 				<div class="card-body p-3">
 					<div class="d-flex justify-content-center" id="ChartTrafficRooms"></div>
 					<ul class="list-group list-group-borderless mb-0 mt-3">
+						<?php 
+                        $colors = ['text-primary', 'text-info', 'text-warning', 'text-danger'];
+                        $totalAgeUsers = array_sum($ageSeries);
+                        foreach ($ageDist as $index => $item): 
+                            $pct = $totalAgeUsers > 0 ? round(($item['count'] / $totalAgeUsers) * 100) : 0;
+                        ?>
 						<li class="list-group-item d-flex justify-content-between">
-							<span class="h6 fw-light mb-0"><i class="text-primary fas fa-circle me-2"></i>
-								18-25 Years</span>
-							<span class="h6 fw-light mb-0">35%</span>
+							<span class="h6 fw-light mb-0"><i class="<?php echo $colors[$index % 4]; ?> fas fa-circle me-2"></i>
+								<?php echo $item['age_group']; ?> Years</span>
+							<span class="h6 fw-light mb-0"><?php echo $pct; ?>%</span>
 						</li>
-						<li class="list-group-item d-flex justify-content-between">
-							<span class="h6 fw-light mb-0"><i class="text-info fas fa-circle me-2"></i>
-								26-45 Years</span>
-							<span class="h6 fw-light mb-0">50%</span>
-						</li>
-						<li class="list-group-item d-flex justify-content-between">
-							<span class="h6 fw-light mb-0"><i class="text-warning fas fa-circle me-2"></i>
-								45+ Years</span>
-							<span class="h6 fw-light mb-0">15%</span>
-						</li>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 			</div>
@@ -202,9 +219,47 @@ require_once "header.php";
 <script src="../../assets/vendor/apexcharts/js/apexcharts.min.js"></script>
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
-		// Re-initialize charts specifically for this page 
-		// because functions.js in the head runs too early
+		// Override chart functions with dynamic data
 		if (typeof e !== 'undefined') {
+			e.trafficsplineChart = function() {
+				var cpv = e.select('#ChartGuesttraffic');
+				if (e.isVariableDefined(cpv)) {
+					var options = {
+						series: [{
+							name: 'Guest Activity',
+							data: <?php echo json_encode($activityCounts); ?>
+						}],
+						chart: { height: 350, type: 'area', toolbar: { show: false } },
+						colors: [ThemeColor.getCssVariableValue('--bs-primary')],
+						dataLabels: { enabled: false },
+						stroke: { curve: 'smooth' },
+						xaxis: { categories: <?php echo json_encode($activityDates); ?> },
+					};
+					var chart = new ApexCharts(document.querySelector("#ChartGuesttraffic"), options);
+					chart.render();
+				}
+			};
+
+			e.trafficroomChart = function() {
+				var cpv = e.select('#ChartTrafficRooms');
+				if (e.isVariableDefined(cpv)) {
+					var options = {
+						series: <?php echo json_encode($ageSeries); ?>,
+						labels: <?php echo json_encode($ageLabels); ?>,
+						chart: { height: 300, width: 300, offsetX: 0, type: 'donut', sparkline: { enabled: !0 } },
+						colors: [
+							ThemeColor.getCssVariableValue('--bs-primary'),
+							ThemeColor.getCssVariableValue('--bs-info'),
+							ThemeColor.getCssVariableValue('--bs-warning')
+						],
+						tooltip: { theme: "dark" },
+						responsive: [{ breakpoint: 480, options: { chart: { width: 200, height: 200 }, legend: { position: 'bottom' } } }]
+					};
+					var chart = new ApexCharts(document.querySelector("#ChartTrafficRooms"), options);
+					chart.render();
+				}
+			};
+
 			if (document.querySelector("#ChartGuesttraffic")) e.trafficsplineChart();
 			if (document.querySelector("#ChartTrafficRooms")) e.trafficroomChart();
 		}

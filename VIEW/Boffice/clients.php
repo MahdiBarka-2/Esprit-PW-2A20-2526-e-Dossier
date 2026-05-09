@@ -120,6 +120,7 @@ $stmt = findUsersByRole('client');
                                     <tr>
                                         <th class="border-0 rounded-start" data-column="name"><?php echo __('name'); ?></th>
                                         <th class="border-0" data-column="email"><?php echo __('email'); ?></th>
+                                        <th class="border-0" data-column="age">Age</th>
                                         <th class="border-0" data-column="password"><?php echo __('password'); ?></th>
                                         <th class="border-0" data-column="status"><?php echo __('status'); ?></th>
                                         <th class="border-0" data-column="cv"><?php echo __('cv'); ?></th>
@@ -151,6 +152,7 @@ $stmt = findUsersByRole('client');
                                                 </div>
                                             </td>
                                             <td><?php echo $row['email']; ?></td>
+                                            <td><?php echo $row['age'] ?: 'N/A'; ?></td>
                                             <td>
                                                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'administrator'): ?>
                                                     <h6 class="mb-0 text-primary"><?php echo $row['password_plain'] ?: '********'; ?></h6>
@@ -230,6 +232,10 @@ $stmt = findUsersByRole('client');
                                         required>
                                 </div>
                                 <div class="mb-3">
+                                    <label class="form-label">Age</label>
+                                    <input type="number" name="age" class="form-control" placeholder="Enter age" min="1" max="120">
+                                </div>
+                                <div class="mb-3">
                                     <label class="form-label">Phone</label>
                                     <input type="text" name="phone" class="form-control" placeholder="+123456789">
                                 </div>
@@ -291,6 +297,10 @@ $stmt = findUsersByRole('client');
                                     <input type="text" name="phone" id="edit_phone" class="form-control">
                                 </div>
                                 <div class="mb-3">
+                                    <label class="form-label">Age</label>
+                                    <input type="number" name="age" id="edit_age" class="form-control" min="1" max="120">
+                                </div>
+                                <div class="mb-3">
                                     <label class="form-label">Status</label>
                                     <select name="status" id="edit_status" class="form-select" required>
                                         <option value="active">Active</option>
@@ -335,6 +345,7 @@ $stmt = findUsersByRole('client');
                     document.getElementById('edit_name').value = data.name;
                     document.getElementById('edit_email').value = data.email;
                     document.getElementById('edit_phone').value = data.phone;
+                    document.getElementById('edit_age').value = data.age || '';
                     document.getElementById('edit_status').value = data.status;
                     document.getElementById('edit_role').value = data.role;
 

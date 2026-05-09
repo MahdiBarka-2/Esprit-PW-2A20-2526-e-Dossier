@@ -15,6 +15,7 @@ class User
     public $profile_image_url;
     public $cv_file_path;
     public $phone;
+    public $age;
     public $status;
     public $created_at;
     public $updated_at;

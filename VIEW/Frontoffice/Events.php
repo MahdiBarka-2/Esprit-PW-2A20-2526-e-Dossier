@@ -99,10 +99,11 @@ $joined = [];
             <div class="d-flex align-items-center">
                 <nav class="navbar-expand-lg">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="index.php"><?php echo ('home'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php"><?php echo ('dashboard'); ?></a>
-                         <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/Events.php"><?php echo ('Events'); ?></a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="demandes.php"><?php echo __('demand'); ?></a></li>
+                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'client'): ?>
+                            <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
+                        <?php endif; ?>
+                         <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
                     </ul>
                 </nav>
 
@@ -226,8 +227,13 @@ $joined = [];
                                 </div>
                             </li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="../Boffice/account-settings.php"><i class="bi bi-person fa-fw me-2"></i>My Profile</a></li>
-                            <li><a class="dropdown-item" href="../Boffice/settings.php"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
+                            <?php 
+                            $profile_link = (isset($_SESSION['role']) && $_SESSION['role'] === 'client') ? 'profile.php' : '../Boffice/account-settings.php';
+                            ?>
+                            <li><a class="dropdown-item" href="<?php echo $profile_link; ?>"><i class="bi bi-person fa-fw me-2"></i>My Profile</a></li>
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'client'): ?>
+                                <li><a class="dropdown-item" href="../Boffice/settings.php"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
+                            <?php endif; ?>
                             <li><a class="dropdown-item bg-danger-soft-hover" href="../Boffice/logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
                         </ul>
                     </div>
@@ -394,5 +400,16 @@ $joined = [];
 </div>
 <!-- ===================== MAIN CONTENT END ===================== -->
 
+<!-- AI Assistants & Messenger Widget -->
+<?php
+require_once '../../CONTROLLER/VoiceController.php';
+require_once '../../CONTROLLER/ChatController.php';
+require_once '../../CONTROLLER/MessengerWidget.php';
+echo renderVocalAssistant($lang ?? 'en');
+echo renderChatAssistant();
+echo renderMessengerWidget();
+?>
+
+<script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

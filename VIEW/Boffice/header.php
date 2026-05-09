@@ -1,20 +1,41 @@
 <?php
 require_once '../../CONTROLLER/LanguageController.php';
 
-// If no session exists, start it
+// Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Prevent browser caching
-header("Cache-Control: no-cache, no-store, must-revalidate");
-header("Pragma: no-cache");
-header("Expires: 0");
+// 1. AUTHENTICATION CHECK: If not logged in, redirect to sign-in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: sign-in.php");
+    exit();
+}
+
+// 1.5 ROLE CHECK: Guests (clients) cannot access Backoffice
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'client') {
+    header("Location: ../Frontoffice/index.php");
+    exit();
+}
+
+// 2. CACHE CONTROL: Prevent "Back" button from showing authenticated content after logout
+header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+header("Pragma: no-cache"); // HTTP 1.0.
+header("Expires: 0"); // Proxies.
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>" <?php echo ($lang === 'ar' ? 'dir="rtl"' : ''); ?>>
 
 <head>
+    <!-- SECURITY SCRIPT: Prevents using the "Back" button to see the dashboard after logout -->
+    <script>
+        window.addEventListener("pageshow", function (event) {
+            // event.persisted is true if the page is loaded from the back-forward cache
+            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                window.location.reload();
+            }
+        });
+    </script>
 	<title>e_dossier - Management System</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
