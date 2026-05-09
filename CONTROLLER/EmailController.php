@@ -16,7 +16,7 @@ class EmailController
     /**
      * 🔑 YOUR GMAIL CONFIGURATION
      */
-    private $gmail_address = "elmadhkour@gmail.com"; // <--- CHANGE THIS to your real Gmail
+    private $gmail_address = "barkamahdi04@gmail.com"; // <--- CHANGE THIS to your real Gmail
     private $app_password = "gava ytfi lsum xlkd";      // <--- Your 16-digit App Password
 
     /**

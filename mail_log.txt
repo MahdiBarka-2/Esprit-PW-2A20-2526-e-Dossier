@@ -195,3 +195,212 @@ Mail Error: SMTP Error: Could not authenticate. SMTP server error: Called QUIT w
           
         
     
+[2026-05-09 17:52:20] 2FA Code for barkamahdi09@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            699545
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+[2026-05-09 17:52:56] 2FA Code for barkamahdi09@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            437758
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 17:53:58] 2FA Code for barkamahdi09@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            597921
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 17:55:08] 2FA Code for barkamahdi09@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            708948
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 17:56:32] 2FA Code for barkamahdi09@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            695420
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 18:00:12] 2FA Code for barkamahdi09@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            611699
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 18:01:42] 2FA Code for elmadhkour@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            503825
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 18:03:01] 2FA Code for Mahdi.barka@esprit.tn: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            033433
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 18:03:03] 2FA Code for Mahdi.barka@esprit.tn: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            457971
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 18:25:15] 2FA Code for Mahdi.barka@esprit.tn: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            721469
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 18:28:18] 2FA Code for Mahdi.barka@esprit.tn: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            876993
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 18:32:32] 2FA Code for elmadhkour@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            975052
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 19:32:17] 2FA Code for aziz@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            186240
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-09 19:34:37] 2FA Code for elmadhkour@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            628156
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.

@@ -15,6 +15,11 @@ $categories = $cc->listeCategories()->fetchAll();
     <title>Portail des Demandes – E-Dossier</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap">
+
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../../assets/vendor/font-awesome/css/all.min.css">
     <link rel="stylesheet" href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css">
@@ -62,7 +67,7 @@ $categories = $cc->listeCategories()->fetchAll();
 <body>
 
 <!-- ===================== HEADER ===================== -->
-<header class="navbar-light py-3 border-bottom shadow-sm">
+<header class="navbar-light py-3 border-bottom shadow-sm" style="background-color: #fff;">
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand d-flex align-items-center" href="index.php">
                 <img src="../../assets/images/e_dossier.png" alt="logo" style="height: 60px;">
@@ -71,12 +76,12 @@ $categories = $cc->listeCategories()->fetchAll();
             <div class="d-flex align-items-center">
                 <nav class="navbar-expand-lg">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="index.php"><?php echo __('home'); ?></a></li>
-                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'client'): ?>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="index.php"><?php echo __('home'); ?></a></li>
+                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'administrator'): ?>
                             <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
                         <?php endif; ?>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="Events.php"><?php echo __('Events'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="demandes.php"><?php echo __('demand'); ?></a></li>
                     </ul>
                 </nav>
 
@@ -84,6 +89,12 @@ $categories = $cc->listeCategories()->fetchAll();
                     .nav-link-custom {
                         color: var(--bs-body-color);
                         transition: color 0.3s ease;
+                        font-family: 'Montserrat', sans-serif !important;
+                    }
+                    .navbar .btn-light:hover, 
+                    .navbar .btn-light:focus {
+                        background-color: rgba(0,0,0,0.03) !important;
+                        border-color: transparent !important;
                     }
                     [data-bs-theme='light'] .nav-link-custom {
                         color: #0b0a12 !important;
@@ -103,11 +114,16 @@ $categories = $cc->listeCategories()->fetchAll();
                     .nav-link-custom:hover {
                         color: var(--bs-primary) !important;
                     }
-                    [data-bs-theme='light'] .brand-text {
-                        color: #0b0a12 !important;
-                    }
                     [data-bs-theme='dark'] .brand-text {
                         color: #f5f5dc !important;
+                    }
+                    /* Theme-aware Hero background */
+                    .hero-section {
+                        background-color: var(--bs-cream);
+                    }
+                    [data-bs-theme='dark'] header,
+                    [data-bs-theme='dark'] .hero-section {
+                        background-color: var(--bs-body-bg) !important;
                     }
                 </style>
 
@@ -179,27 +195,18 @@ $categories = $cc->listeCategories()->fetchAll();
             </div>
         </div>
     </header>
-<!-- ===================== HEADER END ===================== -->
-
-<div id="view-front">
-  <div class="content">
-
-    <div class="d-flex flex-column align-items-center text-center mb-5 mt-4">
-      <div class="d-flex align-items-center justify-content-center mb-4">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--bs-primary)" stroke-width="2" class="me-3">
-          <rect x="3" y="4" width="18" height="18" rx="2"/>
-          <line x1="16" y1="2" x2="16" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="6"/>
-          <line x1="3" y1="10" x2="21" y2="10"/>
-        </svg>
-        <h2 class="mb-0 fw-bold text-primary display-5">Portail des Demandes</h2>
-      </div>
-      <div>
-        <button class="btn btn-primary btn-lg px-5 py-3 text-white fw-bold shadow-sm" style="font-size: 1.25rem; border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#modalAjouter">
-            <i class="bi bi-plus-circle me-2"></i> Faire une demande
-        </button>
-      </div>
-    </div>
+<main>
+    <!-- Hero Section START -->
+    <section class="pt-3 pt-lg-5 position-relative overflow-hidden hero-section">
+        <div class="container pb-4">
+             <h2 class="mb-0 fw-bold text-primary display-5">Portail des Demandes</h2>
+             <div class="mt-4">
+                <button class="btn btn-primary btn-lg px-5 py-3 text-white fw-bold shadow-sm" style="font-size: 1.25rem; border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#modalAjouter">
+                    <i class="bi bi-plus-circle me-2"></i> Faire une demande
+                </button>
+             </div>
+        </div>
+    </section>
 
 <div class="container py-5">
 
@@ -423,6 +430,30 @@ echo renderVocalAssistant($lang ?? 'en');
 echo renderChatAssistant();
 echo renderMessengerWidget();
 ?>
+
+</main>
+
+    <footer class="py-5" style="background-color: #1d3b53; color: white;">
+        <div class="container">
+            <div class="row g-4 justify-content-between">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="../../assets/images/e_dossier.png" alt="logo"
+                            style="height: 40px; filter: brightness(0) invert(1);">
+                        <span class="ms-2 fw-bold text-white fs-4">E-Dossier</span>
+                    </div>
+                    <p class="small opacity-75">Providing modern solutions for digital dossier management since 2026.</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <ul class="nav justify-content-lg-end mb-3">
+                        <li class="nav-item"><a href="#" class="nav-link text-white small px-2">Privacy Policy</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white small px-2">Terms of Use</a></li>
+                    </ul>
+                    <p class="mb-0 small opacity-50">&copy; 2026 e_dossier. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>

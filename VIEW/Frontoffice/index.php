@@ -52,7 +52,7 @@ require_once '../../CONTROLLER/LanguageController.php';
 </head>
 
 <body>
-    <header class="navbar-light py-3 border-bottom shadow-sm">
+    <header class="navbar-light py-3 border-bottom shadow-sm" style="background-color: #fff;">
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand d-flex align-items-center" href="index.php">
                 <img src="../../assets/images/e_dossier.png" alt="logo" style="height: 60px;">
@@ -62,11 +62,11 @@ require_once '../../CONTROLLER/LanguageController.php';
                 <nav class="navbar-expand-lg">
                     <ul class="nav">
                         <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="index.php"><?php echo __('home'); ?></a></li>
-                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'client'): ?>
+                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'administrator'): ?>
                             <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
                         <?php endif; ?>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link" href="demandes.php"><?php echo __('demand'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="Events.php"><?php echo __('Events'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="demandes.php"><?php echo __('demand'); ?></a></li>
                     </ul>
                 </nav>
 
@@ -112,6 +112,7 @@ require_once '../../CONTROLLER/LanguageController.php';
                     .hero-section {
                         background-color: var(--bs-cream);
                     }
+                    [data-bs-theme='dark'] header,
                     [data-bs-theme='dark'] .hero-section {
                         background-color: var(--bs-body-bg) !important;
                     }
@@ -143,6 +144,18 @@ require_once '../../CONTROLLER/LanguageController.php';
                     .icon-lg {
                         width: 44px;
                         height: 44px;
+                    }
+                    .nav-link-custom {
+                        font-family: 'Montserrat', sans-serif !important;
+                    }
+                    /* Dark mode: fully transparent backgrounds for links/buttons to avoid white flashes */
+                    [data-bs-theme='dark'] .nav-link:hover,
+                    [data-bs-theme='dark'] .nav-link:focus,
+                    [data-bs-theme='dark'] .navbar .btn-light:hover, 
+                    [data-bs-theme='dark'] .navbar .btn-light:focus {
+                        background-color: transparent !important;
+                        border-color: transparent !important;
+                        box-shadow: none !important;
                     }
                 </style>
 
@@ -198,7 +211,7 @@ require_once '../../CONTROLLER/LanguageController.php';
                             $profile_link = (isset($_SESSION['role']) && $_SESSION['role'] === 'client') ? 'profile.php' : '../Boffice/account-settings.php';
                             ?>
                             <li><a class="dropdown-item" href="<?php echo $profile_link; ?>"><i class="bi bi-person fa-fw me-2"></i>My Profile</a></li>
-                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'client'): ?>
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'administrator'): ?>
                                 <li><a class="dropdown-item" href="../Boffice/settings.php"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
                             <?php endif; ?>
                             <li><a class="dropdown-item bg-danger-soft-hover" href="../Boffice/logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>

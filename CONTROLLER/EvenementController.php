@@ -24,8 +24,8 @@ class EvenementC
     public function addEvenement($event)
     {
         try {
-            $req = $this->db->prepare('INSERT INTO evenements (titre, description, date_debut, date_fin, lieu, capacite_max, statut)
-                                       VALUES (:titre, :description, :date_debut, :date_fin, :lieu, :capacite_max, :statut)');
+            $req = $this->db->prepare('INSERT INTO evenements (titre, description, date_debut, date_fin, lieu, capacite_max, statut, is_paid)
+                                       VALUES (:titre, :description, :date_debut, :date_fin, :lieu, :capacite_max, :statut, :is_paid)');
             $req->execute([
                 'titre'        => $event['titre'],
                 'description'  => $event['description'],
@@ -33,7 +33,8 @@ class EvenementC
                 'date_fin'     => $event['date_fin'],
                 'lieu'         => $event['lieu'],
                 'capacite_max' => $event['capacite_max'],
-                'statut'       => $event['statut']
+                'statut'       => $event['statut'],
+                'is_paid'      => isset($event['is_paid']) ? (int)$event['is_paid'] : 0,
             ]);
         } catch (Exception $e) {
             die('Erreur: ' . $e->getMessage());
@@ -60,7 +61,8 @@ class EvenementC
                     date_fin     = :date_fin,
                     lieu         = :lieu,
                     capacite_max = :capacite_max,
-                    statut       = :statut
+                    statut       = :statut,
+                    is_paid      = :is_paid
                 WHERE id = :id');
             $req->execute([
                 'id'           => $id,
@@ -70,7 +72,8 @@ class EvenementC
                 'date_fin'     => $event['date_fin'],
                 'lieu'         => $event['lieu'],
                 'capacite_max' => $event['capacite_max'],
-                'statut'       => $event['statut']
+                'statut'       => $event['statut'],
+                'is_paid'      => isset($event['is_paid']) ? (int)$event['is_paid'] : 0,
             ]);
         } catch (Exception $e) {
             die('Erreur: ' . $e->getMessage());
