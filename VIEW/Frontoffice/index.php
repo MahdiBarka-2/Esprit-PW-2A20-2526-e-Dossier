@@ -1,9 +1,6 @@
 <?php 
 if (session_status() === PHP_SESSION_NONE) session_start();
 require_once '../../CONTROLLER/LanguageController.php'; 
-require_once '../../CONTROLLER/EvenementController.php';
-$eventCtrl = new EvenementC();
-$locs = array_unique(array_column($eventCtrl->findAll(), 'lieu'));
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>" <?php echo ($lang === 'ar' ? 'dir="rtl"' : ''); ?>>
@@ -55,20 +52,22 @@ $locs = array_unique(array_column($eventCtrl->findAll(), 'lieu'));
 </head>
 
 <body>
-    <header class="py-3 border-bottom shadow-sm">
+    <header class="navbar-light py-3 border-bottom shadow-sm" style="background-color: #fff;">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand d-flex align-items-center" href="/integration/VIEW/Frontoffice/index.php">
-                <img src="/integration/assets/images/e_dossier.png" alt="logo" style="height: 60px;">
+            <a class="navbar-brand d-flex align-items-center" href="index.php">
+                <img src="../../assets/images/e_dossier.png" alt="logo" style="height: 60px;">
                 <span class="ms-2 fw-bold text-primary brand-text" style="font-size: 1.5rem;">E-Dossier</span>
             </a>
             <div class="d-flex align-items-center">
                 <nav class="navbar-expand-lg">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="/integration/VIEW/Frontoffice/index.php"><?php echo __('home'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/index1.php"><?php echo __('posts'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="index.php"><?php echo __('home'); ?></a></li>
+                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'administrator'): ?>
+                            <li class="nav-item"><a class="nav-link nav-link-custom" href="../Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
+                        <?php endif; ?>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="Events.php"><?php echo __('Events'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="demandes.php"><?php echo __('demand'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="../index1.php"><?php echo __('posts'); ?></a></li>
                     </ul>
                 </nav>
 
@@ -91,7 +90,7 @@ $locs = array_unique(array_column($eventCtrl->findAll(), 'lieu'));
                     [data-bs-theme='dark'] p,
                     [data-bs-theme='dark'] .lead,
                     [data-bs-theme='dark'] label {
-                        color: #ffffff !important; /* White in dark mode */
+                        color: #f5f5dc !important; /* Beige in dark mode to match Backoffice */
                     }
                     .nav-link-custom:hover {
                         color: var(--bs-primary) !important;
@@ -101,7 +100,7 @@ $locs = array_unique(array_column($eventCtrl->findAll(), 'lieu'));
                         color: #0b0a12 !important; /* Dark Navy to match Boffice */
                     }
                     [data-bs-theme='dark'] .brand-text {
-                        color: #ffffff !important; /* White to match Boffice links */
+                        color: #f5f5dc !important; /* Beige to match Boffice links */
                     }
                     /* Highlight fix for Light Mode */
                     [data-bs-theme='light'] .highlight-brand {
@@ -114,6 +113,7 @@ $locs = array_unique(array_column($eventCtrl->findAll(), 'lieu'));
                     .hero-section {
                         background-color: var(--bs-cream);
                     }
+                    [data-bs-theme='dark'] header,
                     [data-bs-theme='dark'] .hero-section {
                         background-color: var(--bs-body-bg) !important;
                     }
@@ -142,19 +142,21 @@ $locs = array_unique(array_column($eventCtrl->findAll(), 'lieu'));
                         justify-content: center;
                         padding: 0;
                     }
-                    .hero-section {
-                        background-color: var(--bs-cream);
-                    }
-                    [data-bs-theme='dark'] .card {
-                        background-color: #111827 !important;
-                        border-color: rgba(255,255,255,0.05) !important;
-                    }
-                    [data-bs-theme='dark'] .hero-section {
-                        background-color: var(--bs-body-bg) !important;
-                    }
                     .icon-lg {
                         width: 44px;
                         height: 44px;
+                    }
+                    .nav-link-custom {
+                        font-family: 'Montserrat', sans-serif !important;
+                    }
+                    /* Dark mode: fully transparent backgrounds for links/buttons to avoid white flashes */
+                    [data-bs-theme='dark'] .nav-link:hover,
+                    [data-bs-theme='dark'] .nav-link:focus,
+                    [data-bs-theme='dark'] .navbar .btn-light:hover, 
+                    [data-bs-theme='dark'] .navbar .btn-light:focus {
+                        background-color: transparent !important;
+                        border-color: transparent !important;
+                        box-shadow: none !important;
                     }
                 </style>
 
@@ -206,8 +208,13 @@ $locs = array_unique(array_column($eventCtrl->findAll(), 'lieu'));
                                 </div>
                             </li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="../Boffice/account-settings.php"><i class="bi bi-person fa-fw me-2"></i>My Profile</a></li>
-                            <li><a class="dropdown-item" href="../Boffice/settings.php"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
+                            <?php 
+                            $profile_link = (isset($_SESSION['role']) && $_SESSION['role'] === 'client') ? 'profile.php' : '../Boffice/account-settings.php';
+                            ?>
+                            <li><a class="dropdown-item" href="<?php echo $profile_link; ?>"><i class="bi bi-person fa-fw me-2"></i>My Profile</a></li>
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'administrator'): ?>
+                                <li><a class="dropdown-item" href="../Boffice/settings.php"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
+                            <?php endif; ?>
                             <li><a class="dropdown-item bg-danger-soft-hover" href="../Boffice/logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
                         </ul>
                     </div>
@@ -286,6 +293,7 @@ $locs = array_unique(array_column($eventCtrl->findAll(), 'lieu'));
                     </div>
                 </div>
                 <!-- Search Bar END -->
+
                 <!-- Booking Form START -->
                 <div class="row mt-4 justify-content-center">
                     <div class="col-xl-10 position-relative">
@@ -412,8 +420,10 @@ $locs = array_unique(array_column($eventCtrl->findAll(), 'lieu'));
     <?php
     require_once '../../CONTROLLER/VoiceController.php';
     require_once '../../CONTROLLER/ChatController.php';
+    require_once '../../CONTROLLER/MessengerWidget.php';
     echo renderVocalAssistant($lang ?? 'en');
     echo renderChatAssistant();
+    echo renderMessengerWidget();
     ?>
 
     <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

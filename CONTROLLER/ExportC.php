@@ -5,8 +5,8 @@ class ExportC {
 
         
 
-        include_once __DIR__ . '/AIService.php';
-        $ai = new AIService();
+        include_once __DIR__ . '/PublicationAIService.php';
+        $ai = new PublicationAIService();
         
         $aiResult = $ai->generateStrategicInsight($publication['titre'], $publication['contenu'], $comments);
         

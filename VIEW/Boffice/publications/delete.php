@@ -9,6 +9,6 @@ if (!empty($id)) {
 }
 
 // Redirect back to dashboard matrix
-header('Location: /integration/VIEW/Boffice/posts.php');
+header('Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php');
 exit();
 ?>

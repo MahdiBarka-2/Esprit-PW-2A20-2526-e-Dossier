@@ -107,4 +107,14 @@ AND p.user_id = :user_id;');
             die('Erreur: ' . $e->getMessage());
         }
     }
+    public function findByUser($user_id)
+    {
+        try {
+            $req = $this->db->prepare('SELECT * FROM participations WHERE user_id = :user_id');
+            $req->execute(['user_id' => $user_id]);
+            return $req->fetchAll();
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
+    }
 }

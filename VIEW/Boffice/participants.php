@@ -1,16 +1,74 @@
 <?php
+ob_start(); // Buffer all output to catch stray warnings/notices
+
 require_once '../../CONTROLLER/EvenementController.php';
 require_once '../../CONTROLLER/ParticipantController.php';
 
 $event_id = isset($_GET['event_id']) ? (int) $_GET['event_id'] : 0;
-if (!$event_id) { header('Location: back_office.php'); exit; }
+
+/* ── If called via fetch (AJAX), return JSON ── */
+$isAjax = (
+    (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') ||
+    (isset($_SERVER['HTTP_ACCEPT']) && strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false)
+);
+
+if (!$event_id) {
+    if ($isAjax) {
+        ob_end_clean();
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'event_id manquant ou invalide.']);
+        exit;
+    }
+    header('Location: back_office.php');
+    exit;
+}
 
 $evCtrl       = new EvenementC();
 $partCtrl     = new ParticipantC();
 $event        = $evCtrl->findById($event_id);
 $participants = $partCtrl->findByEvent($event_id);
 
-if (!$event) { header('Location: back_office.php'); exit; }
+if (!$event) {
+    if ($isAjax) {
+        ob_end_clean();
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Événement introuvable.']);
+        exit;
+    }
+    header('Location: back_office.php');
+    exit;
+}
+
+if ($isAjax) {
+    // Discard any stray PHP warnings/notices that printed before this point
+    $buffered = ob_get_clean();
+
+    // Uncomment the block below temporarily to debug stray output:
+    // if ($buffered) {
+    //     header('Content-Type: application/json');
+    //     echo json_encode(['error' => 'PHP output before JSON: ' . $buffered]);
+    //     exit;
+    // }
+
+    header('Content-Type: application/json');
+
+    $out = [];
+    foreach ($participants as $p) {
+        $out[] = [
+            'nom'              => $p['nom']       ?? '',
+            'prenom'           => $p['prenom']    ?? '',
+            'age'              => $p['age']        ?? '',
+            'user_id'          => $p['user_id']   ?? '',
+            'date_inscription' => $p['date_inscription'] ?? '',
+        ];
+    }
+
+    echo json_encode($out, JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+// ── Not AJAX: render the full HTML page ──
+ob_end_flush();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -131,7 +189,7 @@ if (!$event) { header('Location: back_office.php'); exit; }
             <td><?= htmlspecialchars($p['nom']) ?></td>
             <td><?= htmlspecialchars($p['prenom']) ?></td>
             <td><span class="age-badge"><?= (int)$p['age'] ?> ans</span></td>
-            <td><?= htmlspecialchars($p['joined_at']) ?></td>
+            <td><?= htmlspecialchars($p['date_inscription']) ?></td>
           </tr>
           <?php endforeach; ?>
         <?php endif; ?>

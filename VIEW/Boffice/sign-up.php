@@ -46,6 +46,10 @@
 											<label class="form-label"><?php echo __('email'); ?></label>
 											<input type="email" name="email" class="form-control">
 										</div>
+										<div class="mb-3">
+											<label class="form-label">Age</label>
+											<input type="number" name="age" class="form-control" placeholder="Enter your age" min="1" max="120">
+										</div>
 										<div class="mb-3 position-relative">
 											<label class="form-label"><?php echo __('password'); ?></label>
 											<input class="form-control fakepassword" name="password" type="password" id="psw-input">

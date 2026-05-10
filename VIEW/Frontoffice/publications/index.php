@@ -9,12 +9,12 @@ if (file_exists($controllerPath)) {
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?? 'en'; ?>" <?php echo (($lang ?? '') === 'ar' ? 'dir="rtl"' : ''); ?>>
 <head>
-    <title>e_dossier - Publications</title>
+    <title>e_dossier - Posts</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/vendor/font-awesome/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/vendor/bootstrap-icons/bootstrap-icons.css">
     <script>
         const storedTheme = localStorage.getItem('theme')
         const getPreferredTheme = () => {
@@ -34,18 +34,18 @@ if (file_exists($controllerPath)) {
 <body>
     <header class="navbar-light py-3 border-bottom shadow-sm">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand d-flex align-items-center" href="/integration/VIEW/Frontoffice/index.php">
-                <img src="/integration/assets/images/e_dossier.png" alt="logo" style="height: 60px;">
+            <a class="navbar-brand d-flex align-items-center" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Frontoffice/index.php">
+                <img src="/Esprit-PW-2A20-2526-e-Dossier/assets/images/e_dossier.png" alt="logo" style="height: 60px;">
                 <span class="ms-2 fw-bold text-primary brand-text" style="font-size: 1.5rem;">E-Dossier</span>
             </a>
             <div class="d-flex align-items-center">
                 <nav class="navbar-expand-lg">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="/integration/VIEW/Frontoffice/index.php"><?php echo __('home'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/index1.php"><?php echo __('posts'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Frontoffice/index.php"><?php echo __('home'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php"><?php echo __('posts'); ?></a></li>
                     </ul>
                 </nav>
                 <style>
@@ -100,11 +100,11 @@ if (file_exists($controllerPath)) {
 			<div class="row justify-content-center">
 				<div class="col-xl-11">
 					<div class="text-center mb-4">
-						<h3 class="fw-bold">Explore Publications</h3>
+						<h3 class="fw-bold">Explore Posts</h3>
 						<p class="text-secondary">Search by name or type to find what you need.</p>
 					</div>
 					<div class="bg-mode rounded-4 shadow-lg p-3 border">
-						<form class="row g-3 align-items-center" method="GET" action="/integration/VIEW/index1.php">
+						<form class="row g-3 align-items-center" method="GET" action="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php">
 							<input type="hidden" name="action" value="frontIndex">
 							<!-- Search -->
 							<div class="col-lg-4">
@@ -171,7 +171,7 @@ if (file_exists($controllerPath)) {
 				<div class="col-md-8">
 					<h2 class="mb-0"><?= isset($isSavedView) ? 'Saved Documents' : 'Official Repository' ?></h2>
 					<p class="mb-0">
-						<?= isset($isSavedView) ? 'Your curated list of important government publications.' : 'Showing latest verified publications from government sources.' ?>
+						<?= isset($isSavedView) ? 'Your curated list of important government posts.' : 'Showing latest verified posts from government sources.' ?>
 					</p>
 				</div>
 				<div class="col-md-4 text-md-end mt-3 mt-md-0">
@@ -205,7 +205,7 @@ if (file_exists($controllerPath)) {
 
 									<!-- Title -->
 									<h4 class="card-title line-clamp-2"><a
-											href="/integration/VIEW/index1.php?action=show&id=<?= $p['id'] ?>"><?= htmlspecialchars($p['titre']) ?></a>
+											href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=show&id=<?= $p['id'] ?>"><?= htmlspecialchars($p['titre']) ?></a>
 									</h4>
 
 									<!-- Metadata -->
@@ -250,7 +250,7 @@ if (file_exists($controllerPath)) {
 										</div>
 										<!-- Button -->
 										<div class="mt-2 mt-sm-0 z-index-2">
-											<a href="/integration/VIEW/index1.php?action=show&id=<?= $p['id'] ?>"
+											<a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=show&id=<?= $p['id'] ?>"
 												class="btn btn-primary mb-0">Read Official Document<i
 													class="bi bi-arrow-right ms-2"></i></a>
 										</div>
@@ -265,7 +265,7 @@ if (file_exists($controllerPath)) {
 						</div>
 						<h3>No Documents Found</h3>
 						<p>We couldn't find any documents matching your criteria. Try adjusting your search or filters.</p>
-						<a href="/integration/VIEW/index1.php" class="btn btn-primary-soft">Reset All Filters</a>
+						<a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php" class="btn btn-primary-soft">Reset All Filters</a>
 					</div>
 				<?php endif; ?>
 			</div>
@@ -313,7 +313,7 @@ if (file_exists($controllerPath)) {
 		}
 
 		// Server-side persistence
-		fetch(`/integration/VIEW/index1.php?action=toggleSave&id=${id}`)
+		fetch(`/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=toggleSave&id=${id}`)
 			.then(response => response.json())
 			.then(data => {
 				console.log('Save status:', data.status);

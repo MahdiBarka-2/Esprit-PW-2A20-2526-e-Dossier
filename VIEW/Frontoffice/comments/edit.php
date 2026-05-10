@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
         $commentCtrl->updateComment($id, $contenu, $auteur);
-        header("Location: /integration/VIEW/index1.php?action=show&id=$publication_id");
+        header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=show&id=$publication_id");
         exit();
     } else {
         $_SESSION['errors'] = $errors;
@@ -27,7 +27,7 @@ $id = $_GET['id'] ?? $_POST['id'] ?? '';
 $comment = $commentCtrl->getOneComment($id);
 
 if (!$comment) {
-    header("Location: /integration/VIEW/index1.php");
+    header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php");
     exit();
 }
 
@@ -36,7 +36,7 @@ $id = $_GET['id'] ?? $_POST['id'] ?? '';
 $comment = $commentCtrl->getOneComment($id);
 
 if (!$comment) {
-    header("Location: /integration/VIEW/index1.php");
+    header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php");
     exit();
 }
 ?>
@@ -46,15 +46,15 @@ if (!$comment) {
     <title>e_dossier - Edit Comment</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/vendor/font-awesome/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/vendor/bootstrap-icons/bootstrap-icons.css">
 </head>
 <body>
     <header class="py-3 border-bottom shadow-sm">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand d-flex align-items-center" href="/integration/VIEW/Frontoffice/index.php">
-                <img src="/integration/assets/images/e_dossier.png" alt="logo" style="height: 60px;">
+            <a class="navbar-brand d-flex align-items-center" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Frontoffice/index.php">
+                <img src="/Esprit-PW-2A20-2526-e-Dossier/assets/images/e_dossier.png" alt="logo" style="height: 60px;">
                 <span class="ms-2 fw-bold text-primary brand-text" style="font-size: 1.5rem;">E-Dossier</span>
             </a>
         </div>
@@ -111,7 +111,7 @@ if (!$comment) {
                             </div>
 
                             <div class="col-12 d-sm-flex justify-content-between align-items-center mt-4">
-                                <a href="/integration/VIEW/index1.php?action=show&id=<?= $comment['publication_id'] ?>" class="btn btn-link text-muted px-0 fw-bold">
+                                <a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=show&id=<?= $comment['publication_id'] ?>" class="btn btn-link text-muted px-0 fw-bold">
                                     <i class="bi bi-arrow-left me-2"></i>Cancel
                                 </a>
                                 <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow">Update Comment</button>
@@ -131,6 +131,6 @@ if (!$comment) {
     </div>
 </footer>
 
-<script src="/integration/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/Esprit-PW-2A20-2526-e-Dossier/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

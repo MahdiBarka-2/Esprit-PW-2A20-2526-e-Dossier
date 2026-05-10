@@ -141,6 +141,11 @@
 										<label class="form-label">Phone Number</label>
 										<input type="text" name="phone" class="form-control" placeholder="+216 ...">
 									</div>
+									<!-- Age -->
+									<div class="mb-3">
+										<label class="form-label">Age</label>
+										<input type="number" name="age" class="form-control" placeholder="Enter your age" min="1" max="120">
+									</div>
 									<!-- Password -->
 									<div class="mb-3 position-relative">
 										<label class="form-label">Enter password</label>

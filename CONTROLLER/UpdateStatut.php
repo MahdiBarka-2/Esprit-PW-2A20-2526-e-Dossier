@@ -28,6 +28,10 @@ $action  = $statut === 'approuvee' ? 'Approbation' : 'Rejet';
 $details = 'Statut changé en : ' . $statut . ' par l\'administrateur.';
 $dc->logHistorique($id, $demande['utilisateur'], $demande['email'], $action, $details, 'admin');
 
-$_SESSION['success'] = $statut === 'approuvee' ? "Demande approuvée." : "Demande rejetée.";
+if ($statut === 'approuvee') {
+    $_SESSION['success'] = "Demande approuvée.";
+} else {
+    $_SESSION['error'] = "Demande rejetée.";
+}
 header('Location: ../VIEW/Boffice/demand-detail.php?id=' . $id);
 exit;

@@ -13,9 +13,9 @@ if (file_exists($controllerPath)) {
     <title>e_dossier - <?= htmlspecialchars($publication['titre'] ?? 'Document') ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/vendor/font-awesome/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/vendor/bootstrap-icons/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         const storedTheme = localStorage.getItem('theme')
@@ -36,18 +36,18 @@ if (file_exists($controllerPath)) {
 <body>
     <header class="navbar-light py-3 border-bottom shadow-sm">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand d-flex align-items-center" href="/integration/VIEW/Frontoffice/index.php">
-                <img src="/integration/assets/images/e_dossier.png" alt="logo" style="height: 60px;">
+            <a class="navbar-brand d-flex align-items-center" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Frontoffice/index.php">
+                <img src="/Esprit-PW-2A20-2526-e-Dossier/assets/images/e_dossier.png" alt="logo" style="height: 60px;">
                 <span class="ms-2 fw-bold text-primary brand-text" style="font-size: 1.5rem;">E-Dossier</span>
             </a>
             <div class="d-flex align-items-center">
                 <nav class="navbar-expand-lg">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="/integration/VIEW/Frontoffice/index.php"><?php echo __('home'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/integration/VIEW/index1.php"><?php echo __('posts'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link fw-bold nav-link-custom" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Frontoffice/index.php"><?php echo __('home'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/index.php"><?php echo __('dashboard'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Frontoffice/Events.php"><?php echo __('Events'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Frontoffice/demandes.php"><?php echo __('demand'); ?></a></li>
+                        <li class="nav-item"><a class="nav-link nav-link-custom" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php"><?php echo __('posts'); ?></a></li>
                     </ul>
                 </nav>
             </div>
@@ -69,7 +69,7 @@ if (file_exists($controllerPath)) {
         ?>
         <!-- Header Actions -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <a href="/integration/VIEW/index1.php" class="btn btn-sm btn-outline-light rounded-pill px-4 py-2 fw-semibold transition-all hover-white"><i class="bi bi-arrow-left me-2"></i>Return to Repository</a>
+            <a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php" class="btn btn-sm btn-outline-light rounded-pill px-4 py-2 fw-semibold transition-all hover-white"><i class="bi bi-arrow-left me-2"></i>Return to Repository</a>
             <div class="d-flex gap-2">
                 <?php 
                     $isBookmarked = isset($_SESSION['saved_publications']) && in_array($publication['id'], $_SESSION['saved_publications']);
@@ -78,7 +78,7 @@ if (file_exists($controllerPath)) {
                     <i class="bi <?= $isBookmarked ? 'bi-bookmark-fill text-primary' : 'bi-bookmark text-secondary' ?> me-2"></i><?= $isBookmarked ? 'Saved' : 'Save Document' ?>
                 </button>
 
-                <a href="/integration/VIEW/index1.php?action=download&id=<?= $publication['id'] ?>" class="btn btn-sm btn-primary rounded-pill px-3 py-2 fw-semibold shadow-sm"><i class="bi bi-file-earmark-pdf me-2"></i>Download PDF</a>
+                <a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=download&id=<?= $publication['id'] ?>" class="btn btn-sm btn-primary rounded-pill px-3 py-2 fw-semibold shadow-sm"><i class="bi bi-file-earmark-pdf me-2"></i>Download PDF</a>
             </div>
         </div>
 
@@ -97,7 +97,7 @@ if (file_exists($controllerPath)) {
                 if(textSpan) textSpan.textContent = ' Save Document';
             }
 
-            fetch(`/integration/VIEW/index1.php?action=toggleSave&id=${id}`)
+            fetch(`/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=toggleSave&id=${id}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'added') {
@@ -202,7 +202,7 @@ if (file_exists($controllerPath)) {
                                         <p class="small text-secondary mb-0">Download the original file for verification.</p>
                                     </div>
                                 </div>
-                                <a href="/integration/uploads/<?= $publication['document'] ?>" target="_blank" class="btn btn-primary rounded-pill px-4">
+                                <a href="/Esprit-PW-2A20-2526-e-Dossier/uploads/<?= $publication['document'] ?>" target="_blank" class="btn btn-primary rounded-pill px-4">
                                     <i class="bi bi-cloud-download me-2"></i>Download File
                                 </a>
                             </div>
@@ -217,10 +217,10 @@ if (file_exists($controllerPath)) {
                             <?php if($isImage || $isPDF): ?>
                                 <div class="mb-5 rounded-4 overflow-hidden border shadow-sm">
                                     <?php if($isImage): ?>
-                                        <img src="/integration/uploads/<?= $publication['document'] ?>" class="img-fluid w-100" alt="Document Preview">
+                                        <img src="/Esprit-PW-2A20-2526-e-Dossier/uploads/<?= $publication['document'] ?>" class="img-fluid w-100" alt="Document Preview">
                                     <?php elseif($isPDF): ?>
                                         <div class="ratio ratio-16x9" style="min-height: 600px;">
-                                            <iframe src="/integration/uploads/<?= $publication['document'] ?>" title="PDF Preview"></iframe>
+                                            <iframe src="/Esprit-PW-2A20-2526-e-Dossier/uploads/<?= $publication['document'] ?>" title="PDF Preview"></iframe>
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -244,7 +244,7 @@ if (file_exists($controllerPath)) {
                     </div>
                     <div class="card-body p-4 p-md-5">
                         <?php if (isset($_SESSION['user_id'])): ?>
-                            <form action="/integration/VIEW/index1.php?action=addComment" method="POST">
+                            <form action="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=addComment" method="POST">
                                 <input type="hidden" name="publication_id" value="<?= $publication['id'] ?>">
                                 <input type="hidden" name="utilisateur" value="<?= htmlspecialchars($_SESSION['name'] ?? 'User') ?>">
                                 
@@ -278,8 +278,8 @@ if (file_exists($controllerPath)) {
                                     <i class="bi bi-lock-fill text-muted fs-4"></i>
                                 </div>
                                 <h6 class="fw-bold mb-2">Sign in to Participate</h6>
-                                <p class="text-muted small mb-3">You must be logged in to post feedback on official publications.</p>
-                                <a href="/integration/VIEW/Boffice/sign-in.php" class="btn btn-outline-primary rounded-pill px-4">
+                                <p class="text-muted small mb-3">You must be logged in to post feedback on official posts.</p>
+                                <a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/sign-in.php" class="btn btn-outline-primary rounded-pill px-4">
                                     <i class="bi bi-box-arrow-in-right me-2"></i>Log In Now
                                 </a>
                             </div>
@@ -318,7 +318,7 @@ if (file_exists($controllerPath)) {
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-2" style="min-width: 150px;">
                                             <li>
-                                                <a class="dropdown-item rounded-3 py-2" href="/integration/VIEW/index1.php?action=editComment&id=<?= $c['id'] ?>">
+                                                <a class="dropdown-item rounded-3 py-2" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=editComment&id=<?= $c['id'] ?>">
                                                     <i class="bi bi-pencil-square me-2 text-primary"></i>Edit Comment
                                                 </a>
                                             </li>
@@ -370,7 +370,7 @@ if (file_exists($controllerPath)) {
     </div>
 </footer>
 
-<script src="/integration/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/Esprit-PW-2A20-2526-e-Dossier/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 function confirmDeleteFront(id, pubId) {
@@ -388,7 +388,7 @@ function confirmDeleteFront(id, pubId) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = `/integration/VIEW/index1.php?action=deleteComment&id=${id}&publication_id=${pubId}`;
+            window.location.href = `/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=deleteComment&id=${id}&publication_id=${pubId}`;
         }
     });
 }

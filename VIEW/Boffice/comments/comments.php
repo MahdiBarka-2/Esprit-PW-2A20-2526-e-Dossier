@@ -42,13 +42,13 @@ require_once __DIR__ . "/../header.php";
                     <i class="bi bi-chat-fill me-2 text-primary"></i>Comments Management
                 </h1>
                 <p class="text-muted small mb-0">
-                    View and moderate all comments on publications.
+                    View and moderate all comments on posts.
                 </p>
             </div>
 
             <!-- Search & Sort Filter -->
             <div class="card p-3 mb-4 border-0 shadow-sm">
-                <form method="GET" action="/integration/VIEW/Boffice/posts.php" class="row g-3 align-items-center m-0">
+                <form method="GET" action="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php" class="row g-3 align-items-center m-0">
                     <input type="hidden" name="action" value="comments">
                     <div class="col-md-6">
                         <div class="input-group">
@@ -144,7 +144,7 @@ function confirmDeleteComment(id) {
         cancelButtonText: 'Cancel'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = `/integration/VIEW/Boffice/posts.php?action=deleteComment&id=${id}&from=admin`;
+            window.location.href = `/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php?action=deleteComment&id=${id}&from=admin`;
         }
     });
 }

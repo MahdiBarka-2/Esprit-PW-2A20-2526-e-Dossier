@@ -60,7 +60,7 @@ include __DIR__ . '/../../layouts/admin_header.php';
                     </div>
                     <?php unset($_SESSION['old']); ?>
                     <div class="col-12 d-flex justify-content-end gap-3 mt-4">
-                        <a href="/integration/VIEW/Boffice/posts.php" class="btn btn-link text-muted fw-bold text-decoration-none">Cancel</a>
+                        <a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php" class="btn btn-link text-muted fw-bold text-decoration-none">Cancel</a>
                         <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow">Add Publication</button>
                     </div>
                 </div>

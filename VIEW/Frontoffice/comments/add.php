@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
         $commentCtrl->addComment($contenu, $utilisateur, $publication_id);
-        header("Location: /integration/VIEW/index1.php?action=show&id=$publication_id");
+        header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=show&id=$publication_id");
         exit();
     } else {
         $_SESSION['errors'] = $errors;
@@ -32,15 +32,15 @@ require_once __DIR__ . '/../../../CONTROLLER/LanguageController.php';
     <title>e_dossier - Add Comment</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/vendor/font-awesome/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/integration/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/Esprit-PW-2A20-2526-e-Dossier/assets/vendor/bootstrap-icons/bootstrap-icons.css">
 </head>
 <body>
     <header class="py-3 border-bottom shadow-sm">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand d-flex align-items-center" href="/integration/VIEW/Frontoffice/index.php">
-                <img src="/integration/assets/images/e_dossier.png" alt="logo" style="height: 60px;">
+            <a class="navbar-brand d-flex align-items-center" href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Frontoffice/index.php">
+                <img src="/Esprit-PW-2A20-2526-e-Dossier/assets/images/e_dossier.png" alt="logo" style="height: 60px;">
                 <span class="ms-2 fw-bold text-primary brand-text" style="font-size: 1.5rem;">E-Dossier</span>
             </a>
         </div>
@@ -93,7 +93,7 @@ require_once __DIR__ . '/../../../CONTROLLER/LanguageController.php';
                             <?php else: ?>
                                 <div class="col-12">
                                     <div class="alert alert-warning rounded-3">
-                                        You must be <a href="/integration/VIEW/Boffice/sign-in.php" class="fw-bold">signed in</a> to post comments.
+                                        You must be <a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/sign-in.php" class="fw-bold">signed in</a> to post comments.
                                     </div>
                                 </div>
                             <?php endif; ?>
@@ -106,7 +106,7 @@ require_once __DIR__ . '/../../../CONTROLLER/LanguageController.php';
                             <?php unset($_SESSION['old']); ?>
 
                             <div class="col-12 d-sm-flex justify-content-between align-items-center mt-4">
-                                <a href="/integration/VIEW/index1.php?action=show&id=<?= $_GET['publication_id'] ?? '' ?>" class="btn btn-link text-muted px-0 fw-bold">
+                                <a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=show&id=<?= $_GET['publication_id'] ?? '' ?>" class="btn btn-link text-muted px-0 fw-bold">
                                     <i class="bi bi-x-circle me-2"></i>Cancel
                                 </a>
                                 <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow">Post Comment</button>
@@ -126,6 +126,6 @@ require_once __DIR__ . '/../../../CONTROLLER/LanguageController.php';
     </div>
 </footer>
 
-<script src="/integration/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/Esprit-PW-2A20-2526-e-Dossier/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

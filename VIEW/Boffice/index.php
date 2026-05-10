@@ -17,6 +17,26 @@ $totalEvents = $eventC->listeEvenement()->rowCount();
 require_once '../../CONTROLLER/PublicationC.php';
 $pubC = new PublicationC();
 $totalPosts = $pubC->countPublications(); 
+
+// Fetch Stats for Charts
+$ageDist = getAgeDistribution();
+$activityStats = getGuestActivityStats();
+
+// Prepare Age Distribution Data
+$ageLabels = [];
+$ageSeries = [];
+foreach ($ageDist as $item) {
+    $ageLabels[] = $item['age_group'] . ' Years';
+    $ageSeries[] = (int)$item['count'];
+}
+
+// Prepare Activity Data (Last 7 Days)
+$activityDates = [];
+$activityCounts = [];
+foreach ($activityStats as $item) {
+    $activityDates[] = date('D', strtotime($item['date']));
+    $activityCounts[] = (int)$item['count'];
+}
 ?>
 <?php
 require_once "header.php";
@@ -80,6 +100,20 @@ require_once "header.php";
 			</div>
 		</div>
 
+		<!-- Counter item -->
+		<div class="col-md-6 col-xxl-3">
+			<div class="card card-body bg-info bg-opacity-10 border border-info border-opacity-25 p-4 h-100">
+				<div class="d-flex justify-content-between align-items-center">
+					<div>
+						<h4 class="mb-0"><?php echo number_format($newDemandesCount); ?></h4>
+						<span class="h6 fw-light mb-0"><?php echo __('new_demands'); ?></span>
+					</div>
+					<div class="icon-lg rounded-circle bg-info text-white mb-0"><i
+							class="fa-solid fa-clipboard-list fa-fw"></i></div>
+				</div>
+			</div>
+		</div>
+
 		<!-- Counter item (Posts) -->
 		<div class="col-md-6 col-xxl-3">
 			<a href="posts.php" class="card card-body bg-danger bg-opacity-10 border border-danger border-opacity-25 p-4 h-100 text-decoration-none transition-all hover-shadow">
@@ -93,14 +127,15 @@ require_once "header.php";
 			</a>
 		</div>
 
+		<!-- Counter item (Events) -->
 		<div class="col-md-6 col-xxl-3">
-			<a href="Evenement.php" class="card card-body bg-info bg-opacity-10 border border-info border-opacity-25 p-4 h-100 text-decoration-none transition-all hover-shadow">
+			<a href="Evenement.php" class="card card-body bg-primary bg-opacity-10 border border-primary border-opacity-25 p-4 h-100 text-decoration-none transition-all hover-shadow">
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
 						<h4 class="mb-0"><?php echo number_format($totalEvents); ?></h4>
 						<span class="h6 fw-light mb-0 text-body"><?php echo __('Evenements'); ?></span>
 					</div>
-					<div class="icon-lg rounded-circle bg-info text-white mb-0"><i class="fa-solid fa-calendar-days fa-fw"></i></div>
+					<div class="icon-lg rounded-circle bg-primary text-white mb-0"><i class="fa-solid fa-calendar-days fa-fw"></i></div>
 				</div>
 			</a>
 		</div>
@@ -131,21 +166,18 @@ require_once "header.php";
 				<div class="card-body p-3">
 					<div class="d-flex justify-content-center" id="ChartTrafficRooms"></div>
 					<ul class="list-group list-group-borderless mb-0 mt-3">
+						<?php 
+                        $colors = ['text-primary', 'text-info', 'text-warning', 'text-danger'];
+                        $totalAgeUsers = array_sum($ageSeries);
+                        foreach ($ageDist as $index => $item): 
+                            $pct = $totalAgeUsers > 0 ? round(($item['count'] / $totalAgeUsers) * 100) : 0;
+                        ?>
 						<li class="list-group-item d-flex justify-content-between">
-							<span class="h6 fw-light mb-0"><i class="text-primary fas fa-circle me-2"></i>
-								18-25 Years</span>
-							<span class="h6 fw-light mb-0">35%</span>
+							<span class="h6 fw-light mb-0"><i class="<?php echo $colors[$index % 4]; ?> fas fa-circle me-2"></i>
+								<?php echo $item['age_group']; ?> Years</span>
+							<span class="h6 fw-light mb-0"><?php echo $pct; ?>%</span>
 						</li>
-						<li class="list-group-item d-flex justify-content-between">
-							<span class="h6 fw-light mb-0"><i class="text-info fas fa-circle me-2"></i>
-								26-45 Years</span>
-							<span class="h6 fw-light mb-0">50%</span>
-						</li>
-						<li class="list-group-item d-flex justify-content-between">
-							<span class="h6 fw-light mb-0"><i class="text-warning fas fa-circle me-2"></i>
-								45+ Years</span>
-							<span class="h6 fw-light mb-0">15%</span>
-						</li>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 			</div>
@@ -164,7 +196,7 @@ require_once "header.php";
 				<div class="card-body">
 					<div class="table-responsive border-0">
 						<table class="table align-middle p-4 mb-0 table-hover">
-							<thead>
+							<thead class="table-light">
 								<tr>
 									<th scope="col" class="border-0 rounded-start">User</th>
 									<th scope="col" class="border-0">Role</th>
@@ -221,9 +253,51 @@ require_once "header.php";
 <script src="../../assets/vendor/apexcharts/js/apexcharts.min.js"></script>
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
-		// Re-initialize charts specifically for this page 
-		// because functions.js in the head runs too early
+		// Override chart functions with dynamic data
 		if (typeof e !== 'undefined') {
+			e.trafficsplineChart = function() {
+				var cpv = e.select('#ChartGuesttraffic');
+				if (e.isVariableDefined(cpv)) {
+                    cpv.innerHTML = ''; // Clear previous render to avoid duplication
+					var options = {
+						series: [{
+							name: 'Guest Activity',
+							data: <?php echo json_encode($activityCounts); ?>
+						}],
+						chart: { height: 350, type: 'area', toolbar: { show: false } },
+						colors: [ThemeColor.getCssVariableValue('--bs-primary')],
+						dataLabels: { enabled: false },
+						stroke: { curve: 'smooth' },
+						xaxis: { categories: <?php echo json_encode($activityDates); ?> },
+					};
+					var chart = new ApexCharts(document.querySelector("#ChartGuesttraffic"), options);
+					chart.render();
+				}
+			};
+
+			e.trafficroomChart = function() {
+				var cpv = e.select('#ChartTrafficRooms');
+				if (e.isVariableDefined(cpv)) {
+                    cpv.innerHTML = ''; // Clear previous render to avoid duplication
+					var options = {
+						series: <?php echo json_encode($ageSeries); ?>,
+						labels: <?php echo json_encode($ageLabels); ?>,
+						chart: { height: 300, width: 300, offsetX: 0, type: 'donut', sparkline: { enabled: !0 } },
+						colors: [
+							ThemeColor.getCssVariableValue('--bs-primary'),
+							ThemeColor.getCssVariableValue('--bs-info'),
+							ThemeColor.getCssVariableValue('--bs-warning'),
+                            ThemeColor.getCssVariableValue('--bs-danger')
+						],
+						tooltip: { theme: "dark" },
+						responsive: [{ breakpoint: 480, options: { chart: { width: 200, height: 200 }, legend: { position: 'bottom' } } }]
+					};
+					var chart = new ApexCharts(document.querySelector("#ChartTrafficRooms"), options);
+					chart.render();
+				}
+			};
+
+			// Re-call them with the new data
 			if (document.querySelector("#ChartGuesttraffic")) e.trafficsplineChart();
 			if (document.querySelector("#ChartTrafficRooms")) e.trafficroomChart();
 		}

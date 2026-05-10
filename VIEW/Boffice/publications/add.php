@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
         $pubCtrl->addPublication($titre, $contenu, $auteur, $date, $categorie, $document);
-        header("Location: /integration/VIEW/Boffice/posts.php");
+        header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php");
         exit();
     } else {
         $_SESSION['errors'] = $errors;
@@ -59,7 +59,7 @@ require_once __DIR__ . "/../header.php";
         <div class="d-flex align-items-center mb-4">
             <div class="icon-lg bg-primary bg-opacity-10 text-primary rounded-circle me-3"><i class="bi bi-file-earmark-plus"></i></div>
             <div>
-                <h1 class="h3 mb-0">Add Publication</h1>
+                <h1 class="h3 mb-0">Add Post</h1>
                 <p class="text-muted mb-0">Create a new publication in the system.</p>
             </div>
         </div>
@@ -116,8 +116,8 @@ require_once __DIR__ . "/../header.php";
                     </div>
                     <?php unset($_SESSION['old']); ?>
                     <div class="col-12 d-flex justify-content-end gap-3 mt-4">
-                        <a href="/integration/VIEW/Boffice/posts.php" class="btn btn-link text-muted fw-bold text-decoration-none">Cancel</a>
-                        <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow">Add Publication</button>
+                        <a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php" class="btn btn-link text-muted fw-bold text-decoration-none">Cancel</a>
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow">Add Post</button>
                     </div>
                 </div>
             </form>
@@ -142,7 +142,7 @@ document.getElementById('ai-assist-btn').addEventListener('click', function() {
     formData.append('action', 'ai_assist');
     formData.append('title', title);
 
-    fetch('/integration/CONTROLLER/ai_handler.php', {
+    fetch('/Esprit-PW-2A20-2526-e-Dossier/CONTROLLER/ai_handler.php', {
         method: 'POST',
         body: formData
     })

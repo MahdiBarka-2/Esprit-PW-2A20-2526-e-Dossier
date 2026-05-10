@@ -213,6 +213,21 @@ function renderChatAssistant()
             background: #404040;
             transform: translateY(-2px);
         }
+
+        /* Typing Indicator Animation */
+        .typing-dots::after {
+            content: '...';
+            display: inline-block;
+            width: 1em;
+            text-align: left;
+            animation: typing 1.5s infinite;
+        }
+
+        @keyframes typing {
+            0% { content: '.'; }
+            33% { content: '..'; }
+            66% { content: '...'; }
+        }
     </style>
 
     <!-- Floating Toggle Button -->
@@ -250,6 +265,7 @@ function renderChatAssistant()
 
     <script>
         let hasInteracted = false;
+        let chatHistory = [];
 
         function toggleChatPanel() {
             const panel = document.getElementById('chat-right-panel');
@@ -260,41 +276,66 @@ function renderChatAssistant()
         const inputField = document.getElementById('chat-panel-input');
         const bgContainer = document.getElementById('chat-panel-bg');
 
-        function handleRefinedSend() {
+        async function handleRefinedSend() {
             const val = inputField.value.trim();
             if (!val) return;
 
+            // Trigger Effects on First Interaction
             if (!hasInteracted) {
                 bgContainer.classList.add('blurred');
-                msgArea.style.display = 'flex';
+                msgArea.style.display = 'flex'; // Show message area
                 hasInteracted = true;
             }
 
+            // Add Messages
             renderBubble(val, 'user');
             inputField.value = '';
 
-            // Call AI Service
-            const formData = new FormData();
-            formData.append('action', 'ai_assist');
-            formData.append('title', val); // Using 'title' as the prompt parameter
+            // Show Typing Indicator
+            const typingId = 'typing-' + Date.now();
+            renderBubble("E-Dossier AI is thinking", 'bot', typingId);
+            document.getElementById(typingId).classList.add('typing-dots');
 
-            fetch('/integration/CONTROLLER/ai_handler.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                const reply = data.content || data.summary || "I'm here to help with your publications!";
-                renderBubble(reply, 'bot');
-            })
-            .catch(error => {
-                renderBubble("Sorry, I'm having trouble connecting to my AI brain.", 'bot');
-            });
+            try {
+                // Adjust path based on where the file is included (usually from VIEW/Boffice/)
+                // Since it's in footer.php, and footer.php is in VIEW/Boffice/, 
+                // the path to CONTROLLER/ChatProxy.php is ../../CONTROLLER/ChatProxy.php
+                const response = await fetch('../../CONTROLLER/ChatProxy.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        message: val,
+                        history: chatHistory
+                    })
+                });
+
+                const data = await response.json();
+                
+                // Remove Typing Indicator
+                const typingElem = document.getElementById(typingId);
+                if (typingElem) typingElem.remove();
+
+                if (data.error) {
+                    renderBubble("System Notice: " + data.error, 'bot');
+                } else {
+                    renderBubble(data.response, 'bot');
+                    // Update History (limit to last 10 messages)
+                    chatHistory.push({ role: 'user', content: val });
+                    chatHistory.push({ role: 'assistant', content: data.response });
+                    if (chatHistory.length > 10) chatHistory = chatHistory.slice(-10);
+                }
+            } catch (err) {
+                const typingElem = document.getElementById(typingId);
+                if (typingElem) typingElem.remove();
+                renderBubble("Connection Error: Make sure LM Studio Local Server is running at http://localhost:1234", 'bot');
+                console.error(err);
+            }
         }
 
-        function renderBubble(text, type) {
+        function renderBubble(text, type, id = null) {
             const bubble = document.createElement('div');
             bubble.className = `msg-bubble ${type}`;
+            if (id) bubble.id = id;
             bubble.innerText = text;
             msgArea.appendChild(bubble);
             msgArea.scrollTop = msgArea.scrollHeight;

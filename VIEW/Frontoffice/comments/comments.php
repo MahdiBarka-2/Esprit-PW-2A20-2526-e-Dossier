@@ -32,7 +32,7 @@ require_once __DIR__ . '/../../Boffice/header.php';
 
             <!-- Search & Sort Filter -->
             <div class="card p-3 mb-4 border-0 input-dark-mode">
-                <form method="GET" action="/integration/VIEW/Boffice/posts.php" class="row g-3 align-items-center m-0">
+                <form method="GET" action="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php" class="row g-3 align-items-center m-0">
                     <input type="hidden" name="action" value="comments">
                     <div class="col-md-6">
                         <div class="input-group">
@@ -88,7 +88,7 @@ require_once __DIR__ . '/../../Boffice/header.php';
                                 <div class="col-md-3 text-center text-md-end">
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <?php if(($c['status'] ?? 'Approved') === 'Flagged'): ?>
-                                            <a href="/integration/VIEW/Boffice/posts.php?action=approveComment&id=<?= $c['id'] ?>" class="btn btn-sm btn-success rounded-pill px-3">Approve</a>
+                                            <a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php?action=approveComment&id=<?= $c['id'] ?>" class="btn btn-sm btn-success rounded-pill px-3">Approve</a>
                                         <?php endif; ?>
                                         <a href="javascript:void(0)" onclick="confirmDeleteComment(<?= $c['id'] ?>)" class="btn btn-sm btn-outline-danger rounded-pill px-3">Delete</a>
                                     </div>
@@ -109,7 +109,7 @@ require_once __DIR__ . '/../../Boffice/header.php';
 <script>
 function confirmDeleteComment(id) {
     if(confirm('Delete this comment permanently?')) {
-        window.location.href = `/integration/VIEW/Boffice/posts.php?action=deleteComment&id=${id}&from=admin`;
+        window.location.href = `/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php?action=deleteComment&id=${id}&from=admin`;
     }
 }
 </script>

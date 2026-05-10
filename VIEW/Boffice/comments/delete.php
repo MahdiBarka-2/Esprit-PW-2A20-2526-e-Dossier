@@ -12,9 +12,9 @@ if (!empty($id)) {
 
 // Logic for redirection based on origin
 if (isset($_GET['from']) && $_GET['from'] === 'admin') {
-    header("Location: /integration/VIEW/Boffice/posts.php?action=comments");
+    header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php?action=comments");
 } else {
-    header("Location: /integration/VIEW/index1.php?action=show&id=$pub_id");
+    header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/index1.php?action=show&id=$pub_id");
 }
 exit();
 ?>

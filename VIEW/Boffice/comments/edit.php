@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
         $commentCtrl->updateComment($id, $contenu, $auteur);
-        header("Location: /integration/VIEW/Boffice/posts.php?action=comments");
+        header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php?action=comments");
         exit();
     } else {
         $_SESSION['errors'] = $errors;
@@ -26,7 +26,7 @@ $id = $_GET['id'] ?? $_POST['id'] ?? '';
 $comment = $commentCtrl->getOneComment($id);
 
 if (!$comment) {
-    header("Location: /integration/VIEW/Boffice/posts.php?action=comments");
+    header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php?action=comments");
     exit();
 }
 
@@ -68,7 +68,7 @@ require_once __DIR__ . "/../header.php";
                         <textarea name="contenu" class="form-control bg-light border-0 p-4" rows="8"><?= htmlspecialchars($comment['contenu']) ?></textarea>
                     </div>
                     <div class="col-12 d-flex justify-content-end gap-3 mt-4">
-                        <a href="/integration/VIEW/Boffice/posts.php?action=comments" class="btn btn-link text-muted fw-bold text-decoration-none">Cancel</a>
+                        <a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php?action=comments" class="btn btn-link text-muted fw-bold text-decoration-none">Cancel</a>
                         <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow">Update Comment</button>
                     </div>
                 </div>

@@ -83,7 +83,7 @@ require_once __DIR__ . "/../header.php";
         <div>
             <div class="d-flex align-items-center gap-2 mb-1">
                 <span class="badge bg-primary bg-opacity-20 text-primary px-3 rounded-pill">Back-office Portal</span>
-                <span class="text-muted-slate small">/ Publications</span>
+                <span class="text-muted-slate small">/ Posts</span>
             </div>
             <h1 class="h3 mb-0 fw-bold text-white">Post Details</h1>
         </div>
@@ -122,31 +122,6 @@ require_once __DIR__ . "/../header.php";
                 </div>
 
                 <div class="card-body p-4 p-md-5">
-                    <div class="mb-5">
-                        <div class="content-body">
-                            <?= nl2br($publication['contenu']) ?>
-                        </div>
-                    </div>
-
-                    <!-- Author Bar (Dark Version) -->
-                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-5 p-3 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="avatar avatar-md">
-                                <div class="avatar-img rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold">
-                                    <?= strtoupper(substr($publication['auteur'], 0, 1)) ?>
-                                </div>
-                            </div>
-                            <div>
-                                <h6 class="mb-0 fw-bold text-white"><?= htmlspecialchars($publication['auteur']) ?></h6>
-                                <p class="text-muted-slate small mb-0">Author</p>
-                            </div>
-                        </div>
-                        <div class="text-md-end">
-                            <p class="mb-0 fw-bold text-white"><i class="bi bi-calendar-check me-2"></i><?= date('d M Y', strtotime($publication['date'])) ?></p>
-                            <p class="text-muted-slate small mb-0"><?= date('H:i A', strtotime($publication['date'])) ?></p>
-                        </div>
-                    </div>
-
                     <!-- Main Article Body -->
                     <div class="publication-content mb-5">
                         <h5 class="fw-bold mb-3 border-bottom border-secondary pb-2 text-white">Content</h5>
@@ -167,7 +142,7 @@ require_once __DIR__ . "/../header.php";
                     <?php if(empty($comments)): ?>
                         <div class="text-center py-5">
                             <i class="bi bi-chat-square-dots display-1 text-secondary opacity-25"></i>
-                            <p class="text-muted-slate mt-3">No feedback received for this publication yet.</p>
+                            <p class="text-muted-slate mt-3">No feedback received for this post yet.</p>
                         </div>
                     <?php else: ?>
                         <div class="vstack gap-3">
@@ -256,9 +231,22 @@ require_once __DIR__ . "/../header.php";
 
 <script>
 function confirmDeleteComment(id) {
-    if(confirm('Delete this feedback?')) {
-        window.location.href = 'posts.php?action=deleteComment&id=' + id + '&publication_id=<?= $publication['id'] ?>';
-    }
+    Swal.fire({
+        title: 'Delete Feedback?',
+        text: "This citizen comment will be permanently removed.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        background: '#1e293b',
+        color: '#fff',
+        customClass: { popup: 'rounded-4 shadow-lg border-0' },
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'posts.php?action=deleteComment&id=' + id + '&publication_id=<?= $publication['id'] ?>';
+        }
+    });
 }
 
 document.getElementById('btn-generate-insight').addEventListener('click', function() {

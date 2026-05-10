@@ -6,13 +6,13 @@ $pubCtrl = new PublicationC();
 
 $id = $_GET['id'] ?? $_POST['id'] ?? '';
 if (empty($id)) {
-    header("Location: /integration/VIEW/Boffice/posts.php");
+    header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php");
     exit();
 }
 
 $publication = $pubCtrl->getOnePublication($id);
 if (!$publication) {
-    header("Location: /integration/VIEW/Boffice/posts.php");
+    header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php");
     exit();
 }
 
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
         $pubCtrl->updatePublication($id, $titre, $contenu, $auteur, $date, $categorie, $document);
-        header("Location: /integration/VIEW/Boffice/posts.php");
+        header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php");
         exit();
     } else {
         $_SESSION['errors'] = $errors;
@@ -74,8 +74,8 @@ require_once __DIR__ . "/../header.php";
         <div class="d-flex align-items-center mb-4">
             <div class="icon-lg bg-primary bg-opacity-10 text-primary rounded-circle me-3"><i class="fas fa-edit"></i></div>
             <div>
-                <h1 class="h3 mb-0">Edit Publication</h1>
-                <p class="text-muted mb-0">Modifying publication #<?= str_pad($publication['id'], 5, '0', STR_PAD_LEFT) ?></p>
+                <h1 class="h3 mb-0">Edit Post</h1>
+                <p class="text-muted mb-0">Modifying post #<?= str_pad($publication['id'], 5, '0', STR_PAD_LEFT) ?></p>
             </div>
         </div>
 
@@ -134,8 +134,8 @@ require_once __DIR__ . "/../header.php";
                         <textarea name="contenu" id="publication-content" class="form-control bg-light border-0 p-4" rows="12"><?= htmlspecialchars($publication['contenu']) ?></textarea>
                     </div>
                     <div class="col-12 d-flex justify-content-end gap-3 mt-4">
-                        <a href="/integration/VIEW/Boffice/posts.php" class="btn btn-link text-muted fw-bold text-decoration-none">Cancel</a>
-                        <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow">Update Publication</button>
+                        <a href="/Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php" class="btn btn-link text-muted fw-bold text-decoration-none">Cancel</a>
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow">Update Post</button>
                     </div>
                 </div>
             </form>
@@ -160,7 +160,7 @@ document.getElementById('ai-assist-btn').addEventListener('click', function() {
     formData.append('action', 'ai_assist');
     formData.append('title', title);
 
-    fetch('/integration/CONTROLLER/ai_handler.php', {
+    fetch('/Esprit-PW-2A20-2526-e-Dossier/CONTROLLER/ai_handler.php', {
         method: 'POST',
         body: formData
     })

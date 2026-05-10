@@ -8,6 +8,19 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 require_once __DIR__ . '/../MODEL/Database.php';
 require_once __DIR__ . '/../MODEL/User.php';
 
+// Global Boffice Guard: Prevent 'client' role (Guests) from accessing administrative pages
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'client') {
+    $uri = $_SERVER['REQUEST_URI'];
+    if (strpos($uri, '/Boffice/') !== false) {
+        $file = basename($_SERVER['PHP_SELF']);
+        $exempt = ['sign-in.php', 'sign-up.php', 'logout.php', 'verify-2fa.php'];
+        if (!in_array($file, $exempt)) {
+            header("Location: ../Frontoffice/index.php");
+            exit();
+        }
+    }
+}
+
 /**
  * Returns a database connection
  */
@@ -59,11 +72,52 @@ function processUserLogin($email, $password) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && (password_verify($password, $user['password_hash']) || $password === $user['password_plain'])) {
+        // Generate 2FA Code
+        $code = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+        
+        // Save code to database
+        $updateQuery = "UPDATE users SET two_factor_code = :code WHERE id = :id";
+        $updateStmt = $db->prepare($updateQuery);
+        $updateStmt->execute(['code' => $code, 'id' => $user['id']]);
+
+        // Send Email Verification
+        require_once __DIR__ . '/EmailController.php';
+        sendVerificationEmail($user['email'], $code);
+
+        // Store pending user in session
+        $_SESSION['pending_2fa_user_id'] = $user['id'];
+        
+        return "2fa_required";
+    }
+    return false;
+}
+
+/**
+ * Finalizes 2FA verification
+ */
+function verifyTwoFactor($code) {
+    if (!isset($_SESSION['pending_2fa_user_id'])) return false;
+    
+    $db = getDbConnection();
+    $user = findUserById($_SESSION['pending_2fa_user_id']);
+    
+    if ($user && $user['two_factor_code'] === $code) {
+        // Clear code and log in fully
+        $db->prepare("UPDATE users SET two_factor_code = NULL WHERE id = ?")->execute([$user['id']]);
+        
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['role'] = $user['role'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['profile_image_url'] = $user['profile_image_url'];
+        
+        // Log guest activity
+        if ($user['role'] === 'client') {
+            $logStmt = $db->prepare("INSERT INTO user_activity (user_id, action) VALUES (?, 'login')");
+            $logStmt->execute([$user['id']]);
+        }
+        
+        unset($_SESSION['pending_2fa_user_id']);
         return $user;
     }
     return false;
@@ -94,8 +148,8 @@ function processUserAdd($data, $files = []) {
     $profile_image_url = handleFileUpload($files['profile_image'] ?? null, __DIR__ . '/../assets/uploads/profiles/');
     $cv_file_path = handleFileUpload($files['cv_file'] ?? null, __DIR__ . '/../assets/uploads/cvs/');
 
-    $query = "INSERT INTO users (name, email, password_hash, password_plain, role, profile_image_url, cv_file_path, phone, status) 
-              VALUES (:name, :email, :password_hash, :password_plain, :role, :profile_image_url, :cv_file_path, :phone, :status)";
+    $query = "INSERT INTO users (name, email, password_hash, password_plain, role, profile_image_url, cv_file_path, phone, age, status) 
+              VALUES (:name, :email, :password_hash, :password_plain, :role, :profile_image_url, :cv_file_path, :phone, :age, :status)";
 
     $stmt = $db->prepare($query);
     
@@ -108,10 +162,17 @@ function processUserAdd($data, $files = []) {
     $stmt->bindValue(":profile_image_url", $profile_image_url);
     $stmt->bindValue(":cv_file_path", $cv_file_path);
     $stmt->bindValue(":phone", htmlspecialchars(strip_tags($data['phone'])));
+    $stmt->bindValue(":age", !empty($data['age']) ? (int)$data['age'] : null, PDO::PARAM_INT);
     $stmt->bindValue(":status", htmlspecialchars(strip_tags($data['status'] ?? 'active')));
 
     try {
-        return $stmt->execute();
+        if ($stmt->execute()) {
+            // Auto-join global group chat
+            require_once __DIR__ . '/MessageController.php';
+            (new MessageController())->syncGlobalGroup();
+            return true;
+        }
+        return false;
     } catch (PDOException $e) {
         return false;
     }
@@ -145,6 +206,7 @@ function processUserUpdate($data, $files = []) {
                 profile_image_url = :profile_image_url,
                 cv_file_path = :cv_file_path,
                 phone = :phone,
+                age = :age,
                 status = :status,
                 password_plain = :password_plain,
                 password_hash = :password_hash,
@@ -159,6 +221,7 @@ function processUserUpdate($data, $files = []) {
     $stmt->bindValue(":profile_image_url", $profile_image_url);
     $stmt->bindValue(":cv_file_path", $cv_file_path);
     $stmt->bindValue(":phone", htmlspecialchars(strip_tags($data['phone'])));
+    $stmt->bindValue(":age", !empty($data['age']) ? (int)$data['age'] : null, PDO::PARAM_INT);
     $stmt->bindValue(":status", htmlspecialchars(strip_tags($data['status'])));
     $stmt->bindValue(":password_plain", htmlspecialchars(strip_tags($password_plain)));
     $stmt->bindValue(":password_hash", $password_hash);
@@ -245,10 +308,61 @@ function findRecentUsers($limit = 5) {
     return $stmt;
 }
 
+/**
+ * Returns age distribution for guests
+ */
+function getAgeDistribution() {
+    $db = getDbConnection();
+    $query = "SELECT 
+                CASE 
+                    WHEN age BETWEEN 18 AND 25 THEN '18-25'
+                    WHEN age BETWEEN 26 AND 45 THEN '26-45'
+                    WHEN age > 45 THEN '45+'
+                    ELSE 'Unknown'
+                END as age_group,
+                COUNT(*) as count
+              FROM users 
+              WHERE role = 'client' AND age IS NOT NULL
+              GROUP BY age_group";
+    $stmt = $db->query($query);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Returns activity stats for guests (logins per day for last 7 days)
+ */
+function getGuestActivityStats() {
+    $db = getDbConnection();
+    $query = "SELECT DATE(activity_date) as date, COUNT(*) as count 
+              FROM user_activity 
+              WHERE activity_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+              GROUP BY DATE(activity_date)
+              ORDER BY DATE(activity_date) ASC";
+    $stmt = $db->query($query);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 // Global Logic / Request Handling
 if (isset($_GET['action'])) {
     if ($_GET['action'] === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-        $user = processUserLogin($_POST['email'], $_POST['password']);
+        $result = processUserLogin($_POST['email'], $_POST['password']);
+        if ($result === "2fa_required") {
+            header("Location: ../VIEW/Boffice/verify-2fa.php");
+        } elseif ($result) {
+            // This part is for users who might bypass 2FA (if disabled later)
+            if ($result['role'] === 'client') {
+                header("Location: ../VIEW/Frontoffice/index.php");
+            } else {
+                header("Location: ../VIEW/Boffice/index.php");
+            }
+        } else {
+            header("Location: ../VIEW/Boffice/sign-in.php?error=invalid_credentials");
+        }
+        exit();
+    }
+
+    if ($_GET['action'] === 'verify_2fa' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $user = verifyTwoFactor($_POST['code']);
         if ($user) {
             if ($user['role'] === 'client') {
                 header("Location: ../VIEW/Frontoffice/index.php");
@@ -256,7 +370,7 @@ if (isset($_GET['action'])) {
                 header("Location: ../VIEW/Boffice/index.php");
             }
         } else {
-            header("Location: ../VIEW/Boffice/sign-in.php?error=invalid_credentials");
+            header("Location: ../VIEW/Boffice/verify-2fa.php?error=invalid_code");
         }
         exit();
     }
@@ -304,6 +418,26 @@ if (isset($_GET['action'])) {
         } else {
             header("Location: " . $_SERVER['HTTP_REFERER'] . (strpos($_SERVER['HTTP_REFERER'], '?') !== false ? '&' : '?') . "msg=error");
         }
+        exit();
+    }
+
+    if ($_GET['action'] === 'ban' && isset($_GET['id'])) {
+        if (isAdminUser()) {
+            $db = getDbConnection();
+            $stmt = $db->prepare("UPDATE users SET status = 'banned' WHERE id = :id");
+            $stmt->execute(['id' => $_GET['id']]);
+        }
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
+    }
+
+    if ($_GET['action'] === 'search' && isset($_GET['query'])) {
+        $db = getDbConnection();
+        $query = "%" . $_GET['query'] . "%";
+        $stmt = $db->prepare("SELECT id, name, role, profile_image_url FROM users WHERE name LIKE :q AND role != 'client' LIMIT 5");
+        $stmt->execute(['q' => $query]);
+        header('Content-Type: application/json');
+        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         exit();
     }
 }

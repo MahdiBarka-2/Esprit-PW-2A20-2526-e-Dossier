@@ -21,15 +21,15 @@
             </div>
 
             <!-- Search bar -->
-            <div class="navbar-expand-lg ms-auto ms-xl-4 d-none d-md-block" style="min-width: 450px;">
+            <div class="navbar-expand-lg ms-auto ms-xl-0">
                 <div class="nav my-3 my-xl-0 flex-nowrap align-items-center">
                     <div class="nav-item w-100">
                         <form class="position-relative">
-                            <input id="globalSearch" class="form-control bg-light pe-5 py-2" type="search"
-                                placeholder="<?php echo __('search_placeholder'); ?>" aria-label="Search">
+                            <input class="form-control bg-light pe-5" type="search"
+                                placeholder="Search dossier, user..." aria-label="Search">
                             <button
-                                class="bg-transparent px-3 py-0 border-0 position-absolute top-50 end-0 translate-middle-y"
-                                type="submit"><i class="fas fa-search fs-5 text-primary"></i></button>
+                                class="bg-transparent px-2 py-0 border-0 position-absolute top-50 end-0 translate-middle-y"
+                                type="submit"><i class="fas fa-search fs-6 text-primary"></i></button>
                         </form>
                     </div>
                 </div>
@@ -64,6 +64,42 @@
                         <li class="mb-1"><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"><i class="bi bi-moon-stars-fill me-2"></i>Dark</button></li>
                         <li><button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"><i class="bi bi-circle-half me-2"></i>Auto</button></li>
                     </ul>
+                </li>
+
+                <!-- Feature 2 : Popup notification demandes en attente -->
+                <li class="nav-item ms-3 dropdown">
+                    <!-- Bouton cloche -->
+                    <button class="btn btn-light position-relative" id="notifDropdownBtn"
+                        data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                        aria-expanded="false" title="Demandes en attente">
+                        <i class="bi bi-bell fs-6"></i>
+                        <span id="notif-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none" style="font-size:0.6rem;">0</span>
+                    </button>
+
+                    <!-- Popup dropdown -->
+                    <div class="dropdown-menu dropdown-menu-end shadow border-0 p-0" id="notifDropdown"
+                         style="min-width: 320px; max-height: 400px; overflow-y:auto;">
+
+                        <!-- En-tête du popup -->
+                        <div class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom" style="background:#1d3461;">
+                            <span class="text-white fw-semibold small"><i class="bi bi-bell-fill me-2"></i>Demandes en attente</span>
+                            <span id="notif-popup-count" class="badge bg-danger rounded-pill">0</span>
+                        </div>
+
+                        <!-- Corps : chargé en AJAX -->
+                        <div id="notif-popup-body">
+                            <div class="text-center py-3">
+                                <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+                            </div>
+                        </div>
+
+                        <!-- Pied : lien vers la liste complète -->
+                        <div class="border-top">
+                            <a href="demands.php" class="dropdown-item text-center text-primary small py-2 fw-semibold">
+                                <i class="bi bi-arrow-right-circle me-1"></i>Voir toutes les demandes
+                            </a>
+                        </div>
+                    </div>
                 </li>
 
                 <!-- Profile dropdown START -->
@@ -101,3 +137,87 @@
     </div>
 </nav>
 <!-- Top bar END -->
+
+<!-- Feature 2 : Scripts notification (badge + popup) -->
+<script>
+// ── Met à jour le badge (nombre) ──────────────────────────────────────────────
+function refreshNotifBadge() {
+    fetch('../../CONTROLLER/AiService.php?action=notif_count')
+        .then(r => r.json())
+        .then(data => {
+            const badge = document.getElementById('notif-badge');
+            if (!badge) return;
+            if (data.count > 0) {
+                badge.textContent = data.count;
+                badge.classList.remove('d-none');
+            } else {
+                badge.classList.add('d-none');
+            }
+        })
+        .catch(() => {});
+}
+
+// ── Charge la liste des demandes dans le popup ────────────────────────────────
+function loadNotifList() {
+    fetch('../../CONTROLLER/AiService.php?action=notif_list')
+        .then(r => r.json())
+        .then(data => {
+            const body  = document.getElementById('notif-popup-body');
+            const count = document.getElementById('notif-popup-count');
+            if (!body) return;
+
+            // Mise à jour du compteur dans l'en-tête du popup
+            if (count) count.textContent = data.count;
+
+            if (data.count === 0) {
+                body.innerHTML = `
+                    <div class="text-center py-4 text-muted">
+                        <i class="bi bi-check-circle fs-2 text-success d-block mb-2"></i>
+                        Aucune demande en attente
+                    </div>`;
+                return;
+            }
+
+            // Construction de la liste
+            let html = '';
+            data.demandes.forEach(d => {
+                // Calcul du nombre de jours écoulés
+                const diff = Math.floor((Date.now() - new Date(d.created_at)) / 86400000);
+                const retard = diff >= 3
+                    ? `<span class="badge bg-danger ms-1" style="font-size:0.6rem;">RETARD</span>`
+                    : '';
+
+                html += `
+                <a href="demand-detail.php?id=${d.id}" class="dropdown-item px-3 py-2 border-bottom d-block">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="fw-semibold small">#${d.id} — ${d.utilisateur}</span>
+                        ${retard}
+                    </div>
+                    <div class="text-muted" style="font-size:0.78rem;">
+                        <i class="bi bi-tag me-1"></i>${d.categorie_nom}
+                        &nbsp;·&nbsp;
+                        <i class="bi bi-clock me-1"></i>${diff}j
+                    </div>
+                </a>`;
+            });
+            body.innerHTML = html;
+        })
+        .catch(() => {
+            const body = document.getElementById('notif-popup-body');
+            if (body) body.innerHTML = '<div class="text-center text-muted py-3 small">Erreur de chargement</div>';
+        });
+}
+
+// ── Ouvrir le popup → charger la liste ───────────────────────────────────────
+const notifBtn = document.getElementById('notifDropdownBtn');
+if (notifBtn) {
+    notifBtn.addEventListener('shown.bs.dropdown', function () {
+        loadNotifList();
+    });
+}
+
+// ── Polling du badge toutes les 30 secondes ───────────────────────────────────
+refreshNotifBadge();
+setInterval(refreshNotifBadge, 30000);
+</script>
+

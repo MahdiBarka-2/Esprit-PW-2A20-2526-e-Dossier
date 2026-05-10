@@ -13,8 +13,8 @@ class CommentC {
     // DB: ADD
     public function addComment($contenu, $utilisateur, $publication_id) {
         // AI Moderation Step
-        include_once __DIR__ . '/AIService.php';
-        $ai = new AIService();
+        include_once __DIR__ . '/PublicationAIService.php';
+        $ai = new PublicationAIService();
         $status = $ai->moderateComment($contenu);
 
         $db = $this->db;
@@ -104,7 +104,7 @@ class CommentC {
     public function analyzeSentiment($text) {
         $text = strtolower($text);
         $posK = ['great', 'awesome', 'excellent', 'good', 'love', 'thanks', 'helpful', 'perfect', 'bien', 'merci', 'top'];
-        $negK = ['bad', 'terrible', 'awful', 'hate', 'useless', 'wrong', 'error', 'mauvais', 'nul', 'problème'];
+        $negK = ['bad', 'terrible', 'awful', 'hate', 'useless', 'wrong', 'error', 'mauvais', 'nul', 'problÃ¨me'];
         $p = 0; $n = 0;
         foreach ($posK as $w) if (strpos($text, $w) !== false) $p++;
         foreach ($negK as $w) if (strpos($text, $w) !== false) $n++;
@@ -132,14 +132,14 @@ class CommentC {
             $db = $this->db;
             $db->prepare("UPDATE comment SET status = 'Approved' WHERE id = :id")->execute(['id' => $id]);
         }
-        header("Location: /integration/VIEW/Boffice/posts.php?action=show&id=" . ($_GET['publication_id'] ?? ''));
+        header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php?action=show&id=" . ($_GET['publication_id'] ?? ''));
         exit();
     }
 
     public function delete() {
         if (!empty($_GET['id'])) $this->deleteComment($_GET['id']);
-        if (($_GET['from'] ?? '') === 'admin') header("Location: /integration/VIEW/Boffice/posts.php?action=comments");
-        else header("Location: /integration/index1.php?action=show&id=" . ($_GET['publication_id'] ?? ''));
+        if (($_GET['from'] ?? '') === 'admin') header("Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php?action=comments");
+        else header("Location: /Esprit-PW-2A20-2526-e-Dossier/index1.php?action=show&id=" . ($_GET['publication_id'] ?? ''));
         exit();
     }
     public function adminIndex() {

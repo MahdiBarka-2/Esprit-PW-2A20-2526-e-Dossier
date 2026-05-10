@@ -37,7 +37,7 @@ class PublicationC
         try {
             $db->prepare($sql)->execute(['titre' => $titre, 'contenu' => $contenu, 'auteur' => $auteur, 'date' => $date, 'categorie' => $categorie, 'document' => $document]);
             
-            // Trigger Automated Notification (Metier Avancé)
+            // Trigger Automated Notification (Metier AvancÃ©)
             include_once __DIR__ . '/NotificationC.php';
             $notif = new NotificationC();
             $notif->sendPublicationAlert($titre, $auteur, $categorie);
@@ -177,7 +177,7 @@ class PublicationC
         $id = $_GET['id'] ?? '';
         $publication = $this->getOnePublication($id);
         if (!$publication)
-                    header('Location: /integration/VIEW/Boffice/posts.php');
+                    header('Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php');
         include __DIR__ . '/../VIEW/Boffice/publications/edit.php';
     }
 
@@ -185,7 +185,7 @@ class PublicationC
     {
         if (!empty($_GET['id']))
             $this->deletePublication($_GET['id']);
-                header('Location: /integration/VIEW/Boffice/posts.php');
+                header('Location: /Esprit-PW-2A20-2526-e-Dossier/VIEW/Boffice/posts.php');
     }
 
     public function show()
@@ -248,8 +248,8 @@ class PublicationC
     // AI ASSISTANT ENDPOINT
     public function aiAssistAction()
     {
-        include_once __DIR__ . '/AIService.php';
-        $ai = new AIService();
+        include_once __DIR__ . '/PublicationAIService.php';
+        $ai = new PublicationAIService();
         $title = $_POST['title'] ?? '';
         if (empty($title)) {
             echo json_encode(['error' => 'Title is required for AI assistance.']);
@@ -295,8 +295,8 @@ class PublicationC
     // STRATEGIC INSIGHT ENDPOINT
     public function strategicInsightAction()
     {
-        include_once __DIR__ . '/AIService.php';
-        $ai = new AIService();
+        include_once __DIR__ . '/PublicationAIService.php';
+        $ai = new PublicationAIService();
         $id = $_REQUEST['id'] ?? '';
         $publication = $this->getOnePublication($id);
         if (!$publication) {
