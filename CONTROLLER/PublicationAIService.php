@@ -2,7 +2,7 @@
 
 class PublicationAIService
 {
-    private $apiKey = "AIzaSyCa_Rdrcuaavo0VjUwNO8_KVhQ8JP0YP_M";
+    private $apiKey = "AIzaSyCv6H40dUFO8wCttdOOVy6lHbhpdTI3FjU";
     private $apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
     public function generateContent($prompt)
