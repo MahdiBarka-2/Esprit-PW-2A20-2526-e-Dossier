@@ -494,3 +494,33 @@ Mail Error: SMTP Error: Could not authenticate.
         
     
 Mail Error: SMTP Error: Could not authenticate.
+[2026-05-10 11:00:23] 2FA Code for aziz@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            623641
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.
+[2026-05-10 11:01:58] 2FA Code for aziz@gmail.com: 
+        
+          
+            
+              E-Dossier
+            
+            Hi,
+            Thank you for choosing E-Dossier. Use the following OTP to complete your Log In procedures. OTP is valid for 5 minutes
+            503303
+            Regards,E-Dossier Security Team
+            
+          
+        
+    
+Mail Error: SMTP Error: Could not authenticate.

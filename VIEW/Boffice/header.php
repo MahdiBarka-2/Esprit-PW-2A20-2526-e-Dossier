@@ -121,6 +121,8 @@ header("Expires: 0"); // Proxies.
 	
 	<!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     
 </head>
 
