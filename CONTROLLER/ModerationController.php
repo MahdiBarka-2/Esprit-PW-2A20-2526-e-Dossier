@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../MODEL/Database.php';
 
-class ModerationCONTROLLER {
+class ModerationController {
     private $db;
     private $aiUrl = "http://127.0.0.1:1234/v1/chat/completions";
 
@@ -64,7 +64,7 @@ class ModerationCONTROLLER {
         $admin_id = 0; // Let's assume 0 or a specific Bot ID
         $content = "WARNING: Your message was flagged as inappropriate. Reason: $reason. One more violation will result in an automatic ban.";
         
-        // Here we could use MessageCONTROLLER to start a private chat between Bot and User
+        // Here we could use MessageController to start a private chat between Bot and User
         // But for now, let's just insert a system message record.
     }
 
