@@ -10,6 +10,14 @@ $demandeC = new demandeC();
 $totalDossiers = $demandeC->countDemandes();
 $newDemandesCount = $demandeC->countDemandes('en_attente');
 
+require_once '../../CONTROLLER/EvenementController.php';
+$eventC = new EvenementC();
+$totalEvents = $eventC->listeEvenement()->rowCount();
+
+require_once '../../CONTROLLER/PublicationC.php';
+$pubC = new PublicationC();
+$totalPosts = $pubC->countPublications(); 
+
 // Fetch Stats for Charts
 $ageDist = getAgeDistribution();
 $activityStats = getGuestActivityStats();
@@ -104,6 +112,32 @@ require_once "header.php";
 							class="fa-solid fa-clipboard-list fa-fw"></i></div>
 				</div>
 			</div>
+		</div>
+
+		<!-- Counter item (Posts) -->
+		<div class="col-md-6 col-xxl-3">
+			<a href="posts.php" class="card card-body bg-danger bg-opacity-10 border border-danger border-opacity-25 p-4 h-100 text-decoration-none transition-all hover-shadow">
+				<div class="d-flex justify-content-between align-items-center">
+					<div>
+						<h4 class="mb-0"><?php echo number_format($totalPosts); ?></h4>
+						<span class="h6 fw-light mb-0 text-body"><?php echo __('posts'); ?></span>
+					</div>
+					<div class="icon-lg rounded-circle bg-danger text-white mb-0"><i class="fa-solid fa-file-pen fa-fw"></i></div>
+				</div>
+			</a>
+		</div>
+
+		<!-- Counter item (Events) -->
+		<div class="col-md-6 col-xxl-3">
+			<a href="Evenement.php" class="card card-body bg-primary bg-opacity-10 border border-primary border-opacity-25 p-4 h-100 text-decoration-none transition-all hover-shadow">
+				<div class="d-flex justify-content-between align-items-center">
+					<div>
+						<h4 class="mb-0"><?php echo number_format($totalEvents); ?></h4>
+						<span class="h6 fw-light mb-0 text-body"><?php echo __('Evenements'); ?></span>
+					</div>
+					<div class="icon-lg rounded-circle bg-primary text-white mb-0"><i class="fa-solid fa-calendar-days fa-fw"></i></div>
+				</div>
+			</a>
 		</div>
 	</div>
 	<!-- Counter boxes END -->
@@ -224,6 +258,7 @@ require_once "header.php";
 			e.trafficsplineChart = function() {
 				var cpv = e.select('#ChartGuesttraffic');
 				if (e.isVariableDefined(cpv)) {
+                    cpv.innerHTML = ''; // Clear previous render to avoid duplication
 					var options = {
 						series: [{
 							name: 'Guest Activity',
@@ -243,6 +278,7 @@ require_once "header.php";
 			e.trafficroomChart = function() {
 				var cpv = e.select('#ChartTrafficRooms');
 				if (e.isVariableDefined(cpv)) {
+                    cpv.innerHTML = ''; // Clear previous render to avoid duplication
 					var options = {
 						series: <?php echo json_encode($ageSeries); ?>,
 						labels: <?php echo json_encode($ageLabels); ?>,
@@ -250,7 +286,8 @@ require_once "header.php";
 						colors: [
 							ThemeColor.getCssVariableValue('--bs-primary'),
 							ThemeColor.getCssVariableValue('--bs-info'),
-							ThemeColor.getCssVariableValue('--bs-warning')
+							ThemeColor.getCssVariableValue('--bs-warning'),
+                            ThemeColor.getCssVariableValue('--bs-danger')
 						],
 						tooltip: { theme: "dark" },
 						responsive: [{ breakpoint: 480, options: { chart: { width: 200, height: 200 }, legend: { position: 'bottom' } } }]
@@ -260,6 +297,7 @@ require_once "header.php";
 				}
 			};
 
+			// Re-call them with the new data
 			if (document.querySelector("#ChartGuesttraffic")) e.trafficsplineChart();
 			if (document.querySelector("#ChartTrafficRooms")) e.trafficroomChart();
 		}

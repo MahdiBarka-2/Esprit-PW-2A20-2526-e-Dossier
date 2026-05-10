@@ -1,6 +1,8 @@
 <?php 
 require_once '../../CONTROLLER/LanguageController.php'; 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['pending_2fa_user_id'])) {
     header("Location: sign-in.php");
